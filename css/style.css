@@ -4,29 +4,197 @@
 }
 
 body {
-    background-image: linear-gradient(180deg, #ffe9e4, #5b5b4c);
+    background-image: linear-gradient(90deg, #ffe9e4, #5b5b4c);
+    overflow-x: hidden; 
 }
 
 header {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 }
 
 nav a {
-    display: flex;
-    flex-direction: row;
-   
     color: white;
+    font-family: Agrandir Medium;
     text-decoration: none;
     margin: 2vh;
 
 }
-header input{
+
+nav a:hover {
+    border-style: 3px solid rgb(255, 37, 37);
+    background-color: black;
+    height: 5vh;
+
+}
+
+header input {
     height: 4vh;
 }
-.logo{
+
+.logo {
     height: fit-content;
-    width: 20%;
-    background-color: rgb(70, 27, 164);
+    margin: 5%;
+    width: 75%;
+ 
+
+}
+
+input[type=text] {
+    width: 45%;
+    height: 33%;
+    padding: 1vh 2vh;
+    margin: 3.5%;
+    box-sizing: border-box;
+    position: relative;
+    top:4.5vh;
+    left:22vh;
+}
+
+.link_menu {
+    display: flex;
+    font-size: 3vh;
+    flex-direction: row;
+    margin-top: 5%;
+}
+
+.link_menu a {
+    display: flex;
+}
+
+
+.button_loupe {
+    display: flex;
+    position: relative;
+    left: 5vh;
+    top: 6vh;
+    margin-top: 7vh;
+    width: 6%;
+}
+.button_shop {
+    display: flex;
+    margin-top: 6.5vh;
+    width: 6vh;
+    position: relative;
+    left:35vh;
+    top:17%;
+
+}
+
+
+
+.button_user {
+    display: flex;
+    position: relative;
+    right: 15vh;
+    top:5vh;
+    margin-top: 7vh;
+    width: 5vh;
+
+}
+
+.frasemotivac_text {
+    text-align: center;
+    color: white;
+    font-size: 5vh;
+   
+}
+
+.Author_frase {
+    color: white;
+    font-size: 3vh;
+    position: relative;
+    left: 60%;
+}
+
+.img_nanismo{
+    display: flex;
+    width: 30%;
+    position: relative;
+    top: 6vh;
+    left: 6vh;
+}
+
+.img_mulheres{
+    display: flex;
+    width: 30%;
+    position: relative;
+    bottom: 90vh;
+    left: 70vh;
+}
+
+.img_mulher_poderosa{
+    display: flex;
+    width: 30%;
+    position: relative;
+    bottom: 132.2vh;
+    left: 133vh;
+}
+
+.tod_medidas_geral{
+    display: flex;
+    font-family: Agrandir;
+    font-size: 123%;
+    position: relative;
+    left:70vh;
+    bottom:190vh;
+    background-color: black;
+    width: 30%;
+    height: 58vh;
+    text-align: center;
+    color: white;
+
+}
+
+.tod_medidas1{
+    display: flex;
+    font-family: Agrandir;
+    font-size: 123%;
+    position: relative;
+    left:70vh;
+    bottom:190vh;
+    background-color: black;
+    width: 30%;
+    height: 58vh;
+    text-align: center;
+    color: white;
+}
+
+.tod_medidas2{
+    display: flex;
+    font-family: Migra ExtraLight;
+    font-size: 120%;
+    position: relative;
+    left:70vh;
+    bottom:234vh; 
+    width: 30%;
+    height: 29vh;
+    text-align: center;
+    color: white;
+}
+
+.download_img{
+    width: 10%;
+    position: relative;
+    bottom: 263vh;
+    left:51%;
+    z-index: 2;
+}
+
+.download_blackground{
+    background-image: linear-gradient(90deg, #ffe9e4, #5b5b4c);
+    width: 14%;
+    height: 58.3vh;
+    position: relative;
+    bottom: 299vh;
+    left:105vh;
+    z-index: 1;
+}
+
+.slider{
+    margin: 0 auto;
+    width: 30vh;
+    height: 20vh;
+    overflow: hidden;
 
 }

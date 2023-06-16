@@ -1,31 +1,72 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Easyfit</title>
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="shortcut icon" href="/ico/logo.ico" type="image/x-icon">
+    <meta name="author" content="João Victor,Davi Ribeiro e Yzabella Luiza">
+    <meta name="keywords" content="HTML,CSS,JavaScript">
+    <meta name="description"
+        content="Um web site de vendas de roupas sob medida que adequa qualquer corpo,gosto e estilo.">
 </head>
+
 <body>
     <header>
-       <a href="/index.html"><img  class="logo" src="/img/logo.png"></a>
-        <nav>
-            <a href="">HOME</a>     
+        <a href="/index.html"><img class="logo" src="/img/logo.png"></a>
+        <nav class="link_menu">
+            <a href="index.html">HOME</a>
             <a href="">NOVIDADES</a>
             <a href="">CATALOGO</a>
             <a href="">AJUDA</a>
-           
-
         </nav>
-        <input type="text" placeholder="pesquisar">
-        <a href="">AJUDA</a>
-        <a href="">AJUDA</a>
+        <input type="text" placeholder="BUSCAR">
+        <a href=""><img class="button_shop" src='/img/bag.png'></a>
+        <a href=""><img class="button_loupe" src='/img/loupe.png'></a>
+        <a href=""><img class="button_user" src='/img/user.png'></a>
 
     </header>
     <main>
 
 
+        <div class="frasemotivac_text">“A moda deve ser uma forma de escapismo e não uma forma de prisão.”</div>
+        <div class="Author_frase">“- Alexander McQueen”</div>
+        <img class="img_nanismo" src='/img/nanismo.jpg'>
+        <img class="img_mulheres" src='/img/mulheres.jpg'>
+        <img class="img_mulher_poderosa" src='/img/mulher_poderosa.jpg'>
+        <div class="tod_medidas1">PARA TODOS OS ESTILOS</div>
+        <div class="tod_medidas2">PARA TODAS AS MEDIDAS</div>
+        <img class="download_img" src="img/button_download.png">
+        <div class="download_blackground"></div>
+        <script src="/js/index.js"></script>
+
+        <div class="slider">
+            <div class="slides">
+                <input type="radio" name="radio-btn" id="radio1">
+                <input type="radio" name="radio-btn" id="radio2">
+                <input type="radio" name="radio-btn" id="radio3">
+
+                <div class="slide first">
+                    <img src="" alt="Imagem 1">
+                    <img src="" alt="Imagem 2">
+                    <img src="" alt="Imagem 3">
+                </div>
+                <div class="navigation-auto">
+                    <div class="auto_btn1"></div>
+                    <div class="auto_btn2"></div>
+                    <div class="auto_btn3"></div>
+                </div>
+            </div>
+            <div class="manual-navigation">
+                <label for="radio1" class="manual-btn"></label>
+                <label for="radio2" class="manual-btn"></label>
+                <label for="radio3" class="manual-btn"></label>
+            </div>
+        </div>
     </main>
 </body>
+
 </html>
