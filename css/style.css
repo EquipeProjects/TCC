@@ -5,7 +5,7 @@
 
 body {
     background-image: linear-gradient(90deg, #ffe9e4, #5b5b4c);
-    overflow-x: hidden; 
+    overflow-x: hidden;
 }
 
 header {
@@ -21,10 +21,22 @@ nav a {
 
 }
 
-nav a:hover {
+nav a::before{
+    height: 20%
+
+  
+
+}
+nav a:hover{
     border-style: 3px solid rgb(255, 37, 37);
     background-color: black;
-    height: 5vh;
+    height: 10%;
+    background-position: bottom;
+    background-size: 10% 10%;
+    transition: 2s;
+   
+
+  
 
 }
 
@@ -36,7 +48,7 @@ header input {
     height: fit-content;
     margin: 5%;
     width: 75%;
- 
+
 
 }
 
@@ -47,8 +59,8 @@ input[type=text] {
     margin: 3.5%;
     box-sizing: border-box;
     position: relative;
-    top:4.5vh;
-    left:22vh;
+    top: 4.5vh;
+    left: 22vh;
 }
 
 .link_menu {
@@ -63,6 +75,8 @@ input[type=text] {
 }
 
 
+
+
 .button_loupe {
     display: flex;
     position: relative;
@@ -71,13 +85,14 @@ input[type=text] {
     margin-top: 7vh;
     width: 6%;
 }
+
 .button_shop {
     display: flex;
     margin-top: 6.5vh;
     width: 6vh;
     position: relative;
-    left:35vh;
-    top:17%;
+    left: 35vh;
+    top: 17%;
 
 }
 
@@ -87,7 +102,7 @@ input[type=text] {
     display: flex;
     position: relative;
     right: 15vh;
-    top:5vh;
+    top: 5vh;
     margin-top: 7vh;
     width: 5vh;
 
@@ -97,7 +112,7 @@ input[type=text] {
     text-align: center;
     color: white;
     font-size: 5vh;
-   
+
 }
 
 .Author_frase {
@@ -107,7 +122,7 @@ input[type=text] {
     left: 60%;
 }
 
-.img_nanismo{
+.img_nanismo {
     display: flex;
     width: 30%;
     position: relative;
@@ -115,7 +130,7 @@ input[type=text] {
     left: 6vh;
 }
 
-.img_mulheres{
+.img_mulheres {
     display: flex;
     width: 30%;
     position: relative;
@@ -123,7 +138,7 @@ input[type=text] {
     left: 70vh;
 }
 
-.img_mulher_poderosa{
+.img_mulher_poderosa {
     display: flex;
     width: 30%;
     position: relative;
@@ -131,13 +146,13 @@ input[type=text] {
     left: 133vh;
 }
 
-.tod_medidas_geral{
+.tod_medidas_geral {
     display: flex;
     font-family: Agrandir;
     font-size: 123%;
     position: relative;
-    left:70vh;
-    bottom:190vh;
+    left: 70vh;
+    bottom: 190vh;
     background-color: black;
     width: 30%;
     height: 58vh;
@@ -146,13 +161,13 @@ input[type=text] {
 
 }
 
-.tod_medidas1{
+.tod_medidas1 {
     display: flex;
     font-family: Agrandir;
     font-size: 123%;
     position: relative;
-    left:70vh;
-    bottom:190vh;
+    left: 70vh;
+    bottom: 190vh;
     background-color: black;
     width: 30%;
     height: 58vh;
@@ -160,41 +175,124 @@ input[type=text] {
     color: white;
 }
 
-.tod_medidas2{
+.tod_medidas2 {
     display: flex;
     font-family: Migra ExtraLight;
     font-size: 120%;
     position: relative;
-    left:70vh;
-    bottom:234vh; 
+    left: 70vh;
+    bottom: 234vh;
     width: 30%;
     height: 29vh;
     text-align: center;
     color: white;
 }
 
-.download_img{
+.download_img {
     width: 10%;
     position: relative;
     bottom: 263vh;
-    left:51%;
+    left: 51%;
     z-index: 2;
 }
 
-.download_blackground{
+.download_blackground {
     background-image: linear-gradient(90deg, #ffe9e4, #5b5b4c);
     width: 14%;
     height: 58.3vh;
     position: relative;
     bottom: 299vh;
-    left:105vh;
+    left: 105vh;
     z-index: 1;
 }
 
-.slider{
+.slider {
     margin: 0 auto;
-    width: 30vh;
-    height: 20vh;
-    overflow: hidden;
+    width: 30%;
+    height: 40%;
 
+
+}
+
+.slides {
+    width: 400%;
+    height: 40vh;
+    display: flex;
+    overflow: hidden;
+}
+
+.slides input {
+    display: none;
+}
+
+.slide {
+    width: 25%;
+    position: relative;
+    transition: 3s;
+}
+
+.slide img {
+    width: 800px;
+}
+
+.manual-navagitation{
+    position: absolute;
+    width: 800px;
+    margin-top: -40px;
+    display: flex;
+    justify-content: center;
+}
+
+.manual-btn{
+    border: 2px solid #fff;
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 1s;
+}
+
+.manual-btn:not(:Last-child){
+    margin-right: 40px;
+}
+.manual-btn:hover{
+    background: #fff;
+}
+#radio1:checked ~ .first{
+    margin-left: 0%;
+}
+#radio2:checked ~ .first{
+    margin-left: -25%;
+}
+#radio3:checked ~ .first{
+    margin-left: -50%;
+}
+
+.navigation-auto div{
+    border: 2px solid #20a6ff;
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 1s;
+}
+
+.navigation-auto{
+    position: absolute;
+    width: 800px;
+    margin-top: 360px;
+    display: flex;
+    justify-content: center;
+}
+
+.navigation-auto div:not(:last-child){
+    margin-right: 40px;
+}
+
+#radio1:checked ~ .navigation-auto .auto-btn1{
+    background: #fff;
+}
+#radio2:checked ~ .navigation-auto .auto-btn2{
+    background: #fff;
+}
+#radio3:checked ~ .navigation-auto .auto-btn3{
+    background: #fff;
 }
