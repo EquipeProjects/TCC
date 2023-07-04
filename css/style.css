@@ -1,3 +1,11 @@
+@font-face {
+    font-family: 'Migra Extralight';
+    src: url('caminho/para/o/arquivo/migra-extralight.woff2') format('woff2'),
+        url('caminho/para/o/arquivo/migra-extralight.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -312,22 +320,38 @@ input[type=text] {
 
 .acao-anterior {
     left: 10px;
-    background: none; 
-  
-    
+    background: none;
+
+
 }
 
 .acao-proxima {
     right: 10px;
-    background: none; 
+    background: none;
 }
 
-.seta-direita{
+.seta-direita {
     width: 20%;
-    
+
 }
 
-.seta-esquerda{
+.seta-esquerda {
     width: 20%;
     rotate: 180deg;
+}
+
+.background_carrosel {
+    background: #2566AF;
+    width: 33%;
+    height: 15vh;
+    position: relative;
+    left: 40%;
+    bottom: 120vh;
+    text-align: center;
+    font-family: 'Migra Extralight', sans-serif;
+    font-size: 5vh;
+    padding: 5vh;
+    color:#E6A540;
+    -webkit-text-stroke: 1px #a51d20;
+   
 }
