@@ -351,7 +351,14 @@ input[type=text] {
     font-family: 'Migra Extralight', sans-serif;
     font-size: 5vh;
     padding: 5vh;
-    color:#E6A540;
+    color: #E6A540;
     -webkit-text-stroke: 1px #a51d20;
-   
+
+}
+
+footer {
+    background: black;
+    width: 100%;
+    height: 56vh;
+    color: white;
 }
