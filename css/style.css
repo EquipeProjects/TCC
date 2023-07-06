@@ -359,6 +359,63 @@ input[type=text] {
 footer {
     background: black;
     width: 100%;
-    height: 56vh;
+    height: 120vh;
     color: white;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 100px 400px auto 600px;
+}
+
+.grid-item:nth-child(1) {
+    padding: 20px;
+    color: yellow;
+    background-color: purple;
+    position: relative;
+    grid-column: 1 / span 1; /* Ocupa 1 coluna */
+    
+}
+.grid-item:nth-child(2) {
+    padding: 20px;
+    color:purple;
+    background-color: red;
+   
+   
+}
+.grid-item:nth-child(3) {
+    padding: 20px;
+    color:purple;
+    background-color: yellow;
+    
+}
+
+.grid-item:nth-child(4) {
+    padding: 20px;
+    color:purple;
+    background-color: red; 
+}
+
+.grid-item:nth-child(5) {
+    padding: 20px;
+    color:purple;
+    background-color: rgba(73, 134, 73, 0.671);
+    grid-column: 1 / span 10;
+}
+
+.grid-item:nth-child(6) {
+    padding: 20px;
+    color:purple;
+    background: white;
+    grid-column: 1 / span 10; 
+}
+.grid-item:nth-child(7) {
+    padding: 20px;
+    color:purple;
+    background: white;
+}
+.grid-item:nth-child(8) {
+    padding: 20px;
+    color:blue;
+    background: orange;
 }
