@@ -1,0 +1,140 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
+body {
+    background-image: linear-gradient(90deg, #ffe9e4, #5b5b4c);
+    overflow-x: hidden;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+}
+
+nav a {
+    color: white;
+    font-family: Agrandir Medium;
+    text-decoration: none;
+    margin: 2vh;
+
+}
+
+
+header input {
+    height: 4vh;
+}
+
+.logo {
+    height: 100%;
+    margin: 5%;
+    width: 100%;
+
+}
+
+input[type=text] {
+    width: 45%;
+    height: 33%;
+    padding: 1vh 2vh;
+    margin: 3.5%;
+    box-sizing: border-box;
+    position: relative;
+    top: 4.5vh;
+    left: 22vh;
+}
+
+
+.link_menu {
+    display: flex;
+    font-size: 3vh;
+    flex-direction: row;
+    margin-top: 5%;
+    position: relative;
+
+}
+
+.btn-generic-white {
+    width: 300px;
+    height: auto;
+    font-size: 30px;
+    background-color: #ffffff;
+    border: none;
+    margin: 5%;
+    border-radius: 30px;
+    color: rgb(0, 0, 0);
+}
+
+.finalizar {
+    background-color: #F2F2F2;
+    width: 96vw;
+
+    margin-left: 2vw;
+    margin-right: 2vw;
+    display: flex;
+
+ 
+}
+
+.divisao {
+    flex-basis: 50%;
+    background-color: #F2F2F2;
+}
+
+.divisao:first-child {
+    display: flex;
+    flex-direction: column;
+
+
+}
+
+.divisao:last-child {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+
+
+}
+.btn-generic {
+    width: 300px;
+    height: auto;
+    font-size: 30px;
+    background-color: #0F171E;
+    border: none;
+    margin: 5%;
+    border-radius: 30px;
+    color: white;
+}
+.btn-orange{
+    width: 300px;
+    height: auto;
+    font-size: 30px;
+    background-color:#E6A540;
+    border: none;
+    margin: 5%;
+    border-radius: 30px;
+    color: white;
+
+}
+input[type=text]{
+    margin: 10px;
+    padding: 20px;
+    border-radius: 20px;
+    border: none;
+}
+
+.sameline{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+}
+.btn-cupom{
+    background-color: #D9D9D8;
+    width: 150px;   
+    border: none;
+    height: 4vh;
+    border-radius: 10px;
+}
