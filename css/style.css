@@ -594,8 +594,9 @@ footer {
     margin: 2vh;
 }
 
+
 .link_home:hover {
-    border-bottom: 5px solid rgb(0, 0, 0);
+    display: block;
 }
 
 .link_novid {
@@ -606,9 +607,8 @@ footer {
 }
 
 .link_novid:hover {
-    border-bottom: 5px solid rgb(0, 0, 0);
+    display: block;
 }
-
 
 .link_ajuda {
     color: white;
@@ -618,7 +618,7 @@ footer {
 }
 
 .link_ajuda:hover {
-    border-bottom: 5px solid rgb(0, 0, 0);
+   display: block;
 }
 
 .link_catalog {
@@ -629,7 +629,7 @@ footer {
 }
 
 .link_catalog:hover {
-    border-bottom: 5px solid rgb(0, 0, 0);
+   display: block;
 }
 
 .link_masc {
@@ -832,7 +832,12 @@ section {
 
 
 
-
+nav a {
+    color: white;
+    font-family: Agrandir Medium;
+    text-decoration: none;
+    margin: 2vh;
+}
 
 nav a:after {
     background: none repeat scroll 0 0 transparent;
@@ -840,9 +845,9 @@ nav a:after {
     content: "";
     display: block;
     height: 5px;
-    left: 50%;
+    left: 30%;
     position: relative;
-
+    
     background: black;
     transition: width 0.7s ease 0s, left 0.6s ease 0s;
     width: 0;
