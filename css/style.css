@@ -773,3 +773,35 @@ section {
     border-radius: 30px;
     color: white;
 }
+
+
+.carrinho {
+    background-color: #FFF5F5;
+    border: #000000 1px solid;
+    width: 50%;
+
+}
+
+.cart-items {
+    padding-top: 5%;
+}
+
+.item {
+    height: 35vh;
+}
+
+
+.item-img {
+    float: left;
+    height: 25vh;
+    width: 50%;
+
+}
+
+
+.cart-content {
+    width: 50%;
+    float: right;
+    text-align: center;
+
+}
