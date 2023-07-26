@@ -830,3 +830,26 @@ section {
     color: white;
 }
 
+
+
+
+
+nav a:after {
+    background: none repeat scroll 0 0 transparent;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 5px;
+    left: 50%;
+    position: relative;
+
+    background: black;
+    transition: width 0.7s ease 0s, left 0.6s ease 0s;
+    width: 0;
+}
+
+nav a:hover:after {
+    width: 20%;
+    left: 40%;
+
+}
