@@ -1,0 +1,85 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
+body {
+    background-image: linear-gradient(90deg, #ffe9e4, #5b5b4c);
+    overflow-x: hidden;
+}
+
+header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-wrap: wrap;
+}
+.logo {
+   
+
+  
+    width: 300px;
+
+
+}
+
+.cliente, .vendedor{
+    display: flex;
+    flex-direction: column;
+   
+    width: 200px;
+    border-radius: 50%;
+    margin: 10%;
+    font-size: 30px;
+    color:white
+    
+   
+    
+}
+main img{
+    padding: 30px;
+    background-color: white;
+    
+    border-radius: 50%;
+}
+
+main img:focus {
+    outline: 2px solid blue;
+}
+.btn-generic{
+    width: 300px;
+    height: 8vh;
+    font-size: 30px;
+    background-color: #0F171E;
+    border: none;
+    border-radius: 30px;
+    margin: 10%;
+    color: white;
+}
+#cliente, #vendedor{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+
+    font-size: 30px;
+   
+
+  }
+input[type=text]{
+    margin: 10px;
+    padding: 20px;
+    border-radius: 20px;
+    border: none;
+}
+span{color: white;}
