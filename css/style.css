@@ -805,3 +805,28 @@ section {
     text-align: center;
 
 }
+
+.t-icon {
+    width: 30px;
+}
+
+.cart-input {
+    width: 50px;
+    font-size: 20px;
+}
+
+.item-price {
+    font-size: 30px;
+}
+
+.btn-generic {
+    width: 300px;
+    height: auto;
+    font-size: 30px;
+    background-color: #0F171E;
+    border: none;
+
+    border-radius: 30px;
+    color: white;
+}
+
