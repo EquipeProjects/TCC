@@ -397,7 +397,7 @@ footer {
 .button_trian {
     width: 12%;
     position: relative;
-    left: 10vh;
+    left: 23vh;
     top: 1vh;
 }
 
@@ -686,7 +686,8 @@ section {
     font-size: 30px;
     background-color: #0F171E;
     border: none;
-
+    position: relative;
+    left: 3vh;
     border-radius: 30px;
     color: white;
 }
@@ -807,6 +808,7 @@ nav a:hover:after {
 .carousel-prev {
 
     left: 10%;
+    bottom: 42vh;
     transform: rotate(180deg);
 }
 
@@ -845,4 +847,15 @@ nav a:hover:after {
 
 .carousel-dots .dot.active {
     background-color: #202020;
+}
+
+.btn-generic-white{
+    width: 300px;
+    height: auto;
+    font-size: 30px;
+    background-color: white;
+    border: none;
+    margin: 20px;
+    border-radius: 30px;
+    color: black;
 }
