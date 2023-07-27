@@ -79,7 +79,7 @@ input[type=text] {
     width: 6vh;
     position: relative;
     left: 22vh;
-    top: 17%;
+    top: 5vh;
 
 }
 
@@ -496,15 +496,7 @@ footer {
     margin-left: 1vh;
     text-align: start;
     height: 8vh;
-    transition: 3s ease-in-out;
-}
 
-.dropdown-child a:hover {
-    background-color: black;
-    height: 8vh;
-    margin-left: 1vh;
-    padding: 5vh;
-    color: white;
 }
 
 .dropdown:hover .dropdown-child {
@@ -551,10 +543,10 @@ footer {
     background: white;
     width: 500%;
     border-radius: 10%;
-    min-width: 250px;
+    min-width: 200px;
     position: relative;
     top: 10vh;
-    right: 49vh;
+    right: 57vh;
 }
 
 .dropdown-catalog a:hover {
@@ -618,7 +610,7 @@ footer {
 }
 
 .link_ajuda:hover {
-   display: block;
+    display: block;
 }
 
 .link_catalog {
@@ -629,7 +621,7 @@ footer {
 }
 
 .link_catalog:hover {
-   display: block;
+    display: block;
 }
 
 .link_masc {
@@ -637,7 +629,7 @@ footer {
     text-align: center;
     position: relative;
     bottom: 20vh;
-    margin-right:  9vh;
+    margin-right: 9vh;
     margin-left: 9vh;
 }
 
@@ -646,13 +638,13 @@ footer {
     text-align: center;
     position: relative;
     bottom: 20vh;
-    margin-right:  9vh;
+    margin-right: 9vh;
 }
 
 .link_femin {
     display: inline-block;
     text-align: center;
-    margin-right:  9vh;
+    margin-right: 9vh;
 }
 
 .link_calcado {
@@ -847,7 +839,7 @@ nav a:after {
     height: 5px;
     left: 30%;
     position: relative;
-    
+
     background: black;
     transition: width 0.7s ease 0s, left 0.6s ease 0s;
     width: 0;
@@ -857,4 +849,53 @@ nav a:hover:after {
     width: 20%;
     left: 40%;
 
+}
+
+.link_masc_user {
+    color: black;
+    font-family: 'Roboto', sans-serif;
+    text-decoration: none;
+    display: block;
+    margin-top: 2vh;
+    margin-left: 1vh;
+    text-align: start;
+    height: 8vh;
+
+}
+
+.link_masc_user:hover {
+    background-color: black;
+    color: white;
+}
+
+.link_femin_user {
+    color: black;
+    font-family: 'Roboto', sans-serif;
+    text-decoration: none;
+    display: block;
+    margin-top: 2vh;
+    margin-left: 1vh;
+    text-align: start;
+    height: 8vh;
+}
+
+.link_femin_user:hover {
+    background-color: black;
+    color: white;
+}
+
+.link_ofert_user {
+    color: black;
+    font-family: 'Roboto', sans-serif;
+    text-decoration: none;
+    display: block;
+    margin-top: 2vh;
+    margin-left: 1vh;
+    text-align: start;
+    height: 8vh;
+}
+
+.link_ofert_user:hover {
+    background-color: black;
+    color: white;
 }
