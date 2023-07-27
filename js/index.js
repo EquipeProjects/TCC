@@ -1,33 +1,49 @@
-let count = 1;
-document.getElementById("radio1").checked = true;
+document.addEventListener("DOMContentLoaded", function(event) {
+  var carouselImages = document.querySelectorAll(".carousel-images img");
+  var carouselDots = document.querySelectorAll(".carousel-dots .dot");
+  var currentIndex = 0;
 
-setInterval(function () {
-     nextImage
-}, 2000)
+  function showImage(index) {
+    carouselImages.forEach(function(image) {
+      image.classList.remove("active");
+    });
+    carouselDots.forEach(function(dot) {
+      dot.classList.remove("active");
+    });
 
+    carouselImages[index].classList.add("active");
+    carouselDots[index].classList.add("active");
+  }
 
-function nextImage() {
-    count++
-    if (count > 4) {
-        count = 1;
+  function nextImage() {
+    currentIndex++;
+    if (currentIndex >= carouselImages.length) {
+      currentIndex = 0;
     }
+    showImage(currentIndex);
+  }
 
-    document.getElementById("radio"+count).checked = true;
+  function prevImage() {
+    currentIndex--;
+    if (currentIndex < 0) {
+      currentIndex = carouselImages.length - 1;
+    }
+    showImage(currentIndex);
+  }
 
-}
-const carrossel = document.querySelector('.carrossel');
-const slides = carrossel.querySelector('ul');
-const slideWidth = carrossel.offsetWidth;
-const acaoAnterior = carrossel.querySelector('.acao-anterior');
-const acaoProxima = carrossel.querySelector('.acao-proxima');
-let posicaoAtual = 0;
+  function jumpToImage(index) {
+    currentIndex = index;
+    showImage(currentIndex);
+  }
 
-acaoAnterior.addEventListener('click', () => {
-  posicaoAtual = Math.max(posicaoAtual - slideWidth, -slideWidth * (slides.children.length - 1));
-  slides.style.left = `${posicaoAtual}px`;
-});
+  document.querySelector(".carousel-next").addEventListener("click", nextImage);
+  document.querySelector(".carousel-prev").addEventListener("click", prevImage);
 
-acaoProxima.addEventListener('click', () => {
-  posicaoAtual = Math.min(posicaoAtual + slideWidth, 0);
-  slides.style.left = `${posicaoAtual}px`;
+  carouselDots.forEach(function(dot, index) {
+    dot.addEventListener("click", function() {
+      jumpToImage(index);
+    });
+  });
+
+  showImage(currentIndex);
 });
