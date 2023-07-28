@@ -884,7 +884,7 @@ nav a:hover:after {
     width: 30%;
     height: 30vh;
     margin-left: 5%;
-    font-size: 4vh;
+    font-size: 3vh;
     position: relative;
     top: 5vh;
 
@@ -896,9 +896,11 @@ nav a:hover:after {
     background-color: #ffffff;
     width: 30%;
     height: 30vh;
-    font-size: 4vh;
+    font-size: 3vh;
     margin-left: 1%;
     margin-right: 1%;
+    position: relative;
+    bottom: 2vh;
 }
 
 .text_cadastro {
@@ -908,7 +910,7 @@ nav a:hover:after {
     width: 30%;
     margin-right: 1%;
     height: 30vh;
-    font-size: 4vh;
+    font-size: 3vh;
     position: relative;
     top: 5vh;
 }
@@ -1019,4 +1021,23 @@ nav a:hover:after {
 
 .link_duvida:hover {
     color: blue;
+}
+
+.seta_pedido{
+ width: 5%;
+ position: relative;
+ right: 25vh;
+ bottom: 2vh;
+}
+.seta_cancela{
+ width: 5%;
+ position: relative;
+ right: 25vh;
+ bottom: 2vh;
+}
+.seta_cadast{
+ width: 5%;
+ position: relative;
+ right: 25vh;
+ bottom: 2vh;
 }
