@@ -81,6 +81,7 @@ input[type=text] {
 .divisao {
     flex-basis: 50%;
     background-color: #F2F2F2;
+    margin-top: 23vh;
 }
 
 .divisao:first-child {
@@ -107,6 +108,13 @@ input[type=text] {
     border-radius: 30px;
     color: white;
 }
+
+.btn-generic:hover {
+   
+    background-color: orange;
+    color:  white;
+  
+}
 .btn-orange{
     width: 300px;
     height: auto;
@@ -118,6 +126,14 @@ input[type=text] {
     color: white;
 
 }
+
+.btn-orange:hover{
+    
+    background-color:black;
+
+}
+
+
 input[type=text]{
     margin: 10px;
     padding: 20px;
@@ -137,4 +153,44 @@ input[type=text]{
     border: none;
     height: 4vh;
     border-radius: 10px;
+}
+.title_comprando{
+    color: white;
+    text-decoration: none;
+    font-size: 5vh;
+    position: relative;
+    left: 95vh;
+    top:33vh
+}
+.title_comprando:hover{
+   text-decoration: underline;
+}
+.status_compra{
+    color: black;
+    font-size: 3vh;
+    text-decoration: none;
+    margin: 5%;
+    text-align: center;
+    position: relative;
+    bottom: 17vh;
+    left: 50vh;
+}
+
+.status_compra:hover{
+    color: blue;
+}
+
+.title_endereco_env{
+    font-size: 10vh;
+    position: relative;
+    bottom:15vh;
+    left: 3vh;
+}
+
+.img_comprando{
+    width: 3%;
+    height: 1%;
+    position: relative;
+    top: 33vh;
+    left: 97vh;
 }
