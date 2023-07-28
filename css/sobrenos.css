@@ -1,4 +1,13 @@
-.link_sobrenos{
- color: white;
- text-decoration: none;
+.menu_nos{
+    background: white;
+    width: 90%;
+    font-size: 8vh;
+    height: auto;
+    text-align: center;
+    margin-left: 4%;
+    padding: 5vh;
+}
+
+.text_nos{
+    font-size: 7vh;
 }

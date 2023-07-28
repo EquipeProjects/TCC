@@ -863,9 +863,10 @@ nav a:hover:after {
 .link_sobrenos {
     color: white;
     text-decoration: none;
+    text-transform: uppercase;
 }
 
 .link_sobrenos:hover {
-    color: blue;
+    color:yellow;
    text-decoration: underline;
 }
