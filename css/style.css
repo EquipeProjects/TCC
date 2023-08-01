@@ -14,11 +14,10 @@
 }
 
 body {
-    background-image: linear-gradient(90deg, #ffe9e4, #5b5b4c);
+    background-image: linear-gradient(90deg, #ffe9e4, #929280);
     overflow-x: hidden;
 
 }
-
 header {
     display: flex;
     flex-direction: row;
