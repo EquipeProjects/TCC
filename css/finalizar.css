@@ -42,8 +42,7 @@ input[type=text] {
     margin: 3.5%;
     box-sizing: border-box;
     position: relative;
-    top: 4.5vh;
-    left: 22vh;
+    
 }
 
 
@@ -68,11 +67,10 @@ input[type=text] {
 }
 
 .finalizar {
-    background-color: #F2F2F2;
-    width: 96vw;
+    background-color:#D9D9D8;
+    width: 100%;
 
-    margin-left: 2vw;
-    margin-right: 2vw;
+   
     display: flex;
 
  
@@ -80,21 +78,25 @@ input[type=text] {
 
 .divisao {
     flex-basis: 50%;
-    background-color: #F2F2F2;
+  
     margin-top: 23vh;
 }
 
 .divisao:first-child {
     display: flex;
     flex-direction: column;
+   text-align: center;
+   justify-content: center;
+   align-items: center;
 
 
 }
 
 .divisao:last-child {
-    display: flex;
-    flex-direction: column;
-    height: auto;
+   width: 100%;
+    
+
+    text-align: center;
 
 
 }
@@ -141,15 +143,10 @@ input[type=text]{
     border: none;
 }
 
-.sameline{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
 
-}
 .btn-cupom{
-    background-color: #D9D9D8;
-    width: 150px;   
+    background-color:#f3f300;
+    width: 100px;   
     border: none;
     height: 4vh;
     border-radius: 10px;
@@ -193,4 +190,23 @@ input[type=text]{
     position: relative;
     top: 33vh;
     left: 97vh;
+}
+.separado{
+    display: flex;
+    justify-content: space-around;
+}
+
+
+.sameline{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.space{
+    display: flex;
+    justify-content: space-between;
+}
+.finalizar img{
+    width: 30px;
+    height: 30px;
 }

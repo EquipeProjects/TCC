@@ -47,3 +47,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   showImage(currentIndex);
 });
+
+window.onscroll = function() {scrolleffect()};
+function scrolleffect(){
+  if (document.documentElement.scrollTop > 100) {
+    document.getElementById("bottom-a").style.display = "";
+  } else {
+    document.getElementById("bottom-a").style.display = "none";
+  }
+}
