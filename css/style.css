@@ -834,6 +834,7 @@ nav a:hover:after {
    
     border: solid #000000;
     position: relative;
+    padding-bottom: 30px;
 }
 
 
