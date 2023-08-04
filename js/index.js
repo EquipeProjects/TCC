@@ -56,3 +56,10 @@ function scrolleffect(){
     document.getElementById("bottom-a").style.display = "none";
   }
 }
+
+
+function changeImage(imageUrl) {
+  const featuredImage = document.getElementById('featured-image');
+  featuredImage.src = imageUrl;
+}
+

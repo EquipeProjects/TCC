@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Easyfit</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/produto.css">
+    <link rel="shortcut icon" href="/ico/logo.ico" type="image/x-icon">
+    <meta name="author" content="João Victor,Davi Ribeiro e Yzabella Luiza">
+    <meta name="keywords" content="HTML,CSS,JavaScript">
+    <meta name="description"
+        content="Um web site de vendas de roupas sob medida que adequa qualquer corpo,gosto e estilo.">
+</head>
+
+<body>
+    <header>
+        <a href="index.html"><img class="logo" src="img/logo.png"></a>
+        <nav class="link_menu">
+            <a class="link_home" href="index.html">HOME</a>
+            <a class="link_novid" href="#">NOVIDADES</a>
+            <div class="dropdown1">
+                <a class="link_catalog" href="#">CATALOGO</a>
+                <div class="dropdown-catalog">
+                    <a href="#">
+                        <div class="link_masc">
+                            <div class="text_catalog"><b>MASCULINO</b></div>
+                    </a>
+                    <a href="#">
+                        <div>BLUSAS</div>
+                    </a>
+                    <a href="#">
+                        <div>CAMISETAS / REGATAS </div>
+                    </a>
+                    <a href="#">
+                        <div>MOLETONS</div>
+                    </a>
+                    <a href="#">
+                        <div>CALÇAS</div>
+                    </a>
+                    <a href="#">
+                        <div>JEANS</div>
+                    </a>
+                    <a href="#">
+                        <div>JAQUETAS</div>
+                    </a>
+                </div>
+                <div class="link_unissex">
+                    <a href="#">
+                        <div class="text_catalog"><b>UNISSEX</b></div>
+                    </a>
+                    <a href="#">
+                        <div>BLUSAS</div>
+                    </a>
+                    <a href="#">
+                        <div>CAMISETAS / REGATAS</div>
+                    </a>
+                    <a href="#">
+                        <div>CAMISETAS DE TIME</div>
+                    </a>
+                    <a href="#">
+                        <div>MOLETONS</div>
+                    </a>
+                    <a href="#">
+                        <div>CALÇAS</div>
+                    </a>
+                    <a href="#">
+                        <div>JEANS</div>
+                    </a>
+                </div>
+                <div class="link_femin">
+                    <a href="#">
+                        <div class="text_catalog"><b>FEMININO</b></div>
+                        <a href="#">
+                            <div>BLUSAS</div>
+                        </a>
+                        <a>
+                            <div>CAMISETAS / REGATAS </div>
+                        </a>
+                    </a>
+                    <a href="#">
+                        <div>TOPS / CROPPEDS</div>
+                    </a>
+                    <a href="#">
+                        <div>MOLETONS</div>
+                    </a>
+                    <a href="#">
+                        <div>CALÇAS</div>
+                    </a>
+                    <a href="#">
+                        <div>JEANS</div>
+                    </a>
+                    <a href="#">
+                        <div>SAIAS / VESTIDOS</div>
+                    </a>
+                    <a href="#">
+                        <div>JAQUETAS</div>
+                    </a>
+                </div>
+                <div class="link_calcado">
+                    <a href="#">
+                        <div class="text_catalog"><b>CALÇADOS</b></div>
+                    </a>
+                    <a href="#">
+                        <div> MASCULINOS</div>
+                    </a>
+                    <a href="#">
+                        <div> FEMININOS</div>
+                    </a>
+                    <a href="#">
+                        <div> INFANTIL</div>
+                    </a>
+                </div>
+            </div>
+            </div>
+            <a class="link_ajuda" href="ajuda.html">AJUDA</a>
+        </nav>
+        <input type="text" placeholder="BUSCAR">
+        <a href="carrinho.html"><img class="button_shop" src='img/bag.png'></a>
+        <a href="#"><img class="button_loupe" src='img/loupe.png'></a>
+
+        <div class="dropdown">
+            <img class="button_user" src='img/user.png'>
+            <div class="dropdown-child">
+                <a href="login.html"><button class="button_entrar"><b>ENTRAR</b></button></a>
+                <img class="button_trian" src="/img/triangulo_drop.png">
+                <a href="#">
+                    <div class="link_masc_user"><b>MASCULINO</b></div>
+                </a><img class="seta_user" src="img/seta-direita.png">
+                <a href="#">
+                    <div class="link_femin_user"><b>FEMININO</b></div>
+                </a><img class="seta_user" src="img/seta-direita.png">
+                <a href="#">
+                    <div class="link_ofert_user"><b>Ofertas</b></div>
+                </a><img class="seta_user" src="img/seta-direita.png">
+            </div>
+        </div>
+    </header>
+
+    <main style="background-color: #D9D9D8; width: 100%;">
+
+        <a href="#">loja</a>
+        <div class="container">
+            <div class="product-details">
+                <div class="product-images">
+
+                    <img src="img/pe1.jpg" alt="Imagem 1" onclick="changeImage('img/pe1.jpg')">
+                    <img src="img/pe2.jpg" alt="Imagem 2" onclick="changeImage('img/pe2.jpg')">
+                    <img src="img/pe2.jpg" alt="Imagem 3" onclick="changeImage('img/pe2.jpg')">
+
+                </div>
+
+
+                <div class="selected-image">
+                    <img id="featured-image" src="img/pe1.jpg" alt="">
+                </div>
+
+            </div>
+            <div class="frete"><h2>Calcular frete e entrega </h2>
+                <p>Calcule o frete e o prazo de entrega estimados para sua região.</p>
+
+                <label for=""><input type="text"> <button></button></label>
+                <a href="">não sei meu cep</a>
+            
+            
+            
+            
+            </div>
+        </div>
+
+        <div class="container">
+
+            <h2>TÊNIS FORUM 84 LOW CLASSIC</h2>
+
+            <div class="stars"> <span>R$ 78.99</span>aaaaaaaaaaaaaaaaaaaa</div>
+
+            <div class="categorias">aaa/aaaa/aaaaa</div>
+
+            <div>Até 10 x R$80,00 sem juros
+                Ver outras opções</div>
+
+            <label for="">
+                tamanhos tradicionais
+                <input type="radio">
+            </label>
+            <a href=""> tabela de medidas</a>
+            <label for="">
+                TAMANHO SOB MEDIDA
+                <input type="radio">
+            </label>
+            <a href=""> como medir</a>
+
+            <button>adicionar no carrinho</button>
+
+        </div>
+
+
+
+
+    </main>
+    <footer>
+        <div class="grid-container">
+            <div class="grid-item">ENCONTRE UMA LOJA EASY FIT</div>
+            <div class="grid-item">REDES SOCIAIS
+                <div>
+                    <img class="footer_rede" src="/img/instagram.png">
+                    <img class="footer_rede" src="/img/facebbok.png">
+                    <img class="footer_rede" src="/img/youtube.png">
+                </div>
+            </div>
+            <div class="grid-item">SOBRE A EASY FIT
+                <div class="footer_text">SUSTENTABILIDADE</div>
+            </div>
+            <div class="grid-item">AJUDA
+                <div class="footer_text">DÚVIDAS GERAIS</div>
+                <div class="footer_text">TROCAS E DEVOLUÇÕES </div>
+                <div class="footer_text">PAGAMENTOS</div>
+                <div class="footer_text">FALE CONOSCO </div>
+            </div>
+            <div class="grid-item">
+                <div>FORMAS DE PAGAMENTO</div>
+                <div class="flex_pag">
+                    <img class="footer_pag" src="/img/mastercard.svg">
+                    <img class="footer_pag" src="/img/hipercard.svg">
+                </div>
+                <img class="footer_pag" src="/img/visa.svg">
+                <img class="footer_pag" src="/img/elo.svg">
+                <img class="footer_pag" src="/img/amex.svg">
+            </div>
+            <div class="grid-item"></div>
+            <div class="grid-item">
+                <div>© 2023 EASY FIT. Visa um Comércio de Produtos gerais da moda Ltda - Todos os direitos reservados.
+                </div>
+            </div>
+            <div class="grid-item">POLÍTICA DE PRIVACIDADE</div>
+            <div class="grid-item">BRASIL</div>
+        </div>
+    </footer>
+    <script src="js/index.js"></script>
+
+</body>
+
+</html>
