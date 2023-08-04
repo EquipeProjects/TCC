@@ -268,24 +268,44 @@ main{
 }
 .container{
     flex-basis: 50%;
+    text-align: center;
+    position: relative;
     
    
   
 }
 .product-images img{
-    width: 50px;
-    height: 50px;
+    width: 100px;
+    height: 100px;
     display: flex;
     flex-direction: column;
+    margin: 20px;
 
 }
 
 #featured-image {
-    width: 200px;
-    height: 200px;
+    width: 300px;
+    height: 300px;
+    margin: 5%;
+    
+}
+.selected-image{
+    width: 300px;
+    height: 300px;
+    position: relative;
+
 }
 .product-details{
     display: flex;
 
 }
+#favicon{
+    position: absolute;
+    top: 0;
+    height: 20px;
+   right: 0;
+   margin-top: 5%;
+color: red;
+}
+
 
