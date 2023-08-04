@@ -21,8 +21,6 @@ body {
 header {
     display: flex;
     flex-direction: row;
-
-
 }
 
 
@@ -866,6 +864,6 @@ nav a:hover:after {
 }
 
 .link_sobrenos:hover {
-    color:yellow;
+   color:yellow;
    text-decoration: underline;
 }
