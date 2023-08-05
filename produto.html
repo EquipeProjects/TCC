@@ -141,13 +141,21 @@
 
     <main style="background-color: #D9D9D8; width: 100%;">
 
-        <a href="#">loja</a>
         <div class="container">
+            <div style="display: flex;  height: 50px;">
+                <a href="#" style="justify-content: center;align-items: center;"><img src="img/bag.png"
+                        style="width: 50px; " alt=""> loja Easy fit
+                    <img src="img/seta-direita.png" style="width: 50px;" alt="">
+                </a>
+
+            </div>
             <div class="product-details">
                 <div class="product-images">
 
                     <img src="img/pe1.jpg" alt="Imagem 1" onclick="changeImage('img/pe1.jpg')">
                     <img src="img/pe2.jpg" alt="Imagem 2" onclick="changeImage('img/pe2.jpg')">
+                    <img src="img/pe2.jpg" alt="Imagem 3" onclick="changeImage('img/pe2.jpg')">
+                    <img src="img/pe2.jpg" alt="Imagem 3" onclick="changeImage('img/pe2.jpg')">
                     <img src="img/pe2.jpg" alt="Imagem 3" onclick="changeImage('img/pe2.jpg')">
 
                 </div>
@@ -158,41 +166,113 @@
                 </div>
 
             </div>
-            <div class="frete"><h2>Calcular frete e entrega </h2>
+            <div class="frete">
+                <h2>Calcular frete e entrega </h2>
                 <p>Calcule o frete e o prazo de entrega estimados para sua região.</p>
 
-                <label for=""><input type="text"> <button></button></label>
-                <a href="">não sei meu cep</a>
-            
-            
-            
-            
+                <div style="position: relative; width:100%; ">
+                    <label for="" style="text-align: left; position: relative;left: 0px;">
+                        insira seu cep
+                    </label>
+
+                    <input type="number" style="width: 100%; height: 60px; border-radius: 20px; border:none"> <button
+                        style="position: absolute; bottom: 5px; right:10px ; height: 50px; border: none; border-radius: 20px;   background-color: #C1C1C1;
+                        width: 30%;">calcular</button>
+
+                </div>
+                <a href="" id="get-cep">não sei meu cep</a>
+
+
+
+
+
             </div>
+            <p>Normal: 4 dias úteis (Frete Grátis)
+            </p>
+            <p>Dúvidas? Confira a nossa Política de Frete e Entregas.
+            </p>
         </div>
 
         <div class="container">
 
             <h2>TÊNIS FORUM 84 LOW CLASSIC</h2>
 
-            <div class="stars"> <span>R$ 78.99</span> <img src="img/star.png" alt=""> </div>
+            <div class="stars"> <span>R$ 78.99</span> <img src="img/revstar.png" alt=""> <img src="img/revstar.png"
+                    alt=""><img src="img/revstar.png" alt=""><img src="img/revstar.png" alt=""><img
+                    src="img/revstar.png" alt=""></div>
 
             <div class="categorias">aaa/aaaa/aaaaa</div>
 
             <div>Até 10 x R$80,00 sem juros
                 Ver outras opções</div>
 
-            <label for="">
-                tamanhos tradicionais
-                <input type="radio">
-            </label>
-            <a href=""> tabela de medidas</a>
-            <label for="">
-                TAMANHO SOB MEDIDA
-                <input type="radio">
-            </label>
-            <a href=""> como medir</a>
+            <div style="display: flex; flex-direction: column; align-items: center;">
 
-            <button>adicionar no carrinho</button>
+                <label for="">
+                    <input id="radio1" name="tamanho" type="radio">
+                    tamanhos tradicionais
+                </label>
+                <div id="box1" class="box-inf">
+                    <h2> tamanhhos</h2>
+                    <div style="display: flex; flex-wrap: wrap;height:auto; margin: 10px;">
+                        <button  class="box-btn">aa</button>
+                        <button  class="box-btn">aa</button>
+                        <button  class="box-btn">aa</button>
+                        <button  class="box-btn">aa</button>
+                        <button  class="box-btn">aa</button>
+                        <button  class="box-btn">aa</button>
+                        <button  class="box-btn">aa</button>
+                        <button  class="box-btn">aa</button>
+                        <button  class="box-btn">aa</button>
+                        <button  class="box-btn">abv</button>
+                        <button  class="box-btn">abv</button>
+                        <button  class="box-btn">abv</button>
+                        <button  class="box-btn">abv</button>
+                        <button  class="box-btn">abv</button>
+                        <button  class="box-btn">abv</button>
+                        <button  class="box-btn">abv</button>
+                        <button  class="box-btn">abv</button>
+                        <button  class="box-btn">abv</button>
+                        <button  class="box-btn">abv</button>
+                        
+
+
+
+                    </div>
+
+
+
+                </div>
+
+
+                <a href=""> tabela de medidas</a>
+                <label for="">
+                    <input id="radio2" name="tamanho" type="radio">
+                    TAMANHO SOB MEDIDA
+                </label>
+                <div class="box-inf" id="box2"> bb</div>
+                <a href=""> como medir</a>
+            </div>
+
+            <button class="btn-compra">adicionar no carrinho</button>
+
+
+
+            <div class="product-description">
+                <p>CONFORTO VERSÁTIL COM AMORTECIMENTO FLEXÍVEL.
+
+
+                    Um brinde aos novos começos entre você e as calçadas. Amarre os cadarços 100% reciclados e defina o
+                    ritmo no início da sua jornada de corrida com a sensação de maciez do Nike Revolution 6 Next Nature.
+                    Sabemos que o conforto é a chave para uma corrida bem-sucedida, então adicionamos amortecimento e
+                    flexibilidade para uma passada mais macia. É a evolução de um favorito com design ventilado, feito
+                    com pelo menos 20% de conteúdo reciclado por peso.
+                </p>
+
+            </div>
+
+
+
 
         </div>
 

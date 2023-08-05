@@ -63,3 +63,30 @@ function changeImage(imageUrl) {
   featuredImage.src = imageUrl;
 }
 
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const radio1 = document.getElementById("radio1");
+  const radio2 = document.getElementById("radio2");
+  const box1 = document.getElementById("box1");
+  const box2 = document.getElementById("box2");
+
+  radio1.addEventListener("click", function () {
+    if (box1.style.display === "block") {
+      box1.style.display = "none";
+      radio1.style.chec
+    } else {
+      box1.style.display = "block";
+      box2.style.display = "none";
+    }
+  });
+
+  radio2.addEventListener("click", function () {
+    if (box2.style.display === "block") {
+      box2.style.display = "none";
+    } else {
+      box2.style.display = "block";
+      box1.style.display = "none";
+    }
+  });
+});

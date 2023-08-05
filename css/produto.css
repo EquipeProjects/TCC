@@ -270,10 +270,12 @@ main{
     flex-basis: 50%;
     text-align: center;
     position: relative;
+    margin: 3%;
     
    
   
 }
+
 .product-images img{
     width: 100px;
     height: 100px;
@@ -282,16 +284,23 @@ main{
     margin: 20px;
 
 }
+.product-images {
+    max-height: 400px;
+    overflow: auto;
+    scrollbar-color: red yellow;
+}
+
+
 
 #featured-image {
-    width: 300px;
-    height: 300px;
+    width: 400px;
+    height: 400px;
     margin: 5%;
     
 }
 .selected-image{
-    width: 300px;
-    height: 300px;
+    max-width: 400px;
+    height: 400px;
     position: relative;
 
 }
@@ -303,9 +312,71 @@ main{
     position: absolute;
     top: 0;
     height: 20px;
-   right: 0;
-   margin-top: 5%;
-color: red;
+    right: 0;
+    color: red;
+    margin-top: 5%;
+    margin-left: 5%;
 }
 
 
+.product-images img:hover{
+ cursor: pointer;
+}
+
+.frete{
+    margin-top: 5%;
+    text-align: left;
+}
+
+.stars img{
+
+width: 20px;
+}
+#get-cep{
+    font-size: 40px;
+
+}
+
+.product-description{
+
+
+    font-size: 10px;
+}
+
+.box-inf{
+
+    display: none;
+
+    width: 300px;
+    height: auto;
+    background-color:#FFF5F5;
+    border-radius: 30px;
+}
+
+
+.box-btn{
+
+    background-color: white; 
+    cursor: pointer;
+    width: auto;
+    height: 40px;
+    margin: 10px;
+    border: none;
+    border-radius: 10px;
+}
+.box-btn:active{
+
+    background-color: rgb(0, 0, 0); 
+    color: white;
+
+}
+
+.btn-compra{
+    width: 60%;
+    height: 60px;
+    font-size: 30px;
+    border: none;
+    background-color: #A57042;
+    color: white;
+    border-radius: 20px;
+}
