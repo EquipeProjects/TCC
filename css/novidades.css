@@ -1,0 +1,21 @@
+.menu_novid {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    text-align: center;
+    background: #D9D9D8;
+    margin-left: 10%;
+}
+
+.flex_novid {
+    display: flex;
+    flex-direction: row;
+
+}
+
+.img_novidade{
+    width: 22%;
+    margin-left: 5%;
+}
