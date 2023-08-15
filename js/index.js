@@ -47,3 +47,46 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   showImage(currentIndex);
 });
+
+window.onscroll = function() {scrolleffect()};
+function scrolleffect(){
+  if (document.documentElement.scrollTop > 100) {
+    document.getElementById("bottom-a").style.display = "";
+  } else {
+    document.getElementById("bottom-a").style.display = "none";
+  }
+}
+
+
+function changeImage(imageUrl) {
+  const featuredImage = document.getElementById('featured-image');
+  featuredImage.src = imageUrl;
+}
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const radio1 = document.getElementById("radio1");
+  const radio2 = document.getElementById("radio2");
+  const box1 = document.getElementById("box1");
+  const box2 = document.getElementById("box2");
+
+  radio1.addEventListener("click", function () {
+    if (box1.style.display === "block") {
+      box1.style.display = "none";
+      radio1.style.chec
+    } else {
+      box1.style.display = "block";
+      box2.style.display = "none";
+    }
+  });
+
+  radio2.addEventListener("click", function () {
+    if (box2.style.display === "block") {
+      box2.style.display = "none";
+    } else {
+      box2.style.display = "block";
+      box1.style.display = "none";
+    }
+  });
+});

@@ -19,7 +19,9 @@
     <header>
 
         <a href="index.html"><img class="logo" src="img/logo.png"></a>
-        <a class="title_comprando" href="#"><div></div>Continuar comprando</a><img class="img_comprando" src="/img/triangulo_compra.png">
+        <a class="title_comprando" href="#">
+            <div></div>Continuar comprando
+        </a><img class="img_comprando" src="/img/triangulo_compra.png">
     </header>
 
     <main class="finalizar">
@@ -43,40 +45,52 @@
             <a href="#">Política de Privacidade e Cookies</a>
             <button class="btn-generic">Salvar</button>
             <p>Método De Pagamento</p>
-            <input type="radio"><label for="">Cartão de débito local/Internacional</label>
-            <img src="" alt="">
-            <img src="" alt="">
-            <img src="" alt="">
-            <img src="" alt="">
-            <img src="" alt="">
-            <img src="" alt="">
-            <img src="" alt="">
-            <img src="" alt="">
-            <input type="radio"><label for="">Pix/Boleto</label>
-            <img src="" alt="">
-            <img src="" alt="">
+            <div class="sameline">
+            <input type="radio"><img src="img/cartaodecredito.png" alt=""><label for="">Cartão de débito local/Internacional</label></div>
+            <div class="sameline">
+            <img src="img/visa.svg" alt="">
+            <img src="img/mastercard.svg" alt="">
+
+            <img src="img/hipercard.svg" alt="">
+            <img src="img/dinnesclub.jpg" alt="">
+            <img src="img/discovernet.jpg" alt="">
+            <img src="img/americanexpress.jpg" alt="">
+            <img src="img/amex.svg" alt="">
+        </div>
+            
+            <div class="">
+            <input type="radio"><img src="img/dinheiro.png" alt=""><label for="">Pix/Boleto</label></div>
+            <div class="sameline">
+            <img src="img/pixi.png" alt="">
+            <img src="img/boleto.png" alt="">
+            </div>
             <p>Esta é uma compra internacional, sujeita a uma operação de câmbio, que será processada pelo EBANX de
                 acordo com seus termos e condições. Ao clicar em comprar, você dá ciência e aceita os termos desta
                 transação.</p>
         </div>
         <div class="divisao">
+
+
             <h2>Resumo do Pedido</h2>
-            <p>Valor Total</p>
+
+            <div class="separado ">
+                <p>Valor Total</p> <span>2000</span>
+            </div>
 
 
 
-            <p>Código de Cupom</p>
+            <p style="display: flex; flex-basis: 100%;">Código de Cupom</p>
+            <div class="sameline">
+                <input type="text" ><button class="btn-cupom">Feito</button>
+            </div>
+
+
+            <p style="display: flex; flex-basis: 100%;">Crédito da carteira</p>
             <div class="sameline">
                 <input type="text"><button class="btn-cupom">Feito</button>
             </div>
 
-
-            <p>Crédito da carteira</p>
-            <div class="sameline">
-                <input type="text"><button class="btn-cupom">Feito</button>
-            </div>
-            <br>
-            <p>motivo de indisponibilidade da carteira<a href="#">veja mais</a></p>
+            <p>motivo de indisponibilidade da carteira<a href="#" >veja mais</a></p>
 
             <button class="btn-orange">CONTINUAR COMPRA</button>
 
