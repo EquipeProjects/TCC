@@ -19,3 +19,14 @@
     width: 22%;
     margin-left: 5%;
 }
+
+.text_product{
+    font-family: 'Open Sans', sans-serif;
+    color: red;
+    text-transform: uppercase;
+}
+
+.preco_product{
+    background: gray;
+    color: black;
+}
