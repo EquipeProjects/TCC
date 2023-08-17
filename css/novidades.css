@@ -16,7 +16,8 @@
 }
 
 .img_novidade{
-    width: 22%;
+    min-width: 150px;
+    height: 150px;
     margin-left: 5%;
 }
 
