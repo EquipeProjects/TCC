@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    flex-wrap: wrap;
     justify-content: center;
     width: 80%;
     text-align: center;
@@ -12,6 +13,7 @@
 .flex_novid {
     display: flex;
     flex-direction: row;
+    
 
 }
 
@@ -30,4 +32,8 @@
 .preco_product{
     background: gray;
     color: black;
+}
+
+.bo{
+    margin: 5%;
 }
