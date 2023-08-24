@@ -95,44 +95,58 @@ input[type=text] {
 
 }
 
+.caixa{
+    height: 600px;
+    width: 100%;
+    background-color: rgba(116, 90, 90, 0.137);
+    position: relative;
+}
+
 .frasemotivac_text {
     text-align: center;
     color: white;
-    font-size: 5vh;
+    font-size: 30px;
 
-}
+} 
 
 .Author_frase {
     color: white;
-    font-size: 3vh;
+    font-size: 30px;
     position: relative;
     left: 60%;
 }
 
 .img_nanismo {
-    display: flex;
+   
     width: 30%;
     position: relative;
-    top: 6vh;
-    left: 6vh;
+    right:  0;
+    height: 100%;
+    
 }
 
 .img_mulheres {
-    display: flex;
-    width: 30%;
-    position: relative;
-    bottom: 90vh;
-    left: 70vh;
+    left: 30%;
+    width: 40%;
+    height: 60%;
+    position:absolute;
+    
 }
 
 .img_mulher_poderosa {
-    display: flex;
-    width: 30%; 
-    position: relative;
-    bottom: 132.2vh;
-    left: 133vh;
-}
+    height: 100%;
 
+    width: 30%; 
+    position: absolute;
+    right: 0;
+   
+}
+.medidas{
+    background-color: black;
+    width: 50%;
+
+
+}
 .tod_medidas_geral {
     display: flex;
     font-family: Agrandir;
@@ -149,15 +163,13 @@ input[type=text] {
 }
 
 .tod_medidas1 {
-    display: flex;
+   
     font-family: Agrandir;
     font-size: 123%;
-    position: relative;
-    left: 70vh;
-    bottom: 190vh;
+  
+ 
     background-color: black;
-    width: 30%;
-    height: 58vh;
+ 
     text-align: center;
     color: white;
 }
@@ -167,29 +179,31 @@ input[type=text] {
     font-family: Migra ExtraLight;
     font-size: 120%;
     position: relative;
-    left: 70vh;
-    bottom: 234vh;
-    width: 30%;
-    height: 29vh;
+ 
+
+
     text-align: center;
     color: white;
 }
 
 .download_img {
-    width: 10%;
+    width: 100px;
+    height: 100px;
     position: relative;
-    bottom: 263vh;
-    left: 51%;
+    top: 25%;
+    left: 25%;
+    margin-right: 100px;
+
     z-index: 2;
 }
 
 .download_blackground {
     background-image: linear-gradient(90deg, #ffe9e4, #5b5b4c);
-    width: 14%;
-    height: 58.3vh;
-    position: relative;
-    bottom: 299vh;
-    left: 105vh;
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    right: 0;
+
     z-index: 1;
 }
 
