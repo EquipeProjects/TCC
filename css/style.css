@@ -127,7 +127,7 @@ input[type=text] {
 
 .img_mulher_poderosa {
     display: flex;
-    width: 30%;
+    width: 30%; 
     position: relative;
     bottom: 132.2vh;
     left: 133vh;
@@ -407,7 +407,7 @@ footer {
 
 .dropdown-catalog {
     display: none;
-    z-index: 3;
+    z-index: 1;
     background: white;
     width: 500%;
     border-radius: 10%;
