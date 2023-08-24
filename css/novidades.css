@@ -13,8 +13,6 @@
 .flex_novid {
     display: flex;
     flex-direction: row;
-    
-
 }
 
 .img_novidade{
@@ -43,6 +41,6 @@
     bottom: 100%;
 }
 
-.bo{
+.product_space{
     margin: 5%;
 }

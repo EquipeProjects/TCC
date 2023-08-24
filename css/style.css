@@ -353,7 +353,6 @@ footer {
     position: relative;
     top: 10vh;
     right: 2vh;
-
 }
 
 .dropdown-child a {
@@ -420,7 +419,6 @@ footer {
 
 .dropdown-catalog a:hover {
     display: inline-block;
-
 }
 
 .dropdown-catalog a {
@@ -431,7 +429,6 @@ footer {
     margin-top: 2vh;
     margin-left: 1vh;
     height: 8vh;
-
 }
 
 .dropdown-catalog a:hover {
@@ -440,8 +437,6 @@ footer {
 
 .dropdown1:hover .dropdown-catalog {
     display: block;
-
-
 }
 
 .text_catalog {
@@ -541,17 +536,11 @@ section {
     right: 50%;
     transform: translate(50%, 0);
     background-position: center;
-
-
 }
 
 .image-container {
     text-align: center;
-
-
     position: relative;
-
-
     height: 600px;
 }
 
@@ -586,8 +575,6 @@ section {
     height: 359px;
     width: 255px;
     background-size: cover;
-
-
 }
 
 .image-text {
@@ -603,15 +590,11 @@ section {
     position: absolute;
     top: 40%;
     left: 0%;
-
     transform: translate(0, -50%);
     font-size: 60px;
     color: white;
     font-family: 'Anton', sans-serif;
     margin-left: 10%;
-
-
-
 }
 
 .bottom-left-button {
@@ -635,9 +618,6 @@ section {
     color: white;
 }
 
-
-
-
 nav a {
     color: white;
     font-family: Agrandir Medium;
@@ -653,7 +633,6 @@ nav a:after {
     height: 5px;
     left: 30%;
     position: relative;
-
     background: black;
     transition: width 0.7s ease 0s, left 0.6s ease 0s;
     width: 0;
@@ -674,7 +653,6 @@ nav a:hover:after {
     margin-left: 1vh;
     text-align: start;
     height: 8vh;
-
 }
 
 .link_masc_user:hover {
@@ -741,11 +719,6 @@ nav a:hover:after {
     top: 50%;
     padding: 10px;
     transform: translateY(-50%);
-
-
-
-
-
     cursor: pointer;
 }
 
