@@ -20,9 +20,9 @@
         <nav class="link_menu">
             <a class="link_home" href="index.html">HOME</a>
             <a class="link_novid" href="/novidades.html">NOVIDADES</a>
-            <div class="dropdown1">
+            <div class="dropdown1" style="z-index: 5;">
                 <a class="link_catalog" href="#">CATÁLOGO</a>
-                <div class="dropdown-catalog">
+                <div class="dropdown-catalog" style="z-index: 5;">
                     <a href="#">
                         <div class="link_masc">
                             <div class="text_catalog"><b>MASCULINO</b></div>
@@ -141,59 +141,74 @@
     <main>
 
 
+
         <div class="frasemotivac_text">“A moda deve ser uma forma de escapismo e não uma forma de prisão.”</div>
         <div class="Author_frase">“- Alexander McQueen”</div>
-        <img class="img_nanismo" src='/img/nanismo.jpg'>
-        <img class="img_mulheres" src='/img/mulheres.jpg'>
-        <img class="img_mulher_poderosa" src='/img/mulher_poderosa.jpg'>
-        <div class="tod_medidas1">PARA TODOS OS ESTILOS</div>
-        <div class="tod_medidas2">PARA TODAS AS MEDIDAS</div>
-        <img class="download_img" src="img/button_download.png">
-        <div class="download_blackground"></div>
-        <script src="/js/index.js"></script>
+        <div class="caixa">
+
+
+            <img class="img_nanismo" src='/img/nanismo.jpg'>
+            <img class="img_mulher_poderosa" src='/img/mulher_poderosa.jpg'>
+            <img class="img_mulheres" src='/img/mulheres.jpg'>
+            <div style="display: flex; width: 40%;position: absolute; left: 30%;bottom: 0; height: 40%;">
+                <div class="medidas">
+                    <div class="tod_medidas1">PARA TODOS OS ESTILOS</div>
+                    <div class="tod_medidas2">PARA TODAS AS MEDIDAS</div>
+
+
+                </div>
+
+                <div class="download_blackground"></div>
+                <img class="download_img" src="img/button_download.png">
+            </div>
+
+
+        </div>
+
+
 
         <div class="carousel">
             <div class="carousel-images">
-              <img src="img/s1.png" alt="Imagem 1">
-              <img src="img/girl.jpg" alt="Imagem 2">
-              <img src="img/menina.jpg" alt="Imagem 3">
-              <!-- Adicione mais imagens conforme necessário -->
+                <img src="img/s1.png" alt="Imagem 1">
+                <img src="img/girl.jpg" alt="Imagem 2">
+                <img src="img/menina.jpg" alt="Imagem 3">
+                <!-- Adicione mais imagens conforme necessário -->
             </div>
-        
+
             <a class="carousel-prev"><img src="img/seta.png" alt=""></a>
             <a class="carousel-next"><img src="img/seta.png" alt=""></a>
-        
+
             <div class="carousel-dots">
-              <span class="dot"></span>
-              <span class="dot"></span>
-              <span class="dot"></span>
-              <!-- Adicione mais bolinhas conforme necessário -->
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <!-- Adicione mais bolinhas conforme necessário -->
             </div>
-          </div>
+        </div>
         <div class="background_carrosel">Estilos em Alta</div>
     </main>
-    
+
     <section>
-      <div class="image-container">
-        <div class="center-img">
-          <button class="overlay-button">
-            <p> MOLETOM LARANJA <br> exterior mais vendido </p>
-            <img src="/img/seta.png" alt="">
-          </button>
+        <div class="image-container">
+            <div class="center-img">
+                <button class="overlay-button">
+                    <p> MOLETOM LARANJA <br> exterior mais vendido </p>
+                    <img src="/img/seta.png" alt="">
+                </button>
+            </div>
         </div>
-      </div>
-      <div class="top-right-image">
-  
-        <span class="image-text"> BLACK METAL</span>
-      </div>
-      <div class="text-left">
-        <h2>NOVAS <br><span style="font-style: italic; margin-left: 5%;">COLEÇÕES</span>
-        </h2>
-      </div>
-  
-      <button class="bottom-left-button">COMPRE AGORA</button>
-      <button class="bottom-right-button">Proximo slide</button>
-  
+        <div class="top-right-image">
+
+            <span class="image-text"> BLACK METAL</span>
+        </div>
+        <div class="text-left">
+            <h2>NOVAS <br><span style="font-style: italic; margin-left: 5%;">COLEÇÕES</span>
+            </h2>
+        </div>
+
+        <button class="bottom-left-button">COMPRE AGORA</button>
+        <button class="bottom-right-button">Proximo slide</button>
+
     </section>
     <footer>
         <div class="grid-container">
@@ -205,8 +220,10 @@
                     <img class="footer_rede" src="/img/youtube.png">
                 </div>
             </div>
-            <div class="grid-item"> 
-                <a class="link_sobrenos" href="sobrenos.html"><div>SOBRE A EASY FIT</div></a>
+            <div class="grid-item">
+                <a class="link_sobrenos" href="sobrenos.html">
+                    <div>SOBRE A EASY FIT</div>
+                </a>
                 <div class="footer_text">SUSTENTABILIDADE</div>
             </div>
             <div class="grid-item">AJUDA
@@ -234,6 +251,7 @@
             <div class="grid-item">BRASIL</div>
         </div>
     </footer>
+    <script src="/js/index.js"></script>
 </body>
 
 </html>

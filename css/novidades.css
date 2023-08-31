@@ -25,19 +25,25 @@
 
 .text_product{
     font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
     color: black;
     text-transform: uppercase;
 }
 
 .sob_categoria{
     font-family: 'Open Sans', sans-serif;
+    margin-left: 10px;
     color: black;
+    font-size: 13px;
+    text-align: justify;
     text-transform: uppercase;
 }
 
 
 .preco_product{
     background: gray;
+    text-align: justify;
+    font-family: 'Open Sans', sans-serif;
     color: black;
     position: relative;
     bottom: 100%;
