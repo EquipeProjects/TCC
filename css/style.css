@@ -88,7 +88,7 @@ input[type=text] {
 .button_user {
     display: flex;
     position: relative;
-    right: 5vh;
+    right: 5vw;
     top: 5vh;
     margin-top: 7vh;
     width: 5vh;
@@ -402,12 +402,6 @@ footer {
     position: relative;
     left: 20vh;
     top: 1vh;
-}
-
-.dropdown1 {
-
-   
-    
 }
 
 .dropdown-catalog {
