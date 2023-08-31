@@ -353,8 +353,9 @@ footer {
     border-radius: 10%;
     min-width: 200px;
     position: absolute;
-    right: 0;
-    top: 70%;
+    right: 10px;
+    top: 60%;
+
    
 }
 
@@ -392,14 +393,14 @@ footer {
     width: 12%;
     display: inline-block;
     position: relative;
-    left: 23vh;
+    left: 20vh;
     bottom: 5vh;
 }
 
 .button_trian {
     width: 12%;
     position: relative;
-    left: 23vh;
+    left: 20vh;
     top: 1vh;
 }
 
