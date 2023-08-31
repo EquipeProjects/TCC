@@ -425,17 +425,15 @@ footer {
 }
 
 .dropdown-catalog a:hover {
-    display: inline-block;
+    
 }
 
 .dropdown-catalog a {
     color: black;
     font-family: 'Roboto', sans-serif;
     text-decoration: none;
-    
-    margin-top: 2vh;
-    margin-left: 1vh;
     height: 8vh;
+    display:block;
 }
 
 .dropdown-catalog a:hover {
