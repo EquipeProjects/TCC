@@ -40,7 +40,8 @@ main{
     border-radius: 50%;
     margin: 10%;
     font-size: 30px;
-    color:white
+    color:white;
+   
     
    
     
@@ -50,6 +51,7 @@ main img{
     background-color: white;
     
     border-radius: 50%;
+    
 }
 
 main img:focus {
@@ -73,6 +75,8 @@ main img:focus {
 
 
     font-size: 30px;
+   opacity: 0;
+    transition: 2s ease-in;
    
 
   }
