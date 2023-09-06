@@ -20,11 +20,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Verifica se o campo "emailOrPhone" é um email válido ou um número de telefone válido
     if (filter_var($emailOrPhone, FILTER_VALIDATE_EMAIL)) {
         // O campo "emailOrPhone" é um email válido
-        $sql = "SELECT id, username, subname, email, phone, password FROM usuarios WHERE email = ?";
+        $sql = "SELECT id FROM usuarios WHERE email = ?";
         $field = "email";
     } elseif (preg_match("/^[0-9]{10}$/", $emailOrPhone)) {
         // O campo "emailOrPhone" é um número de telefone válido (10 dígitos)
-        $sql = "SELECT id, username, subname, email, phone, password FROM usuarios WHERE phone = ?";
+        $sql = "SELECT id FROM usuarios WHERE phone = ?";
         $field = "phone";
     } else {
         // O campo "emailOrPhone" não é um email válido nem um número de telefone válido
@@ -32,28 +32,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit; // Saia do script, pois não é possível continuar com dados inválidos.
     }
 
-    // Consulta o banco de dados para encontrar o usuário
+    // Verifica se o usuário já existe no banco de dados
     $stmt = $mysqli->prepare($sql);
     $stmt->bind_param("s", $emailOrPhone);
     $stmt->execute();
     $stmt->store_result();
 
-    if ($stmt->num_rows == 1) {
-        $stmt->bind_result($id, $username, $subname, $email, $phone, $hashed_password);
-        if ($stmt->fetch() && password_verify($password, $hashed_password)) {
-            // Verifica se as senhas são iguais
-            if ($password == $reppassword) {
-                $_SESSION["id"] = $id;
-                $_SESSION["username"] = $username;
-                header("Location: dashboard.php"); // Redirecionar para a página de dashboard
-            } else {
-                echo "As senhas não coincidem.";
-            }
-        } else {
-            echo "Senha incorreta.";
-        }
+    if ($stmt->num_rows > 0) {
+        echo "Este usuário já existe.";
+    } elseif ($password !== $reppassword) {
+        echo "As senhas não coincidem.";
     } else {
-        echo "Usuário não encontrado.";
+        // Insere o novo usuário no banco de dados
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        $insert_sql = "INSERT INTO usuarios (username, subname, $field, password) VALUES (?, ?, ?, ?)";
+        $insert_stmt = $mysqli->prepare($insert_sql);
+        $insert_stmt->bind_param("ssss", $username, $subname, $emailOrPhone, $hashed_password);
+        if ($insert_stmt->execute()) {
+            echo "Registro bem-sucedido! Agora você pode fazer login.";
+        } else {
+            echo "Erro ao registrar o usuário.";
+        }
+        $insert_stmt->close();
     }
 
     $stmt->close();
@@ -61,14 +61,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 $mysqli->close();
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login</title>
+    <title>Registro</title>
 </head>
 <body>
-    <h2>Login</h2>
-    <form method="post" action="login.php">
+    <h2>Registro</h2>
+    <form method="post" action="registro.php">
         <label for="username">Nome:</label>
         <input type="text" name="username" required><br>
 
@@ -84,8 +85,7 @@ $mysqli->close();
         <label for="reppassword">Repita a senha:</label>
         <input type="password" name="reppassword" required><br>
         
-
-        <input type="submit" value="Entrar">
+        <input type="submit" value="Registrar">
     </form>
 </body>
 </html>
