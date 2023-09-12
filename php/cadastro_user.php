@@ -69,7 +69,7 @@ $mysqli->close();
 </head>
 <body>
     <h2>Registro</h2>
-    <form method="post" action="registro.php">
+    <form method="post" action="cadastro_user.php">
         <label for="username">Nome:</label>
         <input type="text" name="username" required><br>
 
