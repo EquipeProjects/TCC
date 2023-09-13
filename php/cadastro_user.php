@@ -1,10 +1,8 @@
 <?php
-session_start();
-
 // Conexão com o banco de dados
 $mysqli = new mysqli("localhost", "root", "", "sistema_login");
 
-// Verifica se a conexão foi bem sucedida
+// Verifica se a conexão foi bem-sucedida
 if ($mysqli->connect_error) {
     die("Erro de conexão: " . $mysqli->connect_error);
 }
@@ -12,51 +10,46 @@ if ($mysqli->connect_error) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Recebe dados do formulário
     $username = $_POST["username"];
-    $subname = $_POST["subname"];
-    $emailOrPhone = $_POST["emailOrPhone"]; // Alterei o nome do campo para "emailOrPhone"
-    $password = $_POST["password"];
-    $reppassword = $_POST["reppassword"];
+    $password = password_hash($_POST["password"], PASSWORD_DEFAULT);
+    $email_or_phone = $_POST["email_or_phone"];
 
-    // Verifica se o campo "emailOrPhone" é um email válido ou um número de telefone válido
-    if (filter_var($emailOrPhone, FILTER_VALIDATE_EMAIL)) {
-        // O campo "emailOrPhone" é um email válido
-        $sql = "SELECT id FROM usuarios WHERE email = ?";
-        $field = "email";
-    } elseif (preg_match("/^[0-9]{10}$/", $emailOrPhone)) {
-        // O campo "emailOrPhone" é um número de telefone válido (10 dígitos)
-        $sql = "SELECT id FROM usuarios WHERE phone = ?";
-        $field = "phone";
-    } else {
-        // O campo "emailOrPhone" não é um email válido nem um número de telefone válido
-        echo "Email ou telefone inválido.";
-        exit; // Saia do script, pois não é possível continuar com dados inválidos.
-    }
+    // Verifica se um valor foi fornecido para o campo email ou telefone
+    if (!empty($email_or_phone)) {
+        // Validação do email (caso seja um email)
+        if (filter_var($email_or_phone, FILTER_VALIDATE_EMAIL)) {
+            // Inserção dos dados na tabela 'usuarios' com email
+            $sql = "INSERT INTO usuarios (username, password, email) VALUES (?, ?, ?)";
+            $stmt = $mysqli->prepare($sql);
+            $stmt->bind_param("sss", $username, $password, $email_or_phone);
 
-    // Verifica se o usuário já existe no banco de dados
-    $stmt = $mysqli->prepare($sql);
-    $stmt->bind_param("s", $emailOrPhone);
-    $stmt->execute();
-    $stmt->store_result();
+            if ($stmt->execute()) {
+                // Redireciona o usuário para uma página externa após o cadastro bem-sucedido
+                header("Location: dashboarduser.php");
+                exit();
+            } else {
+                echo "Erro ao cadastrar: " . $stmt->error;
+            }
 
-    if ($stmt->num_rows > 0) {
-        echo "Este usuário já existe.";
-    } elseif ($password !== $reppassword) {
-        echo "As senhas não coincidem.";
-    } else {
-        // Insere o novo usuário no banco de dados
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-        $insert_sql = "INSERT INTO usuarios (username, subname, $field, password) VALUES (?, ?, ?, ?)";
-        $insert_stmt = $mysqli->prepare($insert_sql);
-        $insert_stmt->bind_param("ssss", $username, $subname, $emailOrPhone, $hashed_password);
-        if ($insert_stmt->execute()) {
-            echo "Registro bem-sucedido! Agora você pode fazer login.";
+            $stmt->close();
         } else {
-            echo "Erro ao registrar o usuário.";
-        }
-        $insert_stmt->close();
-    }
+            // Inserção dos dados na tabela 'usuarios' com telefone (caso não seja um email)
+            $sql = "INSERT INTO usuarios (username, password, phone) VALUES (?, ?, ?)";
+            $stmt = $mysqli->prepare($sql);
+            $stmt->bind_param("sss", $username, $password, $email_or_phone);
 
-    $stmt->close();
+            if ($stmt->execute()) {
+                // Redireciona o usuário para uma página externa após o cadastro bem-sucedido
+                header("Location: https://www.exemplo.com/pagina-externa.php");
+                exit();
+            } else {
+                echo "Erro ao cadastrar: " . $stmt->error;
+            }
+
+            $stmt->close();
+        }
+    } else {
+        echo "Você deve fornecer um email ou um telefone.";
+    }
 }
 
 $mysqli->close();
@@ -65,27 +58,21 @@ $mysqli->close();
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Registro</title>
+    <title>Cadastro</title>
 </head>
 <body>
-    <h2>Registro</h2>
+    <h2>Cadastro</h2>
     <form method="post" action="cadastro_user.php">
-        <label for="username">Nome:</label>
+        <label for="username">Nome de Usuário:</label>
         <input type="text" name="username" required><br>
-
-        <label for="subname">Sobrenome:</label>
-        <input type="text" name="subname" required><br>
-
-        <label for="emailOrPhone">Email ou telefone:</label>
-        <input type="text" name="emailOrPhone" required><br>
 
         <label for="password">Senha:</label>
         <input type="password" name="password" required><br>
 
-        <label for="reppassword">Repita a senha:</label>
-        <input type="password" name="reppassword" required><br>
-        
-        <input type="submit" value="Registrar">
+        <label for="email_or_phone">Email ou Telefone:</label>
+        <input type="text" name="email_or_phone" required><br>
+
+        <input type="submit" value="Cadastrar1">
     </form>
 </body>
 </html>
