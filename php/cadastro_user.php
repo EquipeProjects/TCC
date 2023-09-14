@@ -1,3 +1,23 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Easyfit</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="/ico/logo.ico" type="image/x-icon">
+    <meta name="author" content="João Victor,Davi Ribeiro e Yzabella Luiza">
+    <meta name="keywords" content="HTML,CSS,JavaScript">
+    <meta name="description"
+        content="Um web site de vendas de roupas sob medida que adequa qualquer corpo,gosto e estilo.">
+</head>
+<body>
+    
+</body>
+</html>
 <?php
 // Conexão com o banco de dados
 $mysqli = new mysqli("localhost", "root", "", "sistema_login");
@@ -17,9 +37,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!empty($email_or_phone)) {
         // Verifica se é um email válido
         if (filter_var($email_or_phone, FILTER_VALIDATE_EMAIL)) {
-            $sql = "INSERT INTO usuarios (username, password, phone) VALUES (?, ?, ?)";
-        } else {
+           
             $sql = "INSERT INTO usuarios (username, password, email) VALUES (?, ?, ?)";
+        } else {
+            $sql = "INSERT INTO usuarios (username, password, phone) VALUES (?, ?, ?)";
         }
 
         $stmt = $mysqli->prepare($sql);
