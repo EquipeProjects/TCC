@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if ($stmt->execute()) {
                 // Redireciona o usuário para uma página externa após o cadastro bem-sucedido
-                header("Location: dashboarduser.php");
+                header("Location: dashboard_user.php");
                 exit();
             } else {
                 echo "Erro ao cadastrar: " . $stmt->error;
@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if ($stmt->execute()) {
                 // Redireciona o usuário para uma página externa após o cadastro bem-sucedido
-                header("Location: https://www.exemplo.com/pagina-externa.php");
+                header("Location: dashboard_user.php");
                 exit();
             } else {
                 echo "Erro ao cadastrar: " . $stmt->error;
