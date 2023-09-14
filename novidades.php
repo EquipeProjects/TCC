@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/novidades.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/novidades.css">
     <title>Novidades</title>
 </head>
 
@@ -133,26 +133,63 @@
         </div>
     </header>
     <main>
+
+
         <div class="flex_novid">
             <div class="menu_novid">
-                <div class="product_space">
-                    <div class="product_box"><img class="img_novidade" src="/img/camisa_italia.jpg">
-                        <div class="preco_product">R$ 39,00</div>
-                    </div>
-                    <div class="text_product">Camisa de time italia</div>
-                    <div class="sob_categoria">Casual</div>
+            <?php
+            $servername = "localhost";
+            $username = "root";
+            $password = "";
+            $dbname = "meubanco";
+
+            $conn = new mysqli($servername, $username, $password, $dbname);
+
+            if ($conn->connect_error) {
+                die("Erro na conexão com o banco de dados: " . $conn->connect_error);
+            }
+
+            // ID da categoria correspondente a esta página (modificar conforme necessário)
+
+            // Consulta SQL para selecionar produtos da categoria correspondente
+            $sql = "SELECT id, nome, valor, imagem FROM produtos";
+            $result = $conn->query($sql);
+
+
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo "
+                
+            <div class='product_space'>
+                <div class='product_box'> <img class='img_novidade' src='admin/{$row['imagem']}' alt='{$row['nome']}'>
+                    <div class='preco_product'>{$row['valor']}</div>
                 </div>
+                <div class='text_product'>{$row['nome']}</div>
+                <div class='sob_categoria'>Casual</div>
+            </div>
+
+         
+              
+          ";
+                }
+            } else {
+                echo "Nenhum produto nesta categoria.";
+            }
+
+
+
+            ?>
 
 
                 <div class="product_space">
-                    <div class="product_box"><img class="img_novidade" src="/img/gola_alta.jpg">
+                    <div class="product_box"><img class="img_novidade" src="img/gola_alta.jpg">
                         <div class="preco_product">R$ 39,00</div>
                     </div>
                     <div class="text_product">Camisa gola alta preta</div>
                     <div class="sob_categoria">Casual</div>
                 </div>
                 <div class="product_space">
-                    <div class="product_box"><img class="img_novidade" src="/img/short.jpg">
+                    <div class="product_box"><img class="img_novidade" src="img/short.jpg">
                         <div class="preco_product">R$ 39,00</div>
                     </div>
                     <div class="text_product">short vermelho Easy Fit</div>
