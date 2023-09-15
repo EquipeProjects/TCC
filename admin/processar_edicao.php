@@ -14,7 +14,7 @@ if(isset($_GET['edit_products'])){
 }
 
 
-$id_produto = $_POST['id'];
+$id_produto = $_POST['id_produto'];
 $nome = $_POST['nome'];
 $valor = $_POST['valor'];
 $descricao = $_POST['descricao'];

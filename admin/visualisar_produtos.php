@@ -44,7 +44,7 @@
                 $number=0;
                 while($row=mysqli_fetch_assoc($result)){
                     $product_id = $row['id'];
-                    $product_title = $row['nome'];
+                    $product_title = $row['nome']; 
                     $product_image1 = $row['imagem'];
                     $product_price = $row['valor'];
                     $number++;
@@ -62,7 +62,7 @@
                     ?></td>
                    <td><a href='editar_produto.php?produto_id=<?php echo $product_id; ?>' class='text-light'><i class='fa-solid fa-pen-to-square'></i>Update</a></td>
 
-                    <td><a href='index.php?delete_product=<?php echo $product_id; ?>' class='text-light'><i class='fa-solid fa-trash'></i>Delete</a></td>
+                    <td><a href='index.php?produto_id=<?php echo $product_id; ?>' class='text-light'><i class='fa-solid fa-trash'></i>Delete</a></td>
                 </tr>
                 <?php
                 }
