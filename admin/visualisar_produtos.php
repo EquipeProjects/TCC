@@ -60,7 +60,7 @@
                 
                     
                     ?></td>
-                    <td><a href='cadastro.php?edit_products=<?php echo $product_id; ?>' class='text-light'><i class='fa-solid fa-pen-to-square'></i>Update</a></td>
+                    <td><a href='editar_produto.php=<?php echo $product_id; ?>' class='text-light'><i class='fa-solid fa-pen-to-square'></i>Update</a></td>
                     <td><a href='index.php?delete_product=<?php echo $product_id; ?>' class='text-light'><i class='fa-solid fa-trash'></i>Delete</a></td>
                 </tr>
                 <?php
