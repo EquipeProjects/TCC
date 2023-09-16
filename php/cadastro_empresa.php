@@ -15,7 +15,7 @@
 
 <body>
     <h2>Cadastro de Empresa</h2>
-    <form method="post" action="processar_cadastro_empresa.php">
+    <form method="post" action="cadastro_empresa.php">
         <input type="text" name="nome" placeholder="Nome" required><br>
         <input type="text" name="sobrenome" placeholder="Sobrenome" required><br>
         <input type="text" name="cnpj" placeholder="CNPJ" required><br>
@@ -68,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($stmt->execute()) {
         // Cadastro bem-sucedido, redireciona para a página de login ou outra página desejada
-        header("Location: login.php");
+        header("Location: dashboard.php");
         exit();
     } else {
         echo "Erro ao cadastrar: " . $stmt->error;
