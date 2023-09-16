@@ -526,7 +526,7 @@ section {
 }
 
 .center-img {
-    background-image: url(/img/new1.jpg);
+    background-image: url(img/new1.jpg);
     width: 672px;
     height: 600px;
     background-size: cover;
@@ -571,7 +571,7 @@ section {
     position: absolute;
     top: 7%;
     right: 7%;
-    background-image: url(/img/new2.jpg);
+    background-image: url('img/new2.jpg');
     height: 359px;
     width: 255px;
     background-size: cover;
