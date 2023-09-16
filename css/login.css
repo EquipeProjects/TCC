@@ -86,4 +86,18 @@ input[type=text]{
     border-radius: 20px;
     border: none;
 }
+
+input[type=email]{
+    margin: 10px;
+    padding: 20px;
+    border-radius: 20px;
+    border: none;
+}
+
+input[type=password]{
+    margin: 10px;
+    padding: 20px;
+    border-radius: 20px;
+    border: none;
+}
 span{color: white;}

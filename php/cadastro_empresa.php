@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Empresa</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/login.css">
     <link rel="shortcut icon" href="/ico/logo.ico" type="image/x-icon">
     <meta name="author" content="João Victor, Davi Ribeiro e Yzabella Luiza">
     <meta name="keywords" content="HTML, CSS, JavaScript">
@@ -30,7 +30,8 @@
         <input type="email" name="email" placeholder="Email" required><br>
         <input type="password" name="senha" placeholder="Senha" required><br>
         <input type="text" name="estado" placeholder="Estado" required><br>
-        <input type="submit" value="Cadastrar">
+      
+        <Button type="submit" class="btn-generic" value="Cadastrar">cadastrar</Button>
     </form>
 </body>
 

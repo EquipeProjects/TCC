@@ -42,18 +42,17 @@ $mysqli->close();
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="../css/login.css">
     <title>Login</title>
 </head>
 <body>
     <h2>Login</h2>
     <form method="post" action="login.php">
-        <label for="username">Nome de Usuário:</label>
-        <input type="text" name="username" required><br>
+        <input type="text" name="username" placeholder="Nome de Usuário" required><br>
 
-        <label for="password">Senha:</label>
-        <input type="password" name="password" required><br>
+        <input type="password" name="password" placeholder="Senha" required><br>
 
-        <input type="submit" value="Entrar">
+        <button type="submit" class="btn-generic" value="Entrar">Cadastrar</button>
     </form>
 </body>
 </html>

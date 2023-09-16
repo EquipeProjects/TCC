@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Easyfit</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/login.css">
     <link rel="shortcut icon" href="/ico/logo.ico" type="image/x-icon">
     <meta name="author" content="João Victor,Davi Ribeiro e Yzabella Luiza">
     <meta name="keywords" content="HTML,CSS,JavaScript">
@@ -93,7 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <input type="password" name="password" placeholder="Senha" required><br>
 
-        <input type="submit" value="Cadastrar">
+        <button type="submit" class="btn-generic" value="Cadastrar">Cadastrar</button>
     </form>
 </body>
 
