@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -11,12 +10,13 @@
     <link rel="shortcut icon" href="/ico/logo.ico" type="image/x-icon">
     <meta name="author" content="João Victor,Davi Ribeiro e Yzabella Luiza">
     <meta name="keywords" content="HTML,CSS,JavaScript">
-    <meta name="description"
-        content="Um web site de vendas de roupas sob medida que adequa qualquer corpo,gosto e estilo.">
+    <meta name="description" content="Um web site de vendas de roupas sob medida que adequa qualquer corpo,gosto e estilo.">
 </head>
+
 <body>
-    
+
 </body>
+
 </html>
 <?php
 // Conexão com o banco de dados
@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!empty($email_or_phone)) {
         // Verifica se é um email válido
         if (filter_var($email_or_phone, FILTER_VALIDATE_EMAIL)) {
-           
+
             $sql = "INSERT INTO usuarios (username, password, email) VALUES (?, ?, ?)";
         } else {
             $sql = "INSERT INTO usuarios (username, password, phone) VALUES (?, ?, ?)";
@@ -48,7 +48,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($stmt->execute()) {
             // Redireciona o usuário para uma página externa após o cadastro bem-sucedido
-            header("Location: dashboard_user.php");
+            $id_usuario = $stmt->insert_id;
+
+            // Inicia a sessão
+            session_start();
+
+            // Define as variáveis de sessão para o usuário recém-cadastrado
+            $_SESSION["id"] = $id_usuario;
+            $_SESSION["username"] = $username;
+
+
+            // Redireciona o usuário para o dashboard
+            header("Location: dashboard.php");
             exit();
         } else {
             echo "Erro ao cadastrar: " . $stmt->error;
@@ -59,48 +70,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Você deve fornecer um email ou um telefone.";
     }
 }
-// Após inserir os dados do usuário na tabela 'usuarios'
-if ($stmt->execute()) {
-    // Obtém o ID do usuário recém-cadastrado
-    $id_usuario = $stmt->insert_id;
 
-    // Inicia a sessão
-    session_start();
-
-    // Define as variáveis de sessão para o usuário recém-cadastrado
-    $_SESSION["id"] = $id_usuario;
-    $_SESSION["username"] = $username;
-    $_SESSION["tipo"] = $tipo;
-
-    // Redireciona o usuário para o dashboard
-    header("Location: dashboard.php");
-    exit();
-} else {
-    echo "Erro ao cadastrar: " . $stmt->error;
-}
-
-$stmt->close();
 ?>
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Cadastro</title>
 </head>
+
 <body>
     <h2>Cadastro</h2>
     <form method="post" action="cadastro_user.php">
         <p>CRIAR CONTA</p>
-       
-        <input type="text" name="username"  placeholder="NOME E SOBRENOME"><br>
 
-        
+        <input type="text" name="username" placeholder="NOME E SOBRENOME"><br>
+
+
         <input type="text" name="email_or_phone" placeholder="Email ou Telefone" required><br>
 
-       
+
         <input type="password" name="password" placeholder="Senha" required><br>
 
         <input type="submit" value="Cadastrar">
     </form>
 </body>
+
 </html>
