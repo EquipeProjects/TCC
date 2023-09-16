@@ -15,7 +15,7 @@
 </head>
 
 <body>
-  <script defer src="/js/index.js"></script>
+  <script defer src="js/index.js"></script>
   <header>
 
     <a href="index.html"><img class="logo" src="img/logo.png"></a>
@@ -29,25 +29,28 @@
     <main>
         <div class="cliente">
             <span>cliente</span>
-            <img tabindex="0" src="/img/login-user.png" alt="" id="clienteImage" onclick="selectImage('cliente')">
+            <img tabindex="0" src="img/login-user.png" alt="" id="clienteImage" onclick="selectImage('cliente')">
         </div>
         <div class="vendedor">
             <span>vendedor</span>
-            <img tabindex="0" src="/img/vendedor.png" alt="" id="vendedorImage" onclick="selectImage('vendedor')">
+            <img tabindex="0" src="img/vendedor.png" alt="" id="vendedorImage" onclick="selectImage('vendedor')">
         </div>
     </main>
     <div style="display: flex;justify-content: center; align-items: center;">
         <button class="btn-generic" type="button" onclick="submitForm()"> selecionar </button>
     </div>
 </form>
-<form action="" id="cliente" class="tes1">
+
+
+
+<form  method="post" action="login.php" action="" id="cliente" class="tes1">
   <span> criar conta </span>
-  <input type="text" placeholder="Nome*">
+  <input type="text" name="username" placeholder="Nome*">
   <input type="text" placeholder="Sobrenome*">
-  <input type="text" placeholder="Email ou telefone*">
-  <input type="text" placeholder="Senha*">
+  <input type="text" name="email_or_phone" placeholder="Email ou telefone*">
+  <input type="text" name="password" placeholder="Senha*">
   <input type="text" placeholder="Repita a senha*">
-  <button class="btn-generic">finalizar</button>
+  <button class="btn-generic" type="submit" value="Cadastrar">finalizar</button>
   <img src="" alt="">
 
 </form>
