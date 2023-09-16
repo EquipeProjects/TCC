@@ -76,6 +76,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $stmt->close();
 }
+// Após inserir os dados do usuário na tabela 'usuarios'
+if ($stmt->execute()) {
+    // Obtém o ID do usuário recém-cadastrado
+    $id_usuario = $stmt->insert_id;
 
-$mysqli->close();
+    // Inicia a sessão
+    session_start();
+
+    // Define as variáveis de sessão para o usuário recém-cadastrado
+    $_SESSION["id"] = $id_usuario;
+    $_SESSION["username"] = $username;
+    $_SESSION["tipo"] = $tipo;
+
+    // Redireciona o usuário para o dashboard
+    header("Location: dashboard.php");
+    exit();
+} else {
+    echo "Erro ao cadastrar: " . $stmt->error;
+}
+
+$stmt->close();
 ?>
