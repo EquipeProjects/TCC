@@ -39,6 +39,24 @@
             if ($conn->connect_error) {
                 die("Erro na conexão com o banco de dados: " . $conn->connect_error);
             }
+
+
+            if(isset($_GET['delete_product'])) {
+                $produto_id = $_GET['delete_product'];
+                // Verifique se o ID do produto é válido (por exemplo, se é um número inteiro positivo)
+                if(is_numeric($produto_id) && $produto_id > 0) {
+                    // Execute a consulta SQL para excluir o produto
+                    $sql = "DELETE FROM produtos WHERE id = $produto_id";
+                    if ($conn->query($sql) === TRUE) {
+                        echo "Produto excluído com sucesso.";
+                    } else {
+                        echo "Erro ao excluir o produto: " . $conn->error;
+                    }
+                } else {
+                    echo "ID de produto inválido.";
+                }
+            }
+            
                 $get_products="SELECT * FROM `produtos`";
                 $result=mysqli_query($conn, $get_products);
                 $number=0;
@@ -62,7 +80,7 @@
                     ?></td>
                    <td><a href='editar_produto.php?produto_id=<?php echo $product_id; ?>' class='text-light'><i class='fa-solid fa-pen-to-square'></i>Update</a></td>
 
-                    <td><a href='index.php?produto_id=<?php echo $product_id; ?>' class='text-light'><i class='fa-solid fa-trash'></i>Delete</a></td>
+                    <td><a href='visualisar_produtos.php?delete_product=<?php echo $product_id; ?>' class='text-light'><i class='fa-solid fa-trash'></i>Delete</a></td>
                 </tr>
                 <?php
                 }

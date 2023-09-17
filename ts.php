@@ -3,16 +3,10 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Easyfit</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/produto.css">
-    <link rel="shortcut icon" href="ico/logo.ico" type="image/x-icon">
-    <meta name="author" content="João Victor,Davi Ribeiro e Yzabella Luiza">
-    <meta name="keywords" content="HTML,CSS,JavaScript">
-    <meta name="description"
-        content="Um web site de vendas de roupas sob medida que adequa qualquer corpo,gosto e estilo.">
+    <link rel="stylesheet" href="css/novidades.css">
+    <title>Novidades</title>
 </head>
 
 <body>
@@ -20,7 +14,7 @@
         <a href="index.html"><img class="logo" src="img/logo.png"></a>
         <nav class="link_menu">
             <a class="link_home" href="index.html">HOME</a>
-            <a class="link_novid" href="#">NOVIDADES</a>
+            <a class="link_novid" href="/novidades.html">NOVIDADES</a>
             <div class="dropdown1">
                 <a class="link_catalog" href="#">CATALOGO</a>
                 <div class="dropdown-catalog">
@@ -138,148 +132,73 @@
             </div>
         </div>
     </header>
+    <main>
 
-    <main style="background-color: #D9D9D8; width: 100%;">
 
-        <div class="container">
-            <div style="display: flex;  height: 50px;">
-                <a href="#" style="justify-content: center;align-items: center;"><img src="img/bag.png"
-                        style="width: 50px; " alt=""> loja Easy fit
-                    <img src="img/seta-direita.png" style="width: 50px;" alt="">
-                </a>
+        <div class="flex_novid">
+            <div class="menu_novid">
+            <?php
+            $servername = "localhost";
+            $username = "root";
+            $password = "";
+            $dbname = "meubanco";
 
-            </div>
-            <div class="product-details">
-                <div class="product-images">
+            $conn = new mysqli($servername, $username, $password, $dbname);
 
-                    <img src="img/pe1.jpg" alt="Imagem 1" onclick="changeImage('img/pe1.jpg')">
-                    <img src="img/pe2.jpg" alt="Imagem 2" onclick="changeImage('img/pe2.jpg')">
-                    <img src="img/pe2.jpg" alt="Imagem 3" onclick="changeImage('img/pe2.jpg')">
-                    <img src="img/pe2.jpg" alt="Imagem 3" onclick="changeImage('img/pe2.jpg')">
-                    <img src="img/pe2.jpg" alt="Imagem 3" onclick="changeImage('img/pe2.jpg')">
+            if ($conn->connect_error) {
+                die("Erro na conexão com o banco de dados: " . $conn->connect_error);
+            }
 
+            // ID da categoria correspondente a esta página (modificar conforme necessário)
+
+            // Consulta SQL para selecionar produtos da categoria correspondente
+            $categoria_id = 3; // Por exemplo, para a página "eletronicos.php"
+            $subcategoria = "aa";
+
+            // Consulta SQL para selecionar produtos da categoria correspondente
+            $sql = "SELECT id, nome, valor, imagem FROM produtos WHERE categoria_id = $categoria_id and subcategoria ='$subcategoria'" ;
+            $result = $conn->query($sql);
+
+
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo "
+                
+            <div class='product_space'>
+                <div class='product_box'> <img class='img_novidade' src='admin/{$row['imagem']}' alt='{$row['nome']}'>
+                    <div class='preco_product'>{$row['valor']}</div>
                 </div>
-
-
-                <div class="selected-image">
-                    <img id="featured-image" src="img/pe1.jpg" alt=""> <img id="favicon" src="img/heart.svg" alt="">
-                </div>
-
+                <div class='text_product'>{$row['nome']}</div>
+                <div class='sob_categoria'>Casual</div>
             </div>
-            <div class="frete">
-                <h2>Calcular frete e entrega </h2>
-                <p>Calcule o frete e o prazo de entrega estimados para sua região.</p>
 
-                <div style="position: relative; width:100%; ">
-                    <label for="" style="text-align: left; position: relative;left: 0px;">
-                        insira seu cep
-                    </label>
-
-                    <input type="number" style="width: 100%; height: 60px; border-radius: 20px; border:none"> <button
-                        style="position: absolute; bottom: 5px; right:10px ; height: 50px; border: none; border-radius: 20px;   background-color: #C1C1C1;
-                        width: 30%;">calcular</button>
-
-                </div>
-                <a href="" id="get-cep">não sei meu cep</a>
+         
+              
+          ";
+                }
+            } else {
+                echo "Nenhum produto nesta categoria.";
+            }
 
 
 
+            ?>
 
 
-            </div>
-            <p>Normal: 4 dias úteis (Frete Grátis)
-            </p>
-            <p>Dúvidas? Confira a nossa Política de Frete e Entregas.
-            </p>
-        </div>
-
-        <div class="container">
-
-            <h2>TÊNIS FORUM 84 LOW CLASSIC</h2>
-
-            <div class="stars"> <span>R$ 78.99</span> <img src="img/revstar.png" alt=""> <img src="img/revstar.png"
-                    alt=""><img src="img/revstar.png" alt=""><img src="img/revstar.png" alt=""><img
-                    src="img/revstar.png" alt=""></div>
-
-            <div class="categorias">aaa/aaaa/aaaaa</div>
-
-            <div>Até 10 x R$80,00 sem juros
-                Ver outras opções</div>
-
-            <div style="display: flex; flex-direction: column; align-items: center;">
-
-                <label for="">
-                    <input id="radio1" name="tamanho" type="radio">
-                    tamanhos tradicionais
-                </label>
-                <div id="box1" class="box-inf">
-                    <h2> tamanhhos</h2>
-                    <div style="display: flex; flex-wrap: wrap;height:auto; margin: 10px;">
-                        <button  class="box-btn">aa</button>
-                        <button  class="box-btn">aa</button>
-                        <button  class="box-btn">aa</button>
-                        <button  class="box-btn">aa</button>
-                        <button  class="box-btn">aa</button>
-                        <button  class="box-btn">aa</button>
-                        <button  class="box-btn">aa</button>
-                        <button  class="box-btn">aa</button>
-                        <button  class="box-btn">aa</button>
-                        <button  class="box-btn">abv</button>
-                        <button  class="box-btn">abv</button>
-                        <button  class="box-btn">abv</button>
-                        <button  class="box-btn">abv</button>
-                        <button  class="box-btn">abv</button>
-                        <button  class="box-btn">abv</button>
-                        <button  class="box-btn">abv</button>
-                        <button  class="box-btn">abv</button>
-                        <button  class="box-btn">abv</button>
-                        <button  class="box-btn">abv</button>
-                        
-
-
-
+                <div class="product_space">
+                    <div class="product_box"><img class="img_novidade" src="img/gola_alta.jpg">
+                        <div class="preco_product">R$ 39,00</div>
                     </div>
-
-
-
+                    <div class="text_product">Camisa gola alta preta</div>
+                    <div class="sob_categoria">Casual</div>
                 </div>
-
-
-                <a href=""> tabela de medidas</a>
-                <label for="">
-                    <input id="radio2" name="tamanho" type="radio">
-                    TAMANHO SOB MEDIDA
-                </label>
-                <div class="box-inf" id="box2"> bb</div>
-                <a href=""> como medir</a>
+            
             </div>
-
-            <button class="btn-compra">adicionar no carrinho</button>
-
-
-
-            <div class="product-description">
-                <p>CONFORTO VERSÁTIL COM AMORTECIMENTO FLEXÍVEL.
-
-
-                    Um brinde aos novos começos entre você e as calçadas. Amarre os cadarços 100% reciclados e defina o
-                    ritmo no início da sua jornada de corrida com a sensação de maciez do Nike Revolution 6 Next Nature.
-                    Sabemos que o conforto é a chave para uma corrida bem-sucedida, então adicionamos amortecimento e
-                    flexibilidade para uma passada mais macia. É a evolução de um favorito com design ventilado, feito
-                    com pelo menos 20% de conteúdo reciclado por peso.
-                </p>
-
-            </div>
-
-
-
-
         </div>
-
-
-
-
+        </div>
+        </div>
     </main>
+
     <footer>
         <div class="grid-container">
             <div class="grid-item">ENCONTRE UMA LOJA EASY FIT</div>
@@ -290,7 +209,10 @@
                     <img class="footer_rede" src="/img/youtube.png">
                 </div>
             </div>
-            <div class="grid-item">SOBRE A EASY FIT
+            <div class="grid-item">
+                <a class="link_sobrenos" href="sobrenos.html">
+                    <div>SOBRE A EASY FIT</div>
+                </a>
                 <div class="footer_text">SUSTENTABILIDADE</div>
             </div>
             <div class="grid-item">AJUDA
@@ -318,8 +240,6 @@
             <div class="grid-item">BRASIL</div>
         </div>
     </footer>
-    <script src="js/index.js"></script>
-
 </body>
 
 </html>
