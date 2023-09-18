@@ -1,23 +1,29 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Cadastro de Produtos</title>
-</head>
-<body>
-    <h1>Cadastro de Produtos</h1>
-    <form action="cadastrar_produto.php" method="post" enctype="multipart/form-data">
-        Nome: <input type="text" name="nome"><br>
-        Valor: <input type="text" name="valor"><br>
-        Descrição: <textarea name="descricao"></textarea><br>
-        Imagem: <input type="file" name="imagem"><br>
-        <label for="categoria">Categoria:</label>
-<select name="categoria">
-    <option value="1">Categoria 1</option>
-    <option value="2">Categoria 2</option>
-    <!-- Adicione mais opções de categoria conforme necessário -->
-</select>
+<?php
+// Conexão com o banco de dados (substitua com suas próprias informações)
+$servername = "seuservidor";
+$username = "seuusuario";
+$password = "suasenha";
+$dbname = "seubanco";
 
-        <input type="submit" value="Cadastrar">
-    </form>
-</body>
-</html>
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Verifique a conexão
+if ($conn->connect_error) {
+    die("Falha na conexão: " . $conn->connect_error);
+}
+
+// Recupere os valores do array
+$itens = $_POST['itens'];
+
+// Itere sobre os valores e insira-os no banco de dados
+foreach ($itens as $item) {
+    $sql = "INSERT INTO sua_tabela (nome_coluna) VALUES ('$item')";
+    
+    if ($conn->query($sql) !== TRUE) {
+        echo "Erro ao inserir item: " . $conn->error;
+    }
+}
+
+// Feche a conexão com o banco de dados
+$conn->close();
+?>

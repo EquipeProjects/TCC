@@ -152,18 +152,27 @@
             // ID da categoria correspondente a esta página (modificar conforme necessário)
 
             // Consulta SQL para selecionar produtos da categoria correspondente
-            $categoria_id = 3; // Por exemplo, para a página "eletronicos.php"
-            $subcategoria = "aa";
-
-            // Consulta SQL para selecionar produtos da categoria correspondente
-            $sql = "SELECT id, nome, valor, imagem FROM produtos WHERE categoria_id = $categoria_id and subcategoria ='$subcategoria'" ;
-            $result = $conn->query($sql);
-
+            $categoria_id = isset($_GET['categoria']) ? $_GET['categoria'] : null; 
+            $subcategoria = isset($_GET['sub']) ? $_GET['sub'] : null;
+            
+            if ($categoria_id !== null) {
+                // Consulta SQL para selecionar produtos da categoria correspondente
+                $sql = "SELECT id, nome, valor, imagem FROM produtos WHERE categoria_id = $categoria_id";
+            
+                // Verifica se a subcategoria também foi fornecida
+                if ($subcategoria !== null) {
+                    $sql .= " AND subcategoria = '$subcategoria'";
+                }
+            
+                $result = $conn->query($sql);
+            } else {
+                // Lógica para lidar com o caso em que a categoria não foi fornecida
+            }
 
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     echo "
-                
+                    <a href='produto.php?id=" . $row['id'] . "'> 
             <div class='product_space'>
                 <div class='product_box'> <img class='img_novidade' src='admin/{$row['imagem']}' alt='{$row['nome']}'>
                     <div class='preco_product'>{$row['valor']}</div>
@@ -172,7 +181,7 @@
                 <div class='sob_categoria'>Casual</div>
             </div>
 
-         
+            </a>
               
           ";
                 }

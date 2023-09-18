@@ -166,6 +166,7 @@
                 </div>
                 <div class='text_product'>{$row['nome']}</div>
                 <div class='sob_categoria'>Casual</div>
+                
             </div>
 
          

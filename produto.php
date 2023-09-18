@@ -1,16 +1,55 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+<?php
+            $servername = "localhost";
+            $username = "root";
+            $password = "";
+            $dbname = "meubanco";
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Easyfit</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/produto.css">
-    <link rel="shortcut icon" href="ico/logo.ico" type="image/x-icon">
-    <meta name="author" content="João Victor,Davi Ribeiro e Yzabella Luiza">
-    <meta name="keywords" content="HTML,CSS,JavaScript">
+            $conn = new mysqli($servername, $username, $password, $dbname);
+
+            if ($conn->connect_error) {
+                die("Erro na conexão com o banco de dados: " . $conn->connect_error);
+            }
+
+        
+                ?>
+<?php
+   
+  
+   $produto_id = intval($_GET['id']);
+   echo $produto_id; // Para verificar o valor de $produto_id
+   
+
+   $sql = "SELECT * FROM produtos WHERE id = ?";
+   $stmt = $conn->prepare($sql);
+   $stmt->bind_param("i", $produto_id);
+   
+   if ($stmt->execute()) {
+       $result = $stmt->get_result();
+       $produto = $result->fetch_assoc();
+   } else {
+       echo "Erro ao executar a consulta: " . $stmt->error;
+   }
+   
+   $stmt->close();
+   
+
+?>
+
+
+
+        <!DOCTYPE html>
+        <html lang="pt-br">
+        
+        <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Easyfit</title>
+            <link rel="stylesheet" href="css/style.css">
+            <link rel="stylesheet" href="css/produto.css">
+            <link rel="shortcut icon" href="ico/logo.ico" type="image/x-icon">
+            <meta name="author" content="João Victor,Davi Ribeiro e Yzabella Luiza">
+            <meta name="keywords" content="HTML,CSS,JavaScript">
     <meta name="description"
         content="Um web site de vendas de roupas sob medida que adequa qualquer corpo,gosto e estilo.">
 </head>
@@ -152,7 +191,7 @@
             <div class="product-details">
                 <div class="product-images">
 
-                    <img src="img/pe1.jpg" alt="Imagem 1" onclick="changeImage('img/pe1.jpg')">
+                    <img src="admin/<?php echo $produto['imagem'] ?>" alt="Imagem 1" onclick="changeImage('admin/<?php echo $produto['imagem'] ?>')">
                     <img src="img/pe2.jpg" alt="Imagem 2" onclick="changeImage('img/pe2.jpg')">
                     <img src="img/pe2.jpg" alt="Imagem 3" onclick="changeImage('img/pe2.jpg')">
                     <img src="img/pe2.jpg" alt="Imagem 3" onclick="changeImage('img/pe2.jpg')">
@@ -162,7 +201,7 @@
 
 
                 <div class="selected-image">
-                    <img id="featured-image" src="img/pe1.jpg" alt=""> <img id="favicon" src="img/heart.svg" alt="">
+                    <img id="featured-image" src="admin/<?php echo $produto['imagem'] ?>" alt=""> <img id="favicon" src="img/heart.svg" alt="">
                 </div>
 
             </div>
@@ -195,15 +234,15 @@
 
         <div class="container">
 
-            <h2>TÊNIS FORUM 84 LOW CLASSIC</h2>
+            <h2><?php echo $produto['nome']; ?></h2>
 
-            <div class="stars"> <span>R$ 78.99</span> <img src="img/revstar.png" alt=""> <img src="img/revstar.png"
+            <div class="stars"> <span>R$ <?php echo number_format($produto['valor'], 2, ',', '.'); ?></span> <img src="img/revstar.png" alt=""> <img src="img/revstar.png"
                     alt=""><img src="img/revstar.png" alt=""><img src="img/revstar.png" alt=""><img
                     src="img/revstar.png" alt=""></div>
 
             <div class="categorias">aaa/aaaa/aaaaa</div>
 
-            <div>Até 10 x R$80,00 sem juros
+            <div>Até 10 x R$<?php echo number_format($produto['valor'], 2, ',', '.'); ?> sem juros
                 Ver outras opções</div>
 
             <div style="display: flex; flex-direction: column; align-items: center;">
@@ -259,14 +298,7 @@
 
 
             <div class="product-description">
-                <p>CONFORTO VERSÁTIL COM AMORTECIMENTO FLEXÍVEL.
-
-
-                    Um brinde aos novos começos entre você e as calçadas. Amarre os cadarços 100% reciclados e defina o
-                    ritmo no início da sua jornada de corrida com a sensação de maciez do Nike Revolution 6 Next Nature.
-                    Sabemos que o conforto é a chave para uma corrida bem-sucedida, então adicionamos amortecimento e
-                    flexibilidade para uma passada mais macia. É a evolução de um favorito com design ventilado, feito
-                    com pelo menos 20% de conteúdo reciclado por peso.
+                <p><?php echo $produto['descricao']; ?>
                 </p>
 
             </div>

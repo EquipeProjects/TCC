@@ -1,3 +1,35 @@
+<?php
+/*
+Author: Javed Ur Rehman
+Website: https://www.allphptricks.com
+*/
+session_start();
+$status="";
+if (isset($_POST['action']) && $_POST['action']=="remove"){
+if(!empty($_SESSION["shopping_cart"])) {
+	foreach($_SESSION["shopping_cart"] as $key => $value) {
+		if($_POST["code"] == $key){
+		unset($_SESSION["shopping_cart"][$key]);
+		$status = "<div class='box' style='color:red;'>
+		Product is removed from your cart!</div>";
+		}
+		if(empty($_SESSION["shopping_cart"]))
+		unset($_SESSION["shopping_cart"]);
+			}		
+		}
+}
+
+if (isset($_POST['action']) && $_POST['action']=="change"){
+  foreach($_SESSION["shopping_cart"] as &$value){
+    if($value['code'] === $_POST["code"]){
+        $value['quantity'] = $_POST["quantity"];
+        break; // Stop the loop after we've found the product
+    }
+}
+  	
+}
+$total_price= 300;
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -15,7 +47,7 @@
 </head>
 
 <body>
-    <script defer src="/js/index.js"></script>
+    <script defer src="js/index.js"></script>
     <header>
         <a href="index.html"><img class="logo" src="img/logo.png"></a>
         <nav class="link_menu">
@@ -142,10 +174,28 @@
 
 
     <div class="carrinho">
-        <h1>Seu carrinho <span>(0 item)</span></h1>
-        <h2> Subtotal:(1999.99)</h2>
+    <?php
+		if (!empty($_SESSION["shopping_cart"])) {
+			$cart_count = count(array_keys($_SESSION["shopping_cart"]));}
+		?>
+        	<?php
+			if (isset($_SESSION["shopping_cart"])) {
+				$total_price = 0;
+                
+               
+			?>
+            
+
+        <h1>Seu carrinho <span><?php echo $cart_count; ?> itens</span></h1>
+        <h2> <?php echo "$".$total_price; ?></h2>
+
     
         <ul class="cart-items">
+        <?php
+						foreach ($_SESSION["shopping_cart"] as $product) 
+                        
+            {
+						?>
             <li class="item">
 
                 <div class="item-header">
@@ -161,20 +211,22 @@
                 </div>
 
                 <input type="radio"><img
-                    src="img/produto-oculos.jpg" class="item-img" alt="">
+                    src="admin/<?php echo $product["image"]; ?>" class="item-img" alt="">
 
                 <div class="cart-content">
 
-                    <p> ÓCULOS DE SOL UNISSEX CHILLI BEANS ESPORTIVO QUADRADO BRANCO - OC.ES.1380.2219
-                        Maaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                    <p> <?php echo $product["name"]; ?></p>
 
 
                     <div
                         style="display: flex; width: 100%;flex-direction: row;  justify-content: space-between; position: relative; top:15vh">
                         <a href=""
                             style="display: flex; align-content: flex-start; text-decoration: none;  color: black;"><span
-                                class="item-price">1999.99</span></a>
-                        <input type="number">
+                                class="item-price"><?php   $total_price += ($product["price"] * $product["quantity"]);                                echo "$" . $product["price"] * $product["quantity"]; ?></span></a>
+                                <form action="" method="post">
+                                    
+                                    <input type="number"  value="<?php echo $product["quantity"]; ?>" name='quantity'  onchange="this.form.submit()">
+                                </form>
 
 
 
@@ -187,115 +239,20 @@
 
 
             </li>
-            <li class="item">
-
-                <div
-                    style="display: flex; width: 100%;flex-direction: row; height: 10vh; justify-content: space-between;">
-                    <a href="" style="display: flex; align-content: flex-start; ">aaaaa</a>
-                    <a href="" style=" display: flex; justify-content: flex-end;"><img src="/img/lixo.png" alt=""></a>
-
-
-
-                </div>
-
-                <input type="radio" style="float: left;  "><img src="img/produto-oculos.jpg" class="item-img" alt="">
-
-                <div class="cart-content">
-
-                    <p> ÓCULOS DE SOL UNISSEX CHILLI BEANS ESPORTIVO QUADRADO BRANCO - OC.ES.1380.2219
-                        Maaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-
-
-                    <div
-                        style="display: flex; width: 100%;flex-direction: row;  justify-content: space-between; position: relative; top:15vh">
-                        <a href=""
-                            style="display: flex; align-content: flex-start; text-decoration: none;  color: black;"><span
-                                class="item-price">1999.99</span></a>
-                        <input type="number">
-
-
-
-                    </div>
-
-
-
-
-                </div>
-
-
-            </li>
-            <li class="item">
-
-                <div
-                    style="display: flex; width: 100%;flex-direction: row; height: 10vh; justify-content: space-between;">
-                    <a href="" style="display: flex; align-content: flex-start; ">aaaaa</a>
-                    <a href="" style=" display: flex; justify-content: flex-end;"><img src="/img/lixo.png" alt=""></a>
-
-
-
-                </div>
-
-                <input type="radio" style="float: left;  "><img src="img/produto-oculos.jpg" class="item-img" alt="">
-
-                <div class="cart-content">
-
-                    <p> ÓCULOS DE SOL UNISSEX CHILLI BEANS ESPORTIVO QUADRADO BRANCO - OC.ES.1380.2219
-                        Maaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-
-
-                    <div
-                        style="display: flex; width: 100%;flex-direction: row;  justify-content: space-between; position: relative; top:15vh">
-                        <a href=""
-                            style="display: flex; align-content: flex-start; text-decoration: none;  color: black;"><span
-                                class="item-price">1999.99</span></a>
-                        <input type="number">
-
-
-
-                    </div>
-
-
-
-
-                </div>
-
-
-            </li>
-            <li class="item">
-
-                <div
-                    style="display: flex; width: 100%;flex-direction: row; height: 10vh; justify-content: space-between;">
-                    <a href="" style="display: flex; align-content: flex-start; ">aaaaa</a>
-                    <a href="" style=" display: flex; justify-content: flex-end;"><img src="/img/lixo.png" alt=""></a>
-
-
-
-                </div>
-
-                <input type="radio" style="float: left; position: relative; top: 5vh; "><img
-                    src="img/produto-oculos.jpg" class="item-img" alt="">
-
-                <div class="cart-content">
-
-                    <p> ÓCULOS DE SOL UNISSEX CHILLI BEANS ESPORTIVO QUADRADO BRANCO - OC.ES.1380.2219
-                        Maaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-
-
-                    <div
-                        style="display: flex; width: 100%;flex-direction: row;  justify-content: space-between; position: relative; top:15vh">
-                        <a href=""
-                            style="display: flex; align-content: flex-start; text-decoration: none;  color: black;"><span
-                                class="item-price">1999.99</span></a>
-                        <input type="number">
-
-
-
-                    </div>
-
-
-
-
-                </div>
+            <?php
+          }
+			
+        
+        
+        
+        
+        
+        } else {
+				echo "<h3>Your cart is empty!</h3>";
+			}
+			?>
+           
+                
 
 
             </li>
@@ -304,7 +261,7 @@
     </div>
     <div id="bottom-a">
         <a href=""class="inp-bot"><input type="radio">selecionar tudo</a>
-        <div> <span id="totalcust"> 2.000.000</span> <a href="finalizarcompra.html"><button
+        <div> <span id="totalcust"> <?php echo "$".$total_price; ?></span> <a href="finalizarcompra.html"><button
                     class="btn-generic">Finalizar Compra</button></a></div>
 
     </div>

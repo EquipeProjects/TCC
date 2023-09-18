@@ -26,7 +26,7 @@ if(isset($_GET['edit_products'])){
         Nome: <input type="text" name="nome"><br>
         Valor: <input type="text" name="valor"><br>
         Descrição: <textarea name="descricao"></textarea><br>
-         Imagens: <input type="file" name="imagens" onchange="exibirPreview(this)"><br>
+         Imagens: <input type="file" name="imagem" onchange="exibirPreview(this)"><br>
         <div id="preview"></div>
         <label for="categoria">Categoria:</label>
         <select name="categoria" id="categoria">
@@ -45,6 +45,8 @@ if(isset($_GET['edit_products'])){
         <select name="subcategorias" id="subcategoria" >
             <option value="">Selecione uma ou mais subcategorias</option>
         </select>
+        <label for="tamanhos">Insira os textos (separados por vírgula):</label><br>
+        <textarea name="tamanhos" id="texto" rows="4" cols="50"></textarea><br>
         <input type="submit" value="Cadastrar">
     </form>
 
