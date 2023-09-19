@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 18-Set-2023 às 03:24
+-- Tempo de geração: 19-Set-2023 às 03:40
 -- Versão do servidor: 10.4.27-MariaDB
 -- versão do PHP: 8.2.0
 
@@ -61,6 +61,29 @@ INSERT INTO `categorias` (`id`, `nome`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `clientes`
+--
+
+CREATE TABLE `clientes` (
+  `id` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `nome` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `tipo_usuario` enum('cliente','vendedor') NOT NULL DEFAULT 'cliente'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `clientes`
+--
+
+INSERT INTO `clientes` (`id`, `username`, `password`, `nome`, `email`, `tipo_usuario`) VALUES
+(1, 'a', '123', 'sdd', 'daviribeiroandre67@gmail.com', 'cliente'),
+(2, 'a333', '2344', 'davi ribeiro andre', 'daviribeiroandre67@gmail.com', 'cliente');
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `produtos`
 --
 
@@ -91,7 +114,13 @@ INSERT INTO `produtos` (`id`, `nome`, `valor`, `descricao`, `imagem`, `categoria
 (23, 'men', '8090.00', 'siuuuu', 0x75706c6f6164732f556e7469746c6564202d20322e706e67, 1, 'BLUSAS', NULL),
 (24, 'ruiom', '0.00', '', 0x75706c6f6164732f, 0, '', NULL),
 (25, 'ruiom', '0.00', '', 0x75706c6f6164732f, 0, '', NULL),
-(26, 'ruiu mhmg', '0.00', '', 0x75706c6f6164732f, 0, '', 1);
+(26, 'ruiu mhmg', '0.00', '', 0x75706c6f6164732f, 0, '', 1),
+(27, 'ssssss', '0.00', '', 0x75706c6f6164732f, 0, '', 3),
+(28, 'ssssss', '0.00', '', 0x75706c6f6164732f, 0, '', NULL),
+(29, 'ssssss', '0.00', '', 0x75706c6f6164732f, 0, '', NULL),
+(30, '', '0.00', '', 0x75706c6f6164732f, 0, '', NULL),
+(31, '', '0.00', '', 0x75706c6f6164732f, 0, '', NULL),
+(32, 'teste', '87656.00', 'aaaaa', 0x75706c6f6164732f7472656e342e6a7067, 1, 'BLUSAS', NULL);
 
 -- --------------------------------------------------------
 
@@ -103,7 +132,7 @@ CREATE TABLE `tamanhos` (
   `tamanho_id` int(11) NOT NULL,
   `nome_tamanho` varchar(10) DEFAULT NULL,
   `estoque` int(11) DEFAULT NULL,
-  `produto_id` int(11) NOT NULL
+  `produto_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -111,8 +140,40 @@ CREATE TABLE `tamanhos` (
 --
 
 INSERT INTO `tamanhos` (`tamanho_id`, `nome_tamanho`, `estoque`, `produto_id`) VALUES
-(1, 'eu', 0, 0),
-(2, 'souu', 0, 0);
+(1, 'eu', 0, NULL),
+(2, 'souu', 0, NULL),
+(3, 'a', 0, NULL),
+(4, 'b', 0, NULL),
+(5, 'c', 0, NULL),
+(6, 'b', 0, 31),
+(7, 'c', 0, 31),
+(8, 'p', 0, 32),
+(9, 'pp', 0, 32),
+(10, 'g', 0, 32),
+(11, 'gg', 0, 32);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `vendedores`
+--
+
+CREATE TABLE `vendedores` (
+  `id` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `nome` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `tipo_usuario` enum('cliente','vendedor') NOT NULL DEFAULT 'vendedor'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `vendedores`
+--
+
+INSERT INTO `vendedores` (`id`, `username`, `password`, `nome`, `email`, `tipo_usuario`) VALUES
+(1, 'a444', '2344', 'dddd', 'd@gmail.com', 'vendedor'),
+(2, 'tio bill', '3', 'microsoft', 'd@gmail.com', 'vendedor');
 
 --
 -- Índices para tabelas despejadas
@@ -131,6 +192,13 @@ ALTER TABLE `categorias`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Índices para tabela `clientes`
+--
+ALTER TABLE `clientes`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`);
+
+--
 -- Índices para tabela `produtos`
 --
 ALTER TABLE `produtos`
@@ -141,7 +209,15 @@ ALTER TABLE `produtos`
 -- Índices para tabela `tamanhos`
 --
 ALTER TABLE `tamanhos`
-  ADD PRIMARY KEY (`tamanho_id`);
+  ADD PRIMARY KEY (`tamanho_id`),
+  ADD KEY `fk_size_product` (`produto_id`);
+
+--
+-- Índices para tabela `vendedores`
+--
+ALTER TABLE `vendedores`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- AUTO_INCREMENT de tabelas despejadas
@@ -160,16 +236,28 @@ ALTER TABLE `categorias`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT de tabela `clientes`
+--
+ALTER TABLE `clientes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT de tabela `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT de tabela `tamanhos`
 --
 ALTER TABLE `tamanhos`
-  MODIFY `tamanho_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `tamanho_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT de tabela `vendedores`
+--
+ALTER TABLE `vendedores`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restrições para despejos de tabelas
@@ -180,6 +268,12 @@ ALTER TABLE `tamanhos`
 --
 ALTER TABLE `produtos`
   ADD CONSTRAINT `fk_product_size` FOREIGN KEY (`tamanho_id`) REFERENCES `tamanhos` (`tamanho_id`);
+
+--
+-- Limitadores para a tabela `tamanhos`
+--
+ALTER TABLE `tamanhos`
+  ADD CONSTRAINT `fk_size_product` FOREIGN KEY (`produto_id`) REFERENCES `produtos` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

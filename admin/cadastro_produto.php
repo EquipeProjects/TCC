@@ -25,12 +25,18 @@ $imagem_caminho = 'uploads/' . $imagem_nome; // Diretório onde as imagens serã
 
 move_uploaded_file($imagem_temp, $imagem_caminho);
 
+
+$imagem_nome2 = $_FILES['imagem2']['name'];
+$imagem_temp2 = $_FILES['imagem']['tmp_name'];
+$imagem_caminho = 'uploads/' . $imagem_nome2; // Diretório onde as imagens serão armazenadas
+
+move_uploaded_file($imagem_temp2, $imagem_caminho);
 // Tamanhos (obtenha-os como uma string e depois divida em um array)
 $tamanhos_string = $_POST['tamanhos'];
 $tamanhos_array = explode(",", $tamanhos_string);
 
 // Inserção na tabela "produtos"
-$insert_produto_query = "INSERT INTO produtos (nome, valor, descricao, imagem, categoria_id, subcategoria) VALUES ('$nome', '$valor', '$descricao', '$imagem_caminho', '$categoria_id', '$subcategoria')";
+$insert_produto_query = "INSERT INTO produtos (nome, valor, descricao, imagem, imagem2 categoria_id, subcategoria) VALUES ('$nome', '$valor', '$descricao', '$imagem_caminho', '$categoria_id', '$subcategoria')";
 
 if ($conn->query($insert_produto_query) === TRUE) {
     $produto_id = $conn->insert_id; // Obtém o ID do produto inserido
