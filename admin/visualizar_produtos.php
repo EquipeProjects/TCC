@@ -80,7 +80,7 @@
                     ?></td>
                    <td><a href='editar_produto.php?produto_id=<?php echo $product_id; ?>' class='text-light'><i class='fa-solid fa-pen-to-square'></i>Update</a></td>
 
-                    <td><a href='visualisar_produtos.php?delete_product=<?php echo $product_id; ?>' class='text-light'><i class='fa-solid fa-trash'></i>Delete</a></td>
+                    <td><a href='visualizar_produtos.php?delete_product=<?php echo $product_id; ?>' class='text-light'><i class='fa-solid fa-trash'></i>Delete</a></td>
                 </tr>
                 <?php
                 }

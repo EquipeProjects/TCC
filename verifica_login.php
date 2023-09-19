@@ -31,7 +31,7 @@ $result = mysqli_query($conn, $query);
 
 if (mysqli_num_rows($result) == 1) {
     $_SESSION['tipo_usuario'] = 'vendedor';
-    header('Location: novidades.php'); // Redirecione para a página do vendedor
+    header('Location: admin/'); // Redirecione para a página do vendedor
     exit();
 }
 

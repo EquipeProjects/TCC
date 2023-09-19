@@ -8,6 +8,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 
     if (isset($_GET['produto_id'])) {
         $delete_id =$_GET['produto_id'];
+        $delete_tamanho = "DELETE FROM `tamanhos` WHERE id=$delete_id";
         $delete_product = "DELETE FROM `produtos` WHERE id=$delete_id";
         $result_product =mysqli_query($con, $delete_product);
         if($result_product){
