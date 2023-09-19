@@ -4,10 +4,11 @@
     align-items: center;
     flex-wrap: wrap;
     justify-content: center;
-    width: 80%;
+    width: 90%;
     text-align: center;
     background: #D9D9D8;
-    margin-left: 10%;
+    margin-left: 5%;
+
 }
 
 .flex_novid {
@@ -53,7 +54,7 @@
 
 
 .product_space{
-    margin: 2%;
+    margin: 40px;
     flex-basis: 20%;
 }
 

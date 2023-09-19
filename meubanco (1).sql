@@ -1,21 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 19-Set-2023 às 03:40
+-- Tempo de geração: 19-Set-2023 às 19:27
 -- Versão do servidor: 10.4.27-MariaDB
--- versão do PHP: 8.2.0
+-- versão do PHP: 8.1.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Banco de dados: `meubanco`
@@ -94,33 +88,21 @@ CREATE TABLE `produtos` (
   `descricao` text DEFAULT NULL,
   `imagem` blob DEFAULT NULL,
   `categoria_id` int(11) DEFAULT NULL,
-  `subcategoria` varchar(255) DEFAULT NULL,
-  `tamanho_id` int(11) DEFAULT NULL
+  `subcategoria` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Extraindo dados da tabela `produtos`
 --
 
-INSERT INTO `produtos` (`id`, `nome`, `valor`, `descricao`, `imagem`, `categoria_id`, `subcategoria`, `tamanho_id`) VALUES
-(13, 'davi ribeiro andre', '23.00', 'aaaa', 0x75706c6f6164732f67322e706e67, 1, NULL, NULL),
-(14, 'tenis', '23.00', 'aaddd', 0x75706c6f6164732f63616465726e6f2e6a7067, 1, NULL, NULL),
-(16, 'aaaaaa', '909090.00', 'adfdfadfafafs', 0x75706c6f6164732f726f757061312e6a7067, 1, NULL, NULL),
-(18, 'siuuu', '90.00', '', 0x75706c6f6164732f, 4, 'MASCULINOS', NULL),
-(19, 'ass', '55.00', 'womna', 0x75706c6f6164732f776f6e792e6a7067, 3, 'TOPS / CROPPEDS', NULL),
-(20, 'tenis', '5000.00', 'saaa', NULL, 3, NULL, NULL),
-(21, 'sarsd', '120.00', '', 0x75706c6f6164732f, 3, 'JEANS', NULL),
-(22, 'yyyy', '0.00', '', 0x75706c6f6164732f626c6f7175696e686f2e6a7067, 0, '', NULL),
-(23, 'men', '8090.00', 'siuuuu', 0x75706c6f6164732f556e7469746c6564202d20322e706e67, 1, 'BLUSAS', NULL),
-(24, 'ruiom', '0.00', '', 0x75706c6f6164732f, 0, '', NULL),
-(25, 'ruiom', '0.00', '', 0x75706c6f6164732f, 0, '', NULL),
-(26, 'ruiu mhmg', '0.00', '', 0x75706c6f6164732f, 0, '', 1),
-(27, 'ssssss', '0.00', '', 0x75706c6f6164732f, 0, '', 3),
-(28, 'ssssss', '0.00', '', 0x75706c6f6164732f, 0, '', NULL),
-(29, 'ssssss', '0.00', '', 0x75706c6f6164732f, 0, '', NULL),
-(30, '', '0.00', '', 0x75706c6f6164732f, 0, '', NULL),
-(31, '', '0.00', '', 0x75706c6f6164732f, 0, '', NULL),
-(32, 'teste', '87656.00', 'aaaaa', 0x75706c6f6164732f7472656e342e6a7067, 1, 'BLUSAS', NULL);
+INSERT INTO `produtos` (`id`, `nome`, `valor`, `descricao`, `imagem`, `categoria_id`, `subcategoria`) VALUES
+(13, 'davi ribeiro andre', '23.00', 'aaaa', 0x75706c6f6164732f67322e706e67, 1, NULL),
+(14, 'tenis', '23.00', 'aaddd', 0x75706c6f6164732f63616465726e6f2e6a7067, 1, NULL),
+(16, 'aaaaaa', '909090.00', 'adfdfadfafafs', 0x75706c6f6164732f726f757061312e6a7067, 1, NULL),
+(19, 'ass', '55.00', 'womna', 0x75706c6f6164732f776f6e792e6a7067, 3, 'TOPS / CROPPEDS'),
+(20, 'tenis', '5000.00', 'saaa', NULL, 3, NULL),
+(22, 'yyyy', '0.00', '', 0x75706c6f6164732f626c6f7175696e686f2e6a7067, 0, ''),
+(35, 'MORANGAS', '2100.00', 'O MORANGO E BOM MAS VOCÊ NÃO VIU O MORANGETE', 0x75706c6f6164732f696d6167656d5f323032332d30392d31395f3134313632373934312e706e67, 2, 'CAMISETAS DE TIME');
 
 -- --------------------------------------------------------
 
@@ -145,12 +127,9 @@ INSERT INTO `tamanhos` (`tamanho_id`, `nome_tamanho`, `estoque`, `produto_id`) V
 (3, 'a', 0, NULL),
 (4, 'b', 0, NULL),
 (5, 'c', 0, NULL),
-(6, 'b', 0, 31),
-(7, 'c', 0, 31),
-(8, 'p', 0, 32),
-(9, 'pp', 0, 32),
-(10, 'g', 0, 32),
-(11, 'gg', 0, 32);
+(18, '100', 0, 35),
+(19, '200', 0, 35),
+(20, '1000', 0, 35);
 
 -- --------------------------------------------------------
 
@@ -173,7 +152,8 @@ CREATE TABLE `vendedores` (
 
 INSERT INTO `vendedores` (`id`, `username`, `password`, `nome`, `email`, `tipo_usuario`) VALUES
 (1, 'a444', '2344', 'dddd', 'd@gmail.com', 'vendedor'),
-(2, 'tio bill', '3', 'microsoft', 'd@gmail.com', 'vendedor');
+(2, 'tio bill', '3', 'microsoft', 'd@gmail.com', 'vendedor'),
+(3, 'teste', '3', 'jose', 'd@gmail.com', 'vendedor');
 
 --
 -- Índices para tabelas despejadas
@@ -202,8 +182,7 @@ ALTER TABLE `clientes`
 -- Índices para tabela `produtos`
 --
 ALTER TABLE `produtos`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_product_size` (`tamanho_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Índices para tabela `tamanhos`
@@ -245,37 +224,27 @@ ALTER TABLE `clientes`
 -- AUTO_INCREMENT de tabela `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT de tabela `tamanhos`
 --
 ALTER TABLE `tamanhos`
-  MODIFY `tamanho_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `tamanho_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de tabela `vendedores`
 --
 ALTER TABLE `vendedores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restrições para despejos de tabelas
 --
 
 --
--- Limitadores para a tabela `produtos`
---
-ALTER TABLE `produtos`
-  ADD CONSTRAINT `fk_product_size` FOREIGN KEY (`tamanho_id`) REFERENCES `tamanhos` (`tamanho_id`);
-
---
 -- Limitadores para a tabela `tamanhos`
 --
 ALTER TABLE `tamanhos`
-  ADD CONSTRAINT `fk_size_product` FOREIGN KEY (`produto_id`) REFERENCES `produtos` (`id`);
+  ADD CONSTRAINT `fk_size_product` FOREIGN KEY (`produto_id`) REFERENCES `produtos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
