@@ -1,57 +1,69 @@
 <?php
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $dbname = "meubanco";
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "meubanco";
 
-            $conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-            if ($conn->connect_error) {
-                die("Erro na conexão com o banco de dados: " . $conn->connect_error);
-            }
+if ($conn->connect_error) {
+    die("Erro na conexão com o banco de dados: " . $conn->connect_error);
+}
 
-        
-                ?>
-<?php
-   
-  
-   $produto_id = intval($_GET['id']);
-   echo $produto_id; // Para verificar o valor de $produto_id
-   
+// Obtém o ID do produto da consulta GET
+$produto_id = intval($_GET['id']);
 
-   $sql = "SELECT * FROM produtos WHERE id = ?";
-   $stmt = $conn->prepare($sql);
-   $stmt->bind_param("i", $produto_id);
-   
-   if ($stmt->execute()) {
-       $result = $stmt->get_result();
-       $produto = $result->fetch_assoc();
-   } else {
-       echo "Erro ao executar a consulta: " . $stmt->error;
-   }
-   
-   $stmt->close();
-   
+// Consulta o produto
+$sql_produto = "SELECT * FROM produtos WHERE id = $produto_id";
+$result_produto = $conn->query($sql_produto);
+
+if ($result_produto->num_rows > 0) {
+    $produto = $result_produto->fetch_assoc();
+} else {
+    echo "Produto não encontrado.";
+    $conn->close();
+    exit;
+}
+
+// Consulta os tamanhos associados ao produto
+$sql_tamanhos = "SELECT * FROM tamanhos WHERE produto_id = $produto_id";
+$result_tamanhos = $conn->query($sql_tamanhos);
+
+$tamanhos = array(); // Array para armazenar os tamanhos
+
+if ($result_tamanhos->num_rows > 0) {
+    while ($row = $result_tamanhos->fetch_assoc()) {
+        $tamanhos[] = $row['nome_tamanho'];
+    }
+}
+
+
+
+
+$conn->close();
+
+
+
+
+
 
 ?>
 
 
+<!DOCTYPE html>
+<html lang="pt-br">
 
-        <!DOCTYPE html>
-        <html lang="pt-br">
-        
-        <head>
-            <meta charset="UTF-8">
-            <meta http-equiv="X-UA-Compatible" content="IE=edge">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Easyfit</title>
-            <link rel="stylesheet" href="css/style.css">
-            <link rel="stylesheet" href="css/produto.css">
-            <link rel="shortcut icon" href="ico/logo.ico" type="image/x-icon">
-            <meta name="author" content="João Victor,Davi Ribeiro e Yzabella Luiza">
-            <meta name="keywords" content="HTML,CSS,JavaScript">
-    <meta name="description"
-        content="Um web site de vendas de roupas sob medida que adequa qualquer corpo,gosto e estilo.">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Easyfit</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/produto.css">
+    <link rel="shortcut icon" href="ico/logo.ico" type="image/x-icon">
+    <meta name="author" content="João Victor,Davi Ribeiro e Yzabella Luiza">
+    <meta name="keywords" content="HTML,CSS,JavaScript">
+    <meta name="description" content="Um web site de vendas de roupas sob medida que adequa qualquer corpo,gosto e estilo.">
 </head>
 
 <body>
@@ -161,7 +173,7 @@
         <a href="#"><img class="button_loupe" src='img/loupe.png'></a>
 
         <div class="dropdown">
-            <img class="button_user" src='img/user.png'>
+            <img class="button_user"  src='img/user.png'>
             <div class="dropdown-child">
                 <a href="login.html"><button class="button_entrar"><b>ENTRAR</b></button></a>
                 <img class="button_trian" src="/img/triangulo_drop.png">
@@ -182,8 +194,7 @@
 
         <div class="container">
             <div style="display: flex;  height: 50px;">
-                <a href="#" style="justify-content: center;align-items: center;"><img src="img/bag.png"
-                        style="width: 50px; " alt=""> loja Easy fit
+                <a href="#" style="justify-content: center;align-items: center;"><img src="img/bag.png" style="width: 50px; " alt=""> loja Easy fit
                     <img src="img/seta-direita.png" style="width: 50px;" alt="">
                 </a>
 
@@ -214,8 +225,7 @@
                         insira seu cep
                     </label>
 
-                    <input type="number" style="width: 100%; height: 60px; border-radius: 20px; border:none"> <button
-                        style="position: absolute; bottom: 5px; right:10px ; height: 50px; border: none; border-radius: 20px;   background-color: #C1C1C1;
+                    <input type="number" style="width: 100%; height: 60px; border-radius: 20px; border:none"> <button style="position: absolute; bottom: 5px; right:10px ; height: 50px; border: none; border-radius: 20px;   background-color: #C1C1C1;
                         width: 30%;">calcular</button>
 
                 </div>
@@ -236,9 +246,7 @@
 
             <h2><?php echo $produto['nome']; ?></h2>
 
-            <div class="stars"> <span>R$ <?php echo number_format($produto['valor'], 2, ',', '.'); ?></span> <img src="img/revstar.png" alt=""> <img src="img/revstar.png"
-                    alt=""><img src="img/revstar.png" alt=""><img src="img/revstar.png" alt=""><img
-                    src="img/revstar.png" alt=""></div>
+            <div class="stars"> <span>R$ <?php echo number_format($produto['valor'], 2, ',', '.'); ?></span> <img src="img/revstar.png" alt=""> <img src="img/revstar.png" alt=""><img src="img/revstar.png" alt=""><img src="img/revstar.png" alt=""><img src="img/revstar.png" alt=""></div>
 
             <div class="categorias">aaa/aaaa/aaaaa</div>
 
@@ -254,26 +262,23 @@
                 <div id="box1" class="box-inf">
                     <h2> tamanhhos</h2>
                     <div style="display: flex; flex-wrap: wrap;height:auto; margin: 10px;">
-                        <button  class="box-btn">aa</button>
-                        <button  class="box-btn">aa</button>
-                        <button  class="box-btn">aa</button>
-                        <button  class="box-btn">aa</button>
-                        <button  class="box-btn">aa</button>
-                        <button  class="box-btn">aa</button>
-                        <button  class="box-btn">aa</button>
-                        <button  class="box-btn">aa</button>
-                        <button  class="box-btn">aa</button>
-                        <button  class="box-btn">abv</button>
-                        <button  class="box-btn">abv</button>
-                        <button  class="box-btn">abv</button>
-                        <button  class="box-btn">abv</button>
-                        <button  class="box-btn">abv</button>
-                        <button  class="box-btn">abv</button>
-                        <button  class="box-btn">abv</button>
-                        <button  class="box-btn">abv</button>
-                        <button  class="box-btn">abv</button>
-                        <button  class="box-btn">abv</button>
-                        
+                        <form action="" method="post">
+
+                            <?php
+                            foreach ($tamanhos as $tamanho) {
+                                echo "<button class='box-btn'>$tamanho</button>";
+                            }
+                            ?>
+                            <select name="tamanho" id="tamanho">
+                                <?php
+                                foreach ($tamanhos as $tamanho) {
+                                    echo "<option class='box-btn' value='$tamanho'>$tamanho</option>";
+                                }
+                                ?>
+                            </select>
+
+                        </form>
+
 
 
 
@@ -293,7 +298,11 @@
                 <a href=""> como medir</a>
             </div>
 
-            <button class="btn-compra">adicionar no carrinho</button>
+            <form action="adicionar_ao_carrinho.php" method="post">
+                <input type="hidden" name="code" value="<?php echo $produto['id']; ?>">
+                <button type="submit" class="btn-compra">Adicionar ao Carrinho</button>
+            </form>
+
 
 
 

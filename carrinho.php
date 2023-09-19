@@ -1,34 +1,31 @@
 <?php
-/*
-Author: Javed Ur Rehman
-Website: https://www.allphptricks.com
-*/
 session_start();
-$status="";
-if (isset($_POST['action']) && $_POST['action']=="remove"){
-if(!empty($_SESSION["shopping_cart"])) {
-	foreach($_SESSION["shopping_cart"] as $key => $value) {
-		if($_POST["code"] == $key){
-		unset($_SESSION["shopping_cart"][$key]);
-		$status = "<div class='box' style='color:red;'>
-		Product is removed from your cart!</div>";
-		}
-		if(empty($_SESSION["shopping_cart"]))
-		unset($_SESSION["shopping_cart"]);
-			}		
-		}
-}
+$status = "";
 
-if (isset($_POST['action']) && $_POST['action']=="change"){
-  foreach($_SESSION["shopping_cart"] as &$value){
-    if($value['code'] === $_POST["code"]){
-        $value['quantity'] = $_POST["quantity"];
-        break; // Stop the loop after we've found the product
+if (isset($_POST['action']) && $_POST['action'] == "remove") {
+    if (!empty($_SESSION["shopping_cart"])) {
+        foreach ($_SESSION["shopping_cart"] as $key => $value) {
+            if ($_POST["code"] == $value['code']) {
+                unset($_SESSION["shopping_cart"][$key]);
+                $status = "<div class='box' style='color:red;'>Produto removido do carrinho!</div>";
+            }
+            if (empty($_SESSION["shopping_cart"])) {
+                unset($_SESSION["shopping_cart"]);
+            }
+        }
     }
 }
-  	
+
+if (isset($_POST['action']) && $_POST['action'] == "change") {
+    foreach ($_SESSION["shopping_cart"] as &$value) {
+        if ($value['code'] === $_POST["code"]) {
+            $value['quantity'] = $_POST["quantity"];
+            break; // Pare o loop depois de encontrar o produto
+        }
+    }
 }
-$total_price= 300;
+
+$total_price = 0;
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -42,8 +39,7 @@ $total_price= 300;
     <link rel="shortcut icon" href="/ico/logo.ico" type="image/x-icon">
     <meta name="author" content="João Victor,Davi Ribeiro e Yzabella Luiza">
     <meta name="keywords" content="HTML,CSS,JavaScript">
-    <meta name="description"
-        content="Um web site de vendas de roupas sob medida que adequa qualquer corpo,gosto e estilo.">
+    <meta name="description" content="Um web site de vendas de roupas sob medida que adequa qualquer corpo,gosto e estilo.">
 </head>
 
 <body>
@@ -157,7 +153,7 @@ $total_price= 300;
             <img class="button_user" src='img/user.png'>
             <div class="dropdown-child">
                 <a href="login.html"><button class="button_entrar"><b>ENTRAR</b></button></a>
-                <img class="button_trian" src="/img/triangulo_drop.png">
+                <img class="button_trian" src="img/triangulo_drop.png">
                 <a href="#">
                     <div class="link_masc_user"><b>MASCULINO</b></div>
                 </a><img class="seta_user" src="img/seta-direita.png">
@@ -174,95 +170,83 @@ $total_price= 300;
 
 
     <div class="carrinho">
-    <?php
-		if (!empty($_SESSION["shopping_cart"])) {
-			$cart_count = count(array_keys($_SESSION["shopping_cart"]));}
-		?>
-        	<?php
-			if (isset($_SESSION["shopping_cart"])) {
-				$total_price = 0;
-                
-               
-			?>
-            
-
-        <h1>Seu carrinho <span><?php echo $cart_count; ?> itens</span></h1>
-        <h2> <?php echo "$".$total_price; ?></h2>
-
-    
-        <ul class="cart-items">
         <?php
-						foreach ($_SESSION["shopping_cart"] as $product) 
-                        
-            {
-						?>
-            <li class="item">
-
-                <div class="item-header">
-                    <a href="" class="item-link"><img
-                            src="img/bag.png" alt="">
-                        <div style="color:black; text-decoration: none; font-size: 4vh; text-transform: uppercase;">Loja
-                            Easy fit</div> <img src="img/seta-direita.png" alt="">
-                    </a>
-                    <a href="" style=" display: flex; justify-content: flex-end;"><img src="/img/lixo.png" alt=""></a>
+        if (!empty($_SESSION["shopping_cart"])) {
+            $cart_count = count(array_keys($_SESSION["shopping_cart"]));
+        }
+        ?>
+        <?php
+        if (isset($_SESSION["shopping_cart"])) {
+            $total_price = 0;
 
 
-
-                </div>
-
-                <input type="radio"><img
-                    src="admin/<?php echo $product["image"]; ?>" class="item-img" alt="">
-
-                <div class="cart-content">
-
-                    <p> <?php echo $product["name"]; ?></p>
+        ?>
 
 
-                    <div
-                        style="display: flex; width: 100%;flex-direction: row;  justify-content: space-between; position: relative; top:15vh">
-                        <a href=""
-                            style="display: flex; align-content: flex-start; text-decoration: none;  color: black;"><span
-                                class="item-price"><?php   $total_price += ($product["price"] * $product["quantity"]);                                echo "$" . $product["price"] * $product["quantity"]; ?></span></a>
+            <h1>Seu carrinho <span><?php echo $cart_count; ?> itens</span></h1>
+            <h2> <?php echo "$" . $total_price; ?></h2>
+
+
+            <ul class="cart-items">
+                <?php
+                foreach ($_SESSION["shopping_cart"] as $product) {
+                ?>
+                    <li class="item">
+
+                        <div class="item-header">
+                            <a href="" class="item-link"><img src="img/bag.png" alt="">
+                                <div style="color:black; text-decoration: none; font-size: 4vh; text-transform: uppercase;">Loja
+                                    Easy fit</div> <img src="img/seta-direita.png" alt="">
+                            </a>
+                            <a href="" style=" display: flex; justify-content: flex-end;"><img src="/img/lixo.png" alt=""></a>
+
+
+
+                        </div>
+
+                        <input type="radio"><img src="admin/<?php echo $product["image"]; ?>" class="item-img" alt="">
+
+                        <div class="cart-content">
+
+                            <p> <?php echo $product["name"]; ?></p>
+
+
+                            <div style="display: flex; width: 100%;flex-direction: row;  justify-content: space-between; position: relative; top:15vh">
+                                <a href="" style="display: flex; align-content: flex-start; text-decoration: none;  color: black;"><span class="item-price"><?php $total_price += ($product["price"] * $product["quantity"]);
+                                                                                                                                                            echo "$" . $product["price"] * $product["quantity"]; ?></span></a>
                                 <form action="" method="post">
-                                    
-                                    <input type="number"  value="<?php echo $product["quantity"]; ?>" name='quantity'  onchange="this.form.submit()">
+
+                                    <input type="number" value="<?php echo $product["quantity"]; ?>" name='quantity' onchange="this.form.submit()">
                                 </form>
 
 
 
-                    </div>
+                            </div>
 
 
 
 
-                </div>
+                        </div>
 
 
-            </li>
+                    </li>
             <?php
-          }
-			
-        
-        
-        
-        
-        
-        } else {
-				echo "<h3>Your cart is empty!</h3>";
-			}
-			?>
-           
-                
+                }
+            } else {
+                echo "<h3>Your cart is empty!</h3>";
+            }
+            ?>
+
+
 
 
             </li>
 
-        </ul>
+            </ul>
     </div>
     <div id="bottom-a">
-        <a href=""class="inp-bot"><input type="radio">selecionar tudo</a>
-        <div> <span id="totalcust"> <?php echo "$".$total_price; ?></span> <a href="finalizarcompra.html"><button
-                    class="btn-generic">Finalizar Compra</button></a></div>
+        <a href="" class="inp-bot"><input type="radio">selecionar tudo</a>
+        <div> <span id="totalcust"> <?php echo "$" . $total_price; ?></span> <a href="finalizarcompra.html"><button class="btn-generic">Finalizar Compra</button></a></div>
 
     </div>
 
