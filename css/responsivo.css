@@ -2,7 +2,25 @@
 
 @media (min-width: 600px) {}
 
-@media (min-width: 768px) {}
+@media (max-width: 768px) {
+
+    .link_menu{
+
+
+        flex-direction: column;
+        text-align: center;
+        display: none; /* Oculta o menu por padrão em telas menores */
+    }
+    .button_loupe {
+        
+        display: flex;
+        position: relative;
+        left: 5vh;
+        top: 6vh;
+        margin-top: 7vh;
+        width: 6%;
+    }
+}
 
 @media (min-width: 992px) {}
 

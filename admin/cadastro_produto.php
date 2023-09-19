@@ -27,8 +27,15 @@ move_uploaded_file($imagem_temp, $imagem_caminho);
 
 
 // Tamanhos (obtenha-os como uma string e depois divida em um array)
-$tamanhos_string = $_POST['tamanhos'];
-$tamanhos_array = explode(",", $tamanhos_string);
+// Recupere os tamanhos e estoques como arrays
+$tamanhos = $_POST['tamanhos'];
+$estoques = $_POST['estoques'];
+
+// Certifique-se de que ambos os arrays tenham o mesmo número de elementos
+if (count($tamanhos) != count($estoques)) {
+    echo "Erro: Os tamanhos e estoques não correspondem.";
+    exit;
+}
 
 // Inserção na tabela "produtos"
 $insert_produto_query = "INSERT INTO produtos (nome, valor, descricao, imagem, categoria_id, subcategoria) VALUES ('$nome', '$valor', '$descricao', '$imagem_caminho', '$categoria_id', '$subcategoria')";
@@ -41,12 +48,12 @@ if ($conn->query($insert_produto_query) === TRUE) {
     exit;
 }
 
-// Inserção na tabela de associação "produto_tamanho"
-foreach ($tamanhos_array as $tamanho) {
-    $tamanho = trim($tamanho); // Remova espaços em branco extras
-    $tamanho = mysqli_real_escape_string($conn, $tamanho); // Evita SQL Injection
-    $stock = 0; // Você pode definir o estoque inicial como desejado
-    $insert_association_query = "INSERT INTO tamanhos (produto_id, nome_tamanho, estoque) VALUES ('$produto_id', '$tamanho', '$stock')";
+// Inserção na tabela de associação "produto_tamanho" com estoque
+for ($i = 0; $i < count($tamanhos); $i++) {
+    $tamanho = mysqli_real_escape_string($conn, $tamanhos[$i]);
+    $estoque = mysqli_real_escape_string($conn, $estoques[$i]);
+    
+    $insert_association_query = "INSERT INTO tamanhos (produto_id, nome_tamanho, estoque) VALUES ('$produto_id', '$tamanho', '$estoque')";
     
     if ($conn->query($insert_association_query) !== TRUE) {
         echo "Erro ao associar tamanho ao produto: " . $conn->error;
@@ -54,6 +61,5 @@ foreach ($tamanhos_array as $tamanho) {
 }
 
 echo "Produto cadastrado com sucesso!";
-
 $conn->close();
 ?>

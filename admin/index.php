@@ -4,7 +4,7 @@ session_start();
 
 if (!isset($_SESSION['tipo_usuario'])) {
     // Se não estiver autenticado, redirecione-o para a página de login
-    header("Location: ../l.php");
+    header("Location: ../login.php");
     exit();
 }
 // Verificar se o usuário está autenticado e é um vendedor
