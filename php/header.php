@@ -103,14 +103,19 @@
             </div>
             <a class="link_ajuda" href="ajuda.html">AJUDA</a>
         </nav>
-        <input type="text" placeholder="BUSCAR">
-        <a href="carrinho.html"><img class="button_shop" src='img/bag.png'></a>
-        <a href="#"><img class="button_loupe" src='img/loupe.png'></a>
+
+        <form action="pesquisar.php" method="get">
+
+        
+            <input type="submit" name="env"  > <label for="env"> <a href=""><img class="button_loupe" src='img/loupe.png'></a></label> 
+            <input type="text" name="termo_pesquisa" placeholder="BUSCAR">
+        </form>
+        <a href="carrinho.php"><img class="button_shop" src='img/bag.png'></a>
 
         <div class="dropdown">
             <img class="button_user" src='img/user.png'>
             <div class="dropdown-child">
-                <a href="login.html"><button class="button_entrar"><b>ENTRAR</b></button></a>
+                <a href="login.php"><button class="button_entrar"><b>ENTRAR</b></button></a>
                 <img class="button_trian" src="img/triangulo_drop.png">
                 <a href="#">
                     <div class="link_masc_user"><b>MASCULINO</b></div>
