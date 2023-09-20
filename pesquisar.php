@@ -50,6 +50,7 @@
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
                         echo "
+                        
             <div class='product_space'>
                     <a href='produto.php?id=" . $row['id'] . "'> 
                 <div class='product_box'> <img class='img_novidade' src='admin/{$row['imagem']}' alt='{$row['nome']}'>

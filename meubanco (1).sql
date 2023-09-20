@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.3
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 19-Set-2023 às 19:27
+-- Tempo de geração: 20-Set-2023 às 03:36
 -- Versão do servidor: 10.4.27-MariaDB
--- versão do PHP: 8.1.5
+-- versão do PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -78,6 +78,40 @@ INSERT INTO `clientes` (`id`, `username`, `password`, `nome`, `email`, `tipo_usu
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `imagens_produto`
+--
+
+CREATE TABLE `imagens_produto` (
+  `id` int(11) NOT NULL,
+  `produto_id` int(11) DEFAULT NULL,
+  `caminho` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `pedidos`
+--
+
+CREATE TABLE `pedidos` (
+  `id` int(11) NOT NULL,
+  `nome_cliente` varchar(255) NOT NULL,
+  `total_pedido` decimal(10,2) NOT NULL,
+  `status_pagamento` enum('pendente','processando','pago','cancelado') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `pedidos`
+--
+
+INSERT INTO `pedidos` (`id`, `nome_cliente`, `total_pedido`, `status_pagamento`) VALUES
+(1, 'Exemplo de Nome do Cliente', '219903.00', 'pendente'),
+(2, 'Exemplo de Nome do Cliente', '219900.00', 'pendente'),
+(3, 'Exemplo de Nome do Cliente', '23.00', 'pendente');
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `produtos`
 --
 
@@ -98,11 +132,14 @@ CREATE TABLE `produtos` (
 INSERT INTO `produtos` (`id`, `nome`, `valor`, `descricao`, `imagem`, `categoria_id`, `subcategoria`) VALUES
 (13, 'davi ribeiro andre', '23.00', 'aaaa', 0x75706c6f6164732f67322e706e67, 1, NULL),
 (14, 'tenis', '23.00', 'aaddd', 0x75706c6f6164732f63616465726e6f2e6a7067, 1, NULL),
-(16, 'aaaaaa', '909090.00', 'adfdfadfafafs', 0x75706c6f6164732f726f757061312e6a7067, 1, NULL),
 (19, 'ass', '55.00', 'womna', 0x75706c6f6164732f776f6e792e6a7067, 3, 'TOPS / CROPPEDS'),
 (20, 'tenis', '5000.00', 'saaa', NULL, 3, NULL),
 (22, 'yyyy', '0.00', '', 0x75706c6f6164732f626c6f7175696e686f2e6a7067, 0, ''),
-(35, 'MORANGAS', '2100.00', 'O MORANGO E BOM MAS VOCÊ NÃO VIU O MORANGETE', 0x75706c6f6164732f696d6167656d5f323032332d30392d31395f3134313632373934312e706e67, 2, 'CAMISETAS DE TIME');
+(35, 'MORANGAS', '219900.00', 'O MORANGO E BOM MAS VOCÊ NÃO VIU O MORANGETE.', 0x75706c6f6164732f696d6167656d5f323032332d30392d31395f3134313632373934312e706e67, 4, 'INFANTIL'),
+(36, 'tenis', '34.00', 'yuszsttdgdf', 0x75706c6f6164732f, 2, 'JEANS'),
+(37, 'testew', '99.00', '', 0x75706c6f6164732f, 1, 'CALÇAS'),
+(42, 't4rertertrt', '3.00', '', 0x75706c6f6164732f63616465726e6f2e6a7067, 2, 'JEANS'),
+(54, 'dddd', '0.00', '', 0x75706c6f6164732f, 2, 'BLUSAS');
 
 -- --------------------------------------------------------
 
@@ -127,9 +164,13 @@ INSERT INTO `tamanhos` (`tamanho_id`, `nome_tamanho`, `estoque`, `produto_id`) V
 (3, 'a', 0, NULL),
 (4, 'b', 0, NULL),
 (5, 'c', 0, NULL),
-(18, '100', 0, 35),
-(19, '200', 0, 35),
-(20, '1000', 0, 35);
+(21, 'g', 50, 36),
+(22, 'gg', 30, 36),
+(27, '100', 0, 35),
+(28, '200', 90, 35),
+(29, 'm', 30, 37),
+(37, 'f', 39, 54),
+(38, 'm', 70, 54);
 
 -- --------------------------------------------------------
 
@@ -179,6 +220,19 @@ ALTER TABLE `clientes`
   ADD UNIQUE KEY `username` (`username`);
 
 --
+-- Índices para tabela `imagens_produto`
+--
+ALTER TABLE `imagens_produto`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `produto_id` (`produto_id`);
+
+--
+-- Índices para tabela `pedidos`
+--
+ALTER TABLE `pedidos`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Índices para tabela `produtos`
 --
 ALTER TABLE `produtos`
@@ -221,16 +275,28 @@ ALTER TABLE `clientes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT de tabela `imagens_produto`
+--
+ALTER TABLE `imagens_produto`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `pedidos`
+--
+ALTER TABLE `pedidos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT de tabela `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT de tabela `tamanhos`
 --
 ALTER TABLE `tamanhos`
-  MODIFY `tamanho_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `tamanho_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT de tabela `vendedores`
@@ -241,6 +307,12 @@ ALTER TABLE `vendedores`
 --
 -- Restrições para despejos de tabelas
 --
+
+--
+-- Limitadores para a tabela `imagens_produto`
+--
+ALTER TABLE `imagens_produto`
+  ADD CONSTRAINT `imagens_produto_ibfk_1` FOREIGN KEY (`produto_id`) REFERENCES `produtos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Limitadores para a tabela `tamanhos`
