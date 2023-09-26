@@ -33,7 +33,7 @@ header {
 }
 
 .logo img{
-    max-width: 250px;
+    max-width: 150px;
     height: auto;
 }
 
@@ -104,6 +104,7 @@ li a:hover:after {
 .icons {
     justify-self: flex-end;
     margin-right:50px ;
+    flex-wrap: nowrap;
 }
 
 .icons a {
@@ -186,7 +187,58 @@ li a:hover:after {
 
 .dropdown_user:hover .dropdown-child {
     display: block;
+}
+/* Adicione estas linhas no seu CSS existente */
 
+/* Estilos para o menu hamburguer */
+.hamburger-menu {
+    display: none; /* Por padrão, esconde o menu hamburguer */
+}
+
+/* Estilos para o menu de navegação em telas menores */
+@media screen and (max-width: 768px) {
+    .logo{flex-basis: 50%;}
+
+    header{
+        flex-wrap: wrap;
+
+    }
+
+    .center-links ul {
+        display: none; /* Esconde a lista de links principal em telas menores */
+    }
+    .pesquisar{
+        flex-basis: 100%;
+    }
+
+    .hamburger-menu {
+        display: block; /* Exibe o ícone do menu hamburguer em telas menores */
+        cursor: pointer;
+    }
+
+    .hamburger-menu img {
+        width: 30px;
+        height: 30px;
+    }
+
+    .center-links ul.active {
+        display: flex; /* Exibe a lista de links quando o menu hamburguer está ativo */
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        background-color: #333;
+        width: 100%;
+    }
+
+    .center-links ul.active li {
+        margin: 10px 0;
+        text-align: center;
+    }
+
+    .center-links ul.active li a {
+        color: white;
+    }
 }
 
 

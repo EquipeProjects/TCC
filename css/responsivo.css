@@ -31,45 +31,6 @@
     }
 }
 @media (max-width: 768px) {
-    .header {
-        height: auto;
-        flex-direction: column; /* Coloca os elementos um abaixo do outro */
-    }
-
-    .logo {
-        margin-bottom: 20px; /* Espaçamento inferior para separar o logo */
-    }
-
-    .center-links {
-        margin-top: 20px; /* Espaçamento superior para separar o menu */
-    }
-
-    ul {
-        flex-direction: column; /* Coloca os itens do menu um abaixo do outro */
-        align-items: center; /* Centraliza os itens do menu */
-    }
-
-    li a {
-        margin: 10px 0; /* Espaçamento vertical entre os itens do menu */
-    }
-
-    .icons {
-        margin: 20px 0; /* Espaçamento vertical entre os ícones de usuário e carrinho */
-    }
-
-    .icons a {
-        margin-left: 10px; /* Espaçamento horizontal entre os ícones */
-    }
-
-    .dropdown-catalog {
-        right: 0;
-        width: 100%; /* Ocupa toda a largura da tela */
-    }
-
-    .dropdown-catalog a {
-        height: auto;
-        padding: 10px; /* Espaçamento interno dos itens do catálogo */
-    }
 }
 @media (min-width: 992px) {}
 

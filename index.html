@@ -163,6 +163,8 @@
                 </a>
             </div>
         </div>
+       
+        
     </header>
 
 
@@ -285,6 +287,19 @@
 
     </footer>
     <script src="js/index.js"></script>
-</body>
+
+    // Adicione este script no final do seu arquivo HTML, antes do fechamento da tag </body>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const hamburgerMenu = document.querySelector('.hamburger-menu');
+        const centerLinks = document.querySelector('.center-links ul');
+
+        hamburgerMenu.addEventListener('click', function () {
+            centerLinks.classList.toggle('active');
+        });
+    });
+</script>
+
+
 
 </html>
