@@ -74,29 +74,24 @@
         }
 
         function updateRatingNotification() {
-            // Você pode calcular a média das classificações e o percentual de cada classificação aqui
-            // Por exemplo, você pode fazer consultas no banco de dados para obter essas informações
-
-            // Exemplo: média de classificações
-            const averageRating = calculateAverageRating();
-            const totalRatings = getTotalRatings();
-
-            // Exemplo: percentual de cada classificação
-            const ratingsPercentages = calculateRatingsPercentages();
-
-            const notificationDiv = document.getElementById('ratingNotification');
-            notificationDiv.innerHTML = `
-                <p>Média de Classificações: ${averageRating.toFixed(2)}</p>
-                <p>Total de Avaliações: ${totalRatings}</p>
-                <p>Percentual de Classificações:</p>
-                <ul>
-                    <li>1 Estrela: ${ratingsPercentages[1]}%</li>
-                    <li>2 Estrelas: ${ratingsPercentages[2]}%</li>
-                    <li>3 Estrelas: ${ratingsPercentages[3]}%</li>
-                    <li>4 Estrelas: ${ratingsPercentages[4]}%</li>
-                    <li>5 Estrelas: ${ratingsPercentages[5]}%</li>
-                </ul>
-            `;
+            // Consulta ao banco de dados para obter informações
+            fetch('obter_informacoes_classificacao.php')
+                .then(response => response.json())
+                .then(data => {
+                    const notificationDiv = document.getElementById('ratingNotification');
+                    notificationDiv.innerHTML = `
+                        <p>Média de Classificações: ${data.media.toFixed(2)}</p>
+                        <p>Total de Avaliações: ${data.totalAvaliacoes}</p>
+                        <p>Percentual de Classificações:</p>
+                        <ul>
+                            <li>1 Estrela: ${data.percentual[1]}%</li>
+                            <li>2 Estrelas: ${data.percentual[2]}%</li>
+                            <li>3 Estrelas: ${data.percentual[3]}%</li>
+                            <li>4 Estrelas: ${data.percentual[4]}%</li>
+                            <li>5 Estrelas: ${data.percentual[5]}%</li>
+                        </ul>
+                    `;
+                });
         }
     </script>
 </body>
