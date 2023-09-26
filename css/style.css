@@ -196,7 +196,7 @@ li a:hover:after {
 }
 
 /* Estilos para o menu de navegação em telas menores */
-@media screen and (max-width: 768px) {
+@media (max-width: 768px) {
     .logo{flex-basis: 50%;}
 
     header{
@@ -238,6 +238,12 @@ li a:hover:after {
 
     .center-links ul.active li a {
         color: white;
+    }
+    footer{
+        flex-direction: column;
+    }
+    .footer_item{
+        flex-basis: 100%;
     }
 }
 
@@ -362,16 +368,22 @@ footer{
     display: flex;
     flex-direction: row;
     width: 100%;
-    height: auto;
+    height:30vh;
     background-color: #000000;
     color: white;
     flex-wrap: wrap;
 }
 .footer_item{
     flex-basis: 25%;
-display: flex;
-flex-direction: column;
+
 text-align: center;
+}
+.footer_pag{
+    width: 30px;
+}
+
+.footer_rede{
+    width: 30px;
 }
 
 .button_entrar {
