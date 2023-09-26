@@ -14,16 +14,54 @@ if ($conn->connect_error) {
 $nome = $_POST['nome'];
 $valor = $_POST['valor'];
 $descricao = $_POST['descricao'];
-
 $categoria_id = $_POST['categoria'];
 $subcategoria = $_POST["subcategorias"];
-
-// Upload de imagem
+;
 $imagem_nome = $_FILES['imagem']['name'];
 $imagem_temp = $_FILES['imagem']['tmp_name'];
 $imagem_caminho = 'uploads/' . $imagem_nome; // Diretório onde as imagens serão armazenadas
 
 move_uploaded_file($imagem_temp, $imagem_caminho);
+
+$insert_produto_query = "INSERT INTO produtos (nome, valor, descricao, imagem, categoria_id, subcategoria) VALUES ('$nome', '$valor', '$descricao', '$imagem_caminho', '$categoria_id', '$subcategoria')";
+
+
+if ($conn->query($insert_produto_query) === TRUE) {
+    $produto_id = $conn->insert_id; // Obtém o ID do produto inserido
+
+    // Upload de imagens secundárias
+    $imagens_secundarias = [];
+
+    if (!empty($_FILES['imagens']['name'][0])) {
+        foreach ($_FILES['imagens']['name'] as $key => $nomeImagem) {
+            $imagem_temp = $_FILES['imagens']['tmp_name'][$key];
+            $imagem_caminho = 'uploads/' . $nomeImagem;
+
+            if (move_uploaded_file($imagem_temp, $imagem_caminho)) {
+                $imagens_secundarias[] = $imagem_caminho;
+            } else {
+                echo "Erro ao fazer upload da imagem secundária: $nomeImagem";
+            }
+        }
+    }
+
+    // Agora, você pode inserir os caminhos das imagens secundárias no banco de dados
+    if (!empty($imagens_secundarias)) {
+        foreach ($imagens_secundarias as $caminhoImagem) {
+            $insert_imagem_query = "INSERT INTO imagens_produto (produto_id, caminho) VALUES ('$produto_id', '$caminhoImagem')";
+            if ($conn->query($insert_imagem_query) !== TRUE) {
+                echo "Erro ao inserir imagem secundária no banco de dados.";
+            }
+        }
+    }
+
+    echo "Produto cadastrado com sucesso!";
+} else {
+    echo "Erro ao cadastrar o produto: " . $conn->error;
+}
+
+
+
 
 
 // Tamanhos (obtenha-os como uma string e depois divida em um array)
@@ -38,15 +76,7 @@ if (count($tamanhos) != count($estoques)) {
 }
 
 // Inserção na tabela "produtos"
-$insert_produto_query = "INSERT INTO produtos (nome, valor, descricao, imagem, categoria_id, subcategoria) VALUES ('$nome', '$valor', '$descricao', '$imagem_caminho', '$categoria_id', '$subcategoria')";
 
-if ($conn->query($insert_produto_query) === TRUE) {
-    $produto_id = $conn->insert_id; // Obtém o ID do produto inserido
-} else {
-    echo "Erro ao cadastrar o produto: " . $conn->error;
-    $conn->close();
-    exit;
-}
 
 // Inserção na tabela de associação "produto_tamanho" com estoque
 for ($i = 0; $i < count($tamanhos); $i++) {
@@ -61,5 +91,8 @@ for ($i = 0; $i < count($tamanhos); $i++) {
 }
 
 echo "Produto cadastrado com sucesso!";
+
+
+
 $conn->close();
 ?>
