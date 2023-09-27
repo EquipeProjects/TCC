@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 16-Set-2023 às 04:03
+-- Tempo de geração: 27-Set-2023 às 03:01
 -- Versão do servidor: 10.4.24-MariaDB
 -- versão do PHP: 8.1.4
 
@@ -14,6 +14,42 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `sistema_login`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `avaliacoes`
+--
+
+CREATE TABLE `avaliacoes` (
+  `id` int(11) NOT NULL,
+  `classificacao` int(11) NOT NULL,
+  `comentario` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `avaliacoes`
+--
+
+INSERT INTO `avaliacoes` (`id`, `classificacao`, `comentario`) VALUES
+(132, 5, 'Muito bom o produto'),
+(133, 1, 'Recomendado'),
+(134, 4, 'Melhor coisa'),
+(135, 3, 'Outro nível'),
+(136, 2, 'Melhor de todos'),
+(137, 1, ''),
+(138, 1, ''),
+(139, 1, ''),
+(140, 1, ''),
+(141, 1, ''),
+(142, 3, ''),
+(143, 1, 'tt'),
+(144, 1, 'y'),
+(145, 1, 'tt'),
+(146, 5, ''),
+(147, 1, 'ddddd'),
+(148, 5, ''),
+(149, 1, 'm');
 
 -- --------------------------------------------------------
 
@@ -101,11 +137,19 @@ INSERT INTO `usuarios` (`id`, `username`, `email_or_phone`, `password`, `phone`,
 (46, 'eeeee', NULL, '$2y$10$KpsHtftleY//cYfUFn9s2eaqjYIK06X31hwUeg/ciiJEQ.YQUH0UK', NULL, 'e@gmail.com'),
 (47, 'yyyyyyyy', NULL, '$2y$10$/FW55gCbDySQLQKltms8fOHWMsb.dD9zHFt1tFFtuHNwkPk0njqsC', 'yyyyyyyyy', ''),
 (48, 'jose', NULL, '$2y$10$A1.jMFq8JMfqQqG6dtSGp.149p9MXwAXwO2vT/KyAOFSn4dwCihSa', NULL, 'jose@gmail.com'),
-(49, 'joselina', NULL, '$2y$10$pZrsqje23Qz2zgYNuQ8y5e.yJ7aozeJGcusDCPVp2y7xprQ0724v2', NULL, 'jose345d@gmail.com');
+(49, 'joselina', NULL, '$2y$10$pZrsqje23Qz2zgYNuQ8y5e.yJ7aozeJGcusDCPVp2y7xprQ0724v2', NULL, 'jose345d@gmail.com'),
+(50, '1', NULL, '$2y$10$MfIMPOGknS/b6yNzAnzND.2QOq1Q7FSPr7OF20YE3ocdmxiOznUNC', NULL, ''),
+(51, '2', NULL, '$2y$10$6w7D18uTopgZ8xg2mGU9OO2GDF8h6JjWGuh3PGQpzLllQjYu/UCvK', NULL, '');
 
 --
 -- Índices para tabelas despejadas
 --
+
+--
+-- Índices para tabela `avaliacoes`
+--
+ALTER TABLE `avaliacoes`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Índices para tabela `empresa`
@@ -124,6 +168,12 @@ ALTER TABLE `usuarios`
 --
 
 --
+-- AUTO_INCREMENT de tabela `avaliacoes`
+--
+ALTER TABLE `avaliacoes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=150;
+
+--
 -- AUTO_INCREMENT de tabela `empresa`
 --
 ALTER TABLE `empresa`
@@ -133,5 +183,5 @@ ALTER TABLE `empresa`
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 COMMIT;
