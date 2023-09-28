@@ -37,6 +37,10 @@ if ($result_tamanhos->num_rows > 0) {
     }
 }
 
+$imagens_query = "SELECT caminho FROM imagens_produto WHERE produto_id = $produto_id";
+$result_imagens = mysqli_query($conn, $imagens_query);
+
+
 
 
 
@@ -67,7 +71,7 @@ $conn->close();
 </head>
 
 <body>
-<?php
+    <?php
     include('php/header.php'); // Inclui o cabeçalho
     ?>
 
@@ -84,11 +88,20 @@ $conn->close();
                 <div class="product-images">
 
                     <img src="admin/<?php echo $produto['imagem'] ?>" alt="Imagem 1" onclick="changeImage('admin/<?php echo $produto['imagem'] ?>')">
-                    <img src="img/pe2.jpg" alt="Imagem 2" onclick="changeImage('img/pe2.jpg')">
-                    <img src="img/pe2.jpg" alt="Imagem 3" onclick="changeImage('img/pe2.jpg')">
-                    <img src="img/pe2.jpg" alt="Imagem 3" onclick="changeImage('img/pe2.jpg')">
-                    <img src="img/pe2.jpg" alt="Imagem 3" onclick="changeImage('img/pe2.jpg')">
+                 
 
+                    <?php
+                    // Consulta SQL para obter as imagens secundárias associadas a este produto
+                  
+                    if (mysqli_num_rows($result_imagens) > 0) {
+                        while ($row = mysqli_fetch_assoc($result_imagens)) {
+                            $caminho_imagem = $row['caminho'];
+                            // Exibir a imagem secundária
+                            echo "<img src='admin/$caminho_imagem' alt='Imagem secundária' onclick='changeImage(\"admin/$caminho_imagem\")'>";
+                        }
+                    }
+                
+                    ?>
                 </div>
 
 

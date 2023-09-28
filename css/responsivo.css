@@ -1,27 +1,37 @@
 @media (max-width: 600px) {}
 
-@media (min-width: 600px) {}
-
-@media (max-width: 768px) {
-
-    .link_menu{
-
-
-        flex-direction: column;
-        text-align: center;
-        display: none; /* Oculta o menu por padrão em telas menores */
+@media (max-width: 600px) {
+    .header {
+        flex-direction: column; /* Altera a direção do layout para empilhado */
+        height: auto; /* Remove a altura fixa para acomodar o conteúdo empilhado */
     }
-    .button_loupe {
-        
-        display: flex;
-        position: relative;
-        left: 5vh;
-        top: 6vh;
-        margin-top: 7vh;
-        width: 6%;
+
+    .center-links {
+        margin-top: 20px; /* Adiciona espaço entre o logo e os links no topo */
+    }
+
+    ul {
+        flex-direction: column; /* Empilha os itens de menu */
+    }
+
+    li a {
+        margin: 10px 0; /* Adiciona espaço vertical entre os itens de menu */
+    }
+
+    .pesquisar {
+        margin-top: 20px; /* Adiciona espaço entre os links e a barra de pesquisa */
+    }
+
+    .pesquisar input {
+        width: 100%; /* Ajusta a largura do campo de pesquisa para ocupar toda a largura disponível */
+    }
+
+    .icons {
+        margin: 20px 0; /* Adiciona espaço entre a barra de pesquisa e os ícones */
     }
 }
-
+@media (max-width: 768px) {
+}
 @media (min-width: 992px) {}
 
 @media (min-width: 1200px) {}
