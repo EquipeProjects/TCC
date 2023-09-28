@@ -132,8 +132,8 @@
             </ul>
         </div>
 
-        <form class="pesquisar" action="ajuda.html">
-            <input name="pesquisar" placeholder="BUSCAR" type="text">
+        <form class="pesquisar" action="pesquisar.php">
+            <input name="termo_pesquisa" placeholder="BUSCAR" type="text">
             <button type="submit">
                 <img width="30px" src="img/loupe.png" alt="Search Icon">
             </button>
