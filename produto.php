@@ -200,14 +200,15 @@ $conn->close();
 
 
 
-            <div class="product-description tes1"
-            style="font-size:15px;
+            <div
+            style="font-size:30px;
             display:flex;
-            align-items:center;text-align:center;"
+            align-items:center;text-align:center;
+            margin:30px"
             
             >
               <?php echo $produto['descricao']; ?>
-           aaaaaaaaaaaaaaaaaaaaaaaaa
+           
 
             </div>
 

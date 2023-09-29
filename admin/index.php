@@ -23,7 +23,7 @@ if ($_SESSION['tipo_usuario'] !== 'vendedor') {
     <title>Página do Vendedor</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
-<body>
+<body   >
     <h1>Bem-vindo à página do vendedor! </h1>
     
     <a href="cadastro.php">cadastro produto</a>

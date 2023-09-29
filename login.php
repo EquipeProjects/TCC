@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/login.css">
 </head>
 <body>
@@ -14,6 +15,7 @@
     <form class="login" action="verifica_login.php" method="POST"  
     style="
     align-items:center;
+    
     "
     
     
