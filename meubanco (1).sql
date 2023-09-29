@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 29-Set-2023 às 03:41
+-- Tempo de geração: 29-Set-2023 às 11:58
 -- Versão do servidor: 10.4.27-MariaDB
 -- versão do PHP: 8.2.0
 
@@ -94,7 +94,9 @@ CREATE TABLE `imagens_produto` (
 INSERT INTO `imagens_produto` (`id`, `produto_id`, `caminho`) VALUES
 (11, 60, 'uploads/lesera.jpg'),
 (13, 62, 'uploads/lesera.jpg'),
-(16, 66, 'uploads/Captura de tela 2023-06-16 233820.png');
+(17, 67, 'uploads/61gh9-04lCL._AC_SY500_.jpg'),
+(18, 67, 'uploads/61gh9-04lCL._AC_SY500_.jpg'),
+(19, 67, 'uploads/61bhak1VWWL._AC_SY500_.jpg');
 
 -- --------------------------------------------------------
 
@@ -122,7 +124,8 @@ INSERT INTO `pedidos` (`id`, `nome_cliente`, `total_pedido`, `status_pagamento`)
 (6, 'Exemplo de Nome do Cliente', '0.00', 'pendente'),
 (7, 'Exemplo de Nome do Cliente', '26.00', 'pendente'),
 (8, 'Exemplo de Nome do Cliente', '40000.00', 'pendente'),
-(9, 'Exemplo de Nome do Cliente', '12.00', 'pendente');
+(9, 'Exemplo de Nome do Cliente', '12.00', 'pendente'),
+(10, 'Exemplo de Nome do Cliente', '2000.00', 'pendente');
 
 -- --------------------------------------------------------
 
@@ -154,7 +157,7 @@ INSERT INTO `produtos` (`id`, `nome`, `valor`, `descricao`, `imagem`, `categoria
 (60, 'oi', '35.00', 'tzt gfdbg dfgb f hg', '', 3, 'SAIAS / VESTIDOS'),
 (62, 'oi', '35.00', 'tzt gfdbg dfgb f hg', 0x75706c6f6164732f626c6f7175696e686f2e6a7067, 3, 'SAIAS / VESTIDOS'),
 (65, 'tt', '12.00', '', 0x75706c6f6164732f696d6167656d5f323032332d30392d32385f3230333135353231382e706e67, 2, 'CALÇAS'),
-(66, 'tt', '12.00', '', 0x75706c6f6164732f696d6167656d5f323032332d30392d32385f3230333135353231382e706e67, 4, 'FEMININOS');
+(67, 'tenis 1', '4000.00', 'é um tenis', 0x75706c6f6164732f36316268616b315657574c2e5f41435f53593530305f2e6a7067, 4, 'MASCULINOS');
 
 -- --------------------------------------------------------
 
@@ -188,7 +191,9 @@ INSERT INTO `tamanhos` (`tamanho_id`, `nome_tamanho`, `estoque`, `produto_id`) V
 (45, 'h', 3, 60),
 (47, 'h', 3, 62),
 (50, 'w', 22, 65),
-(51, 'w', 22, 66);
+(64, '39', 10, 67),
+(65, '40', 12, 67),
+(66, '41', 15, 67);
 
 -- --------------------------------------------------------
 
@@ -213,7 +218,9 @@ INSERT INTO `vendedores` (`id`, `username`, `password`, `nome`, `email`, `tipo_u
 (1, 'a444', '2344', 'dddd', 'd@gmail.com', 'vendedor'),
 (2, 'tio bill', '3', 'microsoft', 'd@gmail.com', 'vendedor'),
 (3, 'teste', '3', 'jose', 'd@gmail.com', 'vendedor'),
-(4, 'soueu', '12', 'da', 'l@gmail.com', 'vendedor');
+(4, 'soueu', '12', 'da', 'l@gmail.com', 'vendedor'),
+(5, 'mariovendas', '123', 'mario da silva', 'mario@gmail.com', 'vendedor'),
+(6, 'mariovendas1', '321', 'mario luiz', 'marioluiz@gmail.com', 'vendedor');
 
 --
 -- Índices para tabelas despejadas
@@ -297,31 +304,31 @@ ALTER TABLE `clientes`
 -- AUTO_INCREMENT de tabela `imagens_produto`
 --
 ALTER TABLE `imagens_produto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de tabela `pedidos`
 --
 ALTER TABLE `pedidos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de tabela `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT de tabela `tamanhos`
 --
 ALTER TABLE `tamanhos`
-  MODIFY `tamanho_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `tamanho_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT de tabela `vendedores`
 --
 ALTER TABLE `vendedores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Restrições para despejos de tabelas
