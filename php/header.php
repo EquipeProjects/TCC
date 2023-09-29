@@ -1,6 +1,6 @@
 <header>
         <div class="logo">
-            <a href="#">
+            <a href="index.php">
                 <img src="img/logo.png" alt="Your Logo">
             </a>
         </div>
@@ -106,7 +106,7 @@
                         </div>
                     </div>
                 </li>
-                <li><a href="#">AJUDA</a></li>
+                <li><a href="">AJUDA</a></li>
             </ul>
         </div>
 
@@ -118,7 +118,7 @@
         </form>
 
         <div class="icons">
-            <a href="#">
+            <a href="carrinho.php">
                 <img src="img/bag.png" alt="Shopping Bag Icon">
             </a>
             <div class="dropdown_user">

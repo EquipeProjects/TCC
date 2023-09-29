@@ -28,7 +28,7 @@ header {
 }
 
 .logo {
-    
+    flex-basis: 10%;
     justify-self: flex-start;
 }
 
@@ -81,6 +81,7 @@ li a:hover:after {
     align-items: center; 
     position: relative;
     width: 300px;
+    flex-wrap: nowrap;
    
 }
 .pesquisar input{
@@ -157,8 +158,11 @@ li a:hover:after {
 }
 
 .dropdown_user {
-    position: relative;
+
     display: inline-block;
+    z-index: 3;
+    right: 10px;
+    top: 0;
 }
 
 .dropdown-child {
@@ -369,7 +373,7 @@ footer{
     display: flex;
     flex-direction: row;
     width: 100%;
-    height:30vh;
+    height:50vh;
     background-color: #000000;
     color: white;
     flex-wrap: wrap;
@@ -385,6 +389,18 @@ text-align: center;
 
 .footer_rede{
     width: 30px;
+}
+.footer_last{
+    border-top: white  solid 2px;
+    width: 100%;
+}
+
+.footerflex{
+    display: flex;
+    justify-content: end;
+    width: 100%;
+    background-color: black;
+
 }
 
 .button_entrar {

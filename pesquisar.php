@@ -81,47 +81,9 @@
         </div>
     </main>
 
-    <footer>
-        <div class="grid-container">
-            <div class="grid-item">ENCONTRE UMA LOJA EASY FIT</div>
-            <div class="grid-item">REDES SOCIAIS
-                <div>
-                    <img class="footer_rede" src="/img/instagram.png">
-                    <img class="footer_rede" src="/img/facebbok.png">
-                    <img class="footer_rede" src="/img/youtube.png">
-                </div>
-            </div>
-            <div class="grid-item">
-                <a class="link_sobrenos" href="sobrenos.html">
-                    <div>SOBRE A EASY FIT</div>
-                </a>
-                <div class="footer_text">SUSTENTABILIDADE</div>
-            </div>
-            <div class="grid-item">AJUDA
-                <div class="footer_text">DÚVIDAS GERAIS</div>
-                <div class="footer_text">TROCAS E DEVOLUÇÕES </div>
-                <div class="footer_text">PAGAMENTOS</div>
-                <div class="footer_text">FALE CONOSCO </div>
-            </div>
-            <div class="grid-item">
-                <div>FORMAS DE PAGAMENTO</div>
-                <div class="flex_pag">
-                    <img class="footer_pag" src="/img/mastercard.svg">
-                    <img class="footer_pag" src="/img/hipercard.svg">
-                </div>
-                <img class="footer_pag" src="/img/visa.svg">
-                <img class="footer_pag" src="/img/elo.svg">
-                <img class="footer_pag" src="/img/amex.svg">
-            </div>
-            <div class="grid-item"></div>
-            <div class="grid-item">
-                <div>© 2023 EASY FIT. Visa um Comércio de Produtos gerais da moda Ltda - Todos os direitos reservados.
-                </div>
-            </div>
-            <div class="grid-item">POLÍTICA DE PRIVACIDADE</div>
-            <div class="grid-item">BRASIL</div>
-        </div>
-    </footer>
+    <?php 
+    include('php/footer.php')
+    ?>
 </body>
 
 </html>

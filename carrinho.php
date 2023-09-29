@@ -2,25 +2,33 @@
 session_start();
 $status = "";
 
-if (isset($_POST['action'])) {
-    if ($_POST['action'] === "remove" && isset($_POST["code"])) {
-        if (!empty($_SESSION["shopping_cart"])) {
-            foreach ($_SESSION["shopping_cart"] as $key => $value) {
-                if ($_POST["code"] == $value['code']) {
-                    unset($_SESSION["shopping_cart"][$key]);
-                    $status = "<div class='box' style='color:red;'>Produto removido do carrinho!</div>";
-                }
+if (isset($_GET['action']) && $_GET['action'] === "remove" && isset($_GET["code"])) {
+    $code_to_remove = $_GET["code"];
+    if (!empty($_SESSION["shopping_cart"])) {
+        foreach ($_SESSION["shopping_cart"] as $key => $value) {
+            if ($code_to_remove == $value['code']) {
+                unset($_SESSION["shopping_cart"][$key]);
+                $status = "<div class='box' style='color:red;'>Produto removido do carrinho!</div>";
             }
         }
-    } elseif ($_POST['action'] === "change" && isset($_POST["code"]) && isset($_POST["quantity"])) {
-        foreach ($_SESSION["shopping_cart"] as &$value) {
-            if ($value['code'] === $_POST["code"]) {
-                $value['quantity'] = $_POST["quantity"];
+    }
+}
+
+
+if (isset($_POST['quantity']) && isset($_POST['code'])) {
+    $new_quantity = $_POST['quantity'];
+    $code = $_POST['code'];
+    
+    if (!empty($_SESSION["shopping_cart"])) {
+        foreach ($_SESSION["shopping_cart"] as &$product) {
+            if ($product['code'] === $code) {
+                $product['quantity'] = $new_quantity;
                 break; // Stop the loop after finding the product
             }
         }
     }
 }
+
 
 $total_price = 0;
 $cart_count = 0;
@@ -84,13 +92,17 @@ if (isset($_SESSION["shopping_cart"])) {
                             <p> <?php echo $product["name"]; ?></p>
 
 
+
+
                             <div style="display: flex; width: 100%;flex-direction: row;  justify-content: space-between; position: relative; top:15vh">
-                                <a href="" style="display: flex; align-content: flex-start; text-decoration: none;  color: black;"><span class="item-price"><?php $total_price += ($product["price"] * $product["quantity"]);
+                                <a href="" style="display: flex; align-content: flex-start; text-decoration: none;  color: black;"><span class="item-price"><?php ($product["price"] * $product["quantity"]);
                                                                                                                                                             echo "$" . $product["price"] * $product["quantity"]; ?></span></a>
                                 <form action="" method="post">
-
-                                    <input type="number" value="<?php echo $product["quantity"]; ?>" name='quantity' onchange="this.form.submit()">
+                                    <input type="number" value="<?php echo $product["quantity"]; ?>" name='quantity' onchange="updateQuantity(this)">
+                                    <input type="hidden" name="code" value="<?php echo $product["code"]; ?>">
                                 </form>
+                                <a href="carrinho.php?action=remove&code=<?php echo $product["code"]; ?>" class="remove-item">Remover</a>
+
 
 
 
@@ -118,7 +130,7 @@ if (isset($_SESSION["shopping_cart"])) {
         </ul>
     </div>
     <div id="bottom-a">
-        <a href="" class="inp-bot"><input type="radio">selecionar tudo</a> 
+        <a href="" class="inp-bot"><input type="radio">selecionar tudo</a>
         <div> <span id="totalcust"> <?php echo "$" . $total_price; ?></span> <a href="php/checkout.php"><button class="btn-generic">Finalizar Compra</button></a></div>
 
     </div>

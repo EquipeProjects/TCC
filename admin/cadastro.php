@@ -19,6 +19,8 @@ if (isset($_GET['edit_products'])) {
 
 <head>
     <title>Cadastro de Produtos</title>
+    <link rel="stylesheet" href="../css/style.css">
+   
 </head>
 
 <body>

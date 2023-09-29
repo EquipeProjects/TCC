@@ -67,7 +67,7 @@ main img:focus {
     margin: 10%;
     color: white;
 }
-#cliente, #vendedor{
+#cliente, #vendedor,.login{
     display: flex;
     flex-direction: column;
     align-items: center;

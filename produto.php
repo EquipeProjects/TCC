@@ -193,16 +193,21 @@ $conn->close();
             </div>
 
             <form action="adicionar_ao_carrinho.php" method="post">
-                <input type="hidden" name="code" value="<?php echo $produto['id']; ?>">
+            <input type="hidden" name="code" value="<?php echo $produto['id']; ?>">
                 <button type="submit" class="btn-compra">Adicionar ao Carrinho</button>
             </form>
 
 
 
 
-            <div class="product-description">
-                <p><?php echo $produto['descricao']; ?>
-                </p>
+            <div class="product-description tes1"
+            style="color: red; font-size:15px;
+            display:flex;
+            align-items:center;text-align:center;"
+            
+            >
+              <?php echo $produto['descricao']; ?>
+           aaaaaaaaaaaaaaaaaaaaaaaaa
 
             </div>
 
@@ -215,44 +220,9 @@ $conn->close();
 
 
     </main>
-    <footer>
-        <div class="grid-container">
-            <div class="grid-item">ENCONTRE UMA LOJA EASY FIT</div>
-            <div class="grid-item">REDES SOCIAIS
-                <div>
-                    <img class="footer_rede" src="/img/instagram.png">
-                    <img class="footer_rede" src="/img/facebbok.png">
-                    <img class="footer_rede" src="/img/youtube.png">
-                </div>
-            </div>
-            <div class="grid-item">SOBRE A EASY FIT
-                <div class="footer_text">SUSTENTABILIDADE</div>
-            </div>
-            <div class="grid-item">AJUDA
-                <div class="footer_text">DÚVIDAS GERAIS</div>
-                <div class="footer_text">TROCAS E DEVOLUÇÕES </div>
-                <div class="footer_text">PAGAMENTOS</div>
-                <div class="footer_text">FALE CONOSCO </div>
-            </div>
-            <div class="grid-item">
-                <div>FORMAS DE PAGAMENTO</div>
-                <div class="flex_pag">
-                    <img class="footer_pag" src="/img/mastercard.svg">
-                    <img class="footer_pag" src="/img/hipercard.svg">
-                </div>
-                <img class="footer_pag" src="/img/visa.svg">
-                <img class="footer_pag" src="/img/elo.svg">
-                <img class="footer_pag" src="/img/amex.svg">
-            </div>
-            <div class="grid-item"></div>
-            <div class="grid-item">
-                <div>© 2023 EASY FIT. Visa um Comércio de Produtos gerais da moda Ltda - Todos os direitos reservados.
-                </div>
-            </div>
-            <div class="grid-item">POLÍTICA DE PRIVACIDADE</div>
-            <div class="grid-item">BRASIL</div>
-        </div>
-    </footer>
+    <?php 
+    include('php/footer.php')
+    ?>
     <script src="js/index.js"></script>
 
 </body>
