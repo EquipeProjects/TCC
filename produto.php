@@ -201,7 +201,7 @@ $conn->close();
 
 
             <div class="product-description tes1"
-            style="color: red; font-size:15px;
+            style="font-size:15px;
             display:flex;
             align-items:center;text-align:center;"
             
