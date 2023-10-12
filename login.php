@@ -26,7 +26,7 @@
     <label for="password">Senha:</label>
     <input type="password" id="password" name="password" required>
     <br>
-    <input type="submit" value="Login">
+    <input class="button_login" type="submit" value="Login">
 </form>
 </main>
     

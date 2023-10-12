@@ -100,4 +100,11 @@ input[type=password]{
     border-radius: 20px;
     border: none;
 }
+
+input[type=submit]{
+    margin: 10px;
+    padding: 20px;
+    border-radius: 20px;
+    border: none;
+}
 span{color: white;}
