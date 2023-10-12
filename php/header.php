@@ -121,6 +121,8 @@
             <a href="carrinho.php">
                 <img src="img/bag.png" alt="Shopping Bag Icon">
             </a>
+            </div>
+        <div class="icons">
             <div class="dropdown_user">
                 <a class="" href="#">
                     <img src="img/user.png" alt="User Icon">
