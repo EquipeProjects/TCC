@@ -17,7 +17,7 @@
   <script defer src="js/index.js"></script>
   <header>
 
-    <a href="index.html"><img class="logo" src="img/logo.png"></a>
+    <a href="index.php"><img class="logo" src="img/logo.png"></a>
 
 
   </header>
