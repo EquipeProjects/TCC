@@ -7,8 +7,8 @@
 
         <div class="center-links">
             <ul>
-                <li><a href="#">HOME</a></li>
-                <li><a href="#">NOVIDADES</a></li>
+                <li><a href="index.php">HOME</a></li>
+                <li><a href="novidades.php">NOVIDADES</a></li>
                 <li class="teste"><a href="">CATÁLOGO</a>
                     <div class="dropdown-catalog" style="z-index: 5;">
                         <div class="drop_heads">
@@ -106,7 +106,7 @@
                         </div>
                     </div>
                 </li>
-                <li><a href="">AJUDA</a></li>
+                <li><a href="ajuda.php">AJUDA</a></li>
             </ul>
         </div>
 
