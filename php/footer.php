@@ -22,7 +22,7 @@
         
      
         <div class="footer_item">
-            <a class="link_sobrenos" href="sobrenos.html">
+            <a class="link_sobrenos" href="sobrenos.php">
                 <div>SOBRE A EASY FIT</div>
             </a>
             <div class="footer_text">SUSTENTABILIDADE</div>
@@ -42,7 +42,7 @@
         <div class="footerflex"
           >
 
-            <div class="grid-item">POLÍTICA DE PRIVACIDADE</div>
+            <div class="grid-item"><a class="link_polic_privacid" href="politica_privacid.php">POLÍTICA DE PRIVACIDADE</a></div>
             <div class="grid-item">BRASIL</div>
         </div>
 

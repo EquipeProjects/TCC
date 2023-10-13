@@ -117,12 +117,12 @@
             </button>
         </form>
 
-        <div class="icons">
+        <div class="icons1">
             <a href="carrinho.php">
                 <img src="img/bag.png" alt="Shopping Bag Icon">
             </a>
             </div>
-        <div class="icons">
+        <div class="icons2">
             <div class="dropdown_user">
                 <a class="" href="#">
                     <img src="img/user.png" alt="User Icon">

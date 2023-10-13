@@ -18,6 +18,7 @@ body {
     overflow-x: hidden;
 
 }
+
 header {
     display: flex;
     justify-content: space-between;
@@ -32,9 +33,10 @@ header {
     justify-self: flex-start;
 }
 
-.logo img{
+.logo img {
     max-width: 150px;
     height: auto;
+    margin-left:33px;
 }
 
 .center-links {
@@ -47,7 +49,7 @@ ul {
     list-style: none;
     padding: 0;
     display: flex;
-    
+
 }
 
 li a {
@@ -56,8 +58,9 @@ li a {
     color: white;
     font-family: Agrandir Medium;
     text-decoration: none;
-  
+
 }
+
 li a:after {
     background: none repeat scroll 0 0 transparent;
     bottom: 0;
@@ -76,21 +79,24 @@ li a:hover:after {
     left: 40%;
 
 }
+
 .pesquisar {
     display: flex;
-    align-items: center; 
+    align-items: center;
     position: relative;
     width: 300px;
     flex-wrap: nowrap;
-   
+
 }
-.pesquisar input{
+
+.pesquisar input {
     width: 300px;
     height: 40px;
 
- 
+
 }
-.pesquisar button{
+
+.pesquisar button {
     background: none;
     border: none;
     z-index: 2;
@@ -98,22 +104,43 @@ li a:hover:after {
     right: 0;
     height: 30px;
 }
-.pesquisar img{
+
+.pesquisar img {
     height: 15px;
     width: 15px;
 }
 
-.icons {
+.icons1 {
     justify-self: flex-end;
-    margin-right:50px ;
+    margin-right: 50px;
+    margin-left: 0;
     flex-wrap: nowrap;
+    
+    position: relative;
+    left: 88px;
 }
 
-.icons a {
+
+.icons2 {
+    justify-self: flex-start;
+    margin-right: 70px;
+    flex-wrap: nowrap;
+    
+    position: relative;
+    right: 30px;
+}
+.icons1 a {
     margin-left: 20px;
 }
-.icons img {
-    width: 30px;
+.icons2 a {
+    margin-left: 20px;
+    
+}
+.icons1 img {
+    width: 45px;
+}
+.icons2 img {
+    width: 43px;
 }
 
 
@@ -121,17 +148,19 @@ li a:hover:after {
     visibility: hidden;
     z-index: 1;
     background: white;
-   right: 5%;
-  
+    right: 5%;
+
     border-radius: 10%;
     width: 90%;
     text-align: center;
     position: absolute;
-    display: flex; justify-content:space-around;
-    
-   
- 
+    display: flex;
+    justify-content: space-around;
+
+
+
 }
+
 .teste:hover .dropdown-catalog {
     visibility: visible;
 }
@@ -141,27 +170,28 @@ li a:hover:after {
     font-family: 'Roboto', sans-serif;
     text-decoration: none;
     height: 8vh;
-    display:block;
-  
+    display: block;
+
 }
 
 .dropdown-catalog a:hover {
     color: blue;
 }
+
 .drp_heads {
     display: inline-block;
     text-align: center;
     position: relative;
- 
-    
- 
+
+
+
 }
 
 .dropdown_user {
 
     display: inline-block;
     z-index: 3;
-    right: 10px;
+    right: 190px;
     top: 0;
 }
 
@@ -172,10 +202,10 @@ li a:hover:after {
     border-radius: 10%;
     min-width: 200px;
     position: absolute;
-    right: 10px;
+    right: -40px;
 
 
-   
+
 }
 
 .dropdown-child a {
@@ -193,31 +223,38 @@ li a:hover:after {
 .dropdown_user:hover .dropdown-child {
     display: block;
 }
+
 /* Adicione estas linhas no seu CSS existente */
 
 /* Estilos para o menu hamburguer */
 .hamburger-menu {
-    display: none; /* Por padrão, esconde o menu hamburguer */
+    display: none;
+    /* Por padrão, esconde o menu hamburguer */
 }
 
 /* Estilos para o menu de navegação em telas menores */
 @media (max-width: 768px) {
-    .logo{flex-basis: 50%;}
+    .logo {
+        flex-basis: 50%;
+    }
 
-    header{
+    header {
         flex-wrap: wrap;
 
     }
 
     .center-links ul {
-        display: none; /* Esconde a lista de links principal em telas menores */
+        display: none;
+        /* Esconde a lista de links principal em telas menores */
     }
-    .pesquisar{
+
+    .pesquisar {
         flex-basis: 100%;
     }
 
     .hamburger-menu {
-        display: block; /* Exibe o ícone do menu hamburguer em telas menores */
+        display: block;
+        /* Exibe o ícone do menu hamburguer em telas menores */
         cursor: pointer;
     }
 
@@ -227,7 +264,8 @@ li a:hover:after {
     }
 
     .center-links ul.active {
-        display: flex; /* Exibe a lista de links quando o menu hamburguer está ativo */
+        display: flex;
+        /* Exibe a lista de links quando o menu hamburguer está ativo */
         flex-direction: column;
         position: absolute;
         top: 70px;
@@ -244,16 +282,18 @@ li a:hover:after {
     .center-links ul.active li a {
         color: white;
     }
-    footer{
+
+    footer {
         flex-direction: column;
     }
-    .footer_item{
+
+    .footer_item {
         flex-basis: 100%;
     }
 }
 
 
-.caixa{
+.caixa {
     height: 600px;
     width: 100%;
     background-color: rgba(116, 90, 90, 0.137);
@@ -265,7 +305,7 @@ li a:hover:after {
     color: white;
     font-size: 30px;
 
-} 
+}
 
 .Author_frase {
     color: white;
@@ -275,31 +315,32 @@ li a:hover:after {
 }
 
 .img_nanismo {
-   
+
     width: 30%;
     position: relative;
-    right:  0;
+    right: 0;
     height: 100%;
-    
+
 }
 
 .img_mulheres {
     left: 30%;
     width: 40%;
     height: 60%;
-    position:absolute;
-    
+    position: absolute;
+
 }
 
 .img_mulher_poderosa {
     height: 100%;
 
-    width: 30%; 
+    width: 30%;
     position: absolute;
     right: 0;
-   
+
 }
-.medidas{
+
+.medidas {
     background-color: black;
     width: 50%;
 
@@ -308,13 +349,13 @@ li a:hover:after {
 
 
 .tod_medidas1 {
-   
+
     font-family: Agrandir;
     font-size: 123%;
-  
- 
+
+
     background-color: black;
- 
+
     text-align: center;
     color: white;
 }
@@ -324,7 +365,7 @@ li a:hover:after {
     font-family: Migra ExtraLight;
     font-size: 120%;
     position: relative;
- 
+
 
 
     text-align: center;
@@ -369,33 +410,37 @@ li a:hover:after {
     -webkit-text-stroke: 1px #a51d20;
 
 }
-footer{
+
+footer {
     display: flex;
     flex-direction: row;
     width: 100%;
-    height:50vh;
+    height: 50vh;
     background-color: #000000;
     color: white;
     flex-wrap: wrap;
 }
-.footer_item{
+
+.footer_item {
     flex-basis: 25%;
 
-text-align: center;
+    text-align: center;
 }
-.footer_pag{
+
+.footer_pag {
     width: 30px;
 }
 
-.footer_rede{
+.footer_rede {
     width: 30px;
 }
-.footer_last{
-    border-top: white  solid 2px;
+
+.footer_last {
+    border-top: white solid 2px;
     width: 100%;
 }
 
-.footerflex{
+.footerflex {
     display: flex;
     justify-content: end;
     width: 100%;
@@ -514,8 +559,8 @@ section {
 }
 
 .center-img {
-  
-        background-image: url("../img/new1.jpg");
+
+    background-image: url("../img/new1.jpg");
     width: 672px;
     height: 600px;
     background-size: cover;
@@ -754,7 +799,7 @@ section {
 
 .carrinho {
     background-color: #D9D9D8;
-  
+
     width: 95%;
     margin-left: 2.5%;
 }
@@ -762,7 +807,7 @@ section {
 .cart-items {
     margin-left: 5%;
     width: 90%;
-  
+
     display: flex;
     flex-direction: column;
     list-style: none;
@@ -829,11 +874,12 @@ section {
     border: solid;
     height: 30%;
     align-items: center;
-   
+
     text-decoration: none;
 
 }
-.inp-bot{
+
+.inp-bot {
     text-decoration: none;
     color: black;
     font-size: 30px;
@@ -843,12 +889,15 @@ section {
     border-radius: 30px;
     border: none;
 }
-.item input[type=radio]{
+
+.item input[type=radio] {
     width: 30px;
     height: 30px;
     margin: 2%;
-    float: left; position: relative; top: 25vh; 
-   
+    float: left;
+    position: relative;
+    top: 25vh;
+
 }
 
 
@@ -858,23 +907,31 @@ section {
     flex-direction: row;
     height: 10vh;
     justify-content: space-between;
- 
-}
-.item-link{display: flex; align-content: flex-start; text-decoration: none; }
 
-#totalcust{
+}
+
+.item-link {
+    display: flex;
+    align-content: flex-start;
+    text-decoration: none;
+}
+
+#totalcust {
     font-size: 30px;
     color: #a51d20;
-    
+
 }
 
+.grid-item{
+margin-right: 33px;
+}
 
+.link_polic_privacid{
+ text-decoration: none;
+ color: white;
+}
 
-
-
-
-
-
-
-
-
+.link_polic_privacid:hover{
+  text-decoration: underline;
+    color: yellow
+   }
