@@ -19,7 +19,7 @@ $descricao = $_POST['descricao'];
 if (!empty($_FILES['nova_imagem']['tmp_name'])) {
     $imagem_temp = $_FILES['nova_imagem']['tmp_name'];
     $imagem_nome = $_FILES['nova_imagem']['name'];
-    $imagem_caminho = 'caminho/para/salvar/a/imagem/' . $imagem_nome; // Ajuste o caminho conforme necessário
+    $imagem_caminho = 'uploads/' . $imagem_nome; // Ajuste o caminho conforme necessário
 
     if (move_uploaded_file($imagem_temp, $imagem_caminho)) {
         // Atualize o caminho da nova imagem no banco de dados
@@ -29,6 +29,31 @@ if (!empty($_FILES['nova_imagem']['tmp_name'])) {
         }
     } else {
         echo "Erro ao fazer o upload da nova imagem.";
+    }
+}
+
+$imagens_secundarias = [];
+
+if (!empty($_FILES['imagens']['name'][0])) {
+    foreach ($_FILES['imagens']['name'] as $key => $nomeImagem) {
+        $imagem_temp = $_FILES['imagens']['tmp_name'][$key];
+        $imagem_caminho = 'uploads/' . $nomeImagem;
+
+        if (move_uploaded_file($imagem_temp, $imagem_caminho)) {
+            $imagens_secundarias[] = $imagem_caminho;
+        } else {
+            echo "Erro ao fazer upload da imagem secundária: $nomeImagem";
+        }
+    }
+}
+
+// Agora, você pode inserir os caminhos das imagens secundárias no banco de dados
+if (!empty($imagens_secundarias)) {
+    foreach ($imagens_secundarias as $caminhoImagem) {
+        $insert_imagem_query = "INSERT INTO imagens_produto (produto_id, caminho) VALUES ('$produto_id', '$caminhoImagem')";
+        if ($conn->query($insert_imagem_query) !== TRUE) {
+            echo "Erro ao inserir imagem secundária no banco de dados.";
+        }
     }
 }
 

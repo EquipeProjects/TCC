@@ -28,6 +28,7 @@ if ($result->num_rows == 1) {
 
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,6 +47,7 @@ if ($result->num_rows == 1) {
         Descrição: <textarea name="descricao"><?php echo $row['descricao']; ?></textarea><br>
         Imagem atual: <img style="width: 150px;" src="<?php echo $row['imagem']; ?>" alt="<?php echo $row['nome']; ?>"><br>
         Escolher nova imagem: <input type="file" name="nova_imagem"><br>
+        Escolher imagens secundárias: <input type="file" name="imagens_secundarias[]" multiple><br>
         Categoria:
         <select name="categoria" id="categoria">
             
