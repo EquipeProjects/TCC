@@ -35,11 +35,12 @@ if ($result->num_rows == 1) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
     <title>Document</title>
 </head>
 
 <body>
-
+<h1>Atualização de Produtos</h1>
     <form action="processar_edicao.php" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="id_produto" value="<?php echo $row['id']; ?>">
         Nome: <input type="text" name="nome" value="<?php echo $row['nome']; ?>"><br>
@@ -47,7 +48,12 @@ if ($result->num_rows == 1) {
         Descrição: <textarea name="descricao"><?php echo $row['descricao']; ?></textarea><br>
         Imagem atual: <img style="width: 150px;" src="<?php echo $row['imagem']; ?>" alt="<?php echo $row['nome']; ?>"><br>
         Escolher nova imagem: <input type="file" name="nova_imagem"><br>
-        Escolher imagens secundárias: <input type="file" name="imagens_secundarias[]" multiple><br>
+        Imagens secundarias:
+        Escolha imagens:
+        <input type="file" name="imagens_secundarias[]" multiple>
+        <input type="file" name="imagens_secundarias[]" multiple>
+        <input type="file" name="imagens_secundarias[]" multiple>
+        <br>
         Categoria:
         <select name="categoria" id="categoria">
             

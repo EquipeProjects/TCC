@@ -26,20 +26,20 @@ if (isset($_GET['edit_products'])) {
 <body>
     <h1>Cadastro de Produtos</h1>
     <form action="cadastro_produto.php" method="post" enctype="multipart/form-data">
-        Nome: <input type="text" name="nome"><br>
-        Valor: <input type="text" name="valor"><br>
-        Descrição: <textarea name="descricao"></textarea><br>
-        Imagem principal: <input type="file" name="imagem" onchange="exibirPreview(this)"><br>
+        Nome: <input type="text" name="nome"  required><br>
+        Valor: <input type="text" name="valor"   required><br>
+        Descrição: <textarea name="descricao"  required></textarea><br>
+        Imagem principal: <input type="file" name="imagem" required  onchange="exibirPreview(this)"><br>
         Imagens secundarias:
         Escolha imagens:
-        <input type="file" name="imagens[]">
-        <input type="file" name="imagens[]">
-        <input type="file" name="imagens[]">
+        <input type="file" name="imagens[]" required>
+        <input type="file" name="imagens[]" required>
+        <input type="file" name="imagens[]" required>
         <br>
         <div id="preview"></div>
         <label for="categoria">Categoria:</label>
-        <select name="categoria" id="categoria">
-            <option value="">Selecione uma categoria</option>
+        <select name="categoria" id="categoria" required>
+            <option value="" required>Selecione uma categoria</option>
             <?php
             $select_query = "SELECT * FROM categorias";
             $result_query = mysqli_query($conn, $select_query);
@@ -51,7 +51,7 @@ if (isset($_GET['edit_products'])) {
             ?>
         </select>
         <label for="subcategoria">Subcategorias:</label>
-        <select name="subcategorias" id="subcategoria">
+        <select name="subcategorias" id="subcategoria" required>
             <option value="">Selecione uma ou mais subcategorias</option>
         </select>
         <label for="tamanhos_estoque">Insira os tamanhos e estoque:</label><br>
