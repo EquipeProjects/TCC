@@ -72,7 +72,7 @@ if ($result->num_rows == 1) {
             <label for="subcategoria">Subcategorias:</label>
             <select name="subcategoria" id="subcategoria">
                 <option value="">Selecione uma ou mais subcategorias</option>
-            </select>
+            </select><br>
             Tamanhos/Estoques:
             <div id="tamanhos_estoques_container">
                 <?php

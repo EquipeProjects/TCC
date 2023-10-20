@@ -53,7 +53,7 @@ if (isset($_GET['edit_products'])) {
         <label for="subcategoria">Subcategorias:</label>
         <select name="subcategorias" id="subcategoria" required>
             <option value="">Selecione uma ou mais subcategorias</option>
-        </select>
+        </select><br>
         <label for="tamanhos_estoque">Insira os tamanhos e estoque:</label><br>
         <div id="tamanhos_estoque_container">
             <div>
