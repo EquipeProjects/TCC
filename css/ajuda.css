@@ -179,3 +179,16 @@
  right: 25vh;
  bottom: 2vh;
 }
+
+.text_privacidade {
+    display: inline-block;
+    text-align: center;
+    background-color: #ffffff;
+    width: 30%;
+    height: 30vh;
+    font-size: 3vh;
+    margin-left: 1%;
+    margin-right: 1%;
+    position: relative;
+    bottom: 2vh;
+}
