@@ -30,47 +30,47 @@
             <div class="title_ajuda">Política de Privacidade </div>
 
             <div class="backgroun_privacidade">
-                Data de Entrada em Vigor: [Inserir data]
+                <div>Data de Entrada em Vigor: [29/02/23] </div><br>
 
-                A EasyFit, adiante referida como "nós", "nosso" ou "nossa", está comprometida em proteger a privacidade dos nossos clientes. Esta política de privacidade descreve como coletamos, usamos, compartilhamos e protegemos as informações pessoais que você fornece quando utiliza o nosso site de comércio eletrônico.
+                <div> A EasyFit, adiante referida como "nós", "nosso" ou "nossa", está comprometida em proteger a privacidade dos nossos clientes. Esta política de privacidade descreve como coletamos, usamos, compartilhamos e protegemos as informações pessoais que você fornece quando utiliza o nosso site de comércio eletrônico. </div>
 
-                1. Informações Coletadas
+                <div> 1. Informações Coletadas </div>
 
-                1.1. Informações de Cadastro: Quando você cria uma conta em nosso site, coletamos informações pessoais, incluindo seu nome, endereço de e-mail, endereço de entrega e outras informações necessárias para processar o seu pedido e fornecer suporte ao cliente.
+                <div> 1.1. Informações de Cadastro: Quando você cria uma conta em nosso site, coletamos informações pessoais, incluindo seu nome, endereço de e-mail, endereço de entrega e outras informações necessárias para processar o seu pedido e fornecer suporte ao cliente. </div>
 
-                1.2. Informações de Pagamento: Ao efetuar uma compra, coletamos informações de pagamento, como números de cartão de crédito ou débito, informações de faturamento e outros detalhes relevantes para processar transações.
+                <div>1.2. Informações de Pagamento: Ao efetuar uma compra, coletamos informações de pagamento, como números de cartão de crédito ou débito, informações de faturamento e outros detalhes relevantes para processar transações. </div>
 
-                1.3. Informações de Navegação: Coletamos informações sobre como você utiliza o nosso site, incluindo o seu endereço IP, tipo de navegador, sistema operacional, páginas visitadas e datas e horários de acesso.
+                <div>1.3. Informações de Navegação: Coletamos informações sobre como você utiliza o nosso site, incluindo o seu endereço IP, tipo de navegador, sistema operacional, páginas visitadas e datas e horários de acesso. </div>
 
-                2. Uso das Informações
+                <div>2. Uso das Informações </div>
 
-                2.1. Processamento de Pedidos: Utilizamos as informações pessoais fornecidas para processar os pedidos, entregar produtos e fornecer serviços de suporte ao cliente.
+                <div> 2.1. Processamento de Pedidos: Utilizamos as informações pessoais fornecidas para processar os pedidos, entregar produtos e fornecer serviços de suporte ao cliente. </div>
 
-                2.2. Comunicações: Podemos usar seu endereço de e-mail para enviar informações sobre seus pedidos, promoções, atualizações e newsletters. Você pode optar por não receber comunicações de marketing a qualquer momento.
+                <div>2.2. Comunicações: Podemos usar seu endereço de e-mail para enviar informações sobre seus pedidos, promoções, atualizações e newsletters. Você pode optar por não receber comunicações de marketing a qualquer momento. </div>
 
-                2.3. Melhoria do Site: As informações de navegação são utilizadas para melhorar a experiência do usuário, personalizar o conteúdo do site e analisar o desempenho do site.
+                <div> 2.3. Melhoria do Site: As informações de navegação são utilizadas para melhorar a experiência do usuário, personalizar o conteúdo do site e analisar o desempenho do site. </div>
 
-                3. Compartilhamento de Informações
+                <div> 3. Compartilhamento de Informações </div>
 
-                3.1. Terceiros: Podemos compartilhar informações pessoais com terceiros que nos ajudam a fornecer serviços, como processamento de pagamentos, entrega de produtos e análise de dados. Esses terceiros têm políticas de privacidade próprias.
+                <div> 3.1. Terceiros: Podemos compartilhar informações pessoais com terceiros que nos ajudam a fornecer serviços, como processamento de pagamentos, entrega de produtos e análise de dados. Esses terceiros têm políticas de privacidade próprias. </div>
 
-                4. Segurança de Dados
+                <div> 4. Segurança de Dados </div>
 
-                Implementamos medidas de segurança para proteger suas informações pessoais contra acesso não autorizado, uso indevido ou divulgação.
+                <div>Implementamos medidas de segurança para proteger suas informações pessoais contra acesso não autorizado, uso indevido ou divulgação. </div>
 
-                5. Seus Direitos
+                <div> 5. Seus Direitos </div>
 
-                Você tem o direito de acessar, corrigir ou excluir suas informações pessoais. Você também pode optar por não receber comunicações de marketing. Para exercer esses direitos ou para fazer perguntas sobre esta política de privacidade, entre em contato conosco através das informações de contato fornecidas no final deste documento.
+                <div> Você tem o direito de acessar, corrigir ou excluir suas informações pessoais. Você também pode optar por não receber comunicações de marketing. Para exercer esses direitos ou para fazer perguntas sobre esta política de privacidade, entre em contato conosco através das informações de contato fornecidas no final deste documento. </div>
 
-                6. Alterações na Política de Privacidade
+                <div>6. Alterações na Política de Privacidade </div>
 
-                Reservamo-nos o direito de atualizar esta política de privacidade conforme necessário. Quaisquer alterações serão publicadas em nosso site e entrarão em vigor na data da publicação.
+                <div>Reservamo-nos o direito de atualizar esta política de privacidade conforme necessário. Quaisquer alterações serão publicadas em nosso site e entrarão em vigor na data da publicação. </div>
 
-                7. Contato
+                <div>7. Contato </div>
 
-                Para entrar em contato conosco com perguntas ou preocupações sobre esta política de privacidade, envie um e-mail para [Inserir endereço de e-mail de contato] ou escreva para o endereço [Inserir endereço físico, se aplicável].
+                <div>Para entrar em contato conosco com perguntas ou preocupações sobre esta política de privacidade, envie um e-mail para [grupotcctec@gmail.com]. </div>
 
-                Esta política de privacidade destina-se a informá-lo sobre como tratamos suas informações pessoais. Ao utilizar nosso site, você concorda com as práticas descritas nesta política.
+                <div>Esta política de privacidade destina-se a informá-lo sobre como tratamos suas informações pessoais. Ao utilizar nosso site, você concorda com as práticas descritas nesta política.</div>
             </div>
 
 
