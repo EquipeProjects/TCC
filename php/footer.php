@@ -30,13 +30,13 @@
     </div>
 
     <div class="footer_item">AJUDA
-        <a class="links_footer" href="#">
+        <a class="links_footer" href="ajuda.php">
             <div class="footer_text">DÚVIDAS GERAIS</div>
         </a>
-        <a class="links_footer" href="#">
+        <a class="links_footer" href="troca_devolucao.php">
             <div class="footer_text">TROCAS E DEVOLUÇÕES</div>
         </a>
-        <a class="links_footer" href="#">
+        <a class="links_footer" href="pagamentos.php">
             <div class="footer_text">PAGAMENTOS</div>
         </a>
         <a class="links_footer" href="#">
