@@ -115,17 +115,22 @@ li a:hover:after {
     margin-right: 50px;
     margin-left: 0;
     flex-wrap: nowrap;
-
     position: relative;
-    left: 88px;
+    left: 140px;
+}
+.icons2 {
+    justify-self: flex-end;
+    margin-right: 50px;
+    margin-left: 0;
+    flex-wrap: nowrap;
+    position: relative;
+    left: 54px;
 }
 
-
-.icons2 {
+.icons3 {
     justify-self: flex-start;
     margin-right: 70px;
     flex-wrap: nowrap;
-
     position: relative;
     right: 30px;
 }
@@ -138,6 +143,10 @@ li a:hover:after {
     margin-left: 20px;
 
 }
+.icons3 a {
+    margin-left: 20px;
+
+}
 
 .icons1 img {
     width: 45px;
@@ -146,6 +155,10 @@ li a:hover:after {
 .icons2 img {
     width: 43px;
 }
+.icons3 img {
+    width: 43px;
+}
+
 
 
 .dropdown-catalog {
