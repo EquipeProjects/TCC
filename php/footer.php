@@ -39,7 +39,7 @@
         <a class="links_footer" href="pagamentos.php">
             <div class="footer_text">PAGAMENTOS</div>
         </a>
-        <a class="links_footer" href="#">
+        <a class="links_footer" href="fale_conosco.php">
             <div class="footer_text">FALE CONOSCO </div>
         </a>
     </div>

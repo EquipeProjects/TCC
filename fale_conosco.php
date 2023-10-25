@@ -11,8 +11,7 @@
     <link rel="shortcut icon" href="/ico/logo.ico" type="image/x-icon">
     <meta name="author" content="João Victor,Davi Ribeiro e Yzabella Luiza">
     <meta name="keywords" content="HTML,CSS,JavaScript">
-    <meta name="description"
-        content="Um web site de vendas de roupas sob medida que adequa qualquer corpo,gosto e estilo.">
+    <meta name="description" content="Um web site de vendas de roupas sob medida que adequa qualquer corpo,gosto e estilo.">
 </head>
 
 <body>
@@ -20,9 +19,9 @@
         <?php
         include('php/header.php'); // Inclui o cabeçalho
         ?>
-       
 
-        
+
+
         </div>
     </header>
 
@@ -70,19 +69,19 @@
                     <img class="seta_cadast" src="img/seta_black.png">
                 </a>
             </div>
-            <div class="text_duvidas">ARTIGOS SOBRE DEVOLUÇÕES</div>
+            <div class="text_duvidas">DÚVIDAS FREQUENTES</div>
 
             <a class="link_duvida" href="#">
-                <div>Como trocar um produto adquirido em Loja Física?</div>
+                <div>TENHA ACESSO AO STATUS DO SEU PEDIDO ATRAVÉS DE SUA CONTA</div>
             </a>
             <a class="link_duvida" href="#">
-                <div>Política de devolução para compras no site</div>
-            </a>
-            <a class="link_duvida" href="#"> 
-                <div>Restituição de valores</div>
+                <div> CONHEÇA NOSSA POLÍTICA, TIPOS E PRAZOS DE ENTREGA E FRETE</div>
             </a>
             <a class="link_duvida" href="#">
-                <div>Como preparar um produto para devolução</div>
+                <div>SAIBA COMO TROCAR OU DEVOLVER UM PRODUTO E TODAS AS CONDIÇÕES</div>
+            </a>
+            <a class="link_duvida" href="#">
+                <div>SAIBA QUAIS MEIOS DE PAGAMENTO SÃO ACEITOS E TODAS AS CONDIÇÕES</div>
             </a>
             <a class="link_duvida" href="#">
                 <div>INFORMAÇÃO DE COMO UTILIZAR VOUCHER DE DESCONTO</div>
@@ -97,17 +96,17 @@
             <div class="text_email">EasyFiTcorporation@gmail.com</div>
             <div class="text_fone">(12)9005-8876</div>
     </main>
-    <?php 
+    <?php
     include('php/footer.php')
     ?>
     <script src="js/index.js"></script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             const hamburgerMenu = document.querySelector('.hamburger-menu');
             const centerLinks = document.querySelector('.center-links ul');
-    
-            hamburgerMenu.addEventListener('click', function () {
+
+            hamburgerMenu.addEventListener('click', function() {
                 centerLinks.classList.toggle('active');
             });
         });

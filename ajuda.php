@@ -88,6 +88,8 @@
                 <div>INFORMAÇÃO DE COMO UTILIZAR VOUCHER DE DESCONTO</div>
             </a>
             <div class="title_contato">Entre em contato</div>
+            <div class="title_contato1">Nosso time está disponível de segunda a sábado das 09h às 19h, exceto feriados.
+ Desculpe-nos, nosso tempo de resposta está acima do esperado.</div>
             <div class="title_email">E-MAIL</div>
             <img class="img_email" src="img/email.png">
             <div class="title_fone">TELEFONE</div>

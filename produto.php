@@ -67,6 +67,8 @@ $conn->close();
     <link rel="shortcut icon" href="ico/logo.ico" type="image/x-icon">
     <meta name="author" content="João Victor,Davi Ribeiro e Yzabella Luiza">
     <meta name="keywords" content="HTML,CSS,JavaScript">
+    <script src="https://cdn.rawgit.com/RobinHerbots/Inputmask/5.x/dist/jquery.inputmask.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <meta name="description" content="Um web site de vendas de roupas sob medida que adequa qualquer corpo,gosto e estilo.">
 </head>
 
@@ -88,11 +90,11 @@ $conn->close();
                 <div class="product-images">
 
                     <img src="admin/<?php echo $produto['imagem'] ?>" alt="Imagem 1" onclick="changeImage('admin/<?php echo $produto['imagem'] ?>')">
-                 
+
 
                     <?php
                     // Consulta SQL para obter as imagens secundárias associadas a este produto
-                  
+
                     if (mysqli_num_rows($result_imagens) > 0) {
                         while ($row = mysqli_fetch_assoc($result_imagens)) {
                             $caminho_imagem = $row['caminho'];
@@ -100,7 +102,7 @@ $conn->close();
                             echo "<img src='admin/$caminho_imagem' alt='Imagem secundária' onclick='changeImage(\"admin/$caminho_imagem\")'>";
                         }
                     }
-                
+
                     ?>
                 </div>
 
@@ -118,12 +120,22 @@ $conn->close();
                     <label for="" style="text-align: left; position: relative;left: 0px;">
                         insira seu cep
                     </label>
+                    <input type="text" id="cep" name="cep" placeholder="" required style="width: 100%; height: 60px; border-radius: 20px; border:none"> <button style="position: absolute; bottom: 5px; right:10px ; height: 50px; border: none; border-radius: 20px;   background-color: #C1C1C1;
+width: 30%;">Calcular</button>
+                    <script>
+                        document.getElementById('cep').addEventListener('input', function(e) {
+                            let value = e.target.value;
+                            value = value.replace(/\D/g, ''); // Remove caracteres não numéricos
+                            if (value.length > 5) {
+                                value = value.replace(/^(\d{5})(\d{0,3}).*/, '$1-$2'); // Aplica a máscara XXXXX-XXX
+                            }
+                            e.target.value = value;
+                        });
+                    </script>
 
-                    <input type="number" style="width: 100%; height: 60px; border-radius: 20px; border:none"> <button style="position: absolute; bottom: 5px; right:10px ; height: 50px; border: none; border-radius: 20px;   background-color: #C1C1C1;
-                        width: 30%;">calcular</button>
 
                 </div>
-                <a href="" id="get-cep">não sei meu cep</a>
+                <a href="#" id="get-cep">Não sei meu cep</a>
 
 
 
@@ -151,10 +163,10 @@ $conn->close();
 
                 <label for="">
                     <input id="radio1" name="tamanho" type="radio">
-                    tamanhos tradicionais
+                    TAMANHO TRADICIONAIS
                 </label>
                 <div id="box1" class="box-inf">
-                    <h2> tamanhhos</h2>
+                    <h2> Tamanhos</h2>
                     <div style="display: flex; flex-wrap: wrap;height:auto; margin: 10px;">
                         <form action="" method="post">
 
@@ -162,14 +174,11 @@ $conn->close();
                             foreach ($tamanhos as $tamanho) {
                                 echo "<button class='box-btn'>$tamanho</button>";
                             }
+
+                            foreach ($tamanhos as $tamanho) {
+                                echo "<button class='box-btn'>$tamanho</button>";
+                            }
                             ?>
-                            <select name="tamanho" id="tamanho">
-                                <?php
-                                foreach ($tamanhos as $tamanho) {
-                                    echo "<option class='box-btn' value='$tamanho'>$tamanho</option>";
-                                }
-                                ?>
-                            </select>
 
                         </form>
 
@@ -183,32 +192,32 @@ $conn->close();
                 </div>
 
 
-                <a href=""> tabela de medidas</a>
+                <a href="#"> Tabela de medidas</a>
                 <label for="">
                     <input id="radio2" name="tamanho" type="radio">
                     TAMANHO SOB MEDIDA
                 </label>
-                <div class="box-inf" id="box2"> bb</div>
-                <a href=""> como medir</a>
+                <div class="box-inf" id="box2">
+                    <input id="radio2" name="tamanho" type="text">
+                </div>
+                <a href="#"> Como medir</a>
             </div>
 
             <form action="adicionar_ao_carrinho.php" method="post">
-            <input type="hidden" name="code" value="<?php echo $produto['id']; ?>">
+                <input type="hidden" name="code" value="<?php echo $produto['id']; ?>">
+              
                 <button type="submit" class="btn-compra">Adicionar ao Carrinho</button>
             </form>
 
 
 
 
-            <div
-            style="font-size:30px;
+            <div style="font-size:30px;
             display:flex;
             align-items:center;text-align:center;
-            margin:30px"
-            
-            >
-              <?php echo $produto['descricao']; ?>
-           
+            margin:30px">
+                <?php echo $produto['descricao']; ?>
+
 
             </div>
 
@@ -221,7 +230,7 @@ $conn->close();
 
 
     </main>
-    <?php 
+    <?php
     include('php/footer.php')
     ?>
     <script src="js/index.js"></script>

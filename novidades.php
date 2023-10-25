@@ -49,8 +49,9 @@
                 </div>
                 <div class='text_product'>{$row['nome']}</div>
                 <div class='sob_categoria'>Casual</div>
-                
+                </a>
             </div>
+            
 
          
               
@@ -65,31 +66,23 @@
                 ?>
 
 
-                <div class="product_space">
-                    <div class="product_box"><img class="img_novidade" src="img/gola_alta.jpg">
-                        <div class="preco_product">R$ 39,00</div>
-                    </div>
-                    <div class="text_product">Camisa gola alta preta</div>
-                    <div class="sob_categoria">Casual</div>
-                </div>
-
             </div>
         </div>
         </div>
         </div>
     </main>
 
-    <?php 
+    <?php
     include('php/footer.php')
     ?>
     <script src="js/index.js"></script>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             const hamburgerMenu = document.querySelector('.hamburger-menu');
             const centerLinks = document.querySelector('.center-links ul');
-    
-            hamburgerMenu.addEventListener('click', function () {
+
+            hamburgerMenu.addEventListener('click', function() {
                 centerLinks.classList.toggle('active');
             });
         });
