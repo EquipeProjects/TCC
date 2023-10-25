@@ -24,7 +24,7 @@
         <a class="link_sobrenos" href="sobrenos.php">
             <div>SOBRE A EASY FIT</div>
         </a>
-        <a class="link_sustent" href="#">
+        <a class="link_sustent" href="sustent.php">
             <div class="footer_text">SUSTENTABILIDADE</div>
         </a>
     </div>
