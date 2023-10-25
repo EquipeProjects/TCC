@@ -106,3 +106,14 @@ input[type=submit]{
     border: none;
 }
 span{color: white;}
+
+.link_ja_cont{
+    color: white;
+    text-decoration: none;
+    
+}
+
+.link_ja_cont:hover{
+   text-decoration: underline;
+    
+}

@@ -27,10 +27,10 @@
             <br>
             <label for="password">Senha:</label>
             <input type="password" id="password" name="password" required>
-            <label>esqueceu sua senha?</label>
+            <label>Esqueceu sua senha?</label>
             <br>
             <label for="username">Ao fazer login, você concorda com a Política de privacidade e com os Termos de uso do easyfit.com.br.<label for="username">
-                    <a href="cadastro.php">Fazer cadastro</a>
+                    <a class="" href="cadastro.php">Fazer Login?</a>
                     <input class="button_login" type="submit" value="Entrar">
 
 

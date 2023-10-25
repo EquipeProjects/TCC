@@ -17,7 +17,7 @@
   <script defer src="js/index.js"></script>
   <header>
 
-    <a href="index.php"><img class="logo" src="img/logo.png"></a>
+    <a  href="index.php"><img class="logo" src="img/logo.png"></a>
 
 
   </header>
@@ -47,6 +47,7 @@
     <input type="text" name="email" placeholder="Email ou telefone*">
     <input type="text" name="password" placeholder="Senha*">
     <input type="text"  name ="senha"placeholder="Repita a senha*">
+    <a class="link_ja_cont" href="login.php">Já tem Conta?</a>
     <button class="btn-generic">finalizar</button>
     <img src="" alt="">
     <input type="hidden" name="tipo_usuario" value="cliente">
@@ -70,6 +71,7 @@
     <input type="text" name="telefone" placeholder="telefone*"> 
     <input type="text" name="password" placeholder="Senha*">
     <input type="hidden" name="tipo_usuario" value="vendedor">
+    <a class="link_ja_cont" href="login.php">Já tem Conta?</a>
     <button  type="submit" class="btn-generic">FINALIZAR</button>
 
 
