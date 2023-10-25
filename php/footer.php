@@ -12,9 +12,9 @@
     <div class="footer_item">
         <div>REDES SOCIAIS
             <div>
-                <a href="https://www.instagram.com/easyfit_ofc/"><img class="footer_rede" src="img/instagram.png"></a>
-                <a href="https://www.facebook.com/profile.php?id=61552370537628"><img class="footer_rede" src="img/facebbok.png"></a>
-                <a href="https://www.youtube.com/channel/UCOsgH08Vk32GpqB1g6KXH0w"><img class="footer_rede" src="img/youtube.png"></a>
+                <a href="https://www.instagram.com/easyfit_ofc/" target="_black"><img class="footer_rede" src="img/instagram.png"></a>
+                <a href="https://www.facebook.com/profile.php?id=61552370537628"target="_black"><img class="footer_rede" src="img/facebbok.png"></a>
+                <a href="https://www.youtube.com/channel/UCOsgH08Vk32GpqB1g6KXH0w"target="_black" ><img class="footer_rede" src="img/youtube.png"></a>
             </div>
         </div>
     </div>
