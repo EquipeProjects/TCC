@@ -56,20 +56,20 @@ if ($response === false) {
     // Verifique se o JSON foi decodificado com sucesso
     if ($responseData !== null) {
         // Início da div para exibir os resultados da API
-        echo "<div id='resultado-api'>";
-        
-        // Itere sobre os resultados e exiba-os
-        foreach ($responseData as $resultado) {
-            echo "Serviço: " . $resultado['servico'] . "<br>";
-            echo "Nome do Transportador: " . $resultado['transp_nome'] . "<br>";
-            echo "Valor do Frete: R$ " . $resultado['vlrFrete'] . "<br>";
-            echo "Prazo de Entrega: " . $resultado['prazoEnt'] . " dia(s)<br>";
-            echo "Descrição: " . $resultado['descricao'] . "<br>";
-            echo "==============================<br>";
-        }
-        
-        // Fim da div para exibir os resultados da API
-        echo "</div>";
+        $resultados = array();
+foreach ($responseData as $resultado) {
+    $resultadoArray = array(
+        "Serviço" => $resultado['servico'],
+        "Nome do Transportador" => $resultado['transp_nome'],
+        "Valor do Frete" => "R$ " . $resultado['vlrFrete'],
+        "Prazo de Entrega" => $resultado['prazoEnt'] . " dia(s)",
+        "Descrição" => $resultado['descricao'],
+    );
+    $resultados[] = $resultadoArray;
+}
+
+// Retorne os resultados como JSON
+echo json_encode($resultados);
     } else {
         echo "Erro na decodificação do JSON da resposta.";
     }

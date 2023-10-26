@@ -112,9 +112,17 @@ $conn->close();
                 </div>
 
             </div>
-            <form action="calcula-frete.php" method="post">
-    <input style="width: 90%;" type="text" name="cep_destino" placeholder="Digite seu CEP">
-    <input type="hidden" name="peso" value="<?php echo $produto['peso']; ?>">
+           
+
+
+
+
+            <div class="frete">
+                <h2>Calcular frete e entrega </h2>
+                <p>Calcule o frete e o prazo de entrega estimados para sua região.</p>
+                <form id="form-calculo-frete" action="calcula-frete.php" method="post">
+                <div style="position: relative; width:100%; ">
+                <input type="hidden" name="peso" value="<?php echo $produto['peso']; ?>">
     <input type="hidden" name="cep-origem" value="05999-999">
     <input type="hidden" name="vlrmercado" value="<?php echo $produto['valor']; ?>">
     <input type="hidden" name="altura" value="<?php echo $produto['altura']; ?>">
@@ -123,32 +131,11 @@ $conn->close();
     <input type="hidden" name="valor" value="<?php echo $produto['valor']; ?>">
     <input type="hidden" name="quantidade" value="1">
     <input type="hidden" name="servico" value="E">
-    <input type="submit" style="width: 90%;" value="Calcular Frete">
-</form>
-
-<div class="frete">
-    <h2>Calcular frete e entrega</h2>
-    <p>Calcule o frete e o prazo de entrega estimados para sua região.</p>
-    <div style="position: relative; width: 100%;">
-        <label for="cep_destino" style="text-align: left; position: relative; left: 0px;">
-            Insira seu CEP
-        </label>
-        <input type="number" id="cep_destino" style="width: 100%; height: 60px; border-radius: 20px; border: none">
-        <button style="position: absolute; bottom: 5px; right: 10px; height: 50px; border: none; border-radius: 20px; background-color: #C1C1C1; width: 30%;">Calcular</button>
-    </div>
-    <a href="" id="get-cep">Não sei meu CEP</a>
-</div>
-
-            <div class="frete">
-                <h2>Calcular frete e entrega </h2>
-                <p>Calcule o frete e o prazo de entrega estimados para sua região.</p>
-
-                <div style="position: relative; width:100%; ">
                     <label for="" style="text-align: left; position: relative;left: 0px;">
                         insira seu cep
                     </label>
-                    <input type="text" id="cep" name="cep" placeholder="" required style="width: 100%; height: 60px; border-radius: 20px; border:none"> <button style="position: absolute; bottom: 5px; right:10px ; height: 50px; border: none; border-radius: 20px;   background-color: #C1C1C1;
-width: 30%;">Calcular</button>
+                    <input type="text" id="cep" name="cep_destino" placeholder="" required style="width: 100%; height: 60px; border-radius: 20px; border:none"> <button style="position: absolute; bottom: 5px; right:10px ; height: 50px; border: none; border-radius: 20px;   background-color: #C1C1C1;
+width: 30%;">Calcular</button></form>
                     <script>
                         document.getElementById('cep').addEventListener('input', function(e) {
                             let value = e.target.value;
@@ -158,11 +145,53 @@ width: 30%;">Calcular</button>
                             }
                             e.target.value = value;
                         });
+                        document.getElementById('form-calculo-frete').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    var formData = new FormData(this);
+
+    $.ajax({
+        type: "POST",
+        url: "calcula-frete.php",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function(data) {
+    var resultadoFrete = document.getElementById('resultado-frete');
+    resultadoFrete.innerHTML = '';
+
+    // Transforma a string JSON em um objeto JavaScript
+    var resultados = JSON.parse(data);
+
+    resultados.forEach(function(resultado, index) {
+        resultadoFrete.innerHTML += `
+            <div class="resultado-frete-item">
+                <h3>Serviço: ${resultado['Serviço']}</h3>
+                <p>Transportador: ${resultado['Nome do Transportador']}</p>
+                <p>Valor do Frete: ${resultado['Valor do Frete']}</p>
+                <p>Prazo de Entrega: ${resultado['Prazo de Entrega']}</p>
+                <p>Descrição: ${resultado['Descrição']}</p>
+            </div>
+            `;
+
+        // Adicione estilos CSS para a classe 'resultado-frete-item' conforme necessário
+    });
+},
+        error: function(error) {
+            console.error(error);
+        }
+        
+    });
+});
+
+
+
                     </script>
 
 
                 </div>
                 <a href="#" id="get-cep">Não sei meu cep</a>
+                <div id="resultado-frete"></div>
 
 
 
