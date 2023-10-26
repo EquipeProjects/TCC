@@ -112,6 +112,33 @@ $conn->close();
                 </div>
 
             </div>
+            <form action="calcula-frete.php" method="post">
+    <input style="width: 90%;" type="text" name="cep_destino" placeholder="Digite seu CEP">
+    <input type="hidden" name="peso" value="<?php echo $produto['peso']; ?>">
+    <input type="hidden" name="cep-origem" value="05999-999">
+    <input type="hidden" name="vlrmercado" value="<?php echo $produto['valor']; ?>">
+    <input type="hidden" name="altura" value="<?php echo $produto['altura']; ?>">
+    <input type="hidden" name="comprimento" value="<?php echo $produto['comprimento']; ?>">
+    <input type="hidden" name="largura" value="<?php echo $produto['largura']; ?>">
+    <input type="hidden" name="valor" value="<?php echo $produto['valor']; ?>">
+    <input type="hidden" name="quantidade" value="1">
+    <input type="hidden" name="servico" value="E">
+    <input type="submit" style="width: 90%;" value="Calcular Frete">
+</form>
+
+<div class="frete">
+    <h2>Calcular frete e entrega</h2>
+    <p>Calcule o frete e o prazo de entrega estimados para sua região.</p>
+    <div style="position: relative; width: 100%;">
+        <label for="cep_destino" style="text-align: left; position: relative; left: 0px;">
+            Insira seu CEP
+        </label>
+        <input type="number" id="cep_destino" style="width: 100%; height: 60px; border-radius: 20px; border: none">
+        <button style="position: absolute; bottom: 5px; right: 10px; height: 50px; border: none; border-radius: 20px; background-color: #C1C1C1; width: 30%;">Calcular</button>
+    </div>
+    <a href="" id="get-cep">Não sei meu CEP</a>
+</div>
+
             <div class="frete">
                 <h2>Calcular frete e entrega </h2>
                 <p>Calcule o frete e o prazo de entrega estimados para sua região.</p>
