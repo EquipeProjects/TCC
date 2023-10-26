@@ -29,6 +29,11 @@ if (isset($_GET['edit_products'])) {
         Nome: <input type="text" name="nome"  required><br>
         Valor: <input type="text" name="valor"   required><br>
         Descrição: <textarea name="descricao"  required></textarea><br>
+        Peso (Kg): <input type="text" name="peso"><br>
+Altura (cm): <input type="text" name="altura"><br>
+Largura (cm): <input type="text" name="largura"><br>
+Comprimento (cm): <input type="text" name="comprimento"><br>
+
         Imagem principal: <input type="file" name="imagem" required  onchange="exibirPreview(this)"><br>
         Imagens secundarias:
         Escolha imagens:
