@@ -45,7 +45,7 @@
             <div class='product_space'>
             <a href='produto.php?id=" . $row['id'] . "'> 
                 <div class='product_box'> <img class='img_novidade' src='admin/{$row['imagem']}' alt='{$row['nome']}'>
-                    <div class='preco_product'>{$row['valor']}</div>
+                    <div class='preco_product'> R$ {$row['valor']}</div>
                 </div>
                 <div class='text_product'>{$row['nome']}</div>
                 <div class='sob_categoria'>Casual</div>

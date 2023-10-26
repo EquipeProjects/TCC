@@ -117,3 +117,14 @@ span{color: white;}
    text-decoration: underline;
     
 }
+
+.link_no_cont{
+    color: white;
+    text-decoration: none;
+    
+}
+
+.link_no_cont:hover{
+   text-decoration: underline;
+    
+}

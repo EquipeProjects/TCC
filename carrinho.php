@@ -65,7 +65,7 @@ if (isset($_SESSION["shopping_cart"])) {
 
     <div class="carrinho">
         <h1>Seu carrinho <span><?php echo $cart_count; ?> itens</span></h1>
-        <h2><?php echo "$" . $total_price; ?></h2>
+        <h2><?php echo "R$" . $total_price; ?></h2>
 
         <ul class="cart-items">
             <?php
@@ -96,7 +96,7 @@ if (isset($_SESSION["shopping_cart"])) {
 
                             <div style="display: flex; width: 100%;flex-direction: row;  justify-content: space-between; position: relative; top:15vh">
                                 <a href="" style="display: flex; align-content: flex-start; text-decoration: none;  color: black;"><span class="item-price"><?php ($product["price"] * $product["quantity"]);
-                                                                                                                                                            echo "$" . $product["price"] * $product["quantity"]; ?></span></a>
+                                                                                                                                                            echo "R$" . $product["price"] * $product["quantity"]; ?></span></a>
                                 <form action="" method="post">
                                     <input type="number" value="<?php echo $product["quantity"]; ?>" name='quantity' onchange="updateQuantity(this)">
                                     <input type="hidden" name="code" value="<?php echo $product["code"]; ?>">
@@ -130,8 +130,8 @@ if (isset($_SESSION["shopping_cart"])) {
         </ul>
     </div>
     <div id="bottom-a">
-        <a href="" class="inp-bot"><input type="radio">selecionar tudo</a>
-        <div> <span id="totalcust"> <?php echo "$" . $total_price; ?></span> <a href="php/checkout.php"><button class="btn-generic">Finalizar Compra</button></a></div>
+        <a href="" class="inp-bot"><input type="radio">Selecionar Tudo</a>
+        <div> <span id="totalcust"> <?php echo "R$" . $total_price; ?></span> <a href="php/checkout.php"><button class="btn-generic">Finalizar Compra</button></a></div>
 
     </div>
 
