@@ -81,8 +81,8 @@ $conn->close();
 
         <div class="container">
             <div style="display: flex;  height: 50px;">
-                <a href="#" style="justify-content: center;align-items: center;"><img src="img/bag.png" style="width: 50px; " alt=""> loja Easy fit
-                    <img src="img/seta-direita.png" style="width: 50px;" alt="">
+                <a href="#" style="justify-content: center;align-items: center; text-decoration:none"><img src="img/bag.png" style="width: 50px; text-decoration:none " alt=""><div style="color:white; font-size:23px; text-decoration:none; position:relative; bottom: 9px;">Loja Easy fit</div>
+                    <img src="img/seta-direita.png" style="width: 50px; text-decoration:none; position:relative; bottom: 39px; left: 84px" alt="">
                 </a>
 
             </div>
@@ -198,10 +198,7 @@ width: 30%;">Calcular</button></form>
 
 
             </div>
-            <p>Normal: 4 dias úteis (Frete Grátis)
-            </p>
-            <p>Dúvidas? Confira a nossa Política de Frete e Entregas.
-            </p>
+           
         </div>
 
         <div class="container">
