@@ -1,6 +1,5 @@
+
 <?php
-
-
 // Conexão com o banco de dados
 $mysqli = new mysqli("localhost", "root", "", "sistema_login");
 

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,6 +32,7 @@
             <br>
             <label for="username">Ao fazer login, você concorda com a Política de privacidade e com os Termos de uso do easyfit.com.br.<label for="username">
                     <a class="link_no_cont" href="cadastro.php">Fazer Login?</a>
+                    <a href="">Login with google</a>
                     <input class="button_login" type="submit" value="Entrar">
 
 

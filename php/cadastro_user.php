@@ -1,3 +1,15 @@
+
+<?php
+require 'vendor/autoload.php';
+require_once 'php/library/GoogleClient.php';
+
+use php\library\GoogleClient;
+$googleClient = new  GoogleClient;
+$googleClient->init();
+$authUrl = $googleClient->generateAuthLink();
+var_dump($authUrl);
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -92,6 +104,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
         <input type="password" name="password" placeholder="Senha" required><br>
+        <a href="#">Login with google</a>
 
         <button type="submit" class="btn-generic" value="Cadastrar">Cadastrar</button>
     </form>
