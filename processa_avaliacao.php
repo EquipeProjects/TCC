@@ -1,31 +1,42 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    // Conectar ao banco de dados
-    $mysqli = new mysqli("localhost", "root", "", "sistema_login");
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "meubanco";
 
-    // Verificar a conexão
-    if ($mysqli->connect_error) {
-        die("Erro na conexão: " . $mysqli->connect_error);
-    }
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-    // Receber dados do formulário
-    $ratingValue = $_POST["ratingValue"];
-    $commentText = $_POST["commentText"];
-
-    // Preparar a instrução SQL para inserir dados
-    $stmt = $mysqli->prepare("INSERT INTO avaliacoes (classificacao, comentario) VALUES (?, ?)");
-    $stmt->bind_param("is", $ratingValue, $commentText);
-
-    // Executar a inserção
-    if ($stmt->execute()) {
-        // Redirecionar de volta para a página principal após a inserção
-        header("Location: index.php");
-    } else {
-        echo "Erro ao inserir avaliação: " . $stmt->error;
-    }
-
-    // Fechar a conexão com o banco de dados
-    $stmt->close();
-    $mysqli->close();
+if ($conn->connect_error) {
+    die("Erro na conexão com o banco de dados: " . $conn->connect_error);
 }
+
+error_log("Entrou no arquivo processa_avaliacao.php", 0);
+
+$resposta = array();
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $produto_id = intval($_POST['produto_id']); // Supondo que o ID do produto seja enviado via POST
+    $avaliacao = intval($_POST['avaliacao']);
+    $comentario = $_POST['comentario'];
+
+    // Realize validação e sanitização, se necessário
+
+    $sql_inserir_avaliacao = "INSERT INTO avaliacoes (cliente_id, produto_id, avaliacao, comentario) VALUES (1, $produto_id , $avaliacao, '$comentario')";
+
+    if ($conn->query($sql_inserir_avaliacao) === TRUE) {
+        $resposta['status'] = 'sucesso';
+        $resposta['mensagem'] = 'Avaliação enviada com sucesso!';
+    } else {
+        $resposta['status'] = 'erro';
+        $resposta['mensagem'] = 'Erro ao enviar a avaliação: ' . $conn->error;
+    }
+} else {
+    $resposta['status'] = 'erro';
+    $resposta['mensagem'] = 'Método de requisição inválido';
+}
+
+header('Content-Type: application/json');
+echo json_encode($resposta);
+
+$conn->close();
 ?>

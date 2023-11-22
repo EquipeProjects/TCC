@@ -1,0 +1,7 @@
+{
+    "require": {
+        "google/apiclient": "^2.15",
+        "efipay/sdk-php-apis-efi": "^1.5",
+        "gerencianet/gerencianet-sdk-php": "^5.1"
+    }
+}

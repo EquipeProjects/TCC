@@ -40,11 +40,48 @@ if ($result_tamanhos->num_rows > 0) {
 $imagens_query = "SELECT caminho FROM imagens_produto WHERE produto_id = $produto_id";
 $result_imagens = mysqli_query($conn, $imagens_query);
 
+function getCategorias($conn) {
+    $sql = "SELECT * FROM categorias";
+    $result = $conn->query($sql);
+
+    $categorias = array();
+
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $categorias[] = array(
+                'id' => $row['id'],
+                'nome' => $row['nome']
+            );
+        }
+    }
+
+    return $categorias;
+}
+
+function getSubcategorias($conn, $categoria_id) {
+    $sql = "SELECT * FROM subcategorias WHERE categoria_id = $categoria_id";
+    $result = $conn->query($sql);
+
+    $subcategorias = array();
+
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $subcategorias[] = array(
+                'id' => $row['id'],
+                'nome' => $row['nome']
+            );
+        }
+    }
+
+    return $subcategorias;
+}
+
+?>
 
 
 
 
-$conn->close();
+
 
 
 
@@ -205,7 +242,39 @@ width: 30%;">Calcular</button></form>
 
             <h2><?php echo $produto['nome']; ?></h2>
 
-            <div class="stars"> <span>R$ <?php echo number_format($produto['valor'], 2, ',', '.'); ?></span> <img src="img/revstar.png" alt=""> <img src="img/revstar.png" alt=""><img src="img/revstar.png" alt=""><img src="img/revstar.png" alt=""><img src="img/revstar.png" alt=""></div>
+           <!-- Exibir Estrelas e Média das Avaliações -->
+<div class="stars">
+    <?php
+    // Código para calcular a média das avaliações no PHP e exibir as estrelas
+    $produto_id = intval($_GET['id']);
+    $sql_avaliacoes = "SELECT AVG(avaliacao) as media FROM avaliacoes WHERE produto_id = $produto_id";
+    $result_avaliacoes = $conn->query($sql_avaliacoes);
+
+    if ($result_avaliacoes->num_rows > 0) {
+        $row_avaliacoes = $result_avaliacoes->fetch_assoc();
+        $media_avaliacoes = $row_avaliacoes['media'];
+        echo "Média: " . number_format($media_avaliacoes, 1) . " estrelas";
+    }
+    ?>
+</div>
+<div id="stars-container">
+    <svg class="star" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <!-- Inclua o código SVG da estrela aqui -->
+    </svg>
+</div>
+<div class="stars" id="stars-container"> <span>R$ <?php echo number_format($produto['valor'], 2, ',', '.'); ?></span> </div>
+
+<!-- Formulário de Avaliação -->
+<form id="form-avaliacao">
+    <label for="avaliacao">Avaliação:</label>
+    <input type="range" id="avaliacao" min="1" max="10" value="5" step="1" name="avaliacao">
+
+    <label for="comentario">Comentário:</label>
+    <textarea name="comentario" id="comentario"></textarea>
+
+    <button type="button" onclick="enviarAvaliacao()">Enviar Avaliação</button>
+</form>
+
 
             <div class="categorias">aaa/aaaa/aaaaa</div>
 
@@ -284,10 +353,31 @@ width: 30%;">Calcular</button></form>
 
     </main>
     <?php
-    include('php/footer.php')
+    include('php/footer.php');
+    
+
     ?>
     <script src="js/index.js"></script>
 
+    <script>
+ function enviarAvaliacao() {
+    var avaliacao = document.getElementById('avaliacao').value;
+    var comentario = document.getElementById('comentario').value;
+  var id = <?php echo $produto_id  ;$conn->close();?>;
+    // Enviar dados para o servidor usando AJAX
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'processa_avaliacao.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            // Atualizar a página ou realizar outras ações após o envio da avaliação
+            location.reload();
+        }
+    };
+    xhr.send('avaliacao=' + avaliacao + '&comentario=' + comentario+'&produto_id='+id);
+}
+
+</script>
 </body>
 
 </html>

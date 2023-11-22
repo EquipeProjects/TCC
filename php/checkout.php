@@ -1,52 +1,402 @@
 <?php
+
+use Gerencianet\Exception\GerencianetException;
+use Gerencianet\Gerencianet;
+
 session_start();
 
-// Verifica se o carrinho de compras não está vazio
-if (empty($_SESSION["shopping_cart"])) {
-    echo "Seu carrinho está vazio. Adicione produtos antes de finalizar a compra.";
-    exit;
-}
+if (!empty($_SESSION['shopping_cart'])) {
+    // Conecte-se ao banco de dados
+    $conexao = mysqli_connect("localhost", "root", "", "meubanco");
 
-// Conexão com o banco de dados MySQL (substitua pelas suas configurações)
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "meubanco";
+    if (mysqli_connect_errno()) {
+        echo "Falha ao conectar ao MySQL: " . mysqli_connect_error();
+        exit;
+    }
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+    // Crie um novo pedido na tabela "pedidos"
+    $id_cliente = $_SESSION['id'];
+    $data_pedido = date('Y-m-d'); // Data atual
+    $status_pedido = "Em Processamento"; // Pode ser ajustado conforme necessário
+    $total_pedido = 0; // Será calculado abaixo
+    $endereco_entrega  = "teste";
+    $forma_pagamento ="pix";
 
 
-// Verifica a conexão com o banco de dados
-if ($conn->connect_error) {
-    die("Falha na conexão com o banco de dados: " . $conn->connect_error);
-}
 
-// Recupera o nome do cliente (pode ser obtido de um formulário)
-$nome_cliente = "Exemplo de Nome do Cliente";
+    $valorFrete = 0;
+    $valor_total=0;
 
-// Calcula o total do pedido
-$total_pedido = 0;
-foreach ($_SESSION["shopping_cart"] as $product) {
-    $total_pedido += ($product["price"] * $product["quantity"]);
-}
+    
+    foreach ($_SESSION['shopping_cart'] as $produto_id => $quantidade) {
+        echo$produto_id ;
+        $query = "SELECT nome, valor, peso, altura, largura, comprimento FROM produtos WHERE id = $produto_id";
+        $result = mysqli_query($conexao, $query);
+        $produto = mysqli_fetch_assoc($result);
 
-// Define o status do pagamento como "pendente"
-$status_pagamento = "pendente";
+        $nome_produto = $produto['nome'];
+        $preco_unitario = $produto['valor'];
+        $peso = $produto['peso'];
+        $altura = $produto['altura'];
+        $largura = $produto['largura'];
+        $comprimento = $produto['comprimento'];
+        $quantidade = 1;
+        $valorMerc = $preco_unitario * $quantidade;
+        $pesoMerc = $peso * $quantidade;
+        $subtotal = $preco_unitario * $quantidade;
+        $cepOrigem = "12249899";
+        $cepDestino = "05999-999";
 
-// Insere o pedido na tabela "pedidos" com o status do pagamento
-$sql = "INSERT INTO pedidos (nome_cliente, total_pedido, status_pagamento) VALUES (?, ?, ?)";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("sds", $nome_cliente, $total_pedido, $status_pagamento);
+        $servico = ['E', 'X', 'M', 'R'];
+        $data = array(
+            "cepOrigem" => $cepOrigem,
+            "cepDestino" => $cepDestino,
+            "vlrMerc" => $valorMerc,
+            "pesoMerc" => $pesoMerc,
+            "produtos" =>
+            array(
+                "altura" => $altura,
+                "largura" => $largura,
+                "peso" => $peso,
+                "comprimento" => $comprimento,
+                "valor" => $preco_unitario,
+                "quantidade" => $quantidade
+            ),
+            "servicos" => array($servico)
+        );
 
-if ($stmt->execute()) {
-    // Limpa o carrinho de compras após a conclusão da compra
-    unset($_SESSION["shopping_cart"]);
-    echo "Pedido finalizado com sucesso! Obrigado pela sua compra.";
-} else {
-    echo "Erro ao finalizar o pedido: " . $stmt->error;
-}
+        $jsonData = json_encode($data);
+        $token = "42037b390fae0c46824a99d3daea7dad";
 
-// Fecha a conexão com o banco de dados
-$stmt->close();
-$conn->close();
-?>
+        // Sua URL da API
+        $apiUrl = "https://portal.kangu.com.br/tms/transporte/simular";
+        $ch = curl_init($apiUrl);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonData);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'Content-Type: application/json',
+            'token: ' . $token // Adicione o cabeçalho de autorização com a chave 'token'
+        ));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        // Execute a requisição e obtenha a resposta
+     
+        $valorSfrete = 0; // Adicione esta variável para armazenar o valor do frete
+        $response = curl_exec($ch);
+
+        if ($response === false) {
+            echo "Erro na solicitação: " . curl_error($ch);
+        } else {
+            // Decodifique o JSON da resposta
+            $responseData = json_decode($response, true);
+
+            // Verifique se o JSON foi decodificado com sucesso
+            if ($responseData !== null) {
+
+
+                // Atualize o valor do frete na página
+                $valorFrete += $responseData[0]['vlrFrete'];
+                echo $valorFrete; // Assumindo que o 
+            } else {
+                echo "Erro na decodificação do JSON da resposta.";
+            }
+        }
+
+        // Feche a sessão cURL
+        curl_close($ch);
+       
+        $valorSfrete += $subtotal;
+        
+        $valor_total += $subtotal + $valorFrete;
+        echo $valorSfrete, $valor_total;
+
+
+
+    $inserir_pedido_query = "INSERT INTO pedidos (id_cliente, data_pedido, status_pedido, total_pedido, endereco_entrega, metodo_pagamento) VALUES ('$id_cliente', '$data_pedido', '$status_pedido', '$total_pedido', '$endereco_entrega', '$forma_pagamento')";
+    mysqli_query($conexao, $inserir_pedido_query);
+
+    $id_pedido = mysqli_insert_id($conexao); // Obtém o ID do pedido recém-criado
+
+
+    // Percorre os produtos no carrinho e insere-os na tabela "itens_pedido"
+    foreach ($_SESSION['shopping_cart'] as $produto_id => $quantidade) {
+        $query = "SELECT valor FROM produtos WHERE id = $produto_id";
+        $result = mysqli_query($conexao, $query);
+        $produto = mysqli_fetch_assoc($result);
+        $preco_unitario = $produto['valor'];
+        $quantidade=1;
+        echo  "  ",$preco_unitario," ",$quantidade;
+        $subtotal1 = $preco_unitario * $quantidade;
+     
+
+        // Insere o item do pedido na tabela "itens_pedido"
+        $inserir_item_query = "INSERT INTO itens_pedido (id_pedido, id_produto, quantidade, preco_unitario, total_item, valor_frete) VALUES ('$id_pedido', '$produto_id', '$quantidade', '$preco_unitario', '$subtotal1', '$valorFrete')";
+
+        mysqli_query($conexao, $inserir_item_query);
+    }
+
+    // Atualiza o valor total do pedido na tabela "pedidos"
+    $atualizar_total_query = "UPDATE pedidos SET total_pedido = '$valor_total' WHERE id_pedido = '$id_pedido'";
+    mysqli_query($conexao, $atualizar_total_query);
+
+
+
+
+
+
+    if ($forma_pagamento === "pix") {
+    if (file_exists($autoload = realpath('C:/xampp/htdocs/projetos/TCC/07x11/TCC/pagamentos/gn-api-sdk-php-master/vendor/autoload.php'))) {
+        require_once $autoload;
+    } else {
+        print_r("Autoload not found or on path <code>$autoload</code>");
+    }
+
+
+
+
+
+    if (file_exists($options = realpath('C:/xampp/htdocs/projetos/TCC/07x11/TCC/pagamentos/gn-api-sdk-php-master/examples/credentials/options.php'))) {
+        require_once $options;
+    }
+    
+
+    $txid = "000000000000000000000000000000000$id_pedido"; // Substitua pelo valor desejado
+    $pattern = "^[a-zA-Z0-9]{26,35}$";
+    if (!preg_match("/$pattern/", $txid)) {
+        die("Erro: O campo txid não corresponde ao padrão esperado.");
+    }
+    foreach ($_SESSION['shopping_cart'] as $produto_id => $quantidade) {
+        $query = "SELECT nome, valor FROM produtos WHERE id = $produto_id";
+        $result = mysqli_query($conexao, $query);
+        $produto = mysqli_fetch_assoc($result);
+        $nome_produto = $produto['nome'];
+        $preco_produto = $produto['valor'];
+        $subtotal_produto = $preco_produto * 1;
+    
+        $infoAdicionais[] = [
+            "nome" => $nome_produto,
+            "valor" => (string)$subtotal_produto // Ensure that the value is cast to a string
+        ];
+    }
+    $params = [
+        "txid" => $txid
+    ];
+ 
+    
+    $body = [
+        "calendario" => [
+            "expiracao" => 3600 // Charge lifetime, specified in seconds from creation date
+        ],
+        "devedor" => [
+            "cpf" => "50618401865",
+            "nome" => "davi ribeiro"
+        ],
+        "valor" => [
+            "original" =>"0.01"
+        ],
+        "chave" => "93d8c857-540a-45c0-af96-17a59e9ec256",
+        
+        "solicitacaoPagador" => "Enter the order number or identifier.",
+        "infoAdicionais" => $infoAdicionais
+    ];
+    
+    try {
+        $api = Gerencianet::getInstance($options);
+        $pix = $api->pixCreateCharge($params, $body);
+
+        if ($pix["txid"]) {
+            $params = [
+                "id" => $pix["loc"]["id"]
+            ];
+
+            $qrcode = $api->pixGenerateQRCode($params);
+
+            echo "<b>Detalhes da cobrança:</b>";
+            echo "<pre>" . json_encode($pix, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "</pre>";
+
+            if ($options['sandbox'] === false) {
+                echo "<b>Link responsivo:</b>";
+                $urlPath = parse_url($pix['loc']["location"], PHP_URL_PATH);
+                $locationPath = explode('/', trim($urlPath, '/'));
+                $locationToken = end($locationPath);
+                $responsiveLink = 'https://pix.gerencianet.com.br/cob/pagar/' . $locationToken;
+                echo "<pre><a target='_blank' href='$responsiveLink'>$responsiveLink</a></pre>";
+            }
+
+            echo "<b>QR Code:</b>";
+            echo "<pre>" . json_encode($qrcode, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "</pre>";
+
+            echo "<b>Imagem:</b><br>";
+            echo "<img src='" . $qrcode["imagemQrcode"] . "' />";
+            while (true) {
+                try {
+                    $api = Gerencianet::getInstance($options);
+                    $response = $api->pixDetailCharge($params);
+            
+                    // Verifique o status da resposta e atualize o status do pagamento no seu banco de dados
+                    if ($response['status'] == 'PAGO') {
+                        // O pagamento foi realizado com sucesso, você pode atualizar o status no seu banco de dados
+                        // Implemente a lógica de atualização do status aqui
+                        echo "O pagamento foi realizado com sucesso!";
+                        break; // Saia do loop quando o pagamento for confirmado
+                    } else {
+                        // O pagamento ainda não foi concluído
+                        echo "O pagamento ainda não foi realizado. Aguardando...";
+                    }
+                } catch (GerencianetException $e) {
+                    // Trate as exceções da Gerencianet
+                    print_r($e->code);
+                    print_r($e->error);
+                    print_r($e->errorDescription);
+                } catch (Exception $e) {
+                    // Trate outras exceções
+                    print_r($e->getMessage());
+                }
+            
+                // Aguarde um intervalo antes da próxima verificação
+                sleep(30); // Intervalo de 10 segundos (ajuste conforme necessário)
+            }
+            
+
+
+
+
+        } else {
+            echo "<pre>" . json_encode($pix, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "</pre>";
+        }
+    } catch (GerencianetException $e) {
+        print_r($e->code);
+        print_r($e->error);
+        print_r($e->errorDescription);
+    } catch (Exception $e) {
+        print_r($e->getMessage());
+    }
+
+    }
+    
+if ($forma_pagamento === "boleto") {
+    
+
+    if (file_exists($autoload = realpath('C:/xampp/htdocs/projetos/TCC/07x11/TCC/pagamentos/gn-api-sdk-php-master/vendor/autoload.php'))) {
+        require_once $autoload;
+    } else {
+        print_r("Autoload not found or on path <code>$autoload</code>");
+    }
+    
+    
+    if (file_exists($options = realpath('C:/xampp/htdocs/projetos/TCC/07x11/TCC/pagamentos/gn-api-sdk-php-master/examples/credentials/options.php'))) {
+        require_once $options;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    foreach ($_SESSION['shopping_cart'] as $produto_id => $quantidade) {
+        $query = "SELECT nome, preco FROM produtos WHERE id = $produto_id";
+        $result = mysqli_query($conexao, $query);
+        $produto = mysqli_fetch_assoc($result);
+        $nome_produto = $produto['nome'];
+        $preco_produto = $produto['valor'];
+        $subtotal_produto = $preco_produto * $quantidade*100;
+    
+        $items[] = [
+            "name" => $nome_produto,
+            "amount" => (int)$quantidade,
+            "value" => (int)$subtotal_produto // Ensure that the value is cast to a string
+        ];
+    }
+    
+
+    
+    $shippings = [
+        [
+            "name" => "Shipping to City",
+            "value" => 100*$valorFrete
+        ]
+    ];
+    
+    $metadata = [
+        "custom_id" => "Order_$id_pedido",
+        
+    ];
+    
+    $customer = [
+        "name" => "linoca sp",
+        "cpf" => "94271564656",
+        // "email" => "",
+        // "phone_number" => "",
+        // "birth" => "",
+        // "address" => [
+        // 	"street" => "",
+        // 	"number" => "",
+        // 	"neighborhood" => "",
+        // 	"zipcode" => "",
+        // 	"city" => "",
+        // 	"complement" => "",
+        // 	"state" => "",
+        // 	"juridical_person" => "",
+        // 	"corporate_name" => "",
+        // 	"cnpj" => ""
+        // ],
+    ];
+    
+ 
+
+
+    $bankingBillet = [
+        "expire_at" => "2024-12-10",
+        "message" => "This is a space\n of up to 80 characters\n to tell\n your client something",
+        "customer" => $customer
+
+    ];
+    
+    $payment = [
+        "banking_billet" => $bankingBillet
+    ];
+    
+    $body = [
+        "items" => $items,
+        "shippings" => $shippings,
+        "metadata" => $metadata,
+        "payment" => $payment
+    ];
+    
+    try {
+        $api = new Gerencianet($options);
+        $response = $api->createOneStepCharge($params = [], $body);
+    
+        print_r("<pre>" . json_encode($response, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "</pre>");
+    } catch (GerencianetException $e) {
+        print_r($e->code);
+        print_r($e->error);
+        print_r($e->errorDescription);
+    } catch (Exception $e) {
+        print_r($e->getMessage());
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    }
+    
+    // Feche a conexão com o banco de dados
+    mysqli_close($conexao);
+    // Limpa o carrinho após a compra
+    unset($_SESSION['shopping_cart']);
+
+
+    
+
+    // Redireciona o usuário para uma página de confirmação
+    header('processar_compra.php');
+} }
+

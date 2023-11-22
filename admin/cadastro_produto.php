@@ -16,14 +16,17 @@ $valor = $_POST['valor'];
 $descricao = $_POST['descricao'];
 $categoria_id = $_POST['categoria'];
 $subcategoria = $_POST["subcategorias"];
-;
+$altura = $_POST["altura"];
+$largura = $_POST["largura"];
+$comprimento = $_POST["comprimento"];
+$peso = $_POST["peso"];
 $imagem_nome = $_FILES['imagem']['name'];
 $imagem_temp = $_FILES['imagem']['tmp_name'];
 $imagem_caminho = 'uploads/' . $imagem_nome; // Diretório onde as imagens serão armazenadas
 
 move_uploaded_file($imagem_temp, $imagem_caminho);
 
-$insert_produto_query = "INSERT INTO produtos (nome, valor, descricao, imagem, categoria_id, subcategoria) VALUES ('$nome', '$valor', '$descricao', '$imagem_caminho', '$categoria_id', '$subcategoria')";
+$insert_produto_query = "INSERT INTO produtos (nome, valor, descricao, imagem, categoria_id, subcategoria,altura,largura,comprimento,peso) VALUES ('$nome', '$valor', '$descricao', '$imagem_caminho', '$categoria_id', '$subcategoria','$altura','$largura','$comprimento','$peso')";
 
 
 if ($conn->query($insert_produto_query) === TRUE) {
