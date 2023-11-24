@@ -76,7 +76,7 @@ if (isset($_SESSION["shopping_cart"])) {
 
                         <div class="item-header">
                             <a href="" class="item-link"><img src="img/bag.png" alt="">
-                                <div style="color:black; text-decoration: none; font-size: 4vh; text-transform: uppercase;">Loja
+                                <div style="color:black; text-decoration: none; font-size: 4vh; text-transform: uppercase;">Loja 
                                     Easy fit</div> <img src="img/seta-direita.png" alt="">
                             </a>
                             <a href="" style=" display: flex; justify-content: flex-end;"><img src="/img/lixo.png" alt=""></a>
@@ -85,11 +85,11 @@ if (isset($_SESSION["shopping_cart"])) {
 
                         </div>
 
-                        <input type="radio"><img src="admin/<?php echo $product["image"]; ?>" class="item-img" alt="">
+                        <input type="radio"><img src="admin/<?php echo $product["image"];  ?>" class="item-img" alt="">
 
                         <div class="cart-content">
 
-                            <p> <?php echo $product["name"]; ?></p>
+                            <p> <?php echo htmlspecialchars($product["name"] . $product["tamanho"]); ?></p>
 
 
 

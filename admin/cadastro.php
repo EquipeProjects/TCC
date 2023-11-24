@@ -23,26 +23,27 @@ if (isset($_GET['edit_products'])) {
    
 </head>
 
-<body>
+<body style="display: flex; justify-content:center; flex-direction:column;align-items:center;text-align:center; ">
     <h1>Cadastro de Produtos</h1>
     <form action="cadastro_produto.php" method="post" enctype="multipart/form-data">
-        Nome: <input type="text" name="nome"  required><br>
-        Valor: <input type="text" name="valor"   required><br>
-        Descrição: <textarea name="descricao"  required></textarea><br>
-        Peso (Kg): <input type="text" name="peso"><br>
-Altura (cm): <input type="text" name="altura"><br>
-Largura (cm): <input type="text" name="largura"><br>
-Comprimento (cm): <input type="text" name="comprimento"><br>
+       <label for="nome"> Nome:</label> <br> <input type="text" name="nome"  required><br>
+        Valor: <br> <input type="text" name="valor"   required><br>
+        Descrição: <br><textarea name="descricao"  required></textarea><br>
+        Peso (Kg): <br><input type="text" name="peso"><br>
+        (embalagem)<br>
+Altura (cm): <br><input type="text" name="altura"><br>
+Largura (cm): <br><input type="text" name="largura"><br>
+Comprimento (cm): <br><input type="text" name="comprimento"><br>
 
         Imagem principal: <input type="file" name="imagem" required  onchange="exibirPreview(this)"><br>
+        <div id="preview"></div>
         Imagens secundarias:
         Escolha imagens:
         <input type="file" name="imagens[]" required>
         <input type="file" name="imagens[]" required>
         <input type="file" name="imagens[]" required>
         <br>
-        <div id="preview"></div>
-        <label for="categoria">Categoria:</label>
+        <label for="categoria">Categoria:</label><br>
         <select name="categoria" id="categoria" required>
             <option value="" required>Selecione uma categoria</option>
             <?php
@@ -54,8 +55,8 @@ Comprimento (cm): <input type="text" name="comprimento"><br>
                 echo "<option value='$category_id'>$category_title</option>";
             }
             ?>
-        </select>
-        <label for="subcategoria">Subcategorias:</label>
+        </select><br>
+        <label for="subcategoria">Subcategorias:</label><br>
         <select name="subcategorias" id="subcategoria" required>
             <option value="">Selecione uma ou mais subcategorias</option>
         </select><br>

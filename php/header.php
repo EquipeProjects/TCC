@@ -116,11 +116,7 @@
                 <img width="30px" src="img/loupe.png" alt="Search Icon">
             </button>
         </form>
-        <div class="icons1">
-            <a href="favoritos.php">
-                <img src="img/favoritos.png" alt="Shopping Bag Icon">
-            </a>
-            </div>
+        
         <div class="icons2">
             <a href="carrinho.php">
                 <img src="img/bag.png" alt="Shopping Bag Icon">

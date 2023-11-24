@@ -39,14 +39,14 @@ if ($result->num_rows == 1) {
     <title>Document</title>
 </head>
 
-<body>
+<body style="display: flex; justify-content:center; flex-direction:column;align-items:center;text-align:center; ">
 <h1>Atualização de Produtos</h1>
     <form action="processar_edicao.php" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="id_produto" value="<?php echo $row['id']; ?>">
-        Nome: <input type="text" name="nome" value="<?php echo $row['nome']; ?>"><br>
-        Valor: <input type="text" name="valor" value="<?php echo $row['valor']; ?>"><br>
-        Descrição: <textarea name="descricao"><?php echo $row['descricao']; ?></textarea><br>
-        Imagem atual: <img style="width: 150px;" src="<?php echo $row['imagem']; ?>" alt="<?php echo $row['nome']; ?>"><br>
+        Nome: <br><input type="text" name="nome" value="<?php echo $row['nome']; ?>"><br>
+        Valor:<br> <input type="text" name="valor" value="<?php echo $row['valor']; ?>"><br>
+        Descrição:<br> <textarea name="descricao"><?php echo $row['descricao']; ?></textarea><br>
+        Imagem atual:<br> <img style="width: 150px;" src="<?php echo $row['imagem']; ?>" alt="<?php echo $row['nome']; ?>"><br>
         Escolher nova imagem: <input type="file" name="nova_imagem"><br>
         Imagens secundarias:
         Escolha imagens:
@@ -54,7 +54,7 @@ if ($result->num_rows == 1) {
         <input type="file" name="imagens_secundarias[]" multiple>
         <input type="file" name="imagens_secundarias[]" multiple>
         <br>
-        Categoria:
+        Categoria:<br>
         <select name="categoria" id="categoria">
             
 
@@ -67,9 +67,9 @@ if ($result->num_rows == 1) {
                 $category_id = $row['id'];
                 echo "<option value='$category_id'>$category_title</option>";
             }
-            ?>
-            </select>
-            <label for="subcategoria">Subcategorias:</label>
+            ?><br>
+            </select><br>
+            <label for="subcategoria">Subcategorias:</label><br>
             <select name="subcategoria" id="subcategoria">
                 <option value="">Selecione uma ou mais subcategorias</option>
             </select><br>

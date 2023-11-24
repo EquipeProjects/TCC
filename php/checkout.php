@@ -29,6 +29,7 @@ if (!empty($_SESSION['shopping_cart'])) {
 
     
     foreach ($_SESSION['shopping_cart'] as $produto_id => $quantidade) {
+      
         echo$produto_id ;
         $query = "SELECT nome, valor, peso, altura, largura, comprimento FROM produtos WHERE id = $produto_id";
         $result = mysqli_query($conexao, $query);
@@ -120,20 +121,31 @@ if (!empty($_SESSION['shopping_cart'])) {
 
     // Percorre os produtos no carrinho e insere-os na tabela "itens_pedido"
     foreach ($_SESSION['shopping_cart'] as $produto_id => $quantidade) {
-        $query = "SELECT valor FROM produtos WHERE id = $produto_id";
-        $result = mysqli_query($conexao, $query);
-        $produto = mysqli_fetch_assoc($result);
+        // Recupera informações do produto
+        $query_produto = "SELECT valor FROM produtos WHERE id = $produto_id";
+        $result_produto = mysqli_query($conexao, $query_produto);
+        $produto = mysqli_fetch_assoc($result_produto);
+    
         $preco_unitario = $produto['valor'];
-        $quantidade=1;
-        echo  "  ",$preco_unitario," ",$quantidade;
+   
+        $tamanho = isset($_SESSION['shopping_cart'][$produto_id]['tamanho']) ? $_SESSION['shopping_cart'][$produto_id]['tamanho'] : 'A';
+        echo $tamanho ;
+        $quantidade = 1;
+        echo "  ", $preco_unitario, " ", $quantidade;
         $subtotal1 = $preco_unitario * $quantidade;
-     
-
+    
         // Insere o item do pedido na tabela "itens_pedido"
-        $inserir_item_query = "INSERT INTO itens_pedido (id_pedido, id_produto, quantidade, preco_unitario, total_item, valor_frete) VALUES ('$id_pedido', '$produto_id', '$quantidade', '$preco_unitario', '$subtotal1', '$valorFrete')";
+        $inserir_item_query = "INSERT INTO itens_pedido (id_pedido, id_produto, quantidade, preco_unitario, total_item, valor_frete, tamanho) VALUES ('$id_pedido', '$produto_id', '$quantidade', '$preco_unitario', '$subtotal1', '$valorFrete', '$tamanho')";
+    
+        $result_insert = mysqli_query($conexao, $inserir_item_query);
 
-        mysqli_query($conexao, $inserir_item_query);
+        if ($result_insert) {
+            echo "Inserção bem-sucedida!";
+        } else {
+            echo "Erro na inserção: " . mysqli_error($conexao);
+        }
     }
+    
 
     // Atualiza o valor total do pedido na tabela "pedidos"
     $atualizar_total_query = "UPDATE pedidos SET total_pedido = '$valor_total' WHERE id_pedido = '$id_pedido'";
@@ -228,35 +240,41 @@ if (!empty($_SESSION['shopping_cart'])) {
 
             echo "<b>Imagem:</b><br>";
             echo "<img src='" . $qrcode["imagemQrcode"] . "' />";
-            while (true) {
-                try {
-                    $api = Gerencianet::getInstance($options);
-                    $response = $api->pixDetailCharge($params);
-            
-                    // Verifique o status da resposta e atualize o status do pagamento no seu banco de dados
-                    if ($response['status'] == 'PAGO') {
-                        // O pagamento foi realizado com sucesso, você pode atualizar o status no seu banco de dados
-                        // Implemente a lógica de atualização do status aqui
-                        echo "O pagamento foi realizado com sucesso!";
-                        break; // Saia do loop quando o pagamento for confirmado
-                    } else {
-                        // O pagamento ainda não foi concluído
-                        echo "O pagamento ainda não foi realizado. Aguardando...";
-                    }
-                } catch (GerencianetException $e) {
-                    // Trate as exceções da Gerencianet
-                    print_r($e->code);
-                    print_r($e->error);
-                    print_r($e->errorDescription);
-                } catch (Exception $e) {
-                    // Trate outras exceções
-                    print_r($e->getMessage());
-                }
-            
-                // Aguarde um intervalo antes da próxima verificação
-                sleep(30); // Intervalo de 10 segundos (ajuste conforme necessário)
-            }
-            
+
+            echo "<b>QR Code:</b>";
+            echo "<div id='qrcode-container'></div>"; // Container para o QR Code
+    
+            // Adicione o script JavaScript para gerar o QR Code e exibir o timer
+            echo "<script>
+                    var qrcodeContainer = document.getElementById('qrcode-container');
+                    var timerElement = document.createElement('div');
+                    timerElement.id = 'timer';
+                    qrcodeContainer.appendChild(timerElement);
+    
+                    var remainingTime = 3600; // Tempo de expiração em segundos
+                    var timerInterval = setInterval(function () {
+                        var minutes = Math.floor(remainingTime / 60);
+                        var seconds = remainingTime % 60;
+    
+                        timerElement.innerHTML = 'Tempo restante: ' + minutes + 'm ' + seconds + 's';
+    
+                        if (remainingTime <= 0) {
+                            clearInterval(timerInterval);
+                            timerElement.innerHTML = 'Expirado';
+                        }
+    
+                        remainingTime--;
+                    }, 1000);
+    
+                    // Adicione o script para gerar o QR Code
+                    var qrcode = new QRCode(qrcodeContainer, {
+                        text: ' " . $qrcode["imagemQrcode"] . "',
+                        width: 128,
+                        height: 128
+                    });
+                  </script>";
+    
+           
 
 
 
@@ -271,8 +289,47 @@ if (!empty($_SESSION['shopping_cart'])) {
     } catch (Exception $e) {
         print_r($e->getMessage());
     }
+    while (false) {
+        set_time_limit(30); // Aumenta o tempo limite para 300 segundos
+
+        try {
+            $api = Gerencianet::getInstance($options);
+            $response = $api->pixDetailCharge($params);
+    
+            // Verifique o status da resposta e atualize o status do pagamento no seu banco de dados
+            if ($response['status'] == 'CONCLUIDA') {
+                // O pagamento foi realizado com sucesso, você pode atualizar o status no seu banco de dados
+                // Implemente a lógica de atualização do status aqui
+                echo "O pagamento foi realizado com sucesso!";
+                break; // Saia do loop quando o pagamento for confirmado
+            } else {
+                // O pagamento ainda não foi concluído
+                ob_flush();
+                flush();
+                echo "O pagamento ainda não foi realizado. Aguardando...";
+                
+            }
+        } catch (GerencianetException $e) {
+            // Trate as exceções da Gerencianet
+            print_r($e->code);
+            print_r($e->error);
+            print_r($e->errorDescription);
+        } catch (Exception $e) {
+            // Trate outras exceções
+            print_r($e->getMessage());
+        }
+    
+        // Aguarde um intervalo antes da próxima verificação
+        sleep(30); // Intervalo de 10 segundos (ajuste conforme necessário)
+    }
+    
 
     }
+
+
+
+    
+
     
 if ($forma_pagamento === "boleto") {
     
@@ -397,6 +454,6 @@ if ($forma_pagamento === "boleto") {
     
 
     // Redireciona o usuário para uma página de confirmação
-    header('processar_compra.php');
+ 
 } }
 

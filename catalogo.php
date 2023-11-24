@@ -38,7 +38,7 @@
 
                 if ($categoria_id !== null) {
                     // Consulta SQL para selecionar produtos da categoria correspondente
-                    $sql = "SELECT id, nome, valor, imagem FROM produtos WHERE categoria_id = $categoria_id";
+                    $sql = "SELECT id, nome, valor, imagem, subcategoria FROM produtos WHERE categoria_id = $categoria_id";
 
                     // Verifica se a subcategoria também foi fornecida
                     if ($subcategoria !== null) {
@@ -59,7 +59,7 @@
                     <div class='preco_product'>{$row['valor']}</div>
                 </div>
                 <div class='text_product'>{$row['nome']}</div>
-                <div class='sob_categoria'>Casual</div>
+                <div class='sob_categoria's>{$row['subcategoria']}</div>
                 </a>
             </div>
 

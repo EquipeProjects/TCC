@@ -36,7 +36,7 @@
             <img class="img_nanismo" src='img/nanismo.jpg'>
             <img class="img_mulher_poderosa" src='img/mulher_poderosa.jpg'>
             <img class="img_mulheres" src='img/mulheres.jpg'>
-            <div style="display: flex; width: 40%;position: absolute; left: 30%;bottom: 0; height: 40%;">
+            <div style="display: flex; width: 40%;position: absolute; left: 30%;bottom: -60px; height: 25%;">
                 <div class="medidas">
                     <div class="tod_medidas1">PARA TODOS OS ESTILOS</div>
                     <div class="tod_medidas2">PARA TODAS AS MEDIDAS</div>
