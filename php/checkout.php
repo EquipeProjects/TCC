@@ -3,7 +3,9 @@
 use Gerencianet\Exception\GerencianetException;
 use Gerencianet\Gerencianet;
 
-session_start();
+session_start();header("Access-Control-Allow-Origin: finalizarcompra.html");
+header("Access-Control-Allow-Methods: POST");
+header("Access-Control-Allow-Headers: Content-Type");
 
 if (!empty($_SESSION['shopping_cart'])) {
     // Conecte-se ao banco de dados
@@ -20,7 +22,7 @@ if (!empty($_SESSION['shopping_cart'])) {
     $status_pedido = "Em Processamento"; // Pode ser ajustado conforme necessário
     $total_pedido = 0; // Será calculado abaixo
     $endereco_entrega  = "teste";
-    $forma_pagamento ="pix";
+    $forma_pagamento =  $_POST["forma_pagamento"];
 
 
 

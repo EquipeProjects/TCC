@@ -22,8 +22,9 @@
         color: gray;
         padding: 5px;
     }
+    
 
-    .ratin span.active {
+    .ratin span.active,.amarelo {
         color: gold;
     }
 </style><?php
@@ -52,6 +53,24 @@
             $conn->close();
             exit;
         }
+        $sql_categoria = "SELECT categorias.nome AS nome_categoria FROM produtos
+        INNER JOIN categorias ON produtos.categoria_id = categorias.id
+        WHERE produtos.id = $produto_id";
+$result_categoria = $conn->query($sql_categoria);
+
+if ($result_categoria->num_rows > 0) {
+    while ($row_categoria = $result_categoria->fetch_assoc()) {
+      $categoria= $row_categoria["nome_categoria"];
+    }
+} else {
+    echo "Produto não encontrado.";
+}
+
+
+
+
+
+
 
         // Consulta os tamanhos associados ao produto
         $sql_tamanhos = "SELECT * FROM tamanhos WHERE produto_id = $produto_id";
@@ -68,43 +87,8 @@
         $imagens_query = "SELECT caminho FROM imagens_produto WHERE produto_id = $produto_id";
         $result_imagens = mysqli_query($conn, $imagens_query);
 
-        function getCategorias($conn)
-        {
-            $sql = "SELECT * FROM categorias ";
-            $result = $conn->query($sql);
+        
 
-            $categorias = array();
-
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    $categorias[] = array(
-                        'id' => $row['id'],
-                        'nome' => $row['nome']
-                    );
-                }
-            }
-
-            return $categorias;
-        }
-
-        function getSubcategorias($conn, $categoria_id)
-        {
-            $sql = "SELECT * FROM subcategorias WHERE categoria_id = $categoria_id";
-            $result = $conn->query($sql);
-
-            $subcategorias = array();
-
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    $subcategorias[] = array(
-                        'id' => $row['id'],
-                        'nome' => $row['nome']
-                    );
-                }
-            }
-
-            return $subcategorias;
-        }
 
         ?>
 
@@ -144,7 +128,7 @@
     include('php/header.php'); // Inclui o cabeçalho
     ?>
 
-    <main style="background-color: #D9D9D8; width: 100%;">
+    <main style="background-color: rgb(217, 217, 216,0.5); width: 100%;">
 
         <div class="container">
             <div style="display: flex;  height: 50px;">
@@ -301,30 +285,9 @@ width: 30%;">Calcular</button>
     </div>
 
     <!-- Formulário de Avaliação -->
-    <form id="form-avaliacao" style="display: none;
-            flex-direction:column; justify-content:center; ">
-    <label for="avaliacao">Avaliação:</label>
-                <div class="rating" onclick="selecionarEstrela(event)">
-                    <span>&#9733;</span>
-                    <span>&#9733;</span>
-                    <span>&#9733;</span>
-                    <span>&#9733;</span>
-                    <span>&#9733;</span>
-                </div>
-
-                <label for="comentario">Comentário:</label>
-                <textarea name="comentario" id="comentario"></textarea>
-
-                <button type="button" onclick="enviarAvaliacao()">Enviar Avaliação</button>
-    </form>
-
+    
     <!-- Container para Avaliações Existente -->
-    <div id="avaliacoes-existentes"  style="font-size:10px;
-            
-            align-items:center;text-align:center;
-            margin:10px">
-        <!-- Conteúdo das Avaliações Existente será carregado via AJAX -->
-    </div>
+    
 </div>
 
             <!-- Exibir Estrelas e Média das Avaliações -->
@@ -337,7 +300,7 @@ width: 30%;">Calcular</button>
             <form id="form-avaliacao">
               
             </form>
-            <div class="categorias">aaa/aaaa/aaaaa</div>
+            <div class="categorias"><?php echo $categoria; ?>/<?php echo $produto['subcategoria']; ?>/<?php echo $produto['nome']; ?></div>
 
             <div>Até 10 x R$<?php echo number_format($produto['valor'], 2, ',', '.'); ?> sem juros
                 Ver outras opções</div>
@@ -430,6 +393,28 @@ width: 30%;">Calcular</button>
 
 
     </main>
+
+
+    <form id="form-avaliacao" style="display: flex; flex-direction: column; align-items: center;">
+    <label for="avaliacao">Avaliação:</label>
+    <div class="rating" onclick="selecionarEstrela(event)">
+        <span>&#9733;</span>
+        <span>&#9733;</span>
+        <span>&#9733;</span>
+        <span>&#9733;</span>
+        <span>&#9733;</span>
+    </div>
+
+    <label for="comentario">Comentário:</label>
+    <textarea name="comentario" id="comentario"></textarea>
+
+    <button type="button" onclick="enviarAvaliacao()">Enviar Avaliação</button>
+</form>
+
+<!-- Avaliações Existente -->
+<div id="avaliacoes-existentes" style="font-size: 10px; align-items: center; text-align: center; margin: 10px;">
+    <!-- Conteúdo das Avaliações Existente será carregado via AJAX -->
+</div>
     <?php
     include('php/footer.php');
 
@@ -437,14 +422,13 @@ width: 30%;">Calcular</button>
     ?>
     <script src="js/index.js"></script>
     <script>
-        function mostrarFormulario() {
+ document.addEventListener("DOMContentLoaded", function() {
     var formulario = document.getElementById('form-avaliacao');
-    formulario.style.display = 'block';
+    formulario.style.display = 'flex';
 
-    // Aqui você pode adicionar código para carregar e exibir avaliações existentes na div 'avaliacoes-existentes'.
+    // Carregue as avaliações existentes
     carregarAvaliacoesExistentes();
-}
-
+});
 function carregarAvaliacoesExistentes() {
     // Use AJAX para buscar avaliações existentes do servidor
     $.ajax({

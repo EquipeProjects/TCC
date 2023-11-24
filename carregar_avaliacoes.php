@@ -16,15 +16,24 @@ if (isset($_GET['id'])) {
 } else {
     echo "Erro: O parâmetro 'id' não foi fornecido.";
 }
-$sql_avaliacoes = "SELECT * FROM avaliacoes WHERE produto_id = $produto_id";
+$sql_avaliacoes = "SELECT * FROM avaliacoes WHERE produto_id = $produto_id ORDER BY id DESC ";
 $result_avaliacoes = $conn->query($sql_avaliacoes);
 
 if ($result_avaliacoes->num_rows > 0) {
-    echo "<p>Avaliações existentes:</p><ul>";
-    while ($row = $result_avaliacoes->fetch_assoc()) {
-        echo "<li>" . $row['avaliacao'] . " estrelas - " . $row['comentario'] . "</li>";
+    foreach ($result_avaliacoes as $avaliacao) {
+        echo "<div class='avaliacao-item stars ratin'>";
+        echo "<p>Avaliação: ";
+        for ($i = 1; $i <= 5; $i++) {
+            if ($i <= $avaliacao['avaliacao']) {
+                echo "<span style='color:yellow;'>&#9733</span>"; // Estrela preenchida
+            } else {
+                echo "<span>&#9733</span>"; // Estrela vazia
+            }
+        }
+        echo "</p>";
+        echo "<p>Comentário: " . $avaliacao['comentario'] . "</p>";
+        echo "</div>";
     }
-    echo "</ul>";
 } else {
     echo "<p>Ainda não há avaliações para este produto.</p>";
 }

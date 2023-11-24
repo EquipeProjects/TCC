@@ -25,15 +25,32 @@
     </header>
 
     <main class="finalizar">
-        <div class="divisao">
+        <form class="divisao" id="formularioCheckout">
+            <label for="endereco">Endereço:</label>
+            <input type="text" id="endereco" name="endereco" required>
+
+            <!-- Opções de pagamento -->
+            <label for="forma_pagamento">Escolha a forma de pagamento:</label>
+            <select id="forma_pagamento" name="forma_pagamento" required>
+                <option value="pix">Cartão de Crédito</option>
+                <option value="boleto">Boleto Bancário</option>
+            </select>
+
+            
             <a class="status_compra" href="#"> >Carrinho > CONTINUAR COMPRAR > Pagar > Pedido Completo></a>
             <p class="title_endereco_env">Endereço de Envio</p>
             <input type="text" placeholder="Localizacao*">
-            <input type="text" placeholder="Primeiro nome*">
-            <input type="text" placeholder="Sobrenome*">
+            <div class="metade-forms">
+                <input type="text" placeholder="Primeiro nome*">
+                <input type="text" placeholder="Sobrenome*">
+ 
+            </div>
+            <div class="metade-forms">
+                <input type="text" placeholder="br">
+                <input type="text" placeholder="Número de telefone**">
 
-            <input type="text" placeholder="br">
-            <input type="text" placeholder="Número de telefone**">
+            </div>
+        
             <input type="text" placeholder="CEP/CÓDIGO POSTAL**">
             <input type="text" placeholder="Linha de Endereço 1**">
             <input type="text" placeholder="Número*">
@@ -67,7 +84,8 @@
             <p>Esta é uma compra internacional, sujeita a uma operação de câmbio, que será processada pelo EBANX de
                 acordo com seus termos e condições. Ao clicar em comprar, você dá ciência e aceita os termos desta
                 transação.</p>
-        </div>
+            </form>
+        
         <div class="divisao">
 
 
@@ -92,7 +110,7 @@
 
             <p>motivo de indisponibilidade da carteira<a href="#" >veja mais</a></p>
 
-            <button class="btn-orange">CONTINUAR COMPRA</button>
+            <button class="btn-orange" onclick="enviarDadosCheckout()">CONTINUAR COMPRA</button>
 
 
         </div>
@@ -107,5 +125,30 @@
 
 
 </body>
+<script>
+    function enviarDadosCheckout() {
+        // Coleta dos dados do formulário
+        var formulario = document.getElementById("formularioCheckout");
+        var dadosFormulario = new FormData(formulario);
+
+        // Envio dos dados via AJAX
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "php/checkout.php", true);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                // Processar a resposta do servidor, se necessário
+                console.log(xhr.responseText);
+                // Você pode redirecionar o usuário para uma página de confirmação ou fazer outras ações após o checkout
+            }
+        };
+
+        // Configuração do cabeçalho para o envio de dados do formulário
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+        // Envio dos dados
+        xhr.send(new URLSearchParams(dadosFormulario));
+    }
+</script>
+
 
 </html>

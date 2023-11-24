@@ -29,9 +29,10 @@ header input {
 }
 
 .logo {
-    height: 100%;
+    height: 150px;
     margin: 5%;
-    width: 100%;
+    width: 300px;
+ 
 
 }
 
@@ -123,7 +124,7 @@ input[type=text] {
     font-size: 30px;
     background-color:#E6A540;
     border: none;
-    margin: 5%;
+    margin: 5%; 
     border-radius: 30px;
     color: white;
 
@@ -209,4 +210,19 @@ input[type=text]{
 .finalizar img{
     width: 30px;
     height: 30px;
+}
+
+.metade-forms{
+
+display: flex;
+    width: 300px;
+    min-height: 100px;
+
+
+}
+
+.metade-forms .btn-generic {
+    width: 150px;
+    min-height: 100px;
+  
 }
