@@ -184,7 +184,7 @@ if ($result_categoria->num_rows > 0) {
                         <input type="hidden" name="quantidade" value="1">
                         <input type="hidden" name="servico" value="E">
                         <label for="" style="text-align: left; position: relative;left: 0px;">
-                            insira seu cep
+                            Insira seu cep
                         </label>
                         <input type="text" id="cep" name="cep_destino" placeholder="" required style="width: 100%; height: 60px; border-radius: 20px; border:none"> <button style="position: absolute; bottom: 5px; right:10px ; height: 50px; border: none; border-radius: 20px;   background-color: #C1C1C1;
 width: 30%;">Calcular</button>

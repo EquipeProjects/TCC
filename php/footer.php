@@ -1,7 +1,7 @@
 <footer>
     <div class="footer_item">
 
-        <div>encontre uma loja easy fit perto de você</div>
+        <div>Encontre a melhor loja online EasyFit</div>
         <div>FORMAS DE PAGAMENTO</div>
         <div class="flex_pag">
             <img class="footer_pag" src="img/mastercard.svg">
