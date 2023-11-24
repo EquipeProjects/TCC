@@ -1,3 +1,8 @@
+body {
+    overflow-x: hidden; /* Impede a barra de rolagem horizontal */
+}
+
+
 @media (max-width: 600px) {
     body {
         background: purple;
@@ -16,7 +21,104 @@
         top: 33px;
     }
 
-    .header {
+    .header {@media (max-width: 600px) {
+        body {
+            background: purple;
+        }
+    
+        .logo {
+            flex-basis: 100%; /* Adjusted for full width */
+            justify-content: center; /* Center the logo */
+        }
+    
+        .logo img {
+            max-width: 80%; /* Adjusted for better responsiveness */
+            height: auto;
+            margin: 10px; /* Added margin for spacing */
+        }
+    
+        .header {
+            flex-direction: column;
+            height: auto;
+            align-items: center; /* Center align items */
+        }
+    
+        .center-links {
+            margin-top: 20px;
+        }
+    
+        ul {
+            flex-direction: column; /* Stack links vertically */
+            text-align: center; /* Center align text */
+        }
+    
+        li a {
+            margin: 10px 0;
+        }
+    
+        .frasemotivac_text,
+        .Author_frase {
+            top: 0; /* Adjusted positioning */
+        }
+    
+        .pesquisar {
+            width: 80%; /* Adjusted width for better responsiveness */
+        }
+    
+        .pesquisar input {
+            width: 100%;
+            height: 40px;
+        }
+    
+        .icons {
+            margin: 20px 0;
+        }
+    
+        .img_nanismo,
+        .img_mulheres,
+        .img_mulher_poderosa {
+            width: 100%; /* Adjusted for full width */
+            left: 0; /* Reset positioning */
+            right: 0; /* Reset positioning */
+        }
+    
+        .download_img {
+            width: 80px; /* Adjusted size for better responsiveness */
+            height: 80px; /* Adjusted size for better responsiveness */
+            top: 0; /* Adjusted positioning */
+            left: 50%; /* Center the button */
+            transform: translateX(-50%); /* Center the button */
+            margin-right: 0; /* Reset margin */
+        }
+    
+        .download_blackground {
+            width: 100%; /* Adjusted for full width */
+        }
+    
+        .carousel-images img {
+            max-width: 100%; /* Adjusted for full width */
+            height: auto;
+        }
+    
+        .carousel-prev,
+        .carousel-next {
+            top: 80%; /* Adjusted positioning */
+        }
+    
+        .carousel-next img,
+        .carousel-prev img {
+            max-width: 30px; /* Adjusted size for better responsiveness */
+        }
+    
+        .background_carrosel {
+            width: 100%; /* Adjusted for full width */
+            left: 0; /* Reset positioning */
+            bottom: 0; /* Adjusted positioning */
+        }
+    }
+    
+    /* Add similar adjustments for other breakpoints */
+    
         flex-direction: column;
        
         height: auto;
@@ -94,7 +196,7 @@
     }
     
     .img_mulher_poderosa {
-        height: 100%;
+        height: 100%
         width: 30%;
         position: absolute;
         right: 0;
@@ -344,16 +446,16 @@
     }
 
     logo {
-        flex-basis: 10%;
+        flex-basis: 5%;
         justify-self: flex-start;
     }
 
     .logo img {
-        max-width: 250px;
+        max-width: 50%;
         height: auto;
         margin-left: 33px;
         position: relative;
-        top: 33px;
+        top: 43px;
     }
 
     .header {
@@ -1120,7 +1222,6 @@
     
     .img_mulher_poderosa {
         height: 100%;
-    
         width: 30%;
         position: absolute;
         right: 0;
@@ -1339,7 +1440,6 @@
     }
     
     .bottom-left-button:hover {
-        
         background-color: white;
         color: black;
     }

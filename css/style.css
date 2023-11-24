@@ -93,7 +93,6 @@ li a:hover:after {
     width: 300px;
     height: 40px;
 
-
 }
 
 .pesquisar button {
@@ -160,7 +159,6 @@ li a:hover:after {
 }
 
 
-
 .dropdown-catalog {
     visibility: hidden;
     z-index: 1;
@@ -173,7 +171,6 @@ li a:hover:after {
     position: absolute;
     display: flex;
     justify-content: space-around;
-
 
 
 }
@@ -201,7 +198,6 @@ li a:hover:after {
     position: relative;
 
 
-
 }
 
 .dropdown_user {
@@ -220,7 +216,6 @@ li a:hover:after {
     min-width: 200px;
     position: absolute;
     right: -40px;
-
 
 
 }
@@ -309,7 +304,6 @@ li a:hover:after {
     }
 }
 
-
 .caixa {
     height: 600px;
     width: 100%;
@@ -361,15 +355,12 @@ li a:hover:after {
     background-color: black;
     width: 50%;
 
-
 }
-
 
 .tod_medidas1 {
 
     font-family: Agrandir;
     font-size: 123%;
-
 
     background-color: black;
 
@@ -382,7 +373,6 @@ li a:hover:after {
     font-family: Migra ExtraLight;
     font-size: 120%;
     position: relative;
-
 
 
     text-align: center;
@@ -410,7 +400,6 @@ li a:hover:after {
 
     z-index: 1;
 }
-
 
 .background_carrosel {
     background: #2566AF;
@@ -477,7 +466,6 @@ footer {
     font-family: 'Roboto', sans-serif;
 }
 
-
 .seta_user {
     width: 12%;
     display: inline-block;
@@ -495,7 +483,6 @@ footer {
 
 
 
-
 .text_catalog {
     display: inline-block;
 }
@@ -506,7 +493,6 @@ footer {
     text-decoration: none;
     margin: 2vh;
 }
-
 
 .link_home:hover {
     display: block;
@@ -544,7 +530,6 @@ footer {
 .link_catalog:hover {
     display: block;
 }
-
 
 
 .link_unissex {
@@ -682,7 +667,6 @@ section {
 }
 
 
-
 .link_masc_user {
     color: black;
     font-family: 'Roboto', sans-serif;
@@ -785,7 +769,6 @@ section {
 
 
 
-
 .carousel-dots {
     text-align: center;
     margin-top: 10px;
@@ -850,7 +833,6 @@ section {
     padding: 30px;
 }
 
-
 .item-img {
     float: left;
     height: 300px;
@@ -858,7 +840,6 @@ section {
     position: relative;
 
 }
-
 
 .cart-content {
     width: 60%;
@@ -930,7 +911,6 @@ section {
 
 }
 
-
 .item-header {
     display: flex;
     width: 100%;
@@ -965,7 +945,6 @@ section {
     text-decoration: underline;
     color: yellow
 }
-
 
 .link_idioma{
     text-decoration: none;
@@ -1031,3 +1010,4 @@ section {
     bottom: 0; 
     height: 40%;
 }
+
