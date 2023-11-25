@@ -1035,3 +1035,33 @@ section {
   margin-bottom: 3%;
 }
 
+
+
+
+.link-admin{
+
+    text-decoration: none;
+    font-size: 30px;
+text-align: center;
+color: #000000;
+font-family: Verdana, Geneva, Tahoma, sans-serif;
+margin: 40px;
+
+}
+.pag-links{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    
+}
+.img-admin{
+    height: 200px;
+    width: 200px;}
+
+.text-admin{
+
+    font-size: 30px;
+    font-family:'Times New Roman', Times, serif;
+}
