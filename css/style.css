@@ -372,11 +372,11 @@ li a:hover:after {
     left: 35%;
     bottom: 30vh;
     text-align: center;
-   font-family: 'Playfair Display', serif;
-    font-size: 5vh;
-    padding: 5vh;
+    font-family:'Times New Roman', Times, serif;
+    font-size: 7vh;
+    padding: 4vh;
     color: white;
-    -webkit-text-stroke: 1px #734600;
+    -webkit-text-stroke: 0.6px #734600;
 }
 footer {
     display: flex;
