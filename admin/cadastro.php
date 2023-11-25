@@ -18,7 +18,8 @@ if (isset($_GET['edit_products'])) {
 <html>
 
 <head>
-<a href="javascript:void(0);" onclick="goBack()"><img class="logo" src="./img/logo.png" alt="Your Logo"></a></div>
+<link rel="stylesheet" href="../css/style.css">
+<a href="javascript:void(0);" onclick="goBack()"><img class="logo" src="logo.png" alt="Your Logo"></a></div>
 
 <script>
     function goBack() {
