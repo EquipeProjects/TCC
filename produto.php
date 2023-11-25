@@ -250,7 +250,7 @@ width: 30%;">Calcular</button>
 
 
             </div>
-            <a class="text_naocep" href="https://buscacepinter.correios.com.br/app/endereco/index.php" id="get-cep">Não sei meu cep</a>
+            <a class="text_naocep" href="https://buscacepinter.correios.com.br/app/endereco/index.php" id="get-cep" target="_blank">Não sei meu cep</a>
             <div id="resultado-frete"></div>
 
 

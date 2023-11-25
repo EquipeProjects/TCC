@@ -359,7 +359,7 @@ li a:hover:after {
 
 
 .background_carrosel {
-    background: #2566AF;
+    background: #520101;
     width: 33%;
     height: 15vh;
     position: relative;
@@ -369,7 +369,7 @@ li a:hover:after {
     font-family: 'Migra Extralight', sans-serif;
     font-size: 5vh;
     padding: 5vh;
-    color: #E6A540;
+    color: white;
     -webkit-text-stroke: 1px #a51d20;
 
 }
