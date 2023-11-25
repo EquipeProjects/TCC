@@ -24,10 +24,27 @@ if ($_SESSION['tipo_usuario'] !== 'vendedor') {
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body   >
-    <h1>Bem-vindo à página do vendedor! </h1>
+    <h1 style="text-align: center;">Bem-vindo à página do vendedor! </h1>
+    <div class="pag-links">
+        
+        <a href="cadastro.php" class="link-admin">
+            <img src="../img/plus.svg" alt=""  class="img-admin"><br>
+            
+        
+        cadastro produto
+
+    </a>
+    <a href="visualizar_produtos.php"  class="link-admin">
+        <img src="../img/visuali.svg" alt=""  class="img-admin"><br>
+        visualizar produtos
     
-    <a href="cadastro.php">cadastro produto</a>
-    <a href="visualizar_produtos.php">visualizar produtos</a>
-    <!-- Conteúdo da página exclusiva do vendedor -->
+    </a>
+    <a href="pedidos.php"  class="link-admin">
+            <img src="../img/pen.svg" alt=""  class="img-admin"><br>
+            pedidos
+
+        </a>
+    </div>
+  
 </body>
 </html>

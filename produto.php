@@ -135,11 +135,14 @@ if ($result_categoria->num_rows > 0) {
     <main style="background-color: rgb(217, 217, 216,0.5); width: 100%;">
 
         <div class="container">
-            <div style="display: flex;  height: 50px;">
-                <a href="#" style="justify-content: center;align-items: center; text-decoration:none"><img src="img/bag.png" style="width: 50px; text-decoration:none " alt="">
-                    <div style="color:white; font-size:23px; text-decoration:none; position:relative; bottom: 9px;">Loja Easy fit</div>
-                    <img src="img/seta-direita.png" style="width: 50px; text-decoration:none; position:relative; bottom: 39px; left: 84px" alt="">
+            <div style="display: flex; justify-content: center;align-items: center;  height: 50px; width:200px;">
+                <img src="img/loja-link.svg" style="width: 50px; text-decoration:none;margin-top:20px; " alt="">
+                <a href="#" style=" text-decoration:none; ">
+                    <div style="color:black; font-size:23px; text-decoration:none; position:relative; ">
+
+                    Loja Easy fit</div>
                 </a>
+                <img src="img/seta-direita.png" style="width: 50px; text-decoration:none; position:relative; " alt="">
 
             </div>
             <div class="product-details">

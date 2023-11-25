@@ -22,7 +22,7 @@ if (!empty($_SESSION['shopping_cart'])) {
     $status_pedido = "Em Processamento"; // Pode ser ajustado conforme necessário
     $total_pedido = 0; // Será calculado abaixo
     $endereco_entrega  = "teste";
-    $forma_pagamento =  $_POST["forma_pagamento"];
+    $forma_pagamento = "pix"; //$_POST["forma_pagamento"];
 
 
 
@@ -154,182 +154,102 @@ if (!empty($_SESSION['shopping_cart'])) {
     mysqli_query($conexao, $atualizar_total_query);
 
 
-
-
-
-
     if ($forma_pagamento === "pix") {
-    if (file_exists($autoload = realpath('C:/xampp/htdocs/projetos/TCC/07x11/TCC/pagamentos/gn-api-sdk-php-master/vendor/autoload.php'))) {
-        require_once $autoload;
-    } else {
-        print_r("Autoload not found or on path <code>$autoload</code>");
-    }
-
-
-
-
-
-    if (file_exists($options = realpath('C:/xampp/htdocs/projetos/TCC/07x11/TCC/pagamentos/gn-api-sdk-php-master/examples/credentials/options.php'))) {
-        require_once $options;
-    }
-    
-
-    $txid = "000000000000000000000000000000000$id_pedido"; // Substitua pelo valor desejado
-    $pattern = "^[a-zA-Z0-9]{26,35}$";
-    if (!preg_match("/$pattern/", $txid)) {
-        die("Erro: O campo txid não corresponde ao padrão esperado.");
-    }
-    foreach ($_SESSION['shopping_cart'] as $produto_id => $quantidade) {
-        $query = "SELECT nome, valor FROM produtos WHERE id = $produto_id";
-        $result = mysqli_query($conexao, $query);
-        $produto = mysqli_fetch_assoc($result);
-        $nome_produto = $produto['nome'];
-        $preco_produto = $produto['valor'];
-        $subtotal_produto = $preco_produto * 1;
-    
-        $infoAdicionais[] = [
-            "nome" => $nome_produto,
-            "valor" => (string)$subtotal_produto // Ensure that the value is cast to a string
-        ];
-    }
-    $params = [
-        "txid" => $txid
-    ];
- 
-    
-    $body = [
-        "calendario" => [
-            "expiracao" => 3600 // Charge lifetime, specified in seconds from creation date
-        ],
-        "devedor" => [
-            "cpf" => "50618401865",
-            "nome" => "davi ribeiro"
-        ],
-        "valor" => [
-            "original" =>"0.01"
-        ],
-        "chave" => "93d8c857-540a-45c0-af96-17a59e9ec256",
-        
-        "solicitacaoPagador" => "Enter the order number or identifier.",
-        "infoAdicionais" => $infoAdicionais
-    ];
-    
-    try {
-        $api = Gerencianet::getInstance($options);
-        $pix = $api->pixCreateCharge($params, $body);
-
-        if ($pix["txid"]) {
-            $params = [
-                "id" => $pix["loc"]["id"]
-            ];
-
-            $qrcode = $api->pixGenerateQRCode($params);
-
-            echo "<b>Detalhes da cobrança:</b>";
-            echo "<pre>" . json_encode($pix, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "</pre>";
-
-            if ($options['sandbox'] === false) {
-                echo "<b>Link responsivo:</b>";
-                $urlPath = parse_url($pix['loc']["location"], PHP_URL_PATH);
-                $locationPath = explode('/', trim($urlPath, '/'));
-                $locationToken = end($locationPath);
-                $responsiveLink = 'https://pix.gerencianet.com.br/cob/pagar/' . $locationToken;
-                echo "<pre><a target='_blank' href='$responsiveLink'>$responsiveLink</a></pre>";
-            }
-
-            echo "<b>QR Code:</b>";
-            echo "<pre>" . json_encode($qrcode, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "</pre>";
-
-            echo "<b>Imagem:</b><br>";
-            echo "<img src='" . $qrcode["imagemQrcode"] . "' />";
-
-            echo "<b>QR Code:</b>";
-            echo "<div id='qrcode-container'></div>"; // Container para o QR Code
-    
-            // Adicione o script JavaScript para gerar o QR Code e exibir o timer
-            echo "<script>
-                    var qrcodeContainer = document.getElementById('qrcode-container');
-                    var timerElement = document.createElement('div');
-                    timerElement.id = 'timer';
-                    qrcodeContainer.appendChild(timerElement);
-    
-                    var remainingTime = 3600; // Tempo de expiração em segundos
-                    var timerInterval = setInterval(function () {
-                        var minutes = Math.floor(remainingTime / 60);
-                        var seconds = remainingTime % 60;
-    
-                        timerElement.innerHTML = 'Tempo restante: ' + minutes + 'm ' + seconds + 's';
-    
-                        if (remainingTime <= 0) {
-                            clearInterval(timerInterval);
-                            timerElement.innerHTML = 'Expirado';
-                        }
-    
-                        remainingTime--;
-                    }, 1000);
-    
-                    // Adicione o script para gerar o QR Code
-                    var qrcode = new QRCode(qrcodeContainer, {
-                        text: ' " . $qrcode["imagemQrcode"] . "',
-                        width: 128,
-                        height: 128
-                    });
-                  </script>";
-    
-           
-
-
-
-
+        if (file_exists($autoload = realpath('C:\xampp\htdocs\TCC\gn-api-sdk-php-master\vendor\autoload.php'))) {
+            require_once $autoload;
         } else {
-            echo "<pre>" . json_encode($pix, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "</pre>";
+            print_r("Autoload not found or on path <code>$autoload</code>");
         }
-    } catch (GerencianetException $e) {
-        print_r($e->code);
-        print_r($e->error);
-        print_r($e->errorDescription);
-    } catch (Exception $e) {
-        print_r($e->getMessage());
-    }
-    while (false) {
-        set_time_limit(30); // Aumenta o tempo limite para 300 segundos
-
+    
+        if (file_exists($options = realpath('C:\xampp\htdocs\TCC\gn-api-sdk-php-master\examples\credentials\options.php'))) {
+            require_once $options;
+        }
+    
+        $txid = "000000000000000000000000000000000$id_pedido"; // Substitua pelo valor desejado
+        $pattern = "^[a-zA-Z0-9]{26,35}$";
+        if (!preg_match("/$pattern/", $txid)) {
+            die("Erro: O campo txid não corresponde ao padrão esperado.");
+        }
+    
+        foreach ($_SESSION['shopping_cart'] as $produto_id => $quantidade) {
+            $query = "SELECT nome, valor FROM produtos WHERE id = $produto_id";
+            $result = mysqli_query($conexao, $query);
+            $produto = mysqli_fetch_assoc($result);
+            $nome_produto = $produto['nome'];
+            $preco_produto = $produto['valor'];
+            $subtotal_produto = $preco_produto * 1;
+    
+            $infoAdicionais[] = [
+                "nome" => $nome_produto,
+                "valor" => (string)$subtotal_produto // Ensure that the value is cast to a string
+            ];
+        }
+    
+        $params = [
+            "txid" => $txid
+        ];
+    
+        $body = [
+            "calendario" => [
+                "expiracao" => 1800// Charge lifetime, specified in seconds from creation date
+            ],
+            "devedor" => [
+                "cpf" => "50618401865",
+                "nome" => "davi ribeiro"
+            ],
+            "valor" => [
+                "original" => "0.01"
+            ],
+            "chave" => "93d8c857-540a-45c0-af96-17a59e9ec256",
+            "solicitacaoPagador" => "Enter the order number or identifier.",
+            "infoAdicionais" => $infoAdicionais
+        ];
+    
         try {
             $api = Gerencianet::getInstance($options);
-            $response = $api->pixDetailCharge($params);
+            $pix = $api->pixCreateCharge($params, $body);
     
-            // Verifique o status da resposta e atualize o status do pagamento no seu banco de dados
-            if ($response['status'] == 'CONCLUIDA') {
-                // O pagamento foi realizado com sucesso, você pode atualizar o status no seu banco de dados
-                // Implemente a lógica de atualização do status aqui
-                echo "O pagamento foi realizado com sucesso!";
-                break; // Saia do loop quando o pagamento for confirmado
+            if ($pix["txid"]) {
+                $params = [
+                    "id" => $pix["loc"]["id"]
+                ];
+    
+                $qrcode = $api->pixGenerateQRCode($params);
+    
+                echo "<div id='qrcode-container'>";
+                echo "<b>QR Code:</b>";
+                echo "<img src='" . $qrcode["imagemQrcode"] . "' />";
+                echo "<div id='timer'></div>"; // Container para o timer
+                echo "</div>";
+    
+                echo "<script>
+                        var timerElement = document.getElementById('timer');
+                        var remainingTime = 1800; // Tempo de expiração em segundos
+                        var timerInterval = setInterval(function () {
+                            var minutes = Math.floor(remainingTime / 60);
+                            var seconds = remainingTime % 60;
+    
+                            timerElement.innerHTML = 'Tempo restante: ' + minutes + 'm ' + seconds + 's';
+    
+                            if (remainingTime <= 0) {
+                                clearInterval(timerInterval);
+                                timerElement.innerHTML = 'Expirado';
+                            }
+    
+                            remainingTime--;
+                        }, 1000);
+                      </script>";
             } else {
-                // O pagamento ainda não foi concluído
-                ob_flush();
-                flush();
-                echo "O pagamento ainda não foi realizado. Aguardando...";
-                
+                echo "<pre>" . json_encode($pix, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "</pre>";
             }
         } catch (GerencianetException $e) {
-            // Trate as exceções da Gerencianet
             print_r($e->code);
             print_r($e->error);
             print_r($e->errorDescription);
         } catch (Exception $e) {
-            // Trate outras exceções
             print_r($e->getMessage());
         }
-    
-        // Aguarde um intervalo antes da próxima verificação
-        sleep(30); // Intervalo de 10 segundos (ajuste conforme necessário)
     }
-    
-
-    }
-
-
-
     
 
     

@@ -62,7 +62,9 @@ main {
 }
 
 
-
+.product-images::-webkit-scrollbar {
+    display: none;
+  }
 #featured-image {
     width: 400px;
     height: 400px;

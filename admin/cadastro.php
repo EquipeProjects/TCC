@@ -26,20 +26,21 @@ if (isset($_GET['edit_products'])) {
 <body style="display: flex; justify-content:center; flex-direction:column;align-items:center;text-align:center; ">
     <h1>Cadastro de Produtos</h1>
     <form action="cadastro_produto.php" method="post" enctype="multipart/form-data">
-       <label for="nome"> Nome:</label> <br> <input type="text" name="nome"  required><br>
-        Valor: <br> <input type="text" name="valor"   required><br>
-        Descrição: <br><textarea name="descricao"  required></textarea><br>
-        Peso (Kg): <br><input type="text" name="peso"><br>
+       <label class="text-admin" for="nome"> Nome:</label> 
+       <br> <input type="text" name="nome" class="btn-generic-white" required><br>
+       <label class="text-admin" for="nome"> Valor</label> : <br> <input type="text" name="valor" class="btn-generic-white"  required><br>
+       <label class="text-admin" for="nome"> Descrição:</label>  <br><textarea name="descricao" class="btn-generic-white" required></textarea><br>
+       <label class="text-admin" for="nome"> Peso (Kg):</label>  <br><input type="text"class="btn-generic-white" name="peso"><br>
         (embalagem)<br>
-Altura (cm): <br><input type="text" name="altura"><br>
-Largura (cm): <br><input type="text" name="largura"><br>
-Comprimento (cm): <br><input type="text" name="comprimento"><br>
+        <label class="text-admin"for="nome"> Altura (cm):</label>  <br><input type="text" class="btn-generic-white" name="altura"><br>
+        <label class="text-admin" for="nome"> Largura (cm):</label>  <br><input type="text"class="btn-generic-white" name="largura"><br>
+        <label class="text-admin" for="nome"> Comprimento (cm):</label>  <br><input type="text" class="btn-generic-white" name="comprimento"><br>
 
         Imagem principal: <input type="file" name="imagem" required  onchange="exibirPreview(this)"><br>
         <div id="preview"></div>
-        Imagens secundarias:
+        Imagens secundarias: <br>
         Escolha imagens:
-        <input type="file" name="imagens[]" required>
+        <input style="" type="file" name="imagens[]" required>
         <input type="file" name="imagens[]" required>
         <input type="file" name="imagens[]" required>
         <br>
