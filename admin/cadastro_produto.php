@@ -28,7 +28,6 @@ move_uploaded_file($imagem_temp, $imagem_caminho);
 
 $insert_produto_query = "INSERT INTO produtos (nome, valor, descricao, imagem, categoria_id, subcategoria,altura,largura,comprimento,peso) VALUES ('$nome', '$valor', '$descricao', '$imagem_caminho', '$categoria_id', '$subcategoria','$altura','$largura','$comprimento','$peso')";
 
-
 if ($conn->query($insert_produto_query) === TRUE) {
     $produto_id = $conn->insert_id; // Obtém o ID do produto inserido
 
@@ -58,14 +57,12 @@ if ($conn->query($insert_produto_query) === TRUE) {
         }
     }
 
-    echo "Produto cadastrado com sucesso!";
+    // Redirecione para visualizar_produtos.php após o cadastro bem-sucedido
+    header("Location: visualizar_produtos.php");
+    exit(); // Certifique-se de que o script pare de ser executado após o redirecionamento
 } else {
     echo "Erro ao cadastrar o produto: " . $conn->error;
 }
-
-
-
-
 
 // Tamanhos (obtenha-os como uma string e depois divida em um array)
 // Recupere os tamanhos e estoques como arrays
@@ -80,22 +77,19 @@ if (count($tamanhos) != count($estoques)) {
 
 // Inserção na tabela "produtos"
 
-
 // Inserção na tabela de associação "produto_tamanho" com estoque
 for ($i = 0; $i < count($tamanhos); $i++) {
     $tamanho = mysqli_real_escape_string($conn, $tamanhos[$i]);
     $estoque = mysqli_real_escape_string($conn, $estoques[$i]);
-    
+
     $insert_association_query = "INSERT INTO tamanhos (produto_id, nome_tamanho, estoque) VALUES ('$produto_id', '$tamanho', '$estoque')";
-    
+
     if ($conn->query($insert_association_query) !== TRUE) {
         echo "Erro ao associar tamanho ao produto: " . $conn->error;
     }
 }
 
 echo "Produto cadastrado com sucesso!";
-
-
 
 $conn->close();
 ?>

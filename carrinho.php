@@ -64,7 +64,7 @@ if (isset($_SESSION["shopping_cart"])) {
     ?>
 
     <div class="carrinho">
-        <h1>Seu carrinho <span><?php echo $cart_count; ?> itens</span></h1>
+        <h1>Seu carrinho <span><?php echo $cart_count; ?> (itens)</span></h1>
         <h2><?php echo "R$" . $total_price; ?></h2>
 
         <ul class="cart-items">
@@ -118,7 +118,7 @@ if (isset($_SESSION["shopping_cart"])) {
             <?php
                 }
             } else {
-                echo "<h3>Your cart is empty!</h3>";
+                echo "<h3>Seu carrinho está vazio!</h3>";
             }
             ?>
 

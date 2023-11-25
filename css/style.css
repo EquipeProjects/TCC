@@ -425,6 +425,10 @@ margin: 20px;
     font-family: 'Roboto', sans-serif;
 }
 
+.button_entrar:hover {
+  background: gray;
+}
+
 
 .seta_user {
     width: 12%;
@@ -438,7 +442,7 @@ margin: 20px;
     width: 12%;
     position: relative;
     left: 20vh;
-    top: 1vh;
+    bottom: 120px;
 }
 
 
@@ -447,6 +451,17 @@ margin: 20px;
 .text_catalog {
     display: inline-block;
 }
+
+
+.text_catalogo1 {
+    display: inline-block;
+}
+
+.text_catalogo1:hover {
+    background: black;
+    color:white;
+}
+
 
 .link_home {
     color: white;
@@ -979,3 +994,44 @@ section {
     bottom: 0; 
     height: 40%;
 }
+
+.imgens_emalta1{
+    width: 30%;
+    height: 10%;
+ position: relative;
+ left: 35%;
+}
+.imgens_emalta2
+{
+    width: 30%;
+    position: relative;
+    left: 35%;
+}
+.text_alta_titulo{
+ text-align: center;
+}
+
+.button_relacionado{
+    font-size: 33px;
+    border-radius: 3px;
+    background: black;
+    color:white;
+    width: 30%;
+    height: 33%;
+    position: relative;
+    left: 35%;
+    margin-bottom: 1%;
+}
+
+.button_relacionado:hover{
+   background-color: white;
+   color: black;
+}
+
+.text_estilo_exp{
+  font-size: 33px;
+  margin-left: 5%;
+  margin-top: 3%;
+  margin-bottom: 3%;
+}
+

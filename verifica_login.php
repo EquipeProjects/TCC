@@ -21,7 +21,7 @@ $result = mysqli_query($conn, $query);
 
 if (mysqli_num_rows($result) == 1) {
     $_SESSION['tipo_usuario'] = 'cliente';
-    header('Location: index.html'); // Redirecione para a página do cliente
+    header('Location: index.php'); // Redirecione para a página do cliente
     exit();
 }
 

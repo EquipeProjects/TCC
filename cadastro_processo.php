@@ -29,14 +29,24 @@ if (mysqli_num_rows($result) > 0) {
     // Insira os dados no banco de dados
     if ($tipo_usuario == 'cliente') {
         $insert_query = "INSERT INTO clientes (username, password, nome, email, tipo_usuario) VALUES ('$username', '$password', '$nome', '$email', '$tipo_usuario')";
+        
+        if (mysqli_query($conn, $insert_query)) {
+            // Redirecione para a página index do cliente após o cadastro bem-sucedido
+            header("Location: index.php");
+            exit(); // Certifique-se de que o script pare de ser executado após o redirecionamento
+        } else {
+            echo "Erro ao cadastrar usuário. Por favor, tente novamente.";
+        }
     } else if ($tipo_usuario == 'vendedor') {
         $insert_query = "INSERT INTO vendedores (username, password, nome, email, tipo_usuario) VALUES ('$username', '$password', '$nome', '$email', '$tipo_usuario')";
-    }
-
-    if (mysqli_query($conn, $insert_query)) {
-        echo "Cadastro realizado com sucesso!";
-    } else {
-        echo "Erro ao cadastrar usuário. Por favor, tente novamente.";
+        
+        if (mysqli_query($conn, $insert_query)) {
+            // Redirecione para a página de login do vendedor após o cadastro bem-sucedido
+            header("Location: login.php");
+            exit(); // Certifique-se de que o script pare de ser executado após o redirecionamento
+        } else {
+            echo "Erro ao cadastrar usuário. Por favor, tente novamente.";
+        }
     }
 }
 ?>

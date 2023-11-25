@@ -27,6 +27,10 @@
     .ratin span.active,.amarelo {
         color: gold;
     }
+
+    .text_naocep{
+    font-size: 33px;
+}
 </style><?php
         $servername = "localhost";
         $username = "root";
@@ -240,7 +244,7 @@ width: 30%;">Calcular</button>
 
 
             </div>
-            <a href="#" id="get-cep">Não sei meu cep</a>
+            <a class="text_naocep" href="#" id="get-cep">Não sei meu cep</a>
             <div id="resultado-frete"></div>
 
 
@@ -280,8 +284,10 @@ width: 30%;">Calcular</button>
         }
     }
     
+    
 
     ?>
+    
     </div>
 
     <!-- Formulário de Avaliação -->
@@ -308,8 +314,8 @@ width: 30%;">Calcular</button>
             <div style="display: flex; flex-direction: column; align-items: center;">
 
             <form style="display: flex; flex-direction: column; align-items: center;" action="adicionar_ao_carrinho.php" method="post">
-                <label for="">
-                    <input id="radio1"  type="radio">
+                <label for="radio1">
+                    <input id="radio1"  type="radio"  name="opcao" onclick="mostrarBox(1)">
                     TAMANHO TRADICIONAIS
                 </label>
                 <div id="box1" class="box-inf">
@@ -340,9 +346,9 @@ width: 30%;">Calcular</button>
                 </div>
 
 
-                <a href="#"> Tabela de medidas</a>
-                <label for="">
-                    <input id="radio2" name="tamanho" type="radio">
+                <a href="https://www.calitta.com/br/content/tamanhos-e-medidas-de-roupas-6"  target="_blank"> Tabela de medidas</a>
+                <label for="radio2">
+                    <input id="radio2" name="tamanho" type="radio" name="opcao" onclick="mostrarBox(2)">
                     TAMANHO SOB MEDIDA
                 </label>
                 <div class="box-inf" id="box2">
@@ -355,8 +361,9 @@ width: 30%;">Calcular</button>
     <label for="comprimento_personalizado">Cintura:</label>
     <input id="comprimento_personalizado" name="comprimento_personalizado" type="text" placeholder="Comprimento">
                 </div>
-                <a href="#"> Como medir</a>
+                <a href="https://amaro.com/blog/br/moda/como-saber-meu-tamanho-de-roupa-guia-para-a-tabela-de-medidas/#:~:text=Busto%3A%20D%C3%AA%20a%20volta%20no,dois%20palmos)%20abaixo%20da%20cintura."  target="_blank"> Como medir?</a>
             </div>
+            
 
             <!-- Adicione este script à sua página -->
  
@@ -463,29 +470,39 @@ function carregarAvaliacoesExistentes() {
     </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.rawgit.com/RobinHerbots/Inputmask/5.x/dist/jquery.inputmask.min.js"></script>
-    <script>
-        function enviarAvaliacao() {
-            console.log('Function called');
-            var avaliacao = document.querySelectorAll('.rating span.active').length;
-            console.log('Avaliacao:', avaliacao);
-            var comentario = document.getElementById('comentario').value;
-            var id = <?php echo $produto_id;
-                        $conn->close() ?>;
+   <!-- ... Código anterior ... -->
 
+<script>
+    function enviarAvaliacao() {
+        console.log('Function called');
+        var avaliacao = document.querySelectorAll('.rating span.active').length;
+        console.log('Avaliacao:', avaliacao);
+        var comentario = document.getElementById('comentario').value.trim(); // Remova espaços em branco do início e do final
+        var id = <?php echo $produto_id;
+                    $conn->close() ?>;
 
-            // Enviar dados para o servidor usando AJAX
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'processa_avaliacao.php', true);
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    // Atualizar a página ou realizar outras ações após o envio da avaliação
-                    location.reload();
-                }
-            };
-            xhr.send('avaliacao=' + avaliacao + '&comentario=' + comentario + '&produto_id=' + id);
+        // Adicione a condição para não permitir avaliações e comentários vazios
+        if (avaliacao === 0 || comentario === '') {
+            alert('Por favor, forneça uma avaliação e um comentário antes de enviar.');
+            return;
         }
-    </script>
+
+        // Enviar dados para o servidor usando AJAX
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'processa_avaliacao.php', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                // Atualizar a página ou realizar outras ações após o envio da avaliação
+                location.reload();
+            }
+        };
+        xhr.send('avaliacao=' + avaliacao + '&comentario=' + comentario + '&produto_id=' + id);
+    }
+</script>
+
+<!-- ... Código posterior ... -->
+
    
 </body>
 

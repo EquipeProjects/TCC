@@ -53,7 +53,7 @@
 
 
 
-        <div class="carousel">
+        <a href="carrosel.php"><div class="carousel">
             <div class="carousel-images">
                 <img src="img/s1.png" alt="Imagem 1">
                 <img src="img/girl.jpg" alt="Imagem 2">
@@ -71,7 +71,7 @@
                 <!-- Adicione mais bolinhas conforme necessário -->
             </div>
         </div>
-        <div class="background_carrosel">Estilos em Alta</div>
+        <div class="background_carrosel">Estilos em Alta</div></a>
     </main>
 
     <section>

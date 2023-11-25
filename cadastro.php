@@ -42,11 +42,11 @@
   <form action="cadastro_processo.php" method="post" id="cliente" class="tes1">
     <span> criar conta </span>
 
-    <input type="text" name="username" placeholder="Nome*">
-    <input type="text" name="nome" placeholder="Nome*">
-    <input type="text" name="email" placeholder="Email ou telefone*">
-    <input type="text" name="password" placeholder="Senha*">
-    <input type="text"  name ="senha"placeholder="Repita a senha*">
+    <input type="text" name="username" placeholder="Nome*"  required>
+    <input type="text" name="nome" placeholder="Nome*"  required>
+    <input type="text" name="email" placeholder="Email ou telefone*"  required>
+    <input type="text" name="password" placeholder="Senha*"  required>
+    <input type="text"  name ="senha"placeholder="Repita a senha*" required>
     <a class="link_ja_cont" href="login.php">Já tem Conta?</a>
     <button class="btn-generic">finalizar</button>
     <img src="" alt="">
@@ -55,21 +55,21 @@
   </form>
   <form action="cadastro_processo.php" method="post" id="vendedor" class="tes1">
     <span> cadastrar empresa </span>
-    <input type="text"  name="username" placeholder="Username*">
-    <input type="text" name="nome" placeholder="Nome*">
+    <input type="text"  name="username" placeholder="Username*" required>
+    <input type="text" name="nome" placeholder="Nome*" required>
     
-    <input type="text" name="cnpj" placeholder="CNPJ*">
-    <input type="text"name ="rzsocial"  placeholder="razão social*">
-    <input type="text" name="ins_es" placeholder="inscrção estadual*">
-    <input type="text" name="endereco" placeholder="Endereço*">
-    <input type="text" name="bairro" placeholder="Bairro*">
-    <div style="display: flex;flex-direction: row;flex-wrap: nowrap;">
-      <input type="text" name="estado" placeholder="Estado*">
-      <input type="text" name="numero" placeholder="Numero*">
+    <input type="text" name="cnpj" placeholder="CNPJ*" required>
+    <input type="text"name ="rzsocial"  placeholder="razão social*" required>
+    <input type="text" name="ins_es" placeholder="inscrção estadual*" required>
+    <input type="text" name="endereco" placeholder="Endereço*" required>
+    <input type="text" name="bairro" placeholder="Bairro*" required>
+    <div style="display: flex;flex-direction: row;flex-wrap: nowrap;" required>
+      <input type="text" name="estado" placeholder="Estado*" required>
+      <input type="text" name="numero" placeholder="Numero*"required>
     </div>
-    <input type="text" name="email" placeholder="Email">
-    <input type="text" name="telefone" placeholder="telefone*"> 
-    <input type="text" name="password" placeholder="Senha*">
+    <input type="text" name="email" placeholder="Email" required>
+    <input type="text" name="telefone" placeholder="telefone*" required> 
+    <input type="text" name="password" placeholder="Senha*" required>
     <input type="hidden" name="tipo_usuario" value="vendedor">
     <a class="link_ja_cont" href="login.php">Já tem Conta?</a>
     <button  type="submit" class="btn-generic">FINALIZAR</button>

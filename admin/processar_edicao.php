@@ -60,7 +60,9 @@ if (!empty($imagens_secundarias)) {
 // Atualizar as informações do produto no banco de dados
 $sql = "UPDATE produtos SET nome = '$nome', valor = '$valor', descricao = '$descricao' WHERE id = $id_produto";
 if ($conn->query($sql) === TRUE) {
-    echo "Produto atualizado com sucesso.";
+    // Redirecione para visualizar_produtos.php após a atualização bem-sucedida
+    header("Location: visualizar_produtos.php");
+    exit(); // Certifique-se de que o script pare de ser executado após o redirecionamento
 } else {
     echo "Erro ao atualizar o produto: " . $conn->error;
 }
