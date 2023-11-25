@@ -1057,15 +1057,11 @@ margin: 40px;
     
 }
 .img-admin{
-    height: 200px;
+    height: 100px;
     width: 200px;}
 
 .text-admin{
 
     font-size: 30px;
     font-family:'Times New Roman', Times, serif;
-}
-
-.expecimg_admin{
-   width: 22px;
 }

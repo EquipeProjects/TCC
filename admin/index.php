@@ -19,27 +19,31 @@ if ($_SESSION['tipo_usuario'] !== 'vendedor') {
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Página do Vendedor</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
-<body   >
+
+<body>
     <h1 style="text-align: center;">Bem-vindo à página do vendedor! </h1>
     <div class="pag-links">
         <p>Cadastrar produto</p>
         <a href="cadastro.php" class="link-admin">
-            <img class="expecimg_admin" src="../img/plus.svg" alt=""  class="img-admin"><br>
-    </a>
-    <p> Visualizar produtos</p>
-    <a href="visualizar_produtos.php"  class="link-admin">
-        <img class="" src="../img/visuali.svg" alt=""  class="img-admin"><br>
-    </a>
-    <p>Pedidos</p>
-    <a href="pedidos.php"  class="link-admin">
-            <img class="" src="../img/pen.svg" alt=""  class="img-admin"><br>   
+            <img src="../img/plus.svg" alt="" class="img-admin"><br>
+        </a>
+
+        <p> Visualizar produtos</p>
+        <a href="visualizar_produtos.php" class="link-admin">
+            <img src="../img/visuali.svg" alt="" class="img-admin"><br>
+        </a>
+        <p>Pedidos</p>
+        <a href="pedidos.php" class="link-admin">
+            <img src="../img/pen.svg" alt="" class="img-admin"><br>
 
         </a>
     </div>
-  
+
 </body>
+
 </html>
