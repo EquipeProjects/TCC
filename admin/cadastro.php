@@ -71,9 +71,9 @@ if (isset($_GET['edit_products'])) {
         </select><br>
         <label for="tamanhos_estoque">Insira os tamanhos e estoque:</label><br>
         <div id="tamanhos_estoque_container">
-            <div>
-                Tamanho: <input type="text" name="tamanhos[]" required>
-                Estoque: <input type="text" name="estoques[]" required>
+            <div class="text-admin">
+                Tamanho: <input class="text-admin" type="text" name="tamanhos[]" required>
+                Estoque: <input class="text-admin"  type="text" name="estoques[]" required>
             </div>
         </div>
         <button type="button" onclick="adicionarCampo()">Adicionar Tamanho/Estoque</button><br>
