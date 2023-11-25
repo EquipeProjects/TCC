@@ -175,13 +175,13 @@ if (!empty($_SESSION['shopping_cart'])) {
 
 
     if ($forma_pagamento === "pix") {
-        if (file_exists($autoload = realpath('C:\xampp\htdocs\TCC\gn-api-sdk-php-master\vendor\autoload.php'))) {
+        if (file_exists($autoload = realpath('..\gn-api-sdk-php-master\vendor\autoload.php'))) {
             require_once $autoload;
         } else {
             print_r("Autoload not found or on path <code>$autoload</code>");
         }
     
-        if (file_exists($options = realpath('C:\xampp\htdocs\TCC\gn-api-sdk-php-master\examples\credentials\options.php'))) {
+        if (file_exists($options = realpath('..\gn-api-sdk-php-master\examples\credentials\options.php'))) {
             require_once $options;
         }
     
