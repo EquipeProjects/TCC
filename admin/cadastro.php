@@ -53,7 +53,7 @@ if (isset($_GET['edit_products'])) {
         <input class="text-admin" type="file" name="imagens[]" required>
         <br>
         <label class="text-admin" for="categoria">Categoria:</label><br>
-        <select name="categoria" id="categoria" required>
+        <select class="text-admin" name="categoria" id="categoria" required>
             <option value="" required>Selecione uma categoria</option>
             <?php
             $select_query = "SELECT * FROM categorias";
@@ -66,17 +66,17 @@ if (isset($_GET['edit_products'])) {
             ?>
         </select><br>
         <label class="text-admin" for="subcategoria">Subcategorias:</label><br>
-        <select name="subcategorias" id="subcategoria" required>
+        <select class="text-admin" name="subcategorias" id="subcategoria" required>
             <option value="">Selecione uma ou mais subcategorias</option>
         </select><br>
-        <label for="tamanhos_estoque">Insira os tamanhos e estoque:</label><br>
+        <label class="text-admin" for="tamanhos_estoque">Insira os tamanhos e estoque:</label><br>
         <div id="tamanhos_estoque_container">
             <div class="text-admin">
                 Tamanho: <input class="text-admin" type="text" name="tamanhos[]" required>
                 Estoque: <input class="text-admin"  type="text" name="estoques[]" required>
             </div>
         </div>
-        <button type="button" onclick="adicionarCampo()">Adicionar Tamanho/Estoque</button><br>
+        <button class="text-admin" type="button" onclick="adicionarCampo()">Adicionar Tamanho/Estoque</button><br>
 
         <input class="buttuon_cad_product" type="submit" value="Cadastrar">
     </form>
@@ -136,7 +136,7 @@ if (isset($_GET['edit_products'])) {
         function adicionarCampo() {
             var container = document.getElementById("tamanhos_estoque_container");
             var novoCampo = document.createElement("div");
-            novoCampo.innerHTML = 'Tamanho: <input type="text" name="tamanhos[]" required> Estoque: <input type="text" name="estoques[]" required> <button type="button" onclick="removerCampo(this)">Remover</button>';
+            novoCampo.innerHTML = '<text class="text-admin">Tamanho:</text> <input class="text-admin" type="text" name="tamanhos[]" required> <text class="text-admin">Estoque:</text> <input class="text-admin" type="text" name="estoques[]" required> <button type="button" onclick="removerCampo(this)">Remover</button>';
             container.appendChild(novoCampo);
         }
 
