@@ -427,6 +427,7 @@ margin: 20px;
 
 .button_entrar:hover {
   background: gray;
+  cursor: pointer;
 }
 
 
@@ -1078,4 +1079,11 @@ margin: 40px;
     width: 35%;
     height: 10vh;
     color:white;
+}
+
+.buttuon_cad_product:hover{
+   
+    background-color: white;
+    cursor: pointer;
+    color:#000000;
 }
