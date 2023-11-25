@@ -430,6 +430,17 @@ margin: 20px;
   cursor: pointer;
 }
 
+.button_login{
+    font-family:'Times New Roman', Times, serif;
+    font-size: 33px;
+    width: 100%;
+}
+.button_login:hover{
+    background: gray;
+    font-family:'Times New Roman', Times, serif;
+    color: white;
+    cursor: pointer;
+}
 
 .seta_user {
     width: 12%;
