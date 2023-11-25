@@ -18,7 +18,8 @@ if (isset($_GET['edit_products'])) {
 <html>
 
 <head>
-<a href="javascript:void(0);" onclick="goBack()">Voltar</a>
+<link rel="stylesheet" href="../css/style.css">
+<a href="javascript:void(0);" onclick="goBack()"><img class="logo" src="../img/logo.png" alt="Your Logo"></a></div>
 
 <script>
     function goBack() {
@@ -38,20 +39,20 @@ if (isset($_GET['edit_products'])) {
        <label class="text-admin" for="nome"> Valor</label> : <br> <input type="text" name="valor" class="btn-generic-white"  required><br>
        <label class="text-admin" for="nome"> Descrição:</label>  <br><textarea name="descricao" class="btn-generic-white" required></textarea><br>
        <label class="text-admin" for="nome"> Peso (Kg):</label>  <br><input type="text"class="btn-generic-white" name="peso"><br>
-        (embalagem)<br>
+        (Embalagem)<br>
         <label class="text-admin"for="nome"> Altura (cm):</label>  <br><input type="text" class="btn-generic-white" name="altura"><br>
         <label class="text-admin" for="nome"> Largura (cm):</label>  <br><input type="text"class="btn-generic-white" name="largura"><br>
         <label class="text-admin" for="nome"> Comprimento (cm):</label>  <br><input type="text" class="btn-generic-white" name="comprimento"><br>
 
-        Imagem principal: <input type="file" name="imagem" required  onchange="exibirPreview(this)"><br>
+        Imagem principal: <input class="text-admin" type="file" name="imagem" required  onchange="exibirPreview(this)"><br>
         <div id="preview"></div>
         Imagens secundarias: <br>
         Escolha imagens:
-        <input style="" type="file" name="imagens[]" required>
-        <input type="file" name="imagens[]" required>
-        <input type="file" name="imagens[]" required>
+        <input class="text-admin" style="" type="file" name="imagens[]" required>
+        <input class="text-admin" type="file" name="imagens[]" required>
+        <input class="text-admin" type="file" name="imagens[]" required>
         <br>
-        <label for="categoria">Categoria:</label><br>
+        <label class="text-admin" for="categoria">Categoria:</label><br>
         <select name="categoria" id="categoria" required>
             <option value="" required>Selecione uma categoria</option>
             <?php
@@ -64,20 +65,20 @@ if (isset($_GET['edit_products'])) {
             }
             ?>
         </select><br>
-        <label for="subcategoria">Subcategorias:</label><br>
+        <label class="text-admin" for="subcategoria">Subcategorias:</label><br>
         <select name="subcategorias" id="subcategoria" required>
             <option value="">Selecione uma ou mais subcategorias</option>
         </select><br>
         <label for="tamanhos_estoque">Insira os tamanhos e estoque:</label><br>
         <div id="tamanhos_estoque_container">
-            <div>
-                Tamanho: <input type="text" name="tamanhos[]" required>
-                Estoque: <input type="text" name="estoques[]" required>
+            <div class="text-admin">
+                Tamanho: <input class="text-admin" type="text" name="tamanhos[]" required>
+                Estoque: <input class="text-admin"  type="text" name="estoques[]" required>
             </div>
         </div>
         <button type="button" onclick="adicionarCampo()">Adicionar Tamanho/Estoque</button><br>
 
-        <input type="submit" value="Cadastrar">
+        <input class="buttuon_cad_product" type="submit" value="Cadastrar">
     </form>
 
     <!-- JavaScript para preencher a lista de subcategorias dinamicamente -->

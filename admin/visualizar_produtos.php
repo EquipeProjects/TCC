@@ -17,7 +17,10 @@
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
-<a href="javascript:void(0);" onclick="goBack()">Voltar</a>
+
+            
+          
+<a href="javascript:void(0);" onclick="goBack()"><img class="logo" src="../img/logo.png" alt="Your Logo"></a></div>
 
 <script>
     function goBack() {

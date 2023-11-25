@@ -429,8 +429,20 @@ margin: 20px;
 
 .button_entrar:hover {
   background: gray;
+  cursor: pointer;
 }
 
+.button_login{
+    font-family:'Times New Roman', Times, serif;
+    font-size: 33px;
+    width: 100%;
+}
+.button_login:hover{
+    background: gray;
+    font-family:'Times New Roman', Times, serif;
+    color: white;
+    cursor: pointer;
+}
 
 .seta_user {
     width: 12%;
@@ -1055,15 +1067,36 @@ margin: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 10vh;
+    position: relative;
+    top:33px;
     
 }
 .img-admin{
-    height: 200px;
+    display: inline-block;
+    height: 100px;
     width: 200px;}
 
 .text-admin{
 
     font-size: 30px;
     font-family:'Times New Roman', Times, serif;
+}
+
+.buttuon_cad_product{
+    font-family:'Times New Roman', Times, serif;
+    font-size: 30px;
+    border-radius: 20px;
+    background-color: #000000;
+    margin: 5%;
+    width: 35%;
+    height: 10vh;
+    color:white;
+}
+
+.buttuon_cad_product:hover{
+   
+    background-color: white;
+    cursor: pointer;
+    color:#000000;
 }
