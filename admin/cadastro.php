@@ -18,6 +18,13 @@ if (isset($_GET['edit_products'])) {
 <html>
 
 <head>
+<a href="javascript:void(0);" onclick="goBack()">Voltar</a>
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
     <title>Cadastro de Produtos</title>
     <link rel="stylesheet" href="../css/style.css">
    
