@@ -1068,3 +1068,14 @@ margin: 40px;
     font-size: 30px;
     font-family:'Times New Roman', Times, serif;
 }
+
+.buttuon_cad_product{
+    font-family:'Times New Roman', Times, serif;
+    font-size: 30px;
+    border-radius: 20px;
+    background-color: #000000;
+    margin: 5%;
+    width: 35%;
+    height: 10vh;
+    color:white;
+}

@@ -39,7 +39,7 @@ if (isset($_GET['edit_products'])) {
        <label class="text-admin" for="nome"> Valor</label> : <br> <input type="text" name="valor" class="btn-generic-white"  required><br>
        <label class="text-admin" for="nome"> Descrição:</label>  <br><textarea name="descricao" class="btn-generic-white" required></textarea><br>
        <label class="text-admin" for="nome"> Peso (Kg):</label>  <br><input type="text"class="btn-generic-white" name="peso"><br>
-        (embalagem)<br>
+        (Embalagem)<br>
         <label class="text-admin"for="nome"> Altura (cm):</label>  <br><input type="text" class="btn-generic-white" name="altura"><br>
         <label class="text-admin" for="nome"> Largura (cm):</label>  <br><input type="text"class="btn-generic-white" name="largura"><br>
         <label class="text-admin" for="nome"> Comprimento (cm):</label>  <br><input type="text" class="btn-generic-white" name="comprimento"><br>
@@ -78,7 +78,7 @@ if (isset($_GET['edit_products'])) {
         </div>
         <button type="button" onclick="adicionarCampo()">Adicionar Tamanho/Estoque</button><br>
 
-        <input type="submit" value="Cadastrar">
+        <input class="buttuon_cad_product" type="submit" value="Cadastrar">
     </form>
 
     <!-- JavaScript para preencher a lista de subcategorias dinamicamente -->
