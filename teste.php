@@ -1,6 +1,6 @@
 <?php
 session_start();
-$status = ""; 
+$status = "";
 
 if (isset($_GET['action']) && $_GET['action'] === "remove" && isset($_GET["code"])) {
     $code_to_remove = $_GET["code"];
@@ -14,11 +14,10 @@ if (isset($_GET['action']) && $_GET['action'] === "remove" && isset($_GET["code"
     }
 }
 
-
 if (isset($_POST['quantity']) && isset($_POST['code'])) {
     $new_quantity = $_POST['quantity'];
     $code = $_POST['code'];
-    
+
     if (!empty($_SESSION["shopping_cart"])) {
         foreach ($_SESSION["shopping_cart"] as &$product) {
             if ($product['code'] === $code) {
@@ -29,7 +28,6 @@ if (isset($_POST['quantity']) && isset($_POST['code'])) {
     }
 }
 
-
 $total_price = 0;
 $cart_count = 0;
 
@@ -39,6 +37,9 @@ if (isset($_SESSION["shopping_cart"])) {
         $cart_count += $product["quantity"];
     }
 }
+?>
+<?php
+// Seu código PHP permanece inalterado
 ?>
 
 <!DOCTYPE html>
@@ -51,9 +52,88 @@ if (isset($_SESSION["shopping_cart"])) {
     <title>Carrinho</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="shortcut icon" href="/ico/logo.ico" type="image/x-icon">
-    <meta name="author" content="João Victor,Davi Ribeiro e Yzabella Luiza">
-    <meta name="keywords" content="HTML,CSS,JavaScript">
-    <meta name="description" content="Um web site de vendas de roupas sob medida que adequa qualquer corpo,gosto e estilo.">
+    <meta name="author" content="João Victor, Davi Ribeiro e Yzabella Luiza">
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+    <meta name="description" content="Um web site de vendas de roupas sob medida que adequa qualquer corpo, gosto e estilo.">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+
+        .carrinho {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .cart-items {
+            list-style: none;
+            padding: 0;
+        }
+
+        .item {
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .item img {
+            max-width: 80px;
+            margin-right: 10px;
+            border-radius: 5px;
+        }
+
+        .cart-content {
+            flex-grow: 1;
+        }
+
+        .item p {
+            margin: 0;
+        }
+
+        .item-price {
+            font-weight: bold;
+            color: green;
+            margin-right: 10px;
+        }
+
+        .remove-item {
+            color: #e44d26;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        #bottom-a {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            align-items: center;
+        }
+
+        .inp-bot {
+            text-decoration: none;
+            color: black;
+            margin-right: 10px;
+        }
+
+        .btn-generic {
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body>
@@ -73,47 +153,18 @@ if (isset($_SESSION["shopping_cart"])) {
                 foreach ($_SESSION["shopping_cart"] as $product) {
             ?>
                     <li class="item">
-
-                        <div class="item-header">
-                            <a href="" class="item-link"><img src="img/bag.png" alt="">
-                                <div style="color:black; text-decoration: none; font-size: 4vh; text-transform: uppercase;">Loja 
-                                    Easy fit</div> <img src="img/seta-direita.png" alt="">
-                            </a>
-                            <a href="" style=" display: flex; justify-content: flex-end;"><img src="/img/lixo.png" alt=""></a>
-
-
-
-                        </div>
-
-                        <input type="radio"><img src="admin/<?php echo $product["image"];  ?>" class="item-img" alt="">
-
+                        <img src="admin/<?php echo $product["image"]; ?>" alt="Product Image">
                         <div class="cart-content">
-
-                            <p> <?php echo htmlspecialchars($product["name"] . $product["tamanho"]); ?></p>
-
-
-
-
-                            <div style="display: flex; width: 100%;flex-direction: row;  justify-content: space-between; position: relative; top:15vh">
-                                <a href="" style="display: flex; align-content: flex-start; text-decoration: none;  color: black;"><span class="item-price"><?php ($product["price"] * $product["quantity"]);
-                                                                                                                                                            echo "R$" . $product["price"] * $product["quantity"]; ?></span></a>
+                            <p><?php echo htmlspecialchars($product["name"] . $product["tamanho"]); ?></p>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span class="item-price"><?php echo "R$" . $product["price"] * $product["quantity"]; ?></span>
                                 <form action="" method="post">
                                     <input type="number" value="<?php echo $product["quantity"]; ?>" name='quantity' onchange="updateQuantity(this)">
                                     <input type="hidden" name="code" value="<?php echo $product["code"]; ?>">
                                 </form>
                                 <a href="carrinho.php?action=remove&code=<?php echo $product["code"]; ?>" class="remove-item">Remover</a>
-
-
-
-
                             </div>
-
-
-
-
                         </div>
-
-
                     </li>
             <?php
                 }
@@ -121,24 +172,15 @@ if (isset($_SESSION["shopping_cart"])) {
                 echo "<h3>Seu carrinho está vazio!</h3>";
             }
             ?>
-
-
-
-
-            </li>
-
         </ul>
     </div>
     <div id="bottom-a">
         <a href="" class="inp-bot"><input type="radio">Selecionar Tudo</a>
-        <div> <span id="totalcust"> <?php echo "R$" . $total_price; ?></span> <a href="php/checkout.php"><button class="btn-generic">Finalizar Compra</button></a></div>
-
+        <div>
+            <span id="totalcust"><?php echo "R$" . $total_price; ?></span>
+            <a href="php/checkout.php"><button class="btn-generic">Finalizar Compra</button></a>
+        </div>
     </div>
-
-
-
-
-
 </body>
 
 </html>

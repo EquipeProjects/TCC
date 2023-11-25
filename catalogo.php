@@ -54,7 +54,7 @@
                     while ($row = $result->fetch_assoc()) {
                         echo "
             <div class='product_space'>
-                    <a href='produto.php?id=" . $row['id'] . "'> 
+                    <a style='text-decoration:none;' href='produto.php?id=" . $row['id'] . "'> 
                 <div class='product_box'> <img class='img_novidade' src='admin/{$row['imagem']}' alt='{$row['nome']}'>
                     <div class='preco_product'>{$row['valor']}</div>
                 </div>

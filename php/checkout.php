@@ -1,3 +1,23 @@
+
+<style>
+    body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    #qrcode-container {
+        text-align: center;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+</style>
+
 <?php
 
 use Gerencianet\Exception\GerencianetException;
@@ -215,7 +235,8 @@ if (!empty($_SESSION['shopping_cart'])) {
                 ];
     
                 $qrcode = $api->pixGenerateQRCode($params);
-    
+
+                echo "  $subtotal_produto ";
                 echo "<div id='qrcode-container'>";
                 echo "<b>QR Code:</b>";
                 echo "<img src='" . $qrcode["imagemQrcode"] . "' />";

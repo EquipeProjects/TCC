@@ -22,16 +22,16 @@ $result_avaliacoes = $conn->query($sql_avaliacoes);
 if ($result_avaliacoes->num_rows > 0) {
     foreach ($result_avaliacoes as $avaliacao) {
         echo "<div class='avaliacao-item stars ratin'>";
-        echo "<p>Avaliação: ";
+        echo "<p class='avaliacao-estrelas'>Avaliação: ";
         for ($i = 1; $i <= 5; $i++) {
             if ($i <= $avaliacao['avaliacao']) {
-                echo "<span style='color:yellow;'>&#9733</span>"; // Estrela preenchida
+                echo "<span  style='color:yellow;'>&#9733</span>"; // Estrela preenchida
             } else {
                 echo "<span>&#9733</span>"; // Estrela vazia
             }
         }
-        echo "</p>";
-        echo "<p>Comentário: " . $avaliacao['comentario'] . "</p>";
+        echo "</p><p>Comentário:</p>";
+        echo "<p class='avaliacao-comentario'> " . $avaliacao['comentario'] . "</p>";
         echo "</div>";
     }
 } else {

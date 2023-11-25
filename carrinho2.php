@@ -32,16 +32,12 @@
                         <?php
                         session_start();
 
-                        if (!isset($_SESSION['id'])) {
-                            // Se não estiver autenticado, redirecionar para a página de login
-                            header('Location: ../login.php');
-                            exit();
-                        }
+                      
 
-                        if (empty($_SESSION['carrinho'])) {
+                        if (empty($_SESSION['shopping_cart'])) {
                             echo "Seu carrinho de compras está vazio.";
                         } else {
-                            $conexao = mysqli_connect("localhost", "root", "", "linoca");
+                            $conexao = mysqli_connect("localhost", "root", "", "meubanco");
 
                             if (mysqli_connect_errno()) {
                                 echo "Falha ao conectar ao MySQL: " . mysqli_connect_error();
@@ -57,18 +53,18 @@
                             </div>
 
                             <?php
-                            foreach ($_SESSION['carrinho'] as $produto_id => $quantidade) {
-                                $query = "SELECT nome, preco, peso, altura, largura, comprimento FROM produtos WHERE id = $produto_id";
+                            foreach ($_SESSION['shopping_cart'] as $produto_id => $quantidade) {
+                                $query = "SELECT nome, valor, peso, altura, largura, comprimento FROM produtos WHERE id = $produto_id";
                                 $result = mysqli_query($conexao, $query);
                                 $produto = mysqli_fetch_assoc($result);
 
                                 $nome_produto = $produto['nome'];
-                                $preco_unitario = $produto['preco'];
+                                $preco_unitario = $produto['valor'];
                                 $peso = $produto['peso'];
                                 $altura = $produto['altura'];
                                 $largura = $produto['largura'];
                                 $comprimento = $produto['comprimento'];
-                                $quantidade = $_SESSION['carrinho'][$produto_id];
+                                $quantidade = 1;
                                 $valorMerc = $preco_unitario * $quantidade;
                                 $pesoMerc = $peso * $quantidade;
                                 $subtotal = $preco_unitario * $quantidade;
@@ -138,7 +134,7 @@
 
                                 $valor_total += $subtotal + $valorFrete;
 
-                                $imagens_query = "SELECT caminho FROM imagens WHERE produto_id = $produto_id";
+                                $imagens_query = "SELECT imagem FROM produtos WHERE id = $produto_id";
                                 $imagens_result = mysqli_query($conexao, $imagens_query);
 
                             ?>
@@ -148,7 +144,7 @@
                                             <?php
                                             if (mysqli_num_rows($imagens_result) > 0) {
                                                 $primeira_imagem = mysqli_fetch_assoc($imagens_result);
-                                                echo "<img id=\"featured-image\" src=\"" . $primeira_imagem['caminho'] . "\" alt=\"Imagem do Produto\">";
+                                                echo "<img id=\"featured-image\" src=\"" . $primeira_imagem . "\" alt=\"Imagem do Produto\">";
                                             } else {
                                                 echo "Nenhuma imagem encontrada para este produto.";
                                             }
@@ -197,7 +193,7 @@
                     </div>
                     <footer>
                         <span>Total</span>
-                        <span id="valor-total">
+                        <span id="valor-total">popup-conteudo
                             <?php echo $valor_total; ?>
                         </span>
 
@@ -211,7 +207,7 @@
         <span class="fechar" onclick="fecharPopup()">&times;</span>
         <!-- Adicione aqui o formulário de endereço e opções de pagamento -->
         <!-- Exemplo: -->
-        <iframe src="finalizarcompra.html" style="width: 100%;" frameborder="0"></iframe>
+        <iframe src="finalizarcompra.html" style="width: 100%; height:500px;" frameborder="0"></iframe>
         <form action="processar_pedido.php" method="post">
             <!-- Campos do endereço -->
             <label for="endereco">Endereço:</label>
