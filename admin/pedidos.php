@@ -26,6 +26,13 @@ $result_pedidos = mysqli_query($conexao, $query_pedidos);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <a href="javascript:void(0);" onclick="goBack()"><img class="logo" src="../img/logo.png" alt="Your Logo"></a></div>
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
     <title>Meus Pedidos</title>
     <style>
         body {

@@ -312,14 +312,16 @@ li a:hover:after {
     font-family: Agrandir;
     font-size: 20px;
     margin-top: 20px;
-
-
     background-color: black;
-
     text-align: center;
     color: white;
-    text-shadow: 2px 2px 4px rgb(127, 157, 207);
+    color: #00FFFF; /* Cor do texto normal */
+  text-shadow: 
+    30% 0 0 #FF00FF,
+    60% 0 0 #00FFFF,
+    90% 0 0 #FF0000;
 }
+
 
 .tod_medidas2 {
     display: flex;
@@ -327,13 +329,17 @@ li a:hover:after {
     font-size:30px;
     margin-top: 40px;
     position: relative;
-
-
-
     text-align: center;
-    color: white;
-    text-shadow: 3px 3px 6px rgb(141, 125, 127);
-}
+    color: rgba(255, 255, 255, 0.5); /* Cor do texto com 50% de opacidade */
+    text-shadow: 0 0 5.5px rgba(255, 255, 255, 0.5), 0 0 11px rgba(255, 255, 255, 0.5), 0 0 16.5px #ccc, 0 0 22px #ccc, 0 0 38.5px #ccc, 0 0 44px #ccc, 0 0 55px #ccc;
+    animation: neon-glow 1s infinite;
+  }
+  
+  @keyframes neon-glow {
+    to {
+      text-shadow: 0 0 2.75px rgba(255, 255, 255, 0.25), 0 0 5.5px rgba(255, 255, 255, 0.25), 0 0 8.25px #ccc, 0 0 11px #ccc, 0 0 19.25px #ccc, 0 0 22px #ccc, 0 0 27.5px #ccc;
+    }
+  }
 
 .download_img {
     width: 100px;
@@ -366,14 +372,12 @@ li a:hover:after {
     left: 35%;
     bottom: 30vh;
     text-align: center;
-    font-family: 'Migra Extralight', sans-serif;
+   font-family: 'Playfair Display', serif;
     font-size: 5vh;
     padding: 5vh;
     color: white;
     -webkit-text-stroke: 1px #734600;
-
 }
-
 footer {
     display: flex;
     flex-direction: row;
@@ -636,7 +640,7 @@ section {
 }
 
 .bottom-left-button:hover {
-    
+    cursor: pointer;
     background-color: white;
     color: black;
 }
@@ -653,7 +657,7 @@ section {
 }
 
 .bottom-right-button:hover {
-   
+    cursor: pointer;
     border: solid 1px black;
     color: black;
 }
@@ -1039,6 +1043,7 @@ section {
 
 .button_relacionado:hover{
    background-color: white;
+   cursor: pointer;
    color: black;
 }
 

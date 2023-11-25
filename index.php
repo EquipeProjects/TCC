@@ -9,6 +9,12 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsivo.css">
     <link rel="shortcut icon" href="ico/logo.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lobster&family=Noto+Serif+Balinese&family=Noto+Serif+NP+Hmong&family=Playfair+Display&family=Roboto&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lobster&family=Noto+Serif+Balinese&family=Noto+Serif+NP+Hmong&family=Roboto&display=swap" rel="stylesheet">
     <meta name="author" content="João Victor,Davi Ribeiro e Yzabella Luiza">
     <meta name="keywords" content="HTML,CSS,JavaScript">
     <meta name="description"
