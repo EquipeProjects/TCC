@@ -44,15 +44,15 @@ if (isset($_GET['edit_products'])) {
         <label class="text-admin" for="nome"> Largura (cm):</label>  <br><input type="text"class="btn-generic-white" name="largura"><br>
         <label class="text-admin" for="nome"> Comprimento (cm):</label>  <br><input type="text" class="btn-generic-white" name="comprimento"><br>
 
-        Imagem principal: <input type="file" name="imagem" required  onchange="exibirPreview(this)"><br>
+        Imagem principal: <input class="text-admin" type="file" name="imagem" required  onchange="exibirPreview(this)"><br>
         <div id="preview"></div>
         Imagens secundarias: <br>
         Escolha imagens:
-        <input style="" type="file" name="imagens[]" required>
-        <input type="file" name="imagens[]" required>
-        <input type="file" name="imagens[]" required>
+        <input class="text-admin" style="" type="file" name="imagens[]" required>
+        <input class="text-admin" type="file" name="imagens[]" required>
+        <input class="text-admin" type="file" name="imagens[]" required>
         <br>
-        <label for="categoria">Categoria:</label><br>
+        <label class="text-admin" for="categoria">Categoria:</label><br>
         <select name="categoria" id="categoria" required>
             <option value="" required>Selecione uma categoria</option>
             <?php
@@ -65,7 +65,7 @@ if (isset($_GET['edit_products'])) {
             }
             ?>
         </select><br>
-        <label for="subcategoria">Subcategorias:</label><br>
+        <label class="text-admin" for="subcategoria">Subcategorias:</label><br>
         <select name="subcategorias" id="subcategoria" required>
             <option value="">Selecione uma ou mais subcategorias</option>
         </select><br>
