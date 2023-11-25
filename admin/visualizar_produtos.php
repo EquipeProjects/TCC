@@ -20,7 +20,7 @@
 
             
           
-<a href="javascript:void(0);" onclick="goBack()"><img class="logo" src="img/logo.png" alt="Your Logo"></a></div>
+<a href="javascript:void(0);" onclick="goBack()"><img class="logo" src="../img/logo.png" alt="Your Logo"></a></div>
 
 <script>
     function goBack() {
