@@ -11,7 +11,9 @@
     }
 
     .rating span.active {
-        color: gold;}
+        color: gold;
+    }
+
     .ratin {
         display: inline-block;
         font-size: 24px;
@@ -22,15 +24,16 @@
         color: gray;
         padding: 5px;
     }
-    
 
-    .ratin span.active,.amarelo {
+
+    .ratin span.active,
+    .amarelo {
         color: gold;
     }
 
-    .text_naocep{
-    font-size: 33px;
-}
+    .text_naocep {
+        font-size: 33px;
+    }
 </style><?php
         $servername = "localhost";
         $username = "root";
@@ -60,15 +63,15 @@
         $sql_categoria = "SELECT categorias.nome AS nome_categoria FROM produtos
         INNER JOIN categorias ON produtos.categoria_id = categorias.id
         WHERE produtos.id = $produto_id";
-$result_categoria = $conn->query($sql_categoria);
+        $result_categoria = $conn->query($sql_categoria);
 
-if ($result_categoria->num_rows > 0) {
-    while ($row_categoria = $result_categoria->fetch_assoc()) {
-      $categoria= $row_categoria["nome_categoria"];
-    }
-} else {
-    echo "Produto não encontrado.";
-}
+        if ($result_categoria->num_rows > 0) {
+            while ($row_categoria = $result_categoria->fetch_assoc()) {
+                $categoria = $row_categoria["nome_categoria"];
+            }
+        } else {
+            echo "Produto não encontrado.";
+        }
 
 
 
@@ -91,7 +94,7 @@ if ($result_categoria->num_rows > 0) {
         $imagens_query = "SELECT caminho FROM imagens_produto WHERE produto_id = $produto_id";
         $result_imagens = mysqli_query($conn, $imagens_query);
 
-        
+
 
 
         ?>
@@ -140,7 +143,7 @@ if ($result_categoria->num_rows > 0) {
                 <a href="#" style=" text-decoration:none; ">
                     <div style="color:black; font-size:23px; text-decoration:none; position:relative; ">
 
-                    Loja Easy fit</div>
+                        Loja Easy fit</div>
                 </a>
                 <img src="img/seta-direita.png" style="width: 50px; text-decoration:none; position:relative; " alt="">
 
@@ -259,55 +262,55 @@ width: 30%;">Calcular</button>
         </div>
 
 
-        
+
 
         <div class="container">
 
             <h2><?php echo $produto['nome']; ?></h2>
-<!-- Formulário de Avaliação -->
-<div id="avaliacao-container">
-    <div class="stars ratin" onclick="mostrarFormulario()">
-    <?php
-    // Código para calcular a média das avaliações no PHP e exibir as estrelas
-    $produto_id = intval($_GET['id']);
-    $sql_avaliacoes = "SELECT AVG(avaliacao) as media FROM avaliacoes WHERE produto_id = $produto_id";
-    $result_avaliacoes = $conn->query($sql_avaliacoes);
+            <!-- Formulário de Avaliação -->
+            <div id="avaliacao-container">
+                <div class="stars ratin" onclick="mostrarFormulario()">
+                    <?php
+                    // Código para calcular a média das avaliações no PHP e exibir as estrelas
+                    $produto_id = intval($_GET['id']);
+                    $sql_avaliacoes = "SELECT AVG(avaliacao) as media FROM avaliacoes WHERE produto_id = $produto_id";
+                    $result_avaliacoes = $conn->query($sql_avaliacoes);
 
-    if ($result_avaliacoes->num_rows > 0) {
-        $row_avaliacoes = $result_avaliacoes->fetch_assoc();
-        $media_avaliacoes = $row_avaliacoes['media'];
-        echo number_format($media_avaliacoes, 1);
+                    if ($result_avaliacoes->num_rows > 0) {
+                        $row_avaliacoes = $result_avaliacoes->fetch_assoc();
+                        $media_avaliacoes = $row_avaliacoes['media'];
+                        echo number_format($media_avaliacoes, 1);
 
-        for ($i = 1; $i <= 5; $i++) {
-            if ($i <= round($media_avaliacoes)) {
-                echo "<span class='active'>&#9733;</span>";
-            } else {
-                echo "<span>&#9733;</span>";
-            }
-        }
-    }
-    
-    
+                        for ($i = 1; $i <= 5; $i++) {
+                            if ($i <= round($media_avaliacoes)) {
+                                echo "<span class='active'>&#9733;</span>";
+                            } else {
+                                echo "<span>&#9733;</span>";
+                            }
+                        }
+                    }
 
-    ?>
-    
-    </div>
 
-    <!-- Formulário de Avaliação -->
-    
-    <!-- Container para Avaliações Existente -->
-    
-</div>
+
+                    ?>
+
+                </div>
+
+                <!-- Formulário de Avaliação -->
+
+                <!-- Container para Avaliações Existente -->
+
+            </div>
 
             <!-- Exibir Estrelas e Média das Avaliações -->
             <div class="stars ratin">
-    
-    
-</div>
+
+
+            </div>
 
             <!-- Formulário de Avaliação -->
             <form id="form-avaliacao">
-              
+
             </form>
             <div class="categorias"><?php echo $categoria; ?>/<?php echo $produto['subcategoria']; ?>/<?php echo $produto['nome']; ?></div>
 
@@ -316,60 +319,59 @@ width: 30%;">Calcular</button>
 
             <div style="display: flex; flex-direction: column; align-items: center;">
 
-            <form style="display: flex; flex-direction: column; align-items: center;" action="adicionar_ao_carrinho.php" method="post">
-                <label for="radio1">
-                    <input id="radio1"  type="radio"  name="opcao" onclick="mostrarBox(1)">
-                    TAMANHO TRADICIONAIS
-                </label>
-                <div id="box1" class="box-inf">
-                    <h2> Tamanhos</h2>
-                    <div style="display: flex; flex-wrap: wrap;height:auto; margin: 10px;">
-                    
-                       
+                <form style="display: flex; flex-direction: column; align-items: center;" action="adicionar_ao_carrinho.php" method="post">
+                    <label class="styled-radio" for="radio1">
+                        <input id="radio1" class="styled-radio-input" type="radio" name="opcao" onclick="mostrarBox(1)">
+                        TAMANHO TRADICIONAIS
+                    </label>
+                    <div id="box1" class="box-inf">
+                        <h2> Tamanhos</h2>
+                        <div style="display: flex; flex-wrap: wrap;height:auto; margin: 10px;">
+
+
 
                             <?php
-                            
+
                             foreach ($tamanhos as $tamanho) {
                                 echo "<button class='box-btn'>$tamanho</button>";
                             }
 
-                         
+
                             ?>
 
-                        
 
 
+
+
+
+
+                        </div>
 
 
 
                     </div>
 
 
-
-                </div>
-
-
-                <a href="https://www.calitta.com/br/content/tamanhos-e-medidas-de-roupas-6"  target="_blank"> Tabela de medidas</a>
-                <label for="radio2">
-                    <input id="radio2" name="tamanho" type="radio" name="opcao" onclick="mostrarBox(2)">
-                    TAMANHO SOB MEDIDA
-                </label>
-                <div class="box-inf" id="box2">
-                <label for="altura_personalizada">Busto:</label>
-    <input id="altura_personalizada" name="altura_personalizada" type="text" placeholder="Altura">
-<br>
-    <label for="largura_personalizada">Tórax:</label>
-    <input id="largura_personalizada" name="largura_personalizada" type="text" placeholder="Largura">
-<br>
-    <label for="comprimento_personalizado">Cintura:</label>
-    <input id="comprimento_personalizado" name="comprimento_personalizado" type="text" placeholder="Comprimento">
-                </div>
-                <a href="https://amaro.com/blog/br/moda/como-saber-meu-tamanho-de-roupa-guia-para-a-tabela-de-medidas/#:~:text=Busto%3A%20D%C3%AA%20a%20volta%20no,dois%20palmos)%20abaixo%20da%20cintura."  target="_blank"> Como medir?</a>
+                    <a href="https://www.calitta.com/br/content/tamanhos-e-medidas-de-roupas-6" target="_blank"> Tabela de medidas</a>
+                    <label class="styled-radio" for="radio2">
+        <input id="radio2" class="styled-radio-input" name="tamanho" type="radio" name="opcao" onclick="mostrarBox(2)">
+        TAMANHO SOB MEDIDA
+    </label>
+                    <div class="box-inf" id="box2">
+                        <label for="altura_personalizada">Busto:</label>
+                        <input id="altura_personalizada" name="altura_personalizada" type="text" placeholder="Altura">
+                        <br>
+                        <label for="largura_personalizada">Tórax:</label>
+                        <input id="largura_personalizada" name="largura_personalizada" type="text" placeholder="Largura">
+                        <br>
+                        <label for="comprimento_personalizado">Cintura:</label>
+                        <input id="comprimento_personalizado" name="comprimento_personalizado" type="text" placeholder="Comprimento">
+                    </div>
+                    <a href="https://amaro.com/blog/br/moda/como-saber-meu-tamanho-de-roupa-guia-para-a-tabela-de-medidas/#:~:text=Busto%3A%20D%C3%AA%20a%20volta%20no,dois%20palmos)%20abaixo%20da%20cintura." target="_blank"> Como medir?</a>
             </div>
-            
+
 
             <!-- Adicione este script à sua página -->
- 
 
 
 
@@ -377,18 +379,20 @@ width: 30%;">Calcular</button>
 
 
 
-                <input type="hidden" name="code" value="<?php echo $produto['id']; ?>">
 
-                <button type="submit" class="btn-compra">Adicionar ao Carrinho</button>
+            <input type="hidden" name="code" value="<?php echo $produto['id']; ?>">
+
+            <button type="submit" class="btn-compra">Adicionar ao Carrinho</button>
             </form>
 
 
 
 
-            <div style="font-size:30px;
+            <div style="font-size:20px;
             display:flex;
             align-items:center;text-align:center;
-            margin:30px">
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            margin:20px">
                 <?php echo $produto['descricao']; ?>
 
 
@@ -403,28 +407,29 @@ width: 30%;">Calcular</button>
 
 
     </main>
-
-
-    <form id="form-avaliacao" style="display: flex; flex-direction: column; align-items: center;">
-    <label for="avaliacao">Avaliação:</label>
-    <div class="rating" onclick="selecionarEstrela(event)">
-        <span>&#9733;</span>
-        <span>&#9733;</span>
-        <span>&#9733;</span>
-        <span>&#9733;</span>
-        <span>&#9733;</span>
+    
+        <form id="form-avaliacao" style="display: flex; flex-direction: column; align-items: center;">
+            <label for="avaliacao">Avaliação:</label>
+            <div class="rating" onclick="selecionarEstrela(event)">
+                <span>&#9733;</span>
+                <span>&#9733;</span>
+                <span>&#9733;</span>
+                <span>&#9733;</span>
+                <span>&#9733;</span>
+            </div>
+    
+            <label  class="" for="comentario">Comentário:</label>
+            <textarea name="comentario" id="comentario"></textarea>
+    
+            <button style=""  type="button" onclick="enviarAvaliacao()">Enviar Avaliação</button>
+        </form>
+    <div id="avaliacoes-existentes">
+        
+        <!-- Conteúdo das Avaliações Existente será carregado via AJAX -->
     </div>
+    
 
-    <label for="comentario">Comentário:</label>
-    <textarea name="comentario" id="comentario"></textarea>
-
-    <button type="button" onclick="enviarAvaliacao()">Enviar Avaliação</button>
-</form>
-
-<!-- Avaliações Existente -->
-<div id="avaliacoes-existentes" style="font-size: 10px; align-items: center; text-align: center; margin: 10px;">
-    <!-- Conteúdo das Avaliações Existente será carregado via AJAX -->
-</div>
+    <!-- Avaliações Existente -->
     <?php
     include('php/footer.php');
 
@@ -432,28 +437,29 @@ width: 30%;">Calcular</button>
     ?>
     <script src="js/index.js"></script>
     <script>
- document.addEventListener("DOMContentLoaded", function() {
-    var formulario = document.getElementById('form-avaliacao');
-    formulario.style.display = 'flex';
+        document.addEventListener("DOMContentLoaded", function() {
+            var formulario = document.getElementById('form-avaliacao');
+            formulario.style.display = 'flex';
 
-    // Carregue as avaliações existentes
-    carregarAvaliacoesExistentes();
-});
-function carregarAvaliacoesExistentes() {
-    // Use AJAX para buscar avaliações existentes do servidor
-    $.ajax({
-        type: 'GET',
-        url: 'carregar_avaliacoes.php?id=<?php echo $produto['id'];?> ', // Substitua pelo seu script que carrega avaliações do servidor
-        success: function (avaliacoes) {
-            // Exiba as avaliações existentes na div 'avaliacoes-existentes'
-            var avaliacoesExistentes = document.getElementById('avaliacoes-existentes');
-            avaliacoesExistentes.innerHTML = avaliacoes;
-        },
-        error: function (error) {
-            console.error('Erro ao carregar avaliações:', error);
+            // Carregue as avaliações existentes
+            carregarAvaliacoesExistentes();
+        });
+
+        function carregarAvaliacoesExistentes() {
+            // Use AJAX para buscar avaliações existentes do servidor
+            $.ajax({
+                type: 'GET',
+                url: 'carregar_avaliacoes.php?id=<?php echo $produto['id']; ?> ', // Substitua pelo seu script que carrega avaliações do servidor
+                success: function(avaliacoes) {
+                    // Exiba as avaliações existentes na div 'avaliacoes-existentes'
+                    var avaliacoesExistentes = document.getElementById('avaliacoes-existentes');
+                    avaliacoesExistentes.innerHTML = avaliacoes;
+                },
+                error: function(error) {
+                    console.error('Erro ao carregar avaliações:', error);
+                }
+            });
         }
-    });
-}
 
         function selecionarEstrela(event) {
             const estrelas = document.querySelectorAll('.rating span');
@@ -473,40 +479,40 @@ function carregarAvaliacoesExistentes() {
     </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.rawgit.com/RobinHerbots/Inputmask/5.x/dist/jquery.inputmask.min.js"></script>
-   <!-- ... Código anterior ... -->
+    <!-- ... Código anterior ... -->
 
-<script>
-    function enviarAvaliacao() {
-        console.log('Function called');
-        var avaliacao = document.querySelectorAll('.rating span.active').length;
-        console.log('Avaliacao:', avaliacao);
-        var comentario = document.getElementById('comentario').value.trim(); // Remova espaços em branco do início e do final
-        var id = <?php echo $produto_id;
-                    $conn->close() ?>;
+    <script>
+        function enviarAvaliacao() {
+            console.log('Function called');
+            var avaliacao = document.querySelectorAll('.rating span.active').length;
+            console.log('Avaliacao:', avaliacao);
+            var comentario = document.getElementById('comentario').value.trim(); // Remova espaços em branco do início e do final
+            var id = <?php echo $produto_id;
+                        $conn->close() ?>;
 
-        // Adicione a condição para não permitir avaliações e comentários vazios
-        if (avaliacao === 0 || comentario === '') {
-            alert('Por favor, forneça uma avaliação e um comentário antes de enviar.');
-            return;
-        }
-
-        // Enviar dados para o servidor usando AJAX
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'processa_avaliacao.php', true);
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                // Atualizar a página ou realizar outras ações após o envio da avaliação
-                location.reload();
+            // Adicione a condição para não permitir avaliações e comentários vazios
+            if (avaliacao === 0 || comentario === '') {
+                alert('Por favor, forneça uma avaliação e um comentário antes de enviar.');
+                return;
             }
-        };
-        xhr.send('avaliacao=' + avaliacao + '&comentario=' + comentario + '&produto_id=' + id);
-    }
-</script>
 
-<!-- ... Código posterior ... -->
+            // Enviar dados para o servidor usando AJAX
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'processa_avaliacao.php', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    // Atualizar a página ou realizar outras ações após o envio da avaliação
+                    location.reload();
+                }
+            };
+            xhr.send('avaliacao=' + avaliacao + '&comentario=' + comentario + '&produto_id=' + id);
+        }
+    </script>
 
-   
+    <!-- ... Código posterior ... -->
+
+
 </body>
 
 </html>
