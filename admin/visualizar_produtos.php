@@ -17,6 +17,13 @@
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
+<a href="javascript:void(0);" onclick="goBack()">Voltar</a>
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
     <h2 class="text-center text-success">
         All Products
     </h2>
