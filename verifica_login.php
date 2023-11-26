@@ -9,7 +9,6 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Erro na conexão com o banco de dados: " . $conn->connect_error);
 }
- // Conexão com o banco de dados
 
 // Receba os dados do formulário
 $username = $_POST['username'];
@@ -37,6 +36,52 @@ if (mysqli_num_rows($result) == 1) {
     exit();
 }
 
-// Se não corresponder a nenhum tipo de usuário, exiba uma mensagem de erro
-echo "Credenciais inválidas. Por favor, tente novamente.";
+// Se não corresponder a nenhum tipo de usuário, retorne uma mensagem de erro em JSON
+$error_message = [
+    "error" => [
+        "message" => "Credenciais inválidas. Por favor, tente novamente.",
+        "code" => "INVALID_CREDENTIALS"
+    ]
+];
+
+header('Content-Type: application/json');
+echo json_encode($error_message);
 ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+
+<!-- Seu conteúdo HTML aqui -->
+
+<<script>
+    // Processar a resposta JSON no lado do cliente
+    fetch('login.php', {
+        method: 'POST',
+        body: new FormData(document.forms[0]), // Enviar dados do formulário
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Exibir a mensagem de erro como um pop-up de notificação
+        if (data.error) {
+            alert(data.error.message);
+
+            // Voltar para a página anterior
+            window.history.back();
+
+            // Ou, você pode redirecionar automaticamente após alguns segundos
+            // setTimeout(() => {
+            //     window.location.href = "/"; // Redirecione para a página desejada
+            // }, 5000); // 5000 milissegundos = 5 segundos
+        }
+    })
+    .catch(error => console.error('Erro:', error));
+</>
+
+
+</body>
+</html>

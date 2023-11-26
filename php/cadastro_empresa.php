@@ -31,7 +31,7 @@
         <input type="password" name="senha" placeholder="Senha" required><br>
         <input type="text" name="estado" placeholder="Estado" required><br>
       
-        <Button type="submit" class="btn-generic" value="Cadastrar">cadastrar</Button>
+        <Button type="submit" class="btn-generic" value="Cadastrar">Cadastrar</Button>
     </form>
 </body>
 

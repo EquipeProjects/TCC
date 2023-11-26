@@ -27,20 +27,20 @@
   <form action="#" id="imageSelectionForm">
     <main>
       <div class="cliente">
-        <span>cliente</span>
+        <span>Cliente</span>
         <img tabindex="0" src="img/login-user.png" alt="" id="clienteImage" onclick="selectImage('cliente')">
       </div>
       <div class="vendedor">
-        <span>vendedor</span>
+        <span>Vendedor</span>
         <img tabindex="0" src="img/vendedor.png" alt="" id="vendedorImage" onclick="selectImage('vendedor')">
       </div>
     </main>
     <div style="display: flex;justify-content: center; align-items: center;">
-      <button class="btn-generic" type="button" onclick="submitForm()"> selecionar </button>
+      <button class="botao_cadastrar" type="button" onclick="submitForm()"> Selecionar </button>
     </div>
   </form>
   <form action="cadastro_processo.php" method="post" id="cliente" class="tes1">
-    <span> criar conta </span>
+    <span> Criar conta </span>
 
     <input type="text" name="username" placeholder="Nome*"  required>
     <input type="text" name="nome" placeholder="Nome*"  required>
@@ -48,13 +48,13 @@
     <input type="text" name="password" placeholder="Senha*"  required>
     <input type="text"  name ="senha"placeholder="Repita a senha*" required>
     <a class="link_ja_cont" href="login.php">Já tem Conta?</a>
-    <button class="btn-generic">finalizar</button>
+    <button class="botao_cadastrar">Cadastrar</button>
     <img src="" alt="">
     <input type="hidden" name="tipo_usuario" value="cliente">
 
   </form>
   <form action="cadastro_processo.php" method="post" id="vendedor" class="tes1">
-    <span> cadastrar empresa </span>
+    <span> Cadastrar Empresa </span>
     <input type="text"  name="username" placeholder="Username*" required>
     <input type="text" name="nome" placeholder="Nome*" required>
     
@@ -72,7 +72,7 @@
     <input type="text" name="password" placeholder="Senha*" required>
     <input type="hidden" name="tipo_usuario" value="vendedor">
     <a class="link_ja_cont" href="login.php">Já tem Conta?</a>
-    <button  type="submit" class="btn-generic">FINALIZAR</button>
+    <button  type="submit" class="botao_cadastrar">Cadastrar</button>
 
 
 

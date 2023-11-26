@@ -873,6 +873,25 @@ section {
     color: white;
 }
 
+.btn-generic:hover {
+    cursor: pointer;
+}
+.button-generic_color{
+    width: 300px;
+    height: auto;
+    font-size: 30px;
+    background-color: #0F171E;
+    border: none;
+    position: relative;
+    left: 3vh;
+    border-radius: 30px;
+    color: white;
+}
+.button-generic_color:hover{
+    cursor: pointer;
+    background-color: white;
+    color: white;
+}
 #bottom-a {
 
     display: flex;
