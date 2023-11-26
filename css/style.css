@@ -1124,3 +1124,11 @@ margin: 40px;
     cursor: pointer;
     color:#000000;
 }
+
+.link_tamanho_med{
+    color:black;
+}
+
+.link_tamanho_med:hover{
+    color:blue;
+}

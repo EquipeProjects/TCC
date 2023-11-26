@@ -320,10 +320,11 @@ width: 30%;">Calcular</button>
             <div style="display: flex; flex-direction: column; align-items: center;">
 
                 <form style="display: flex; flex-direction: column; align-items: center;" action="adicionar_ao_carrinho.php" method="post">
-                    <label class="styled-radio" for="radio1">
-                        <input id="radio1" class="styled-radio-input" type="radio" name="opcao" onclick="mostrarBox(1)">
-                        TAMANHO TRADICIONAIS
-                    </label>
+                <label class="styled-radio" for="radio1">
+    <input id="radio1" class="styled-radio-input" type="radio" name="opcao" onclick="mostrarBox(1)">
+    <span class="styled-radio-circle"></span>
+    TAMANHO TRADICIONAL
+</label>
                     <div id="box1" class="box-inf">
                         <h2> Tamanhos</h2>
                         <div style="display: flex; flex-wrap: wrap;height:auto; margin: 10px;">
@@ -352,11 +353,12 @@ width: 30%;">Calcular</button>
                     </div>
 
 
-                    <a href="https://www.calitta.com/br/content/tamanhos-e-medidas-de-roupas-6" target="_blank"> Tabela de medidas</a>
+                    <a class="link_tamanho_med" href="https://www.calitta.com/br/content/tamanhos-e-medidas-de-roupas-6" target="_blank"> Tabela de medidas</a>
                     <label class="styled-radio" for="radio2">
-        <input id="radio2" class="styled-radio-input" name="tamanho" type="radio" name="opcao" onclick="mostrarBox(2)">
-        TAMANHO SOB MEDIDA
-    </label>
+    <input id="radio2" class="styled-radio-input" type="radio" name="opcao" onclick="mostrarBox(2)">
+    <span class="styled-radio-circle"></span>
+    TAMANHO SOB MEDIDA
+</label>
                     <div class="box-inf" id="box2">
                         <label for="altura_personalizada">Busto:</label>
                         <input id="altura_personalizada" name="altura_personalizada" type="text" placeholder="Altura">
@@ -367,7 +369,7 @@ width: 30%;">Calcular</button>
                         <label for="comprimento_personalizado">Cintura:</label>
                         <input id="comprimento_personalizado" name="comprimento_personalizado" type="text" placeholder="Comprimento">
                     </div>
-                    <a href="https://amaro.com/blog/br/moda/como-saber-meu-tamanho-de-roupa-guia-para-a-tabela-de-medidas/#:~:text=Busto%3A%20D%C3%AA%20a%20volta%20no,dois%20palmos)%20abaixo%20da%20cintura." target="_blank"> Como medir?</a>
+                    <a class="link_tamanho_med" href="https://amaro.com/blog/br/moda/como-saber-meu-tamanho-de-roupa-guia-para-a-tabela-de-medidas/#:~:text=Busto%3A%20D%C3%AA%20a%20volta%20no,dois%20palmos)%20abaixo%20da%20cintura." target="_blank"> Como medir?</a>
             </div>
 
 
