@@ -185,7 +185,7 @@ if (!empty($_SESSION['shopping_cart'])) {
             require_once $options;
         }
     
-        $txid = "00000000000000000000000000000000$id_pedido"; // Substitua pelo valor desejado
+        $txid = "00000000000000000000000000000001$id_pedido"; // Substitua pelo valor desejado
         $pattern = "^[a-zA-Z0-9]{26,35}$";
         if (!preg_match("/$pattern/", $txid)) {
             die("Erro: O campo txid não corresponde ao padrão esperado.");

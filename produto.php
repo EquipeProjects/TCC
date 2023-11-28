@@ -439,7 +439,7 @@ width: 30%;">Calcular</button>
     ?>
     <script src="js/index.js"></script>
     <script>
-     document.addEventListener("DOMContentLoaded", function () {
+   document.addEventListener("DOMContentLoaded", function () {
     var formulario = document.getElementById('form-avaliacao');
     formulario.style.display = 'flex';
 
@@ -449,20 +449,20 @@ width: 30%;">Calcular</button>
     // Verifique se o usuário já fez uma avaliação antes de permitir enviar outra
     if (avaliacaoJaFeita()) {
         formulario.style.display = 'none'; // Esconda o formulário se já tiver feito uma avaliação
+    } else {
+        // Adicione um listener para o evento de envio do formulário
+        formulario.addEventListener('submit', function (event) {
+            event.preventDefault(); // Impede o envio padrão do formulário
+
+            // Verifique se o usuário já fez uma avaliação antes de enviar outra
+            if (!avaliacaoJaFeita()) {
+                // Realize o envio da avaliação via AJAX
+                enviarAvaliacao();
+            } else {
+                alert('Você já fez uma avaliação.'); // Exiba uma mensagem ao usuário
+            }
+        });
     }
-
-    // Adicione um listener para o evento de envio do formulário
-    formulario.addEventListener('submit', function (event) {
-        event.preventDefault(); // Impede o envio padrão do formulário
-
-        // Verifique se o usuário já fez uma avaliação antes de enviar outra
-        if (!avaliacaoJaFeita()) {
-            // Realize o envio da avaliação via AJAX
-            enviarAvaliacao();
-        } else {
-            alert('Você já fez uma avaliação.'); // Exiba uma mensagem ao usuário
-        }
-    });
 });
 
 function carregarAvaliacoesExistentes() {
@@ -531,6 +531,7 @@ function selecionarEstrela(event) {
         }
     });
 }
+
 
     </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
