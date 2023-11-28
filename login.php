@@ -1,3 +1,15 @@
+session_start();
+
+// Verifique se há uma mensagem de erro na sessão
+if (isset($_SESSION['error_message'])) {
+    // Exiba a mensagem de erro
+    $error_message = $_SESSION['error_message'];
+    echo json_encode($error_message);
+
+    // Limpe a mensagem de erro da sessão
+    unset($_SESSION['error_message']);
+}
+
 
 <!DOCTYPE html>
 <html lang="en">

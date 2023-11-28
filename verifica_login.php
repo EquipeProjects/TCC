@@ -17,22 +17,32 @@ $password = $_POST['password'];
 // Verifique se é um cliente
 $query = "SELECT * FROM clientes WHERE username = '$username' AND password = '$password'";
 $result = mysqli_query($conn, $query);
+$query1 = "SELECT * FROM vendedores WHERE username = '$username' AND password = '$password'";
+$result1 = mysqli_query($conn, $query1);
 
 if (mysqli_num_rows($result) == 1) {
+    // Obtenha os dados da linha (registro)
+    $row = mysqli_fetch_assoc($result);
+
+    // Preencha as variáveis de sessão
     $_SESSION['tipo_usuario'] = 'cliente';
-    $_SESSION['id'] = '1';
-    
-    header('Location: index.php'); // Redirecione para a página do cliente
+    $_SESSION['id'] = $row['id']; // Substitua 'id' pelo nome real do campo ID no seu banco de dados
+
+    // Redirecione para a página do cliente
+    header('Location: index.php');
     exit();
 }
 
-// Verifique se é um vendedor
-$query = "SELECT * FROM vendedores WHERE username = '$username' AND password = '$password'";
-$result = mysqli_query($conn, $query);
+else if (mysqli_num_rows($result1) == 1) {
+    // Obtenha os dados da linha (registro)
+    $row = mysqli_fetch_assoc($result1);
 
-if (mysqli_num_rows($result) == 1) {
+    // Preencha as variáveis de sessão
     $_SESSION['tipo_usuario'] = 'vendedor';
-    header('Location: admin/'); // Redirecione para a página do vendedor
+    $_SESSION['id'] = $row['id']; // Substitua 'id' pelo nome real do campo ID no seu banco de dados
+
+    // Redirecione para a página do cliente
+    header('Location: admin/');
     exit();
 }
 
@@ -44,44 +54,12 @@ $error_message = [
     ]
 ];
 
-header('Content-Type: application/json');
-echo json_encode($error_message);
+// Armazene a mensagem de erro na sessão
+$_SESSION['error_message'] = $error_message;
+
+// Redirecione de volta para a página de login
+header('Location: login.php');
+exit();
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-</head>
-<body>
-
-<!-- Seu conteúdo HTML aqui -->
-
-<<script>
-    // Processar a resposta JSON no lado do cliente
-    fetch('login.php', {
-        method: 'POST',
-        body: new FormData(document.forms[0]), // Enviar dados do formulário
-    })
-    .then(response => response.json())
-    .then(data => {
-        // Exibir a mensagem de erro como um pop-up de notificação
-        if (data.error) {
-            alert(data.error.message);
-
-            // Voltar para a página anterior
-            window.history.back();
-
-            // Ou, você pode redirecionar automaticamente após alguns segundos
-            // setTimeout(() => {
-            //     window.location.href = "/"; // Redirecione para a página desejada
-            // }, 5000); // 5000 milissegundos = 5 segundos
-        }
-    })
-    .catch(error => console.error('Erro:', error));
-</>
-
-
 </body>
 </html>
