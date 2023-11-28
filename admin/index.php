@@ -42,6 +42,11 @@ if ($_SESSION['tipo_usuario'] !== 'vendedor') {
             <img src="../img/pen.svg" alt="" class="img-admin"><br>
 
         </a>
+        <p>Planos</p>
+        <a href="planos.php" class="link-admin">
+            <img src="../img/planos.png" alt=""  class="img-admin"><br>
+
+        </a>
     </div>
 
 </body>

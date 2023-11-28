@@ -118,6 +118,7 @@ li a:hover:after {
     position: relative;
     left: 140px;
 }
+
 .icons2 {
     justify-self: flex-end;
     margin-right: 50px;
@@ -143,6 +144,7 @@ li a:hover:after {
     margin-left: 20px;
 
 }
+
 .icons3 a {
     margin-left: 20px;
 
@@ -155,6 +157,7 @@ li a:hover:after {
 .icons2 img {
     width: 43px;
 }
+
 .icons3 img {
     width: 43px;
 }
@@ -315,31 +318,33 @@ li a:hover:after {
     background-color: black;
     text-align: center;
     color: white;
-    color: #00FFFF; /* Cor do texto normal */
-  text-shadow: 
-    30% 0 0 #FF00FF,
-    60% 0 0 #00FFFF,
-    90% 0 0 #FF0000;
+    color: #00FFFF;
+    /* Cor do texto normal */
+    text-shadow:
+        30% 0 0 #FF00FF,
+        60% 0 0 #00FFFF,
+        90% 0 0 #FF0000;
 }
 
 
 .tod_medidas2 {
     display: flex;
     font-family: Migra ExtraLight;
-    font-size:30px;
+    font-size: 30px;
     margin-top: 40px;
     position: relative;
     text-align: center;
-    color: rgba(255, 255, 255, 0.5); /* Cor do texto com 50% de opacidade */
+    color: rgba(255, 255, 255, 0.5);
+    /* Cor do texto com 50% de opacidade */
     text-shadow: 0 0 5.5px rgba(255, 255, 255, 0.5), 0 0 11px rgba(255, 255, 255, 0.5), 0 0 16.5px #ccc, 0 0 22px #ccc, 0 0 38.5px #ccc, 0 0 44px #ccc, 0 0 55px #ccc;
     animation: neon-glow 1s infinite;
-  }
-  
-  @keyframes neon-glow {
+}
+
+@keyframes neon-glow {
     to {
-      text-shadow: 0 0 2.75px rgba(255, 255, 255, 0.25), 0 0 5.5px rgba(255, 255, 255, 0.25), 0 0 8.25px #ccc, 0 0 11px #ccc, 0 0 19.25px #ccc, 0 0 22px #ccc, 0 0 27.5px #ccc;
+        text-shadow: 0 0 2.75px rgba(255, 255, 255, 0.25), 0 0 5.5px rgba(255, 255, 255, 0.25), 0 0 8.25px #ccc, 0 0 11px #ccc, 0 0 19.25px #ccc, 0 0 22px #ccc, 0 0 27.5px #ccc;
     }
-  }
+}
 
 .download_img {
     width: 100px;
@@ -372,12 +377,13 @@ li a:hover:after {
     left: 35%;
     bottom: 30vh;
     text-align: center;
-    font-family:'Times New Roman', Times, serif;
+    font-family: 'Times New Roman', Times, serif;
     font-size: 7vh;
     padding: 4vh;
     color: white;
     -webkit-text-stroke: 0.6px #734600;
 }
+
 footer {
     display: flex;
     flex-direction: row;
@@ -394,8 +400,9 @@ footer {
 
     text-align: center;
 }
-.footer_item div{
-margin: 20px;
+
+.footer_item div {
+    margin: 20px;
 }
 
 .footer_pag {
@@ -432,18 +439,19 @@ margin: 20px;
 }
 
 .button_entrar:hover {
-  background: gray;
-  cursor: pointer;
+    background: gray;
+    cursor: pointer;
 }
 
-.button_login{
-    font-family:'Times New Roman', Times, serif;
+.button_login {
+    font-family: 'Times New Roman', Times, serif;
     font-size: 33px;
     width: 100%;
 }
-.button_login:hover{
+
+.button_login:hover {
     background: gray;
-    font-family:'Times New Roman', Times, serif;
+    font-family: 'Times New Roman', Times, serif;
     color: white;
     cursor: pointer;
 }
@@ -477,7 +485,7 @@ margin: 20px;
 
 .text_catalogo1:hover {
     background: black;
-    color:white;
+    color: white;
 }
 
 
@@ -876,7 +884,8 @@ section {
 .btn-generic:hover {
     cursor: pointer;
 }
-.button-generic_color{
+
+.button-generic_color {
     width: 300px;
     height: auto;
     font-size: 30px;
@@ -887,11 +896,13 @@ section {
     border-radius: 30px;
     color: white;
 }
-.button-generic_color:hover{
+
+.button-generic_color:hover {
     cursor: pointer;
     background-color: white;
     color: white;
 }
+
 #bottom-a {
 
     display: flex;
@@ -967,12 +978,12 @@ section {
 }
 
 
-.link_idioma{
+.link_idioma {
     text-decoration: none;
     color: white;
 }
 
-.link_idioma:hover{
+.link_idioma:hover {
     text-decoration: underline;
     color: yellow
 }
@@ -1023,36 +1034,37 @@ section {
     top: 1vh;
 }
 
-.mega_medidas{
-    display: flex; 
+.mega_medidas {
+    display: flex;
     width: 40%;
-    position: absolute; 
+    position: absolute;
     left: 30%;
-    bottom: 0; 
+    bottom: 0;
     height: 40%;
 }
 
-.imgens_emalta1{
+.imgens_emalta1 {
     width: 30%;
     height: 10%;
- position: relative;
- left: 35%;
+    position: relative;
+    left: 35%;
 }
-.imgens_emalta2
-{
+
+.imgens_emalta2 {
     width: 30%;
     position: relative;
     left: 35%;
 }
-.text_alta_titulo{
- text-align: center;
+
+.text_alta_titulo {
+    text-align: center;
 }
 
-.button_relacionado{
+.button_relacionado {
     font-size: 33px;
     border-radius: 3px;
     background: black;
-    color:white;
+    color: white;
     width: 30%;
     height: 33%;
     position: relative;
@@ -1060,75 +1072,137 @@ section {
     margin-bottom: 1%;
 }
 
-.button_relacionado:hover{
-   background-color: white;
-   cursor: pointer;
-   color: black;
+.button_relacionado:hover {
+    background-color: white;
+    cursor: pointer;
+    color: black;
 }
 
-.text_estilo_exp{
-  font-size: 33px;
-  margin-left: 5%;
-  margin-top: 3%;
-  margin-bottom: 3%;
+.text_estilo_exp {
+    font-size: 33px;
+    margin-left: 5%;
+    margin-top: 3%;
+    margin-bottom: 3%;
 }
 
 
 
 
-.link-admin{
+.link-admin {
 
     text-decoration: none;
     font-size: 30px;
-text-align: center;
-color: #000000;
-font-family: Verdana, Geneva, Tahoma, sans-serif;
-margin: 40px;
+    text-align: center;
+    color: #000000;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 40px;
 
 }
-.pag-links{
+
+.pag-links {
 
     display: flex;
     justify-content: center;
     align-items: center;
     height: 10vh;
     position: relative;
-    top:33px;
-    
+    top: 33px;
+
 }
-.img-admin{
+
+.img-admin {
     display: inline-block;
     height: 100px;
-    width: 200px;}
-
-.text-admin{
-
-    font-size: 30px;
-    font-family:'Times New Roman', Times, serif;
+    width: 200px;
 }
 
-.buttuon_cad_product{
-    font-family:'Times New Roman', Times, serif;
+.text-admin {
+
+    font-size: 30px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.buttuon_cad_product {
+    font-family: 'Times New Roman', Times, serif;
     font-size: 30px;
     border-radius: 20px;
     background-color: #000000;
     margin: 5%;
     width: 35%;
     height: 10vh;
-    color:white;
+    color: white;
 }
 
-.buttuon_cad_product:hover{
-   
+.buttuon_cad_product:hover {
+
     background-color: white;
     cursor: pointer;
-    color:#000000;
+    color: #000000;
 }
 
-.link_tamanho_med{
-    color:black;
+.link_tamanho_med {
+    color: black;
 }
 
-.link_tamanho_med:hover{
-    color:blue;
+.link_tamanho_med:hover {
+    color: blue;
+}
+
+.plan_grat {
+    background: orange;
+    display: inline-block;
+    border-radius: 5px;
+    font-family: 'Times New Roman', Times, serif;
+    margin-left: 5%;
+    margin-right: 3%;
+    text-align: center;
+    padding: 5px;
+}
+
+.plan_gold {
+    background: orange;
+    display: inline-block;
+    border-radius: 5px;
+    font-family: 'Times New Roman', Times, serif;
+    margin-left: 5%;
+    margin-right: 1%;
+    text-align: center;
+    padding: 5px;
+}
+
+.plan_master {
+    background: orange;
+    display: inline-block;
+    border-radius: 5px;
+    font-family: 'Times New Roman', Times, serif;
+    margin-left: 5%;
+    text-align: center;
+    padding: 5px;
+   
+}
+
+.logo_block{
+display: block;
+text-align: center;
+}
+
+.button_plan{
+    color: white;
+    background: black;
+    width: 80%;
+    height: 77px;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 4%;
+    margin-bottom: 4%;
+   border-radius: 5px; 
+   font-size: 30px;
+    
+}
+
+.button_plan:hover{
+    cursor: pointer;
+    color: black;
+    background: white;
+    width: 80%;
 }
