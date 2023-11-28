@@ -37,7 +37,7 @@ if (!empty($_SESSION['shopping_cart'])) {
     }
 
     // Crie um novo pedido na tabela "pedidos"
-    $id_cliente = $_SESSION['id'];
+    $id_cliente = 60;
     $data_pedido = date('Y-m-d'); // Data atual
     $status_pedido = "Em Processamento"; // Pode ser ajustado conforme necessário
     $total_pedido = 0; // Será calculado abaixo
@@ -175,17 +175,17 @@ if (!empty($_SESSION['shopping_cart'])) {
 
 
     if ($forma_pagamento === "pix") {
-        if (file_exists($autoload = realpath('D:\xampp\htdocs\TCC\gn-api-sdk-php-master\vendor\autoload.php'))) {
+        if (file_exists($autoload = realpath('vendor\autoload.php'))) {
             require_once $autoload;
         } else {
             print_r("Autoload not found or on path <code>$autoload</code>");
         }
     
-        if (file_exists($options = realpath('D:\xampp\htdocs\git_tcc\TCC\gn-api-sdk-php-master\examples\credentials\options.php'))) {
+        if (file_exists($options = realpath('..\gn-api-sdk-php-master\examples\credentials\options.php'))) {
             require_once $options;
         }
     
-        $txid = "000000000000000000000000000000000$id_pedido"; // Substitua pelo valor desejado
+        $txid = "00000000000000000000000000000000$id_pedido"; // Substitua pelo valor desejado
         $pattern = "^[a-zA-Z0-9]{26,35}$";
         if (!preg_match("/$pattern/", $txid)) {
             die("Erro: O campo txid não corresponde ao padrão esperado.");
