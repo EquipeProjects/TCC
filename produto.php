@@ -268,7 +268,8 @@ width: 30%;">Calcular</button>
 
             <h2><?php echo $produto['nome']; ?></h2>
             <!-- Formulário de Avaliação -->
-            <div id="avaliacao-container">
+            
+            <div class="categorias"><?php echo "R$", number_format($produto['valor'], 2, ',', '.'); ?></div><div id="avaliacao-container">
                 <div class="stars ratin" onclick="mostrarFormulario()">
                     <?php
                     // Código para calcular a média das avaliações no PHP e exibir as estrelas
@@ -310,21 +311,20 @@ width: 30%;">Calcular</button>
 
             <!-- Formulário de Avaliação -->
             <form id="form-avaliacao">
-
             </form>
             <div class="categorias"><?php echo $categoria; ?>/<?php echo $produto['subcategoria']; ?>/<?php echo $produto['nome']; ?></div>
 
-            <div>Até 10 x R$<?php echo number_format($produto['valor'], 2, ',', '.'); ?> sem juros
-                Ver outras opções</div>
+            <div>Até 10 x R$<?php echo number_format($produto['valor'] / 10, 2, ',', '.'); ?> sem juros
+                Ver outras opções <a href="#"> Ver parcelas disponíveis</a></div>
 
             <div style="display: flex; flex-direction: column; align-items: center;">
 
                 <form style="display: flex; flex-direction: column; align-items: center;" action="adicionar_ao_carrinho.php" method="post">
-                <label class="styled-radio" for="radio1">
-    <input id="radio1" class="styled-radio-input" type="radio" name="opcao" onclick="mostrarBox(1)">
-    <span class="styled-radio-circle"></span>
-    TAMANHO TRADICIONAL
-</label>
+                    <label class="styled-radio" for="radio1">
+                        <input id="radio1" class="styled-radio-input" type="radio" name="opcao" onclick="mostrarBox(1)">
+                        <span class="styled-radio-circle"></span>
+                        TAMANHO TRADICIONAL
+                    </label>
                     <div id="box1" class="box-inf">
                         <h2> Tamanhos</h2>
                         <div style="display: flex; flex-wrap: wrap;height:auto; margin: 10px;">
@@ -355,10 +355,10 @@ width: 30%;">Calcular</button>
 
                     <a class="link_tamanho_med" href="https://www.calitta.com/br/content/tamanhos-e-medidas-de-roupas-6" target="_blank"> Tabela de medidas</a>
                     <label class="styled-radio" for="radio2">
-    <input id="radio2" class="styled-radio-input" type="radio" name="opcao" onclick="mostrarBox(2)">
-    <span class="styled-radio-circle"></span>
-    TAMANHO SOB MEDIDA
-</label>
+                        <input id="radio2" class="styled-radio-input" type="radio" name="opcao" onclick="mostrarBox(2)">
+                        <span class="styled-radio-circle"></span>
+                        TAMANHO SOB MEDIDA
+                    </label>
                     <div class="box-inf" id="box2">
                         <label for="altura_personalizada">Busto:</label>
                         <input id="altura_personalizada" name="altura_personalizada" type="text" placeholder="Altura">
@@ -409,27 +409,27 @@ width: 30%;">Calcular</button>
 
 
     </main>
-    
-        <form id="form-avaliacao" style="display: flex; flex-direction: column; align-items: center;">
-            <label for="avaliacao">Avaliação:</label>
-            <div class="rating" onclick="selecionarEstrela(event)">
-                <span>&#9733;</span>
-                <span>&#9733;</span>
-                <span>&#9733;</span>
-                <span>&#9733;</span>
-                <span>&#9733;</span>
-            </div>
-    
-            <label  class="" for="comentario">Comentário:</label>
-            <textarea name="comentario" id="comentario"></textarea>
-    
-            <button style=""  type="button" onclick="enviarAvaliacao()">Enviar Avaliação</button>
-        </form>
+
+    <form id="form-avaliacao" style="display: flex; flex-direction: column; align-items: center;">
+        <label for="avaliacao">Avaliação:</label>
+        <div class="rating" onclick="selecionarEstrela(event)">
+            <span>&#9733;</span>
+            <span>&#9733;</span>
+            <span>&#9733;</span>
+            <span>&#9733;</span>
+            <span>&#9733;</span>
+        </div>
+
+        <label class="" for="comentario">Comentário:</label>
+        <textarea name="comentario" id="comentario"></textarea>
+
+        <button style="" type="button" onclick="enviarAvaliacao()">Enviar Avaliação</button>
+    </form>
     <div id="avaliacoes-existentes">
-        
+
         <!-- Conteúdo das Avaliações Existente será carregado via AJAX -->
     </div>
-    
+
 
     <!-- Avaliações Existente -->
     <?php
@@ -477,6 +477,8 @@ width: 30%;">Calcular</button>
                     }
                 }
             });
+
+            
         }
     </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
