@@ -26,13 +26,13 @@ $result_pedidos = mysqli_query($conexao, $query_pedidos);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <a href="javascript:void(0);" onclick="goBack()"><img class="logo" src="../img/logo.png" alt="Your Logo"></a></div>
+    <a class="logo_block" href="javascript:void(0);" onclick="goBack()"><img class="logo" src="../img/logo.png" alt="Your Logo"></a></div>
 
-<script>
-    function goBack() {
-        window.history.back();
-    }
-</script>
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
     <title>Meus Pedidos</title>
     <style>
         body {
@@ -49,7 +49,8 @@ $result_pedidos = mysqli_query($conexao, $query_pedidos);
             margin-top: 20px;
         }
 
-        th, td {
+        th,
+        td {
             border: 1px solid #ddd;
             padding: 8px;
             text-align: left;
@@ -74,6 +75,11 @@ $result_pedidos = mysqli_query($conexao, $query_pedidos);
 
         button:hover {
             background-color: #0056b3;
+        }
+
+        .logo_block {
+            display: block;
+            text-align: center;
         }
     </style>
 </head>
