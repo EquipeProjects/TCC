@@ -44,14 +44,14 @@ if (isset($_GET['edit_products'])) {
         <label class="text-admin" for="nome"> Largura (cm):</label>  <br><input type="text"class="btn-generic-white" name="largura"><br>
         <label class="text-admin" for="nome"> Comprimento (cm):</label>  <br><input type="text" class="btn-generic-white" name="comprimento"><br>
 
-        Imagem principal: <input class="text-admin" type="file" name="imagem" required  onchange="exibirPreview(this)"><br>
+        <div class="text-admin">Imagem principal: <input class="text-admin" type="file" name="imagem" required  onchange="exibirPreview(this)"><br></div>
         <div id="preview"></div>
-        Imagens secundarias: <br>
-        Escolha imagens:
+        <div class="text-admin"> Imagens secundarias: <br></div>
+        <div class="text-admin">Escolha imagens 
         <input class="text-admin" style="" type="file" name="imagens[]" required>
         <input class="text-admin" type="file" name="imagens[]" required>
         <input class="text-admin" type="file" name="imagens[]" required>
-        <br>
+        <br></div>
         <label class="text-admin" for="categoria">Categoria:</label><br>
         <select class="text-admin" name="categoria" id="categoria" required>
             <option value="" required>Selecione uma categoria</option>
