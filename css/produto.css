@@ -148,11 +148,22 @@ form {
     border-radius: 10px;
 }
 
+.box-btn:hover {
+    background-color: rgb(0, 0, 0);
+    color: white;
+
+   
+}
+
 .box-btn:active {
 
     background-color: rgb(0, 0, 0);
     color: white;
 
+}
+
+.box-btn.clicked {
+    background-color: #e74c3c; /* Cor diferente para o estado clicado */
 }
 
 .btn-compra {
@@ -164,6 +175,7 @@ form {
     color: white;
     border-radius: 20px;
 }
+
 
 .avaliacao-item {
     width: 100%;

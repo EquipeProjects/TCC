@@ -1206,3 +1206,12 @@ text-align: center;
     background: white;
     width: 80%;
 }
+
+.box-btn{
+    padding: 10px;
+    margin: 5px;
+    background-color: #3498db;
+    color: red;
+    border: none;
+    cursor: pointer;
+}

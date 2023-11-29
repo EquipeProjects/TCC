@@ -268,8 +268,9 @@ width: 30%;">Calcular</button>
 
             <h2><?php echo $produto['nome']; ?></h2>
             <!-- Formulário de Avaliação -->
-            
-            <div class="categorias"><?php echo "R$", number_format($produto['valor'], 2, ',', '.'); ?></div><div id="avaliacao-container">
+
+            <div class="categorias"><?php echo "R$", number_format($produto['valor'], 2, ',', '.'); ?></div>
+            <div id="avaliacao-container">
                 <div class="stars ratin" onclick="mostrarFormulario()">
                     <?php
                     // Código para calcular a média das avaliações no PHP e exibir as estrelas
@@ -325,20 +326,24 @@ width: 30%;">Calcular</button>
                         <span class="styled-radio-circle"></span>
                         TAMANHO TRADICIONAL
                     </label>
-                    <div id="box1" class="box-inf">
+                    <div class="box-inf" id="box1">
                         <h2> Tamanhos</h2>
                         <div style="display: flex; flex-wrap: wrap;height:auto; margin: 10px;">
 
 
 
                             <?php
-
                             foreach ($tamanhos as $tamanho) {
-                                echo "<button class='box-btn'>$tamanho</button>";
+                                echo "<button class='box-btn' onclick='changeColor(this)'>$tamanho</button>";
                             }
-
-
                             ?>
+
+                            <script>
+                                function changeColor(button) {
+                                    // Adiciona a classe 'clicked' ao botão clicado
+                                    button.classList.add('clicked');
+                                }
+                            </script>
 
 
 
@@ -439,100 +444,98 @@ width: 30%;">Calcular</button>
     ?>
     <script src="js/index.js"></script>
     <script>
-   document.addEventListener("DOMContentLoaded", function () {
-    var formulario = document.getElementById('form-avaliacao');
-    formulario.style.display = 'flex';
+        document.addEventListener("DOMContentLoaded", function() {
+            var formulario = document.getElementById('form-avaliacao');
+            formulario.style.display = 'flex';
 
-    // Carregue as avaliações existentes
-    carregarAvaliacoesExistentes();
+            // Carregue as avaliações existentes
+            carregarAvaliacoesExistentes();
 
-    // Verifique se o usuário já fez uma avaliação antes de permitir enviar outra
-    if (avaliacaoJaFeita()) {
-        formulario.style.display = 'none'; // Esconda o formulário se já tiver feito uma avaliação
-    } else {
-        // Adicione um listener para o evento de envio do formulário
-        formulario.addEventListener('submit', function (event) {
-            event.preventDefault(); // Impede o envio padrão do formulário
-
-            // Verifique se o usuário já fez uma avaliação antes de enviar outra
-            if (!avaliacaoJaFeita()) {
-                // Realize o envio da avaliação via AJAX
-                enviarAvaliacao();
+            // Verifique se o usuário já fez uma avaliação antes de permitir enviar outra
+            if (avaliacaoJaFeita()) {
+                formulario.style.display = 'none'; // Esconda o formulário se já tiver feito uma avaliação
             } else {
-                alert('Você já fez uma avaliação.'); // Exiba uma mensagem ao usuário
+                // Adicione um listener para o evento de envio do formulário
+                formulario.addEventListener('submit', function(event) {
+                    event.preventDefault(); // Impede o envio padrão do formulário
+
+                    // Verifique se o usuário já fez uma avaliação antes de enviar outra
+                    if (!avaliacaoJaFeita()) {
+                        // Realize o envio da avaliação via AJAX
+                        enviarAvaliacao();
+                    } else {
+                        alert('Você já fez uma avaliação.'); // Exiba uma mensagem ao usuário
+                    }
+                });
             }
         });
-    }
-});
 
-function carregarAvaliacoesExistentes() {
-    // Use AJAX para buscar avaliações existentes do servidor
-    $.ajax({
-        type: 'GET',
-        url: 'carregar_avaliacoes.php?id=<?php echo $produto['id']; ?> ',
-        success: function (avaliacoes) {
-            // Exiba as avaliações existentes na div 'avaliacoes-existentes'
-            var avaliacoesExistentes = document.getElementById('avaliacoes-existentes');
-            avaliacoesExistentes.innerHTML = avaliacoes;
-        },
-        error: function (error) {
-            console.error('Erro ao carregar avaliações:', error);
+        function carregarAvaliacoesExistentes() {
+            // Use AJAX para buscar avaliações existentes do servidor
+            $.ajax({
+                type: 'GET',
+                url: 'carregar_avaliacoes.php?id=<?php echo $produto['id']; ?> ',
+                success: function(avaliacoes) {
+                    // Exiba as avaliações existentes na div 'avaliacoes-existentes'
+                    var avaliacoesExistentes = document.getElementById('avaliacoes-existentes');
+                    avaliacoesExistentes.innerHTML = avaliacoes;
+                },
+                error: function(error) {
+                    console.error('Erro ao carregar avaliações:', error);
+                }
+            });
         }
-    });
-}
 
-function enviarAvaliacao() {
-    // Use AJAX para enviar a avaliação para o servidor
-    $.ajax({
-        type: 'POST',
-        url: 'enviar_avaliacao.php',
-        data: $('#form-avaliacao').serialize(),
-        success: function (response) {
-            // Exiba uma mensagem de sucesso ou faça o que for necessário
+        function enviarAvaliacao() {
+            // Use AJAX para enviar a avaliação para o servidor
+            $.ajax({
+                type: 'POST',
+                url: 'enviar_avaliacao.php',
+                data: $('#form-avaliacao').serialize(),
+                success: function(response) {
+                    // Exiba uma mensagem de sucesso ou faça o que for necessário
 
-            // Marque que o usuário já fez uma avaliação
-            marcarAvaliacaoFeita();
+                    // Marque que o usuário já fez uma avaliação
+                    marcarAvaliacaoFeita();
 
-            // Esconda o formulário após o envio bem-sucedido
-            var formulario = document.getElementById('form-avaliacao');
-            formulario.style.display = 'none';
+                    // Esconda o formulário após o envio bem-sucedido
+                    var formulario = document.getElementById('form-avaliacao');
+                    formulario.style.display = 'none';
 
-            // Carregue as avaliações atualizadas
-            carregarAvaliacoesExistentes();
-        },
-        error: function (error) {
-            console.error('Erro ao enviar avaliação:', error);
+                    // Carregue as avaliações atualizadas
+                    carregarAvaliacoesExistentes();
+                },
+                error: function(error) {
+                    console.error('Erro ao enviar avaliação:', error);
+                }
+            });
         }
-    });
-}
 
-function avaliacaoJaFeita() {
-    // Verifique se o estado indicando que a avaliação já foi feita está presente (pode ser um cookie, localStorage, etc.)
-    return localStorage.getItem('avaliacaoFeita') === 'true';
-}
-
-function marcarAvaliacaoFeita() {
-    // Marque que o usuário já fez uma avaliação (pode ser um cookie, localStorage, etc.)
-    localStorage.setItem('avaliacaoFeita', 'true');
-}
-
-function selecionarEstrela(event) {
-    const estrelas = document.querySelectorAll('.rating span');
-    const estrelaClicada = event.target;
-
-    estrelas.forEach((estrela, index) => {
-        if (estrela === estrelaClicada || estrela.contains(estrelaClicada)) {
-            for (let i = 0; i <= index; i++) {
-                estrelas[i].classList.add('active');
-            }
-            for (let i = index + 1; i < estrelas.length; i++) {
-                estrelas[i].classList.remove('active');
-            }
+        function avaliacaoJaFeita() {
+            // Verifique se o estado indicando que a avaliação já foi feita está presente (pode ser um cookie, localStorage, etc.)
+            return localStorage.getItem('avaliacaoFeita') === 'true';
         }
-    });
-}
 
+        function marcarAvaliacaoFeita() {
+            // Marque que o usuário já fez uma avaliação (pode ser um cookie, localStorage, etc.)
+            localStorage.setItem('avaliacaoFeita', 'true');
+        }
 
+        function selecionarEstrela(event) {
+            const estrelas = document.querySelectorAll('.rating span');
+            const estrelaClicada = event.target;
+
+            estrelas.forEach((estrela, index) => {
+                if (estrela === estrelaClicada || estrela.contains(estrelaClicada)) {
+                    for (let i = 0; i <= index; i++) {
+                        estrelas[i].classList.add('active');
+                    }
+                    for (let i = index + 1; i < estrelas.length; i++) {
+                        estrelas[i].classList.remove('active');
+                    }
+                }
+            });
+        }
     </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.rawgit.com/RobinHerbots/Inputmask/5.x/dist/jquery.inputmask.min.js"></script>
