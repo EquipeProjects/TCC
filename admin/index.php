@@ -1,12 +1,12 @@
 <?php
 session_start();
 
-
 if (!isset($_SESSION['tipo_usuario'])) {
     // Se não estiver autenticado, redirecione-o para a página de login
     header("Location: ../login.php");
     exit();
 }
+
 // Verificar se o usuário está autenticado e é um vendedor
 if ($_SESSION['tipo_usuario'] !== 'vendedor') {
     // Se não for um vendedor, redirecione-o para outra página ou exiba uma mensagem de erro.
@@ -15,6 +15,34 @@ if ($_SESSION['tipo_usuario'] !== 'vendedor') {
     // header("Location: pagina_de_erro.php");
     exit();
 }
+
+// Inclua a conexão com o banco de dados
+include('conexao.php');
+
+// Recupere o ID do vendedor da sessão
+$vendedor_id = $_SESSION['id'];
+
+// Consulta para obter informações do vendedor
+$query_vendedor = "SELECT * FROM vendedores WHERE id = $vendedor_id";
+$result_vendedor = $conn->query($query_vendedor);
+
+// Verifica se encontrou o vendedor
+if ($result_vendedor->num_rows > 0) {
+    $dados_vendedor = $result_vendedor->fetch_assoc();
+} else {
+    // Lidere com o caso em que o vendedor não é encontrado
+    echo "Vendedor não encontrado.";
+    exit();
+}
+
+// Consulta para obter produtos do vendedor
+$query_produtos = "SELECT * FROM produtos WHERE id = $vendedor_id";
+$result_produtos = $conn->query($query_produtos);
+if ($result_produtos === false) {
+    die("Erro na consulta de produtos: " . $conn->error);
+}
+// Fechar a conexão após a consulta
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +54,7 @@ if ($_SESSION['tipo_usuario'] !== 'vendedor') {
 </head>
 
 <body>
-    <h1 style="text-align: center;">Bem-vindo à página do vendedor! </h1>
+    <h1 style="text-align: center;">Bem-vindo à página do vendedor <?php echo $dados_vendedor['nome']; ?>!</h1>
     <div class="pag-links">
         <p>Cadastrar produto</p>
         <a href="cadastro.php" class="link-admin">
@@ -37,15 +65,26 @@ if ($_SESSION['tipo_usuario'] !== 'vendedor') {
         <a href="visualizar_produtos.php" class="link-admin">
             <img src="../img/visuali.svg" alt="" class="img-admin"><br>
         </a>
+        
+        <!-- Adicione um loop para exibir os produtos -->
+        <?php
+        if ($result_produtos->num_rows > 0) {
+            while ($row = $result_produtos->fetch_assoc()) {
+                echo "<p>{$row['nome']}</p>";
+                // Adicione mais informações conforme necessário
+            }
+        } else {
+            echo "<p>Nenhum produto encontrado.</p>";
+        }
+        ?>
+
         <p>Pedidos</p>
         <a href="pedidos.php" class="link-admin">
             <img src="../img/pen.svg" alt="" class="img-admin"><br>
-
         </a>
         <p>Planos</p>
         <a href="planos.php" class="link-admin">
             <img src="../img/planos.png" alt=""  class="img-admin"><br>
-
         </a>
     </div>
 
