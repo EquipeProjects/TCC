@@ -366,13 +366,13 @@ width: 30%;">Calcular</button>
                     </label>
                     <div class="box-inf" id="box2">
                         <label for="altura_personalizada">Busto:</label>
-                        <input id="altura_personalizada" name="altura_personalizada" type="text" placeholder="Altura">
+                        <input id="altura_personalizada" name="altura_personalizada" type="text" placeholder="Busto">
                         <br>
                         <label for="largura_personalizada">Tórax:</label>
-                        <input id="largura_personalizada" name="largura_personalizada" type="text" placeholder="Largura">
+                        <input id="largura_personalizada" name="largura_personalizada" type="text" placeholder="Tórax">
                         <br>
                         <label for="comprimento_personalizado">Cintura:</label>
-                        <input id="comprimento_personalizado" name="comprimento_personalizado" type="text" placeholder="Comprimento">
+                        <input id="comprimento_personalizado" name="comprimento_personalizado" type="text" placeholder="Cintura">
                     </div>
                     <a class="link_tamanho_med" href="https://amaro.com/blog/br/moda/como-saber-meu-tamanho-de-roupa-guia-para-a-tabela-de-medidas/#:~:text=Busto%3A%20D%C3%AA%20a%20volta%20no,dois%20palmos)%20abaixo%20da%20cintura." target="_blank"> Como medir?</a>
             </div>
