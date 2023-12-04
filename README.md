@@ -1,6 +1,6 @@
 # Sistema de E-commerce para Roupas Especiais
 
-Este é um sistema de e-commerce dedicado à venda de roupas especiais, atendendo às necessidades de Blue Size, nanismo e gigantismo. O projeto utiliza uma variedade de tecnologias, incluindo HTML, CSS, JavaScript, PHP e MySQL.
+Este é um sistema de e-commerce dedicado à venda de roupas especiais, atendendo às necessidades de Blue Size, nanismo e gigantismo. O projeto utiliza uma variedade de tecnologias, incluindo HTML, CSS, JavaScript, PHP e MySQL.                                                                                                                                                                                            Site disponível em: https://easyfittcc.000webhostapp.com/TCCi/index.php
 
 ## Visão Geral
 
