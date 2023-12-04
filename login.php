@@ -8,17 +8,20 @@
 
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/login.css">
+   
 </head>
 
 <body>
+<a class="logo_block" href="javascript:void(0);" onclick="goBack()"><img class="logo" src="img/logo.png" alt="Your Logo"></a></div>
 
-    <main>
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
+    <main class="text_alinhado">
         <form class="login" action="verifica_login.php" method="POST" style="align-items:center;">
-            <div class="logo">
-                <a href="index.php">
-                    <img src="img/logo.png" alt="Your Logo">
-                </a>
-            </div>
+          
             <label for="username">SUA CONTA PARA TUDO DA Easy FIT</label><br>
             <label for="username">Nome de Usuário:</label>
             <input type="text" id="username" name="username" required>

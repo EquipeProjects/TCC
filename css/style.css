@@ -1226,3 +1226,8 @@ text-align: center;
     right: 15px;
     z-index: 4;
 }
+
+.text_alinhado{
+    position:relative;
+    bottom:100px;
+}
