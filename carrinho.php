@@ -138,6 +138,7 @@ if (isset($_SESSION["shopping_cart"])) {
             cursor: pointer;
         }
         .popup-compras{
+            display: none;
             width: 500px;
             height: auto;
             position: absolute;
@@ -230,7 +231,7 @@ if (isset($_SESSION["shopping_cart"])) {
         <a href="" class="inp-bot"><input type="radio">Selecionar Tudo</a>
         <div>
             <span id="totalcust"><?php echo "R$" . $total_price; ?></span>
-            <button onclick="abrirPopip()" class="btn-generic">Finalizar Compra</button>
+            <button onclick="abrirPopup()" class="btn-generic">Finalizar Compra</button>
         </div>
     </div>
 </body>
