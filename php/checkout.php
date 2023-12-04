@@ -266,7 +266,7 @@ if (!empty($_SESSION['shopping_cart'])) {
 
                     // Adicionando a exibição do código do PIX e do valor total
                     echo "<div id='pix-info'>";
-                    echo "<b>Código do PIX:</b> " . $pix["txid"] . "<br>";
+                    echo "<b>Código do PIX:</b> " . $id_pedido . "<br>";
                     echo "<b>Valor Original:</b> R$ " . number_format(floatval($pix['valor']['original']), 2, ',', '.') . "<br>";
 
                     echo "</div>";
