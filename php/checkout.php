@@ -98,7 +98,7 @@ if (!empty($_SESSION['shopping_cart'])) {
 
                 // Atualize o valor do frete na página
                 $valorFrete += $responseData[0]['vlrFrete'];
-        // Assumindo que o 
+                // Assumindo que o 
             } else {
                 echo "Erro na decodificação do JSON da resposta.";
             }
@@ -121,161 +121,159 @@ if (!empty($_SESSION['shopping_cart'])) {
 
 
 
-    // Percorre os produtos no carrinho e insere-os na tabela "itens_pedido"
-    foreach ($_SESSION['shopping_cart'] as $produto_id => $quantidade) {
-        // Recupera informações do produto
-        $query_produto = "SELECT valor FROM produtos WHERE id = $produto_id";
-        $result_produto = mysqli_query($conexao, $query_produto);
-        $produto = mysqli_fetch_assoc($result_produto);
-    
-        $preco_unitario = $produto['valor'];
-   
-        $tamanho = isset($_SESSION['shopping_cart'][$produto_id]['tamanho']) ? $_SESSION['shopping_cart'][$produto_id]['tamanho'] : '';
-        $quantidade = 1;
-
-        $subtotal1 = $preco_unitario * $quantidade;
-    
-        // Insere o item do pedido na tabela "itens_pedido"
-        $inserir_item_query = "INSERT INTO itens_pedido (id_pedido, id_produto, quantidade, preco_unitario, total_item, valor_frete, tamanho) VALUES ('$id_pedido', '$produto_id', '$quantidade', '$preco_unitario', '$subtotal1', '$valorFrete', '$tamanho')";
-    
-        $result_insert = mysqli_query($conexao, $inserir_item_query);
-
-     
-    }
-    
-
-
-    $atualizar_total_query = "UPDATE pedidos SET total_pedido = '$valor_total' WHERE id_pedido = '$id_pedido'";
-    mysqli_query($conexao, $atualizar_total_query);
-
-
-    if ($forma_pagamento === "pix") {
-        if (file_exists($autoload = realpath('vendor\autoload.php'))) {
-            require_once $autoload;
-        } else {
-            print_r("Autoload not found or on path <code>$autoload</code>");
-        }
-    
-        if (file_exists($options = realpath('..\gn-api-sdk-php-master\examples\credentials\options.php'))) {
-            require_once $options;
-        }
-    
-        $txid = "00000000000000000000000000000001$id_pedido"; // Substitua pelo valor desejado
-        $pattern = "^[a-zA-Z0-9]{26,35}$";
-        if (!preg_match("/$pattern/", $txid)) {
-            die("Erro: O campo txid não corresponde ao padrão esperado.");
-        }
-    
+        // Percorre os produtos no carrinho e insere-os na tabela "itens_pedido"
         foreach ($_SESSION['shopping_cart'] as $produto_id => $quantidade) {
-            $query = "SELECT nome, valor FROM produtos WHERE id = $produto_id";
-            $result = mysqli_query($conexao, $query);
-            $produto = mysqli_fetch_assoc($result);
-            $nome_produto = $produto['nome'];
-            $preco_produto = $produto['valor'];
-            $subtotal_produto = $preco_produto * 1;
-    
-            $infoAdicionais[] = [
-                "nome" => $nome_produto,
-                "valor" => (string)$subtotal_produto // Ensure that the value is cast to a string
-            ];
+            // Recupera informações do produto
+            $query_produto = "SELECT valor FROM produtos WHERE id = $produto_id";
+            $result_produto = mysqli_query($conexao, $query_produto);
+            $produto = mysqli_fetch_assoc($result_produto);
+
+            $preco_unitario = $produto['valor'];
+
+            $tamanho = isset($_SESSION['shopping_cart'][$produto_id]['tamanho']) ? $_SESSION['shopping_cart'][$produto_id]['tamanho'] : '';
+            $quantidade = 1;
+
+            $subtotal1 = $preco_unitario * $quantidade;
+
+            // Insere o item do pedido na tabela "itens_pedido"
+            $inserir_item_query = "INSERT INTO itens_pedido (id_pedido, id_produto, quantidade, preco_unitario, total_item, valor_frete, tamanho) VALUES ('$id_pedido', '$produto_id', '$quantidade', '$preco_unitario', '$subtotal1', '$valorFrete', '$tamanho')";
+
+            $result_insert = mysqli_query($conexao, $inserir_item_query);
         }
-    
-        $params = [
-            "txid" => $txid
-        ];
-    
-        $body = [
-            "calendario" => [
-                "expiracao" => 1800// Charge lifetime, specified in seconds from creation date
-            ],
-            "devedor" => [
-                "cpf" => "50618401865",
-                "nome" => "davi ribeiro"
-            ],
-            "valor" => [
-                "original" => "0.01"
-            ],
-            "chave" => "93d8c857-540a-45c0-af96-17a59e9ec256",
-            "solicitacaoPagador" => "Enter the order number or identifier.",
-            "infoAdicionais" => $infoAdicionais
-        ];
-        ?>
-  <style>
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #f5f5f5;
-        margin: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-    }
 
-    #pix-container {
-        background-color: #fff;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        overflow: hidden;
-        display: flex;
-        max-width: 600px;
-        width: 100%;
-    }
 
-    #qrcode-container {
-        padding: 20px;
-        text-align: center;
-        background-color: #3498db;
-        color: #fff;
-    }
 
-    #timer {
-        margin-top: 10px;
-        font-weight: bold;
-    }
+        $atualizar_total_query = "UPDATE pedidos SET total_pedido = '$valor_total' WHERE id_pedido = '$id_pedido'";
+        mysqli_query($conexao, $atualizar_total_query);
 
-    #pix-info {
-        padding: 20px;
-        text-align: left;
-    }
 
-    #pix-info b {
-        display: block;
-        margin-bottom: 10px;
-        font-weight: bold;
-    }
-</style>
+        if ($forma_pagamento === "pix") {
+            if (file_exists($autoload = realpath('vendor\autoload.php'))) {
+                require_once $autoload;
+            } else {
+                print_r("Autoload not found or on path <code>$autoload</code>");
+            }
 
-    
-    <?php
-    try {
-        $api = Gerencianet::getInstance($options);
-        $pix = $api->pixCreateCharge($params, $body);
-    
-        if ($pix["txid"]) {
+            if (file_exists($options = realpath('..\gn-api-sdk-php-master\examples\credentials\options.php'))) {
+                require_once $options;
+            }
+
+            $txid = "00000000000000000000000000000001$id_pedido"; // Substitua pelo valor desejado
+            $pattern = "^[a-zA-Z0-9]{26,35}$";
+            if (!preg_match("/$pattern/", $txid)) {
+                die("Erro: O campo txid não corresponde ao padrão esperado.");
+            }
+
+            foreach ($_SESSION['shopping_cart'] as $produto_id => $quantidade) {
+                $query = "SELECT nome, valor FROM produtos WHERE id = $produto_id";
+                $result = mysqli_query($conexao, $query);
+                $produto = mysqli_fetch_assoc($result);
+                $nome_produto = $produto['nome'];
+                $preco_produto = $produto['valor'];
+                $subtotal_produto = $preco_produto * 1;
+
+                $infoAdicionais[] = [
+                    "nome" => $nome_produto,
+                    "valor" => (string)$subtotal_produto // Ensure that the value is cast to a string
+                ];
+            }
+
             $params = [
-                "id" => $pix["loc"]["id"]
+                "txid" => $txid
             ];
-    
-            $qrcode = $api->pixGenerateQRCode($params);
-    
-            echo "<div id='pix-container'>";
-            
-            echo "<div id='qrcode-container'>";
-            echo "<b>QR Code:</b>";
-            echo "<img src='" . $qrcode["imagemQrcode"] . "' />";
-            echo "<div id='timer'></div>"; // Container para o timer
-            echo "</div>";
-        
-            // Adicionando a exibição do código do PIX e do valor total
-            echo "<div id='pix-info'>";
-            echo "<b>Código do PIX:</b> " . $pix["txid"] . "<br>";
-            echo "<b>Valor Original:</b> R$ " . number_format(floatval($pix['valor']['original']), 2, ',', '.') . "<br>";
-           
-            echo "</div>";
-    
-            echo "</div>";
-    
-            echo "<script>
+
+            $body = [
+                "calendario" => [
+                    "expiracao" => 1800 // Charge lifetime, specified in seconds from creation date
+                ],
+                "devedor" => [
+                    "cpf" => "50618401865",
+                    "nome" => "davi ribeiro"
+                ],
+                "valor" => [
+                    "original" => number_format((float)$subtotal_produto, 2, '.', '')
+                ],
+                "chave" => "93d8c857-540a-45c0-af96-17a59e9ec256",
+                "solicitacaoPagador" => "Enter the order number or identifier.",
+                "infoAdicionais" => $infoAdicionais
+            ];
+?>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    background-color: #f5f5f5;
+                    margin: 0;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    height: 100vh;
+                }
+
+                #pix-container {
+                    background-color: #fff;
+                    border-radius: 8px;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                    overflow: hidden;
+                    display: flex;
+                    max-width: 600px;
+                    width: 150%;
+                }
+
+                #qrcode-container {
+                    padding: 20px;
+                    text-align: center;
+                    background-color: #3498db;
+                    color: #fff;
+                }
+
+                #timer {
+                    margin-top: 10px;
+                    font-weight: bold;
+                }
+
+                #pix-info {
+                    padding: 20px;
+                    text-align: left;
+                }
+
+                #pix-info b {
+                    display: block;
+                    margin-bottom: 10px;
+                    font-weight: bold;
+                }
+            </style>
+
+
+<?php
+            try {
+                $api = Gerencianet::getInstance($options);
+                $pix = $api->pixCreateCharge($params, $body);
+
+                if ($pix["txid"]) {
+                    $params = [
+                        "id" => $pix["loc"]["id"]
+                    ];
+
+                    $qrcode = $api->pixGenerateQRCode($params);
+
+                    echo "<div id='pix-container'>";
+
+                    echo "<div id='qrcode-container'>";
+                    echo "<b>QR Code:</b>";
+                    echo "<img src='" . $qrcode["imagemQrcode"] . "' />";
+                    echo "<div id='timer'></div>"; // Container para o timer
+                    echo "</div>";
+
+                    // Adicionando a exibição do código do PIX e do valor total
+                    echo "<div id='pix-info'>";
+                    echo "<b>Código do PIX:</b> " . $pix["txid"] . "<br>";
+                    echo "<b>Valor Original:</b> R$ " . number_format(floatval($pix['valor']['original']), 2, ',', '.') . "<br>";
+
+                    echo "</div>";
+
+                    echo "</div>";
+
+                    echo "<script>
                 var timerElement = document.getElementById('timer');
                 var remainingTime = 1800; // Tempo de expiração em segundos
                 var timerInterval = setInterval(function () {
@@ -292,21 +290,21 @@ if (!empty($_SESSION['shopping_cart'])) {
                     remainingTime--;
                 }, 1000);
               </script>";
-        } else {
-            echo "<pre>" . json_encode($pix, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "</pre>";
+                } else {
+                    echo "<pre>" . json_encode($pix, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "</pre>";
+                }
+            } catch (GerencianetException $e) {
+                print_r($e->code);
+                print_r($e->error);
+                print_r($e->errorDescription);
+            } catch (Exception $e) {
+                print_r($e->getMessage());
+            }
         }
-    } catch (GerencianetException $e) {
-        print_r($e->code);
-        print_r($e->error);
-        print_r($e->errorDescription);
-    } catch (Exception $e) {
-        print_r($e->getMessage());
-    }
-}
-    
-    
 
-    
+
+
+
 
 
 
@@ -403,7 +401,7 @@ if (!empty($_SESSION['shopping_cart'])) {
             try {
                 $api = new Gerencianet($options);
                 $response = $api->createOneStepCharge($params = [], $body);
-     
+
                 echo '<div class="result-container fundo_boleto">';
 
                 // Exibindo o código de barras estilizado
@@ -442,7 +440,7 @@ if (!empty($_SESSION['shopping_cart'])) {
         text-align: center;
         position: relative;
         top: 250px;
-        font-size:30px;
+        font-size: 30px;
     }
 
     .result-container {
@@ -461,7 +459,7 @@ if (!empty($_SESSION['shopping_cart'])) {
 
     .download-link a {
         color: #007bff;
-        font-size:30px;
+        font-size: 30px;
         text-decoration: none;
         font-family: 'Roboto', sans-serif;
         word-break: break-all;
@@ -472,7 +470,7 @@ if (!empty($_SESSION['shopping_cart'])) {
         background: #C1C1C1;
         width: 30%;
         height: 100vh;
-        position:relative;
-        left:530px;
+        position: relative;
+        left: 530px;
     }
 </style>
