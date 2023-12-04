@@ -1,10 +1,10 @@
-
 <?php
 
 use Gerencianet\Exception\GerencianetException;
 use Gerencianet\Gerencianet;
 
-session_start();header("Access-Control-Allow-Origin: finalizarcompra.html");
+session_start();
+header("Access-Control-Allow-Origin: finalizarcompra.html");
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Allow-Headers: Content-Type");
 
@@ -28,11 +28,12 @@ if (!empty($_SESSION['shopping_cart'])) {
 
 
     $valorFrete = 0;
-    $valor_total=0;
+    $valor_total = 0;
 
-    
+
     foreach ($_SESSION['shopping_cart'] as $produto_id => $quantidade) {
-     
+
+
         $query = "SELECT nome, valor, peso, altura, largura, comprimento FROM produtos WHERE id = $produto_id";
         $result = mysqli_query($conexao, $query);
         $produto = mysqli_fetch_assoc($result);
@@ -82,7 +83,7 @@ if (!empty($_SESSION['shopping_cart'])) {
         ));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-        $valorSfrete = 0; 
+        $valorSfrete = 0;
         $response = curl_exec($ch);
 
         if ($response === false) {
@@ -105,18 +106,19 @@ if (!empty($_SESSION['shopping_cart'])) {
 
         // Feche a sessão cURL
         curl_close($ch);
-       
+
         $valorSfrete += $subtotal;
-        
+
         $valor_total += $subtotal + $valorFrete;
 
 
 
 
-    $inserir_pedido_query = "INSERT INTO pedidos (id_cliente, data_pedido, status_pedido, total_pedido, endereco_entrega, metodo_pagamento) VALUES ('$id_cliente', '$data_pedido', '$status_pedido', '$total_pedido', '$endereco_entrega', '$forma_pagamento')";
-    mysqli_query($conexao, $inserir_pedido_query);
+        $inserir_pedido_query = "INSERT INTO pedidos (id_cliente, data_pedido, status_pedido, total_pedido, endereco_entrega, metodo_pagamento) VALUES ('$id_cliente', '$data_pedido', '$status_pedido', '$total_pedido', '$endereco_entrega', '$forma_pagamento')";
+        mysqli_query($conexao, $inserir_pedido_query);
 
-    $id_pedido = mysqli_insert_id($conexao); // Obtém o ID do pedido recém-criado
+        $id_pedido = mysqli_insert_id($conexao); // Obtém o ID do pedido recém-criado
+
 
 
     // Percorre os produtos no carrinho e insere-os na tabela "itens_pedido"
@@ -306,157 +308,172 @@ if (!empty($_SESSION['shopping_cart'])) {
     
 
     
-if ($forma_pagamento === "boleto") {
-    
 
-    if (file_exists($autoload = realpath('vendor\autoload.php'))) {
-        require_once $autoload;
-    } else {
-        print_r("Autoload not found or on path <code>$autoload</code>");
+
+
+        if ($forma_pagamento === "boleto") {
+
+
+            if (file_exists($autoload = realpath('vendor\autoload.php'))) {
+                require_once $autoload;
+            } else {
+                print_r("Autoload not found or on path <code>$autoload</code>");
+            }
+
+            if (file_exists($options = realpath('..\gn-api-sdk-php-master\examples\credentials\options.php'))) {
+                require_once $options;
+            }
+
+
+
+
+
+
+
+
+            foreach ($_SESSION['shopping_cart'] as $produto_id => $quantidade) {
+                $query = "SELECT nome, valor FROM produtos WHERE id = $produto_id";
+                $result = mysqli_query($conexao, $query);
+                $produto = mysqli_fetch_assoc($result);
+                $nome_produto = $produto['nome'];
+                $preco_produto = $produto['valor'];
+                $subtotal_produto = $preco_produto * 1 * 100;
+
+                $items[] = [
+                    "name" => $nome_produto,
+                    "amount" => (int)$quantidade,
+                    "value" => (int)$subtotal_produto // Ensure that the value is cast to a string
+                ];
+            }
+
+
+
+            $shippings = [
+                [
+                    "name" => "Shipping to City",
+                    "value" => 100 * $valorFrete
+                ]
+            ];
+
+            $metadata = [
+                "custom_id" => "Order_$id_pedido",
+
+            ];
+
+            $customer = [
+                "name" => "linoca sp",
+                "cpf" => "94271564656",
+                // "email" => "",
+                // "phone_number" => "",
+                // "birth" => "",
+                // "address" => [
+                // 	"street" => "",
+                // 	"number" => "",
+                // 	"neighborhood" => "",
+                // 	"zipcode" => "",
+                // 	"city" => "",
+                // 	"complement" => "",
+                // 	"state" => "",
+                // 	"juridical_person" => "",
+                // 	"corporate_name" => "",
+                // 	"cnpj" => ""
+                // ],
+            ];
+
+
+
+
+            $bankingBillet = [
+                "expire_at" => "2024-12-10",
+                "message" => "This is a space\n of up to 80 characters\n to tell\n your client something",
+                "customer" => $customer
+
+            ];
+
+            $payment = [
+                "banking_billet" => $bankingBillet
+            ];
+
+            $body = [
+                "items" => $items,
+                "shippings" => $shippings,
+                "metadata" => $metadata,
+                "payment" => $payment
+            ];
+
+            try {
+                $api = new Gerencianet($options);
+                $response = $api->createOneStepCharge($params = [], $body);
+     
+                echo '<div class="result-container fundo_boleto">';
+
+                // Exibindo o código de barras estilizado
+                echo '<div class="barcode">';
+                echo '<span>Código de Barras:</span>';
+                echo '<p>' . $response['data']['barcode'] . '" </p>';
+                echo '</div>';
+
+                // Exibindo o link de download estilizado
+                echo '<div class="download-link">';
+                echo '<span>Link de Download:</span>';
+                echo '<a href="' . $response['data']['link'] . '" target="_blank">' . $response['data']['link'] . '</a>';
+                echo '</div>';
+
+                echo '</div>';
+            } catch (GerencianetException $e) {
+                echo '<div class="error">' . $e->code . '<br>' . $e->error . '<br>' . $e->errorDescription . '</div>';
+            } catch (Exception $e) {
+                echo '<div class="error">' . $e->getMessage() . '</div>';
+            }
+        }
+
+
+        // Feche a conexão com o banco de dados
+        mysqli_close($conexao);
+        // Limpa o carrinho após a compra
+        unset($_SESSION['shopping_cart']);
     }
+}
 
-    if (file_exists($options = realpath('..\gn-api-sdk-php-master\examples\credentials\options.php'))) {
-        require_once $options;
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    foreach ($_SESSION['shopping_cart'] as $produto_id => $quantidade) {
-        $query = "SELECT nome, valor FROM produtos WHERE id = $produto_id";
-        $result = mysqli_query($conexao, $query);
-        $produto = mysqli_fetch_assoc($result);
-        $nome_produto = $produto['nome'];
-        $preco_produto = $produto['valor'];
-        $subtotal_produto = $preco_produto * 1*100;
-    
-        $items[] = [
-            "name" => $nome_produto,
-            "amount" => (int)$quantidade,
-            "value" => (int)$subtotal_produto // Ensure that the value is cast to a string
-        ];
-    }
-    
-
-    
-    $shippings = [
-        [
-            "name" => "Shipping to City",
-            "value" => 100*$valorFrete
-        ]
-    ];
-    
-    $metadata = [
-        "custom_id" => "Order_$id_pedido",
-        
-    ];
-    
-    $customer = [
-        "name" => "linoca sp",
-        "cpf" => "94271564656",
-        // "email" => "",
-        // "phone_number" => "",
-        // "birth" => "",
-        // "address" => [
-        // 	"street" => "",
-        // 	"number" => "",
-        // 	"neighborhood" => "",
-        // 	"zipcode" => "",
-        // 	"city" => "",
-        // 	"complement" => "",
-        // 	"state" => "",
-        // 	"juridical_person" => "",
-        // 	"corporate_name" => "",
-        // 	"cnpj" => ""
-        // ],
-    ];
-    
- 
-
-
-    $bankingBillet = [
-        "expire_at" => "2024-12-10",
-        "message" => "This is a space\n of up to 80 characters\n to tell\n your client something",
-        "customer" => $customer
-
-    ];
-    
-    $payment = [
-        "banking_billet" => $bankingBillet
-    ];
-    
-    $body = [
-        "items" => $items,
-        "shippings" => $shippings,
-        "metadata" => $metadata,
-        "payment" => $payment
-    ];
-    
-    try {
-        $api = new Gerencianet($options);
-        $response = $api->createOneStepCharge($params = [], $body);
-    
-        echo '<div class="result-container">';
-        
-        // Exibindo o código de barras estilizado
-        echo '<div class="barcode">';
-        echo '<span>Código de Barras:</span>';
-        echo '<p>' . $response['data']['barcode'] . '" </p>';
-        echo '</div>';
-        
-        // Exibindo o link de download estilizado
-        echo '<div class="download-link">';
-        echo '<span>Link de Download:</span>';
-        echo '<a href="' . $response['data']['link'] . '" target="_blank">' . $response['data']['link'] . '</a>';
-        echo '</div>';
-    
-        echo '</div>';
-    } catch (GerencianetException $e) {
-        echo '<div class="error">' . $e->code . '<br>' . $e->error . '<br>' . $e->errorDescription . '</div>';
-    } catch (Exception $e) {
-        echo '<div class="error">' . $e->getMessage() . '</div>';
-    }
-    
-    
-    
-    
-    
-    }
-    
-    
-    // Feche a conexão com o banco de dados
-    mysqli_close($conexao);
-    // Limpa o carrinho após a compra
-    unset($_SESSION['shopping_cart']);
-
-
-    
-
-
-} }
 
 ?><style>
-.result-container {
-    margin-top: 20px;
-}
+    body {
+        background-image: linear-gradient(90deg, #ffe9e4, #929280);
+        font-family: 'Roboto', sans-serif;
+        text-align: center;
+        position: relative;
+        top: 250px;
+        font-size:30px;
+    }
 
-.barcode,
-.download-link {
-    margin-bottom: 10px;
-}
+    .result-container {
+        margin-top: 20px;
+    }
 
-.barcode img {
-    max-width: 100%;
-    height: auto;
-}
+    .barcode,
+    .download-link {
+        margin-bottom: 10px;
+    }
 
-.download-link a {
-    color: #007bff;
-    text-decoration: none;
-    word-break: break-all;
-}
+    .barcode img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .download-link a {
+        color: #007bff;
+        font-size:30px;
+        text-decoration: none;
+        font-family: 'Roboto', sans-serif;
+        word-break: break-all;
+        text-align: center;
+    }
+
+    .fundo_boleto {
+        background: #C1C1C1;
+        width: 30%;
+        height: 100vh;
+        position:relative;
+        left:530px;
+    }
 </style>
