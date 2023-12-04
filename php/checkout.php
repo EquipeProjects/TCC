@@ -1,23 +1,4 @@
 
-<style>
-    body {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-        margin: 0;
-    }
-
-    #qrcode-container {
-        text-align: center;
-    }
-
-    img {
-        max-width: 100%;
-        height: auto;
-    }
-</style>
-
 <?php
 
 use Gerencianet\Exception\GerencianetException;
@@ -42,7 +23,7 @@ if (!empty($_SESSION['shopping_cart'])) {
     $status_pedido = "Em Processamento"; // Pode ser ajustado conforme necessário
     $total_pedido = 0; // Será calculado abaixo
     $endereco_entrega  = "teste";
-    $forma_pagamento = "pix"; //$_POST["forma_pagamento"];
+    $forma_pagamento = $_POST["forma_pagamento"];
 
 
 
@@ -102,9 +83,7 @@ if (!empty($_SESSION['shopping_cart'])) {
         ));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-        // Execute a requisição e obtenha a resposta
-     
-        $valorSfrete = 0; // Adicione esta variável para armazenar o valor do frete
+        $valorSfrete = 0; 
         $response = curl_exec($ch);
 
         if ($response === false) {
@@ -277,14 +256,13 @@ if (!empty($_SESSION['shopping_cart'])) {
 if ($forma_pagamento === "boleto") {
     
 
-    if (file_exists($autoload = realpath('C:/xampp/htdocs/projetos/TCC/07x11/TCC/pagamentos/gn-api-sdk-php-master/vendor/autoload.php'))) {
+    if (file_exists($autoload = realpath('vendor\autoload.php'))) {
         require_once $autoload;
     } else {
         print_r("Autoload not found or on path <code>$autoload</code>");
     }
-    
-    
-    if (file_exists($options = realpath('C:/xampp/htdocs/projetos/TCC/07x11/TCC/pagamentos/gn-api-sdk-php-master/examples/credentials/options.php'))) {
+
+    if (file_exists($options = realpath('..\gn-api-sdk-php-master\examples\credentials\options.php'))) {
         require_once $options;
     }
     
@@ -296,12 +274,12 @@ if ($forma_pagamento === "boleto") {
     
     
     foreach ($_SESSION['shopping_cart'] as $produto_id => $quantidade) {
-        $query = "SELECT nome, preco FROM produtos WHERE id = $produto_id";
+        $query = "SELECT nome, valor FROM produtos WHERE id = $produto_id";
         $result = mysqli_query($conexao, $query);
         $produto = mysqli_fetch_assoc($result);
         $nome_produto = $produto['nome'];
         $preco_produto = $produto['valor'];
-        $subtotal_produto = $preco_produto * $quantidade*100;
+        $subtotal_produto = $preco_produto * 1*100;
     
         $items[] = [
             "name" => $nome_produto,
@@ -396,7 +374,6 @@ if ($forma_pagamento === "boleto") {
 
     
 
-    // Redireciona o usuário para uma página de confirmação
- 
+
 } }
 

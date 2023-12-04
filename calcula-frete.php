@@ -2,7 +2,7 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $cepDestino = $_POST["cep_destino"];
     $peso = $_POST["peso"];
-    $cepOrigem = "12249899"; // Substitua pelo seu CEP de origem
+    $cepOrigem = "12249899"; 
     $valorMerc = $_POST["valor"];
     $altura = $_POST["altura"];
     $comprimento = $_POST["comprimento"];
@@ -10,7 +10,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $quantidade = $_POST["quantidade"];
     $servico = ['E', 'X', 'M', 'R'];
 
-   // Substitua pela ordem desejada
 
     $produtos = array(
         array(
@@ -43,7 +42,7 @@ curl_setopt($ch, CURLOPT_POST, 1);
 curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonData);
 curl_setopt($ch, CURLOPT_HTTPHEADER, array(
     'Content-Type: application/json',
-    $authorizationHeader // Adicione o cabeçalho de autorização com a chave 'token'
+    $authorizationHeader 
 ));
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     $response = curl_exec($ch);

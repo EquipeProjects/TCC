@@ -57,15 +57,7 @@ if ($conn->query($insert_produto_query) === TRUE) {
         }
     }
 
-    // Redirecione para visualizar_produtos.php após o cadastro bem-sucedido
-    header("Location: visualizar_produtos.php");
-    exit(); // Certifique-se de que o script pare de ser executado após o redirecionamento
-} else {
-    echo "Erro ao cadastrar o produto: " . $conn->error;
-}
-
-// Tamanhos (obtenha-os como uma string e depois divida em um array)
-// Recupere os tamanhos e estoques como arrays
+    // Recupere os tamanhos e estoques como arrays
 $tamanhos = $_POST['tamanhos'];
 $estoques = $_POST['estoques'];
 
@@ -90,6 +82,13 @@ for ($i = 0; $i < count($tamanhos); $i++) {
 }
 
 echo "Produto cadastrado com sucesso!";
+
+    header("Location: visualizar_produtos.php");
+    exit();
+} else {
+    echo "Erro ao cadastrar o produto: " . $conn->error;
+}
+
 
 $conn->close();
 ?>
