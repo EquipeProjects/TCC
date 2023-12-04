@@ -53,6 +53,9 @@ if (isset($_SESSION["shopping_cart"])) {
     <link rel="stylesheet" href="css/style.css">
     <link rel="shortcut icon" href="/ico/logo.ico" type="image/x-icon">
     <meta name="author" content="João Victor, Davi Ribeiro e Yzabella Luiza">
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+</style>
     <meta name="keywords" content="HTML, CSS, JavaScript">
     <meta name="description" content="Um web site de vendas de roupas sob medida que adequa qualquer corpo, gosto e estilo.">
     <style>
@@ -135,39 +138,59 @@ if (isset($_SESSION["shopping_cart"])) {
             cursor: pointer;
         }
         .popup-compras{
-            width: 300px;
+            width: 500px;
             height: auto;
             position: absolute;
             left: 50%;
             top: 50%;
             transform: translate(-50%,-50%);
-            background-color: red;
+            background-color: gray;
 
         }
+
+        .opcoes_paga{
+            color: white;
+            text-decoration: none;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .text_carr_pag{
+            color: black;
+            text-decoration: none;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .button_pedido{
+            color:white;
+          background: black;
+          font-family: 'Roboto', sans-serif;
+        }
+
     </style>
 </head>
 
 <body>
     <script defer src="js/index.js"></script>
+    
 
     <?php
     include('php/header.php'); // Inclui o cabeçalho
     ?>
     <div id="popup" class="popup-compras" >
-    <a href="#" onclick="fecharPopup()">aaa</a>
+    <a class="opcoes_paga" href="#" onclick="fecharPopup()">Opções de pagamentos</a>
     <form action="php/checkout.php" method="post">
 
 
             <label for="endereco">Endereço:</label>
-            <input type="text" id="endereco" name="endereco" required>
-            <label for="forma_pagamento">Escolha a forma de pagamento:</label>
+            <input class="text_carr_pag"  type="text" id="endereco" name="endereco" required>
+            <label class="text_carr_pag" for="forma_pagamento">Escolha a forma de pagamento:</label>
             <select id="forma_pagamento" name="forma_pagamento" required>
                 <option value="pix">Pix</option>
                 <option value="boleto">Boleto Bancário</option>
             </select>
 
 
-            <button type="submit">Confirmar Pedido</button>
+            <button class="button_pedido" type="submit">Confirmar Pedido</button>
         </form>
     
     </div>

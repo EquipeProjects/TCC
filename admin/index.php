@@ -56,35 +56,29 @@ $conn->close();
 <body>
     <h1 style="text-align: center;">Bem-vindo à página do vendedor <?php echo $dados_vendedor['nome']; ?>!</h1>
     <div class="pag-links">
-        <p>Cadastrar produto</p>
+       
         <a href="cadastro.php" class="link-admin">
+       
             <img src="../img/plus.svg" alt="" class="img-admin"><br>
+            <p>Cadastrar produto</p>
         </a>
 
-        <p> Visualizar produtos</p>
+        
         <a href="visualizar_produtos.php" class="link-admin">
             <img src="../img/visuali.svg" alt="" class="img-admin"><br>
+            <p> Visualizar produtos</p>
         </a>
-        
-        <!-- Adicione um loop para exibir os produtos -->
-        <?php
-        if ($result_produtos->num_rows > 0) {
-            while ($row = $result_produtos->fetch_assoc()) {
-                echo "<p>{$row['nome']}</p>";
-                // Adicione mais informações conforme necessário
-            }
-        } else {
-            echo "<p>Nenhum produto encontrado.</p>";
-        }
-        ?>
+    
 
-        <p>Pedidos</p>
+        
         <a href="pedidos.php" class="link-admin">
             <img src="../img/pen.svg" alt="" class="img-admin"><br>
+            <p>Pedidos</p>
         </a>
-        <p>Planos</p>
+        
         <a href="planos.php" class="link-admin">
             <img src="../img/planos.png" alt=""  class="img-admin"><br>
+            <p>Planos</p>
         </a>
     </div>
 
