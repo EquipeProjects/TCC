@@ -33,7 +33,7 @@ if (!empty($_SESSION['shopping_cart'])) {
 
     foreach ($_SESSION['shopping_cart'] as $produto_id => $quantidade) {
 
-        echo $produto_id;
+
         $query = "SELECT nome, valor, peso, altura, largura, comprimento FROM produtos WHERE id = $produto_id";
         $result = mysqli_query($conexao, $query);
         $produto = mysqli_fetch_assoc($result);
@@ -98,7 +98,7 @@ if (!empty($_SESSION['shopping_cart'])) {
 
                 // Atualize o valor do frete na página
                 $valorFrete += $responseData[0]['vlrFrete'];
-                echo $valorFrete; // Assumindo que o 
+        // Assumindo que o 
             } else {
                 echo "Erro na decodificação do JSON da resposta.";
             }
@@ -110,7 +110,7 @@ if (!empty($_SESSION['shopping_cart'])) {
         $valorSfrete += $subtotal;
 
         $valor_total += $subtotal + $valorFrete;
-        echo $valorSfrete, $valor_total;
+
 
 
 
@@ -120,136 +120,194 @@ if (!empty($_SESSION['shopping_cart'])) {
         $id_pedido = mysqli_insert_id($conexao); // Obtém o ID do pedido recém-criado
 
 
-        // Percorre os produtos no carrinho e insere-os na tabela "itens_pedido"
+
+    // Percorre os produtos no carrinho e insere-os na tabela "itens_pedido"
+    foreach ($_SESSION['shopping_cart'] as $produto_id => $quantidade) {
+        // Recupera informações do produto
+        $query_produto = "SELECT valor FROM produtos WHERE id = $produto_id";
+        $result_produto = mysqli_query($conexao, $query_produto);
+        $produto = mysqli_fetch_assoc($result_produto);
+    
+        $preco_unitario = $produto['valor'];
+   
+        $tamanho = isset($_SESSION['shopping_cart'][$produto_id]['tamanho']) ? $_SESSION['shopping_cart'][$produto_id]['tamanho'] : 'A';
+        echo $tamanho ;
+        $quantidade = 1;
+
+        $subtotal1 = $preco_unitario * $quantidade;
+    
+        // Insere o item do pedido na tabela "itens_pedido"
+        $inserir_item_query = "INSERT INTO itens_pedido (id_pedido, id_produto, quantidade, preco_unitario, total_item, valor_frete, tamanho) VALUES ('$id_pedido', '$produto_id', '$quantidade', '$preco_unitario', '$subtotal1', '$valorFrete', '$tamanho')";
+    
+        $result_insert = mysqli_query($conexao, $inserir_item_query);
+
+     
+    }
+    
+
+
+    $atualizar_total_query = "UPDATE pedidos SET total_pedido = '$valor_total' WHERE id_pedido = '$id_pedido'";
+    mysqli_query($conexao, $atualizar_total_query);
+
+
+    if ($forma_pagamento === "pix") {
+        if (file_exists($autoload = realpath('vendor\autoload.php'))) {
+            require_once $autoload;
+        } else {
+            print_r("Autoload not found or on path <code>$autoload</code>");
+        }
+    
+        if (file_exists($options = realpath('..\gn-api-sdk-php-master\examples\credentials\options.php'))) {
+            require_once $options;
+        }
+    
+        $txid = "00000000000000000000000000000001$id_pedido"; // Substitua pelo valor desejado
+        $pattern = "^[a-zA-Z0-9]{26,35}$";
+        if (!preg_match("/$pattern/", $txid)) {
+            die("Erro: O campo txid não corresponde ao padrão esperado.");
+        }
+    
         foreach ($_SESSION['shopping_cart'] as $produto_id => $quantidade) {
-            // Recupera informações do produto
-            $query_produto = "SELECT valor FROM produtos WHERE id = $produto_id";
-            $result_produto = mysqli_query($conexao, $query_produto);
-            $produto = mysqli_fetch_assoc($result_produto);
-
-            $preco_unitario = $produto['valor'];
-
-            $tamanho = isset($_SESSION['shopping_cart'][$produto_id]['tamanho']) ? $_SESSION['shopping_cart'][$produto_id]['tamanho'] : 'A';
-            echo $tamanho;
-            $quantidade = 1;
-            echo "  ", $preco_unitario, " ", $quantidade;
-            $subtotal1 = $preco_unitario * $quantidade;
-
-            // Insere o item do pedido na tabela "itens_pedido"
-            $inserir_item_query = "INSERT INTO itens_pedido (id_pedido, id_produto, quantidade, preco_unitario, total_item, valor_frete, tamanho) VALUES ('$id_pedido', '$produto_id', '$quantidade', '$preco_unitario', '$subtotal1', '$valorFrete', '$tamanho')";
-
-            $result_insert = mysqli_query($conexao, $inserir_item_query);
-
-            if ($result_insert) {
-                echo "Inserção bem-sucedida!";
-            } else {
-                echo "Erro na inserção: " . mysqli_error($conexao);
-            }
+            $query = "SELECT nome, valor FROM produtos WHERE id = $produto_id";
+            $result = mysqli_query($conexao, $query);
+            $produto = mysqli_fetch_assoc($result);
+            $nome_produto = $produto['nome'];
+            $preco_produto = $produto['valor'];
+            $subtotal_produto = $preco_produto * 1;
+    
+            $infoAdicionais[] = [
+                "nome" => $nome_produto,
+                "valor" => (string)$subtotal_produto // Ensure that the value is cast to a string
+            ];
         }
+    
+        $params = [
+            "txid" => $txid
+        ];
+    
+        $body = [
+            "calendario" => [
+                "expiracao" => 1800// Charge lifetime, specified in seconds from creation date
+            ],
+            "devedor" => [
+                "cpf" => "50618401865",
+                "nome" => "davi ribeiro"
+            ],
+            "valor" => [
+                "original" => "0.01"
+            ],
+            "chave" => "93d8c857-540a-45c0-af96-17a59e9ec256",
+            "solicitacaoPagador" => "Enter the order number or identifier.",
+            "infoAdicionais" => $infoAdicionais
+        ];
+        ?>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
 
+    #pix-container {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        display: flex;
+        max-width: 600px;
+        width: 100%;
+    }
 
-        // Atualiza o valor total do pedido na tabela "pedidos"
-        $atualizar_total_query = "UPDATE pedidos SET total_pedido = '$valor_total' WHERE id_pedido = '$id_pedido'";
-        mysqli_query($conexao, $atualizar_total_query);
+    #qrcode-container {
+        padding: 20px;
+        text-align: center;
+        background-color: #3498db;
+        color: #fff;
+    }
 
+    #timer {
+        margin-top: 10px;
+        font-weight: bold;
+    }
 
-        if ($forma_pagamento === "pix") {
-            if (file_exists($autoload = realpath('vendor\autoload.php'))) {
-                require_once $autoload;
-            } else {
-                print_r("Autoload not found or on path <code>$autoload</code>");
-            }
+    #pix-info {
+        padding: 20px;
+        text-align: left;
+    }
 
-            if (file_exists($options = realpath('..\gn-api-sdk-php-master\examples\credentials\options.php'))) {
-                require_once $options;
-            }
+    #pix-info b {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+</style>
 
-            $txid = "00000000000000000000000000000001$id_pedido"; // Substitua pelo valor desejado
-            $pattern = "^[a-zA-Z0-9]{26,35}$";
-            if (!preg_match("/$pattern/", $txid)) {
-                die("Erro: O campo txid não corresponde ao padrão esperado.");
-            }
-
-            foreach ($_SESSION['shopping_cart'] as $produto_id => $quantidade) {
-                $query = "SELECT nome, valor FROM produtos WHERE id = $produto_id";
-                $result = mysqli_query($conexao, $query);
-                $produto = mysqli_fetch_assoc($result);
-                $nome_produto = $produto['nome'];
-                $preco_produto = $produto['valor'];
-                $subtotal_produto = $preco_produto * 1;
-
-                $infoAdicionais[] = [
-                    "nome" => $nome_produto,
-                    "valor" => (string)$subtotal_produto // Ensure that the value is cast to a string
-                ];
-            }
-
+    
+    <?php
+    try {
+        $api = Gerencianet::getInstance($options);
+        $pix = $api->pixCreateCharge($params, $body);
+    
+        if ($pix["txid"]) {
             $params = [
-                "txid" => $txid
+                "id" => $pix["loc"]["id"]
             ];
-
-            $body = [
-                "calendario" => [
-                    "expiracao" => 1800 // Charge lifetime, specified in seconds from creation date
-                ],
-                "devedor" => [
-                    "cpf" => "50618401865",
-                    "nome" => "davi ribeiro"
-                ],
-                "valor" => [
-                    "original" => "0.01"
-                ],
-                "chave" => "93d8c857-540a-45c0-af96-17a59e9ec256",
-                "solicitacaoPagador" => "Enter the order number or identifier.",
-                "infoAdicionais" => $infoAdicionais
-            ];
-
-            try {
-                $api = Gerencianet::getInstance($options);
-                $pix = $api->pixCreateCharge($params, $body);
-
-                if ($pix["txid"]) {
-                    $params = [
-                        "id" => $pix["loc"]["id"]
-                    ];
-
-                    $qrcode = $api->pixGenerateQRCode($params);
-
-                    echo "  $subtotal_produto ";
-                    echo "<div id='qrcode-container'>";
-                    echo "<b>QR Code:</b>";
-                    echo "<img src='" . $qrcode["imagemQrcode"] . "' />";
-                    echo "<div id='timer'></div>"; // Container para o timer
-                    echo "</div>";
-
-                    echo "<script>
-                        var timerElement = document.getElementById('timer');
-                        var remainingTime = 1800; // Tempo de expiração em segundos
-                        var timerInterval = setInterval(function () {
-                            var minutes = Math.floor(remainingTime / 60);
-                            var seconds = remainingTime % 60;
     
-                            timerElement.innerHTML = 'Tempo restante: ' + minutes + 'm ' + seconds + 's';
+            $qrcode = $api->pixGenerateQRCode($params);
     
-                            if (remainingTime <= 0) {
-                                clearInterval(timerInterval);
-                                timerElement.innerHTML = 'Expirado';
-                            }
+            echo "<div id='pix-container'>";
+            
+            echo "<div id='qrcode-container'>";
+            echo "<b>QR Code:</b>";
+            echo "<img src='" . $qrcode["imagemQrcode"] . "' />";
+            echo "<div id='timer'></div>"; // Container para o timer
+            echo "</div>";
+        
+            // Adicionando a exibição do código do PIX e do valor total
+            echo "<div id='pix-info'>";
+            echo "<b>Código do PIX:</b> " . $pix["txid"] . "<br>";
+            echo "<b>Valor Original:</b> R$ " . number_format(floatval($pix['valor']['original']), 2, ',', '.') . "<br>";
+           
+            echo "</div>";
     
-                            remainingTime--;
-                        }, 1000);
-                      </script>";
-                } else {
-                    echo "<pre>" . json_encode($pix, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "</pre>";
-                }
-            } catch (GerencianetException $e) {
-                print_r($e->code);
-                print_r($e->error);
-                print_r($e->errorDescription);
-            } catch (Exception $e) {
-                print_r($e->getMessage());
-            }
+            echo "</div>";
+    
+            echo "<script>
+                var timerElement = document.getElementById('timer');
+                var remainingTime = 1800; // Tempo de expiração em segundos
+                var timerInterval = setInterval(function () {
+                    var minutes = Math.floor(remainingTime / 60);
+                    var seconds = remainingTime % 60;
+    
+                    timerElement.innerHTML = 'Tempo restante: ' + minutes + 'm ' + seconds + 's';
+    
+                    if (remainingTime <= 0) {
+                        clearInterval(timerInterval);
+                        timerElement.innerHTML = 'Expirado';
+                    }
+    
+                    remainingTime--;
+                }, 1000);
+              </script>";
+        } else {
+            echo "<pre>" . json_encode($pix, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "</pre>";
         }
+    } catch (GerencianetException $e) {
+        print_r($e->code);
+        print_r($e->error);
+        print_r($e->errorDescription);
+    } catch (Exception $e) {
+        print_r($e->getMessage());
+    }
+}
+    
+    
+
+    
 
 
 
@@ -376,6 +434,7 @@ if (!empty($_SESSION['shopping_cart'])) {
         unset($_SESSION['shopping_cart']);
     }
 }
+
 
 ?><style>
     body {
