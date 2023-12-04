@@ -130,8 +130,7 @@ if (!empty($_SESSION['shopping_cart'])) {
     
         $preco_unitario = $produto['valor'];
    
-        $tamanho = isset($_SESSION['shopping_cart'][$produto_id]['tamanho']) ? $_SESSION['shopping_cart'][$produto_id]['tamanho'] : 'A';
-        echo $tamanho ;
+        $tamanho = isset($_SESSION['shopping_cart'][$produto_id]['tamanho']) ? $_SESSION['shopping_cart'][$produto_id]['tamanho'] : '';
         $quantidade = 1;
 
         $subtotal1 = $preco_unitario * $quantidade;
