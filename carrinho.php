@@ -207,7 +207,7 @@ if (isset($_SESSION["shopping_cart"])) {
                     <li class="item">
                         <img src="admin/<?php echo $product["image"]; ?>" alt="Product Image">
                         <div class="cart-content">
-                            <p><?php echo htmlspecialchars($product["name"] . $product["tamanho"]); ?></p>
+                            <p><?php echo htmlspecialchars($product["name"]); ?></p>
                             <div style="display: flex; justify-content: space-between; align-items: center;">
                                 <span class="item-price"><?php echo "R$" . $product["price"] * $product["quantity"]; ?></span>
                                 <form action="" method="post">
