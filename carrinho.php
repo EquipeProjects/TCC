@@ -61,6 +61,7 @@ if (isset($_SESSION["shopping_cart"])) {
             margin: 0;
             padding: 0;
             background-color: #f8f8f8;
+    
         }
 
         .carrinho {
@@ -133,6 +134,16 @@ if (isset($_SESSION["shopping_cart"])) {
             border-radius: 5px;
             cursor: pointer;
         }
+        .popup-compras{
+            width: 300px;
+            height: auto;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%);
+            background-color: red;
+
+        }
     </style>
 </head>
 
@@ -142,6 +153,24 @@ if (isset($_SESSION["shopping_cart"])) {
     <?php
     include('php/header.php'); // Inclui o cabeçalho
     ?>
+    <div id="popup" class="popup-compras" >
+    <a href="#" onclick="fecharPopup()">aaa</a>
+    <form action="php/checkout.php" method="post">
+
+
+            <label for="endereco">Endereço:</label>
+            <input type="text" id="endereco" name="endereco" required>
+            <label for="forma_pagamento">Escolha a forma de pagamento:</label>
+            <select id="forma_pagamento" name="forma_pagamento" required>
+                <option value="pix">Pix</option>
+                <option value="boleto">Boleto Bancário</option>
+            </select>
+
+
+            <button type="submit">Confirmar Pedido</button>
+        </form>
+    
+    </div>
 
     <div class="carrinho">
         <h1>Seu carrinho <span><?php echo $cart_count; ?> (itens)</span></h1>
@@ -178,9 +207,28 @@ if (isset($_SESSION["shopping_cart"])) {
         <a href="" class="inp-bot"><input type="radio">Selecionar Tudo</a>
         <div>
             <span id="totalcust"><?php echo "R$" . $total_price; ?></span>
-            <a href="php/checkout.php"><button class="btn-generic">Finalizar Compra</button></a>
+            <button onclick="abrirPopip()" class="btn-generic">Finalizar Compra</button>
         </div>
     </div>
 </body>
+
+<script>
+    function fecharPopup() {
+    
+        var popup = document.getElementById('popup');
+
+
+        popup.style.display = 'none';
+    }
+</script>
+<script>
+    function abrirPopup() {
+       
+        var popup = document.getElementById('popup');
+
+
+        popup.style.display = 'block';
+    }
+</script>
 
 </html>
