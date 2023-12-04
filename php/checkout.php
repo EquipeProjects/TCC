@@ -347,24 +347,33 @@ if ($forma_pagamento === "boleto") {
         $api = new Gerencianet($options);
         $response = $api->createOneStepCharge($params = [], $body);
     
-        print_r("<pre>" . json_encode($response, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "</pre>");
+        echo '<div class="result-container">';
+        
+        // Exibindo o código de barras estilizado
+        echo '<div class="barcode">';
+        echo '<span>Código de Barras:</span>';
+        echo '<p>' . $response['data']['barcode'] . '" </p>';
+        echo '</div>';
+        
+        // Exibindo o link de download estilizado
+        echo '<div class="download-link">';
+        echo '<span>Link de Download:</span>';
+        echo '<a href="' . $response['data']['link'] . '" target="_blank">' . $response['data']['link'] . '</a>';
+        echo '</div>';
+    
+        echo '</div>';
     } catch (GerencianetException $e) {
-        print_r($e->code);
-        print_r($e->error);
-        print_r($e->errorDescription);
+        echo '<div class="error">' . $e->code . '<br>' . $e->error . '<br>' . $e->errorDescription . '</div>';
     } catch (Exception $e) {
-        print_r($e->getMessage());
+        echo '<div class="error">' . $e->getMessage() . '</div>';
     }
     
     
     
     
     
-    
-    
-    
-    
     }
+    
     
     // Feche a conexão com o banco de dados
     mysqli_close($conexao);
@@ -377,3 +386,24 @@ if ($forma_pagamento === "boleto") {
 
 } }
 
+?><style>
+.result-container {
+    margin-top: 20px;
+}
+
+.barcode,
+.download-link {
+    margin-bottom: 10px;
+}
+
+.barcode img {
+    max-width: 100%;
+    height: auto;
+}
+
+.download-link a {
+    color: #007bff;
+    text-decoration: none;
+    word-break: break-all;
+}
+</style>
