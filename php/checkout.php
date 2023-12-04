@@ -32,8 +32,7 @@ if (!empty($_SESSION['shopping_cart'])) {
 
     
     foreach ($_SESSION['shopping_cart'] as $produto_id => $quantidade) {
-      
-        echo$produto_id ;
+     
         $query = "SELECT nome, valor, peso, altura, largura, comprimento FROM produtos WHERE id = $produto_id";
         $result = mysqli_query($conexao, $query);
         $produto = mysqli_fetch_assoc($result);
@@ -98,7 +97,7 @@ if (!empty($_SESSION['shopping_cart'])) {
 
                 // Atualize o valor do frete na página
                 $valorFrete += $responseData[0]['vlrFrete'];
-                echo $valorFrete; // Assumindo que o 
+        // Assumindo que o 
             } else {
                 echo "Erro na decodificação do JSON da resposta.";
             }
@@ -110,7 +109,7 @@ if (!empty($_SESSION['shopping_cart'])) {
         $valorSfrete += $subtotal;
         
         $valor_total += $subtotal + $valorFrete;
-        echo $valorSfrete, $valor_total;
+
 
 
 
@@ -132,7 +131,7 @@ if (!empty($_SESSION['shopping_cart'])) {
         $tamanho = isset($_SESSION['shopping_cart'][$produto_id]['tamanho']) ? $_SESSION['shopping_cart'][$produto_id]['tamanho'] : 'A';
         echo $tamanho ;
         $quantidade = 1;
-        echo "  ", $preco_unitario, " ", $quantidade;
+
         $subtotal1 = $preco_unitario * $quantidade;
     
         // Insere o item do pedido na tabela "itens_pedido"
@@ -140,15 +139,11 @@ if (!empty($_SESSION['shopping_cart'])) {
     
         $result_insert = mysqli_query($conexao, $inserir_item_query);
 
-        if ($result_insert) {
-            echo "Inserção bem-sucedida!";
-        } else {
-            echo "Erro na inserção: " . mysqli_error($conexao);
-        }
+     
     }
     
 
-    // Atualiza o valor total do pedido na tabela "pedidos"
+
     $atualizar_total_query = "UPDATE pedidos SET total_pedido = '$valor_total' WHERE id_pedido = '$id_pedido'";
     mysqli_query($conexao, $atualizar_total_query);
 
@@ -203,53 +198,111 @@ if (!empty($_SESSION['shopping_cart'])) {
             "solicitacaoPagador" => "Enter the order number or identifier.",
             "infoAdicionais" => $infoAdicionais
         ];
-    
-        try {
-            $api = Gerencianet::getInstance($options);
-            $pix = $api->pixCreateCharge($params, $body);
-    
-            if ($pix["txid"]) {
-                $params = [
-                    "id" => $pix["loc"]["id"]
-                ];
-    
-                $qrcode = $api->pixGenerateQRCode($params);
-
-                echo "  $subtotal_produto ";
-                echo "<div id='qrcode-container'>";
-                echo "<b>QR Code:</b>";
-                echo "<img src='" . $qrcode["imagemQrcode"] . "' />";
-                echo "<div id='timer'></div>"; // Container para o timer
-                echo "</div>";
-    
-                echo "<script>
-                        var timerElement = document.getElementById('timer');
-                        var remainingTime = 1800; // Tempo de expiração em segundos
-                        var timerInterval = setInterval(function () {
-                            var minutes = Math.floor(remainingTime / 60);
-                            var seconds = remainingTime % 60;
-    
-                            timerElement.innerHTML = 'Tempo restante: ' + minutes + 'm ' + seconds + 's';
-    
-                            if (remainingTime <= 0) {
-                                clearInterval(timerInterval);
-                                timerElement.innerHTML = 'Expirado';
-                            }
-    
-                            remainingTime--;
-                        }, 1000);
-                      </script>";
-            } else {
-                echo "<pre>" . json_encode($pix, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "</pre>";
-            }
-        } catch (GerencianetException $e) {
-            print_r($e->code);
-            print_r($e->error);
-            print_r($e->errorDescription);
-        } catch (Exception $e) {
-            print_r($e->getMessage());
-        }
+        ?>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
     }
+
+    #pix-container {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        display: flex;
+        max-width: 600px;
+        width: 100%;
+    }
+
+    #qrcode-container {
+        padding: 20px;
+        text-align: center;
+        background-color: #3498db;
+        color: #fff;
+    }
+
+    #timer {
+        margin-top: 10px;
+        font-weight: bold;
+    }
+
+    #pix-info {
+        padding: 20px;
+        text-align: left;
+    }
+
+    #pix-info b {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+</style>
+
+    
+    <?php
+    try {
+        $api = Gerencianet::getInstance($options);
+        $pix = $api->pixCreateCharge($params, $body);
+    
+        if ($pix["txid"]) {
+            $params = [
+                "id" => $pix["loc"]["id"]
+            ];
+    
+            $qrcode = $api->pixGenerateQRCode($params);
+    
+            echo "<div id='pix-container'>";
+            
+            echo "<div id='qrcode-container'>";
+            echo "<b>QR Code:</b>";
+            echo "<img src='" . $qrcode["imagemQrcode"] . "' />";
+            echo "<div id='timer'></div>"; // Container para o timer
+            echo "</div>";
+        
+            // Adicionando a exibição do código do PIX e do valor total
+            echo "<div id='pix-info'>";
+            echo "<b>Código do PIX:</b> " . $pix["txid"] . "<br>";
+            echo "<b>Valor Original:</b> R$ " . number_format(floatval($pix['valor']['original']), 2, ',', '.') . "<br>";
+           
+            echo "</div>";
+    
+            echo "</div>";
+    
+            echo "<script>
+                var timerElement = document.getElementById('timer');
+                var remainingTime = 1800; // Tempo de expiração em segundos
+                var timerInterval = setInterval(function () {
+                    var minutes = Math.floor(remainingTime / 60);
+                    var seconds = remainingTime % 60;
+    
+                    timerElement.innerHTML = 'Tempo restante: ' + minutes + 'm ' + seconds + 's';
+    
+                    if (remainingTime <= 0) {
+                        clearInterval(timerInterval);
+                        timerElement.innerHTML = 'Expirado';
+                    }
+    
+                    remainingTime--;
+                }, 1000);
+              </script>";
+        } else {
+            echo "<pre>" . json_encode($pix, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "</pre>";
+        }
+    } catch (GerencianetException $e) {
+        print_r($e->code);
+        print_r($e->error);
+        print_r($e->errorDescription);
+    } catch (Exception $e) {
+        print_r($e->getMessage());
+    }
+}
+    
     
 
     
