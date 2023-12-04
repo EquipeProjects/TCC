@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/novidades.css">
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+</style>
     <title>Novidades</title>
 </head>
 
@@ -34,7 +37,7 @@
                 // ID da categoria correspondente a esta página (modificar conforme necessário)
 
                 // Consulta SQL para selecionar produtos da categoria correspondente
-                $sql = "SELECT id, nome, valor, imagem FROM produtos";
+                $sql = "SELECT id, nome, valor, imagem, subcategoria FROM produtos";
                 $result = $conn->query($sql);
 
 
@@ -43,12 +46,13 @@
                         echo "
                 
             <div class='product_space'>
-            <a href='produto.php?id=" . $row['id'] . "'> 
+            <img class='heartfavorit' id='favicon' src='img/heart.svg' alt=''>
+            <a class='linkdoproduto' href='produto.php?id=" . $row['id'] . "'> 
                 <div class='product_box'> <img class='img_novidade' src='admin/{$row['imagem']}' alt='{$row['nome']}'>
                     <div class='preco_product'> R$ {$row['valor']}</div>
                 </div>
                 <div class='text_product'>{$row['nome']}</div>
-                <div class='sob_categoria'>Casual</div>
+                <div class='sob_categoria's>{$row['subcategoria']}</div>
                 </a>
             </div>
             

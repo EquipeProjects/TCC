@@ -1216,3 +1216,14 @@ text-align: center;
     cursor: pointer;
 }
 
+.linkdoproduto{
+    text-decoration: none;
+}
+
+.heartfavorit{
+    width: 35px;
+    position:absolute;
+    top:0;
+    right: 15px;
+    z-index: 4;
+}

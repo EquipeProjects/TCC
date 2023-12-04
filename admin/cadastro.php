@@ -82,69 +82,49 @@ if (isset($_GET['edit_products'])) {
     </form>
 
     <!-- JavaScript para preencher a lista de subcategorias dinamicamente -->
-    <script>
-        const categoriaSelect = document.getElementById("categoria");
-        const subcategoriaSelect = document.getElementById("subcategoria");
+    <!-- Adicione um campo de subcategoria ao seu formulário -->
+<label for="subcategoria">Subcategoria:</label>
+<select id="subcategoria" name="subcategoria"></select>
 
-        // Mapeie as opções de subcategoria para cada categoria
-        const subcategoriasPorCategoria = {
-            1: ["BLUSAS", "CAMISETAS / REGATAS", "MOLETONS", "CALÇAS", "JEANS", "JAQUETAS"],
-            2: ["BLUSAS", "CAMISETAS / REGATAS", "CAMISETAS DE TIME", "MOLETONS", "CALÇAS", "JEANS"],
-            3: ["TOPS / CROPPEDS", "MOLETONS", "CALÇAS", "JEANS", "SAIAS / VESTIDOS", "JAQUETAS"],
-            4: ["MASCULINOS", "FEMININOS", "INFANTIL"],
+<script>
+    const categoriaSelect = document.getElementById("categoria");
+    const subcategoriaSelect = document.getElementById("subcategoria");
 
-            // Adicione mais categorias e suas subcategorias conforme necessário
-        };
+    // Mapeie as opções de subcategoria para cada categoria
+    const subcategoriasPorCategoria = {
+        1: [ "BLUSAS", "CAMISETAS / REGATAS", "MOLETONS", "CALÇAS", "JEANS", "JAQUETAS"],
+        2: [ "BLUSAS", "CAMISETAS / REGATAS", "CAMISETAS DE TIME", "MOLETONS", "CALÇAS", "JEANS"],
+        3: [ "TOPS / CROPPEDS", "MOLETONS", "CALÇAS", "JEANS", "SAIAS / VESTIDOS", "JAQUETAS"],
+        4: [ "MASCULINOS", "FEMININOS", "INFANTIL"],
+        // Adicione mais categorias e suas subcategorias conforme necessário
+    };
 
-        categoriaSelect.addEventListener("change", function() {
-            const selectedCategoria = categoriaSelect.value;
-            const subcategorias = subcategoriasPorCategoria[selectedCategoria] || [];
+    categoriaSelect.addEventListener("change", function () {
+        const selectedCategoria = categoriaSelect.value;
+        const subcategorias = subcategoriasPorCategoria[selectedCategoria] || [];
 
-            // Limpe as opções atuais do campo de subcategoria
-            subcategoriaSelect.innerHTML = "";
+        // Limpe as opções atuais do campo de subcategoria
+        subcategoriaSelect.innerHTML = "";
 
-            // Adicione as novas opções com base na categoria selecionada
-            subcategorias.forEach(function(subcategoria) {
-                const option = document.createElement("option");
-                option.value = subcategoria;
-                option.textContent = subcategoria;
-                subcategoriaSelect.appendChild(option);
-            });
+        // Adicione a opção padrão para subcategoria
+        const defaultOption = document.createElement("option");
+        defaultOption.value = "";
+        defaultOption.textContent = "Escolha uma subcategoria";
+        subcategoriaSelect.appendChild(defaultOption);
+
+        // Adicione as novas opções com base na categoria selecionada
+        subcategorias.forEach(function (subcategoria) {
+            const option = document.createElement("option");
+            option.value = subcategoria;
+            option.textContent = subcategoria;
+            subcategoriaSelect.appendChild(option);
         });
+    });
 
+    // ... (o restante do seu script permanece o mesmo)
 
-        // Função para exibir uma visualização das imagens selecionadas
-        function exibirPreview(input) {
-            const preview = document.getElementById("preview");
-            preview.innerHTML = ""; // Limpa a visualização atual
+</script>
 
-            if (input.files && input.files.length > 0) {
-                for (let i = 0; i < input.files.length; i++) {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        const img = document.createElement("img");
-                        img.src = e.target.result;
-                        img.style.maxWidth = "100px"; // Ajuste o tamanho conforme necessário
-                        img.style.marginRight = "10px"; // Espaçamento entre as imagens
-                        preview.appendChild(img);
-                    };
-                    reader.readAsDataURL(input.files[i]);
-                }
-            }
-        }
-
-        function adicionarCampo() {
-            var container = document.getElementById("tamanhos_estoque_container");
-            var novoCampo = document.createElement("div");
-            novoCampo.innerHTML = '<text class="text-admin">Tamanho:</text> <input class="text-admin" type="text" name="tamanhos[]" required> <text class="text-admin">Estoque:</text> <input class="text-admin" type="text" name="estoques[]" required> <button type="button" onclick="removerCampo(this)">Remover</button>';
-            container.appendChild(novoCampo);
-        }
-
-        function removerCampo(elemento) {
-            var container = document.getElementById("tamanhos_estoque_container");
-            container.removeChild(elemento.parentNode);
-        }
-    </script>
 </body>
 
 </html>

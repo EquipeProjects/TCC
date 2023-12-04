@@ -1,16 +1,3 @@
-session_start();
-
-// Verifique se há uma mensagem de erro na sessão
-if (isset($_SESSION['error_message'])) {
-    // Exiba a mensagem de erro
-    $error_message = $_SESSION['error_message'];
-    echo json_encode($error_message);
-
-    // Limpe a mensagem de erro da sessão
-    unset($_SESSION['error_message']);
-}
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,8 +13,6 @@ if (isset($_SESSION['error_message'])) {
 <body>
 
     <main>
-
-
         <form class="login" action="verifica_login.php" method="POST" style="align-items:center;">
             <div class="logo">
                 <a href="index.php">
@@ -46,9 +31,17 @@ if (isset($_SESSION['error_message'])) {
                     <a class="link_no_cont" href="cadastro.php">Fazer Login?</a>
                     <a href="#">Login with google</a>
                     <input class="button_login" type="submit" value="Entrar">
-
-
         </form>
+
+        <!-- Bloco de script para exibir alerta -->
+        <script>
+            // Verifica se há uma mensagem de erro na sessão
+            <?php if (isset($_SESSION['error_message'])): ?>
+                var errorMessage = <?php echo json_encode($_SESSION['error_message']); ?>;
+                alert(errorMessage);
+                <?php unset($_SESSION['error_message']); ?>
+            <?php endif; ?>
+        </script>
     </main>
 
 </body>
